@@ -1,0 +1,13 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  rails: MyString
+  g: MyString
+  model: MyString
+  asset_id: 1
+
+two:
+  rails: MyString
+  g: MyString
+  model: MyString
+  asset_id: 1
