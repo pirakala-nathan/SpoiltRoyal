@@ -37,4 +37,15 @@ Rails.application.configure do
 
 
   Paperclip.options[:command_path] = "/usr/local/bin/"
+
+
+  config.action_mailer.delivery_method = :sendmail
+  config.action_mailer.sendmail_settings = {
+    address:              'box885.bluehost.com',
+    port:                 465,
+    domain:               'box885.bluehost.com',
+    user_name:            'test@syncidlabs.com',
+    password:             '[testaccount]',
+    openssl_verify_mode: 'none',
+    enable_starttls_auto: true  }
 end

@@ -1,5 +1,6 @@
 class UsersController < ApplicationController
-  before_action :set_user, only: [:show, :edit, :update, :destroy]
+  load_and_authorize_resource param_method: :user_params
+  before_action :set_user, only: [:show, :edit, :update, :destroy, :show_account]
 
   # GET /users
   # GET /users.json
@@ -10,6 +11,23 @@ class UsersController < ApplicationController
   # GET /users/1
   # GET /users/1.json
   def show
+    if @user.new?
+      if @user.is_vendor?
+        redirect_to new_vendor_path
+      else
+        redirect_to new_consumer_path
+      end
+    else
+      redirect_to @user.account, notice: 'User Logged in'
+    end
+  end
+
+  def show_account
+    if @user.is_vendor?
+      redirect_to vendor_path(@user.account.id)
+    else
+      redirect_to consumer_path(@user.account.id)
+    end
   end
 
   # GET /users/new

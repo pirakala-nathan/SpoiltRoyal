@@ -1,7 +1,10 @@
 Rails.application.routes.draw do
-  resources :physical_locations
 
-  resources :vendor_subscriptions
+  resources :posts
+
+  get 'pages/home'
+
+  resources :consumers
 
   get 'fetch_categories' => 'api#fetch_categories', as: :fetch_categories
   get 'fetch_subcategories' => 'api#fetch_subcategories', as: :fetch_subcategories
@@ -10,7 +13,12 @@ Rails.application.routes.draw do
 
   resources :vendors
 
-  resources :users, :user_sessions
+  resources :users do
+    member do
+      get :show_account
+    end
+  end
+  resources :user_sessions, only: [:new, :create]
   get 'login' => 'user_sessions#new', :as => :login
   get 'logout' => 'user_sessions#destroy', :as => :logout
 
@@ -18,7 +26,7 @@ Rails.application.routes.draw do
   # See how all your routes lay out with "rake routes".
 
   # You can have the root of your site routed with "root"
-  # root 'welcome#index'
+  root 'pages#home'
 
   # Example of regular route:
   #   get 'products/:id' => 'catalog#view'

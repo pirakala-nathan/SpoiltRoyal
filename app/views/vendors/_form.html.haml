@@ -1,4 +1,5 @@
-= form_for(@vendor) do |f|
+= nested_form_for @vendor, html: { multipart: true } do |f|
+  -# Vendor Part Starts-------------------------------------------------
   - if @vendor.errors.any?
     #error_explanation
       %h2
@@ -9,71 +10,86 @@
           %li= message
   .field
     = f.label :business_name
-    %br/
     = f.text_field :business_name
   .field
     = f.label :business_description
-    %br/
     = f.text_field :business_description
   .field
     = f.label :establish_date
-    %br/
     = f.date_select :establish_date
   .field
     = f.label :tax_number
-    %br/
     = f.number_field :tax_number
   .field
     = f.label :shipping
-    %br/
     = f.check_box :shipping
+  -# Physical Location Part Starts-----------------------------------------
   =f.fields_for :physical_locations do |pl|
+    -# You can add an id to this and use css to change it
+    -# into something you want like an X.
+    =pl.link_to_remove "Remove Physical Location"
     .field
       = pl.label :address
-      %br/
       = pl.text_field :address
     .field
       = pl.label :postal_code
-      %br/
       = pl.text_field :postal_code
     .field
-      - is_new_location = @physical_location.nil? || @physical_location.id.nil?
-      = select(:country, :id, Country.all.collect { |c| [c.name, c.id] }, {prompt: 'Country'}, |
-        :selected => is_new_location ? 0 : @physical_location.city.province.country_id) |
-      -#
-      = select(:province, :id, Province.all.collect { |p| [p.name, p.id] }, {prompt: 'Province'}, |
-        :selected => is_new_location ? 0 : @physical_location.city.province_id)  |
-      = pl.select(:city_id, City.all.collect { |c| [c.name, c.id] }, prompt: "City")
+      -# partial file containing the drop downs for country, province, and city
+      = render 'location_selector', location: pl
     .field
       = pl.label :business_phone
-      %br/
       = pl.text_field :business_phone
     .field
       = pl.label :other_phone
-      %br/
       = pl.text_field :other_phone
     .field
       = pl.label :fax
-      %br/
       = pl.text_field :fax
     .field
       = pl.label :business_email
-      %br/
       = pl.text_field :business_email
     .field
       = pl.label :business_website
-      %br/
       = pl.text_field :business_website
     .field
       = pl.label :sale_location
-      %br/
       = pl.check_box :sale_location
-  / .fields_for @vendor_sub do |vs|
-  /   = select(:industry, :id, Industry.all.collect { |i| [i.name, i.id] }, {prompt: 'Industry'}, |
-  /     :selected => is_new_industry ? 0 : @vendor_subscription.subcategory.category.industry_id) |
-  /   -#
-  /   = select(:category, :id, Category.all.collect { |c| [c.name, c.id] }, {prompt: 'Category'}, |
-  /     :selected => is_new_industry ? 0 : @vendor_subscription.subcategory.category_id)  |
-  /   = f.select(:subcategory_id, Subcategory.all.collect { |s| [s.name, s.id] }, prompt: "Sub-Category")
+  -# same as remove, text can be changed or remove and use
+  -# css to change the way it looks
+  = f.link_to_add "Add Physical Location", :physical_locations
+
+  -# Industry (AKA Vendor subscription) Starts -----------------------------------
+  = f.fields_for :vendor_subscriptions do |vs|
+    .field
+      / drop down selectors for industry, category, and sub category
+      = render 'industry_selector', industry: vs
+      = vs.link_to_remove "Remove Industry"
+  = f.link_to_add "Add Industry", :vendor_subscriptions
+
+  -# Delivery Location Starts ----------------------------------------------------
+  = f.fields_for :delivery_locations do |dl|
+    .field
+      = render 'location_selector', location: dl
+      = dl.link_to_remove "Remove Delivery_Location"
+  = f.link_to_add "Add Delivery Location", :delivery_locations
+
+  = f.fields_for :external_links do |el|
+    .field
+      = el.label :link
+      = el.text_field :link
+      = el.label :type
+      = el.select(:external_source_id, ExternalSource.all.collect { |s| [s.source_type, s.id] }, prompt: "type")
+      = el.link_to_remove "Remove Link"
+  = f.link_to_add "Add Link", :external_links
+
+  = f.fields_for :assets do |a|
+    .field
+      - if a.object.nil? || a.object.new_record?
+        = a.file_field :image
+      - else
+        = image_tag a.object.image.url(:thumb)
+        = a.link_to_remove "Remove Image"
+  = f.link_to_add "Add Picture", :assets
   .actions
     = f.submit

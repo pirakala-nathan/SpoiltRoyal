@@ -11,12 +11,16 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20141023230340) do
+ActiveRecord::Schema.define(version: 20141028222224) do
 
   create_table "assets", force: true do |t|
     t.integer  "vendor_id"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.string   "image_file_name"
+    t.string   "image_content_type"
+    t.integer  "image_file_size"
+    t.datetime "image_updated_at"
   end
 
   create_table "categories", force: true do |t|
@@ -29,6 +33,11 @@ ActiveRecord::Schema.define(version: 20141023230340) do
   create_table "cities", force: true do |t|
     t.string   "name"
     t.integer  "province_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "consumers", force: true do |t|
     t.datetime "created_at"
     t.datetime "updated_at"
   end
@@ -55,7 +64,7 @@ ActiveRecord::Schema.define(version: 20141023230340) do
   end
 
   create_table "external_sources", force: true do |t|
-    t.string   "type"
+    t.string   "source_type"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
@@ -81,11 +90,9 @@ ActiveRecord::Schema.define(version: 20141023230340) do
     t.datetime "updated_at"
   end
 
-  create_table "pictures", force: true do |t|
-    t.string   "rails"
-    t.string   "g"
-    t.string   "model"
-    t.integer  "asset_id"
+  create_table "posts", force: true do |t|
+    t.string   "title"
+    t.string   "description"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
@@ -110,9 +117,9 @@ ActiveRecord::Schema.define(version: 20141023230340) do
     t.string   "crypted_password"
     t.string   "password_salt"
     t.string   "persistence_token"
-    t.string   "account_type"
     t.boolean  "admin"
     t.integer  "account_id"
+    t.string   "account_type"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
@@ -130,7 +137,7 @@ ActiveRecord::Schema.define(version: 20141023230340) do
     t.date     "establish_date"
     t.integer  "tax_number"
     t.boolean  "shipping"
-    t.boolean  "verified"
+    t.boolean  "verified",             default: false
     t.datetime "created_at"
     t.datetime "updated_at"
   end
