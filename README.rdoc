@@ -4,28 +4,4 @@ The app is running on rails 4.2.0beta. Depending on how your set up your environ
 
 For Front End Team:
 
-There is going to be integration, but here are the files that contains the backbone that will build into the integrations.
-
-.
-+-- app
-| +-- views
-|   +-- consumers
-|     +-- new.html.haml
-|   +-- layouts
-|     +-- _industry_selector.html.haml
-|     +-- _location_selector.html.haml
-|     +-- application.html.haml
-|   +-- pages
-|     +-- home.html.haml
-|   +-- user_mailer
-|     +-- new_post_email.html.haml
-|   +-- users
-|     +-- _form.html.erb
-|     +-- _edit.html.erb
-|     +-- new.html.erb
-|   +-- vendors
-|     +-- _form.html.haml
-|     +-- edit.html.erb
-|     +-- index.html.haml
-|     +-- new.html.erb
-|     +-- show.html.haml
+All the html files are in their corresponding folers in the views folder. Home page is in views/pages. The important folders are: layout, consumers, users, and vendors.
