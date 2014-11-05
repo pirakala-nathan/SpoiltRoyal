@@ -25,8 +25,7 @@
     = f.check_box :shipping
   -# Physical Location Part Starts-----------------------------------------
   =f.fields_for :physical_locations do |pl|
-    -# You can add an id to this and use css to change it
-    -# into something you want like an X.
+    -# You can add an id to this and use css to change it into something you want like an X.
     =pl.link_to_remove "Remove Physical Location"
     .field
       = pl.label :address
@@ -36,7 +35,7 @@
       = pl.text_field :postal_code
     .field
       -# partial file containing the drop downs for country, province, and city
-      = render 'location_selector', location: pl
+      = render 'layouts/location_selector', location: pl
     .field
       = pl.label :business_phone
       = pl.text_field :business_phone
@@ -60,17 +59,21 @@
   = f.link_to_add "Add Physical Location", :physical_locations
 
   -# Industry (AKA Vendor subscription) Starts -----------------------------------
+  -# multi select needs to be done by javascript and css:
+    -# make this hidden and make a UI using css
+    -# adding a new industry/category/subcategory will trigger the link_to_add and link_to_remove
+    -# along with the filled sub form
   = f.fields_for :vendor_subscriptions do |vs|
     .field
       / drop down selectors for industry, category, and sub category
-      = render 'industry_selector', industry: vs
+      = render 'layouts/industry_selector', industry: vs
       = vs.link_to_remove "Remove Industry"
   = f.link_to_add "Add Industry", :vendor_subscriptions
 
   -# Delivery Location Starts ----------------------------------------------------
   = f.fields_for :delivery_locations do |dl|
     .field
-      = render 'location_selector', location: dl
+      = render 'layouts/location_selector', location: dl
       = dl.link_to_remove "Remove Delivery_Location"
   = f.link_to_add "Add Delivery Location", :delivery_locations
 

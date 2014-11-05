@@ -1,0 +1,29 @@
+%h1 Listing vendors
+%table
+  %thead
+    %tr
+      %th Business name
+      %th Business description
+      %th Establish date
+      %th Tax number
+      %th Shipping
+      %th Verified
+      %th{:colspan => "3"}
+  %tbody
+    - @vendors.each do |vendor|
+      %tr
+        %td= vendor.business_name
+        %td= vendor.business_description
+        %td= vendor.establish_date
+        %td= vendor.tax_number
+        %td= vendor.shipping
+        %td= vendor.verified
+        %td= link_to 'Show', vendor
+        - if can? :update, vendor
+          %td= link_to 'Edit', edit_vendor_path(vendor)
+        - if can? :destroy, vendor
+          %td= link_to 'Destroy', vendor, method: :delete, data: { confirm: 'Are you sure?' }
+%br/
+
+- if can? :create, Vendor
+  = link_to 'New Vendor', new_vendor_path

@@ -30,7 +30,6 @@ class VendorsController < ApplicationController
   # POST /vendors
   # POST /vendors.json
   def create
-    raise
     @vendor = Vendor.new(vendor_params)
     @vendor.user = current_user
     respond_to do |format|

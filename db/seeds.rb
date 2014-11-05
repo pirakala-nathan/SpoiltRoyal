@@ -3,6 +3,16 @@
 #
 # Examples:
 # 
+
+admin = User.create(
+    username: "admin",
+    email: "admin@nex.com",
+    password: "123123",
+    password_confirmation: "123123",
+    account_type: "Vendor",
+    admin: true
+)
+
 c = Country.create([{name: 'Canada'}])
 p = Province.create([
   {name: 'Ontario', country_id: c.first.id},
@@ -17,9 +27,9 @@ City.create([
 for i in 1..3 do
   ind = Industry.create(name: "industry_" + i.to_s)
   for j in 1..3 do
-    cat = Category.create(name:  "category_" + i.to_s + "_" + j.to_s, industry_id: i)
+    cat = Category.create(name:  "category_" + i.to_s + "_" + j.to_s, industry_id: ind.id)
     for k in 1..3 do
-      Subcategory.create(name: "sub-cat_" + i.to_s + "_" + j.to_s + "_" + k.to_s, category_id: j)
+      Subcategory.create(name: "sub-cat_" + i.to_s + "_" + j.to_s + "_" + k.to_s, category_id: cat.id)
     end
   end
 end
