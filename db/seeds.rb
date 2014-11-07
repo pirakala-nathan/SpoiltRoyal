@@ -37,4 +37,5 @@ end
 
 for i in 1..5 do
   ExternalSource.create(source_type: "Source_Type_" + i.to_s)
+  PaymentMethod.create(name: "PaymentMethod_" + i.to_s)
 end

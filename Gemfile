@@ -40,6 +40,8 @@ gem 'scrypt'
 
 gem 'sprockets-rails', :require => 'sprockets/railtie'
 
+gem 'mail', '~> 2.5.4'
+
 group :development do
   gem 'better_errors'
   gem 'binding_of_caller'

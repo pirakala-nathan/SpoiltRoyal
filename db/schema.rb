@@ -11,7 +11,15 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20141107024809) do
+ActiveRecord::Schema.define(version: 20141107231730) do
+
+  create_table "accepted_payment_methods", force: true do |t|
+    t.integer  "vendor_id",         limit: 4
+    t.integer  "payment_method_id", limit: 4
+    t.boolean  "preferred",         limit: 1
+    t.datetime "created_at",                  null: false
+    t.datetime "updated_at",                  null: false
+  end
 
   create_table "assets", force: true do |t|
     t.integer  "vendor_id",          limit: 4
@@ -73,6 +81,12 @@ ActiveRecord::Schema.define(version: 20141107024809) do
     t.string   "name",       limit: 255
     t.datetime "created_at"
     t.datetime "updated_at"
+  end
+
+  create_table "payment_methods", force: true do |t|
+    t.string   "name",       limit: 255
+    t.datetime "created_at",             null: false
+    t.datetime "updated_at",             null: false
   end
 
   create_table "personal_infos", force: true do |t|

@@ -23,6 +23,10 @@
   .field
     = f.label :shipping
     = f.check_box :shipping
+  .field
+    = f.label :accepted_payment
+  .field
+    = collection_check_boxes(:vendor, :payment_method_ids, PaymentMethod.all, :id, :name)
 
   -# personal info part starts --------------------------------------------
   =f.fields_for :personal_infos do |pi|

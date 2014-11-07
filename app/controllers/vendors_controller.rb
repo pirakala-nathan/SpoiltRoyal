@@ -79,7 +79,7 @@ class VendorsController < ApplicationController
       params.require(:vendor).permit(
         # Vendor Attributes
         :business_name, :business_description, :establish_date, :tax_number, :shipping,
-        { accepted_payment_ids: [] },
+        payment_method_ids: [], 
         # Physical Location Attributes
         physical_locations_attributes: [:_destroy, :id, :address, :postal_code, :business_phone,
            :other_phone, :fax, :business_email, :business_website, :sale_location, :city_id],

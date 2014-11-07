@@ -32,6 +32,11 @@
     %strong secondary_phone
     = pi.secondary_phone
 
+%h3 Payment Infos
+%strong Accepted Payments
+- for ap in @vendor.payment_methods
+  = ap.name
+
 -# Physical Location Part Starts-----------------------------------------
 %h3 Locations
 - for pl in @vendor.physical_locations
