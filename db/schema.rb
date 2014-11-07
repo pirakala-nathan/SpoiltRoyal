@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20141105190334) do
+ActiveRecord::Schema.define(version: 20141107024809) do
 
   create_table "assets", force: true do |t|
     t.integer  "vendor_id",          limit: 4
@@ -75,6 +75,19 @@ ActiveRecord::Schema.define(version: 20141105190334) do
     t.datetime "updated_at"
   end
 
+  create_table "personal_infos", force: true do |t|
+    t.string   "legal_first_name", limit: 255
+    t.string   "legal_last_name",  limit: 255
+    t.string   "preferred_name",   limit: 255
+    t.string   "email",            limit: 255
+    t.string   "title",            limit: 255
+    t.integer  "primary_phone",    limit: 4
+    t.integer  "secondary_phone",  limit: 4
+    t.integer  "vendor_id",        limit: 4
+    t.datetime "created_at",                   null: false
+    t.datetime "updated_at",                   null: false
+  end
+
   create_table "physical_locations", force: true do |t|
     t.string   "address",          limit: 255
     t.string   "postal_code",      limit: 255
@@ -113,6 +126,7 @@ ActiveRecord::Schema.define(version: 20141105190334) do
 
   create_table "subcategories", force: true do |t|
     t.string   "name",        limit: 255
+    t.string   "tip",         limit: 255
     t.integer  "category_id", limit: 4
     t.datetime "created_at"
     t.datetime "updated_at"

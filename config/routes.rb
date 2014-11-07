@@ -1,15 +1,18 @@
 Rails.application.routes.draw do
 
+  resources :personal_infos
+
   resources :posts
 
   get 'pages/home'
 
   resources :consumers
 
-  get 'fetch_categories' => 'api#fetch_categories', as: :fetch_categories
-  get 'fetch_subcategories' => 'api#fetch_subcategories', as: :fetch_subcategories
-  get 'fetch_cities' => 'api#fetch_cities', as: :fetch_cities
-  get 'fetch_provinces' => 'api#fetch_provinces', as: :fetch_provinces
+  match 'fetch_categories' => 'api#fetch_categories', as: :fetch_categories, via: [:get, :post] 
+  match 'fetch_subcategories' => 'api#fetch_subcategories', as: :fetch_subcategories, via: [:get, :post] 
+  match 'fetch_cities' => 'api#fetch_cities', as: :fetch_cities, via: [:get, :post] 
+  match 'fetch_provinces' => 'api#fetch_provinces', as: :fetch_provinces, via: [:get, :post] 
+  match 'fetch_subcategory' => 'api#fetch_subcategory', as: :fetch_subcategory, via: [:get, :post] 
 
   resources :vendors
 

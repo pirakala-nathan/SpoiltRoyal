@@ -20,7 +20,7 @@ Rails.application.configure do
   # config.action_dispatch.rack_cache = true
 
   # Disable Rails's static asset server (Apache or nginx will already do this).
-  config.serve_static_assets = false
+  config.serve_static_assets = true
 
   # Compress JavaScripts and CSS.
   config.assets.js_compressor = :uglifier
@@ -80,4 +80,17 @@ Rails.application.configure do
 
   # Do not dump schema after migrations.
   config.active_record.dump_schema_after_migration = false
+
+  Paperclip.options[:command_path] = "/usr/local/bin/"
+
+
+  config.action_mailer.delivery_method = :smtp
+  config.action_mailer.sendmail_settings = {
+    address:              'smtp.zoho.com',
+    port:                 465,
+    domain:               'smtp.zoho.com',
+    user_name:            'no-reply@nathansexchange.com',
+    password:             'Nexperience!',
+    openssl_verify_mode: 'none',
+    enable_starttls_auto: true  }
 end

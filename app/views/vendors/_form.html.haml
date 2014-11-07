@@ -23,6 +23,33 @@
   .field
     = f.label :shipping
     = f.check_box :shipping
+
+  -# personal info part starts --------------------------------------------
+  =f.fields_for :personal_infos do |pi|
+    =pi.link_to_remove "Remove Personal Infos"
+    .field
+      = pi.label :legal_first_name
+      = pi.text_field :legal_first_name
+    .field
+      = pi.label :legal_last_name
+      = pi.text_field :legal_last_name
+    .field
+      = pi.label :preferred_name
+      = pi.text_field :preferred_name
+    .field
+      = pi.label :email
+      = pi.text_field :email
+    .field
+      = pi.label :title
+      = pi.text_field :title
+    .field
+      = pi.label :primary_phone
+      = pi.number_field :primary_phone
+    .field
+      = pi.label :secondary_phone
+      = pi.number_field :secondary_phone
+  = f.link_to_add "Add Personal Infos", :personal_infos
+
   -# Physical Location Part Starts-----------------------------------------
   =f.fields_for :physical_locations do |pl|
     -# You can add an id to this and use css to change it into something you want like an X.

@@ -29,7 +29,8 @@ for i in 1..3 do
   for j in 1..3 do
     cat = Category.create(name:  "category_" + i.to_s + "_" + j.to_s, industry_id: ind.id)
     for k in 1..3 do
-      Subcategory.create(name: "sub-cat_" + i.to_s + "_" + j.to_s + "_" + k.to_s, category_id: cat.id)
+      ext = i.to_s + "_" + j.to_s + "_" + k.to_s
+      Subcategory.create(name: "sub-cat_" + ext, tip: "tip_" + ext, category_id: cat.id)
     end
   end
 end

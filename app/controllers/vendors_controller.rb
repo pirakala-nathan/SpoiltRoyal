@@ -21,6 +21,7 @@ class VendorsController < ApplicationController
     @vendor.delivery_locations.build
     @vendor.external_links.build
     @vendor.assets.build
+    @vendor.personal_infos.build
   end
 
   # GET /vendors/1/edit
@@ -78,9 +79,10 @@ class VendorsController < ApplicationController
       params.require(:vendor).permit(
         # Vendor Attributes
         :business_name, :business_description, :establish_date, :tax_number, :shipping,
+        { accepted_payment_ids: [] },
         # Physical Location Attributes
-        physical_locations_attributes: [:_destroy, :id, :address, :postal_code, :business_phone, :other_phone,
-          :fax, :business_email, :business_website, :sale_location, :city_id],
+        physical_locations_attributes: [:_destroy, :id, :address, :postal_code, :business_phone,
+           :other_phone, :fax, :business_email, :business_website, :sale_location, :city_id],
         # Vendor Subscription Attributes
         vendor_subscriptions_attributes: [:_destroy, :id, :subcategory_id],
         # Delivery Location Attributes
@@ -88,7 +90,9 @@ class VendorsController < ApplicationController
         # External Link Attributes
         external_links_attributes: [:_destroy, :id, :link, :external_source_id],
         # Asset Attributes (Pictures needs to nest inside assets in order to work)
-        assets_attributes: [:_destroy, :id, :image]
+        assets_attributes: [:_destroy, :id, :image],
+        personal_infos_attributes: [:_destroy, :id, :legal_first_name,
+            :legal_last_name, :preferred_name, :email, :title, :primary_phone, :secondary_phone]
         )
     end
 end

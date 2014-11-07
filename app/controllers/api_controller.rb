@@ -1,4 +1,6 @@
 class ApiController < ApplicationController
+  protect_from_forgery with: :null_session
+
   def fetch_categories
     @industry = Industry.find(params[:industry_id])
 
@@ -21,5 +23,11 @@ class ApiController < ApplicationController
     @province = Province.find(params[:province_id])
 
     render json: @province.cities
+  end
+
+  def fetch_subcategory
+    @subcategory = Subcategory.find(params[:subcategory_id])
+
+    render json: @subcategory
   end
 end

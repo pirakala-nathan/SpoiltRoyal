@@ -1,61 +1,71 @@
 %p#notice= notice
 %h3 Business Info
-%p
+%p.row
   %strong Business name:
   = @vendor.business_name
-%p
   %strong Business description:
   = @vendor.business_description
-%p
   %strong Establish date:
   = @vendor.establish_date
-%p
   %strong Tax number:
   = @vendor.tax_number
-%p
   %strong Shipping:
   = @vendor.shipping
-%p
   %strong Verified:
   = @vendor.verified
+
+%h3 Personal Infos
+- for pi in @vendor.personal_infos
+  %p.row
+    %strong legal_first_name
+    = pi.legal_first_name
+    %strong legal_last_name
+    = pi.legal_last_name
+    %strong preferred_name
+    = pi.preferred_name
+    %strong email
+    = pi.email
+    %strong title
+    = pi.title
+    %strong primary_phone
+    = pi.primary_phone
+    %strong secondary_phone
+    = pi.secondary_phone
 
 -# Physical Location Part Starts-----------------------------------------
 %h3 Locations
 - for pl in @vendor.physical_locations
-  %p
-    %strong Address
-    = pl.address
-    %strong Postal Code:
-    = pl.postal_code
-    %strong City
-    = pl.city.name
-    %strong Province
-    = pl.city.province.name
-    %strong Country
-    = pl.city.province.country.name
-  %p
-    %strong business_phone
-    = pl.business_phone
-  %p
-    %strong other_phone
-    = pl.other_phone
-  %p
-    %strong fax
-    = pl.fax
-  %p
-    %strong business_email
-    = pl.business_email
-  %p
-    %strong business_website
-    = pl.business_website
-  %p
-    %strong sale_location
-    = pl.sale_location
+  .row
+    %p
+      %strong Address
+      = pl.address
+      %strong Postal Code:
+      = pl.postal_code
+      %strong City
+      = pl.city.name
+      %strong Province
+      = pl.city.province.name
+      %strong Country
+      = pl.city.province.country.name
+    %p
+      %strong business_phone
+      = pl.business_phone
+      %strong other_phone
+      = pl.other_phone
+      %strong fax
+      = pl.fax
+    %p
+      %strong business_email
+      = pl.business_email
+      %strong business_website
+      = pl.business_website
+      %strong sale_location
+      = pl.sale_location
 
 -# Industry Part Starts-----------------------------------------
 %h3 Industries
 - for vs in @vendor.vendor_subscriptions
-  %p
+  %p.row
     %strong Industry
     = vs.subcategory.category.industry.name
     %strong Category
@@ -65,7 +75,7 @@
 
 %h3 Delivery Locations
 - for dl in @vendor.delivery_locations
-  %p
+  %p.row
     %strong City
     = dl.city.name
     %strong Province
@@ -75,11 +85,12 @@
 
 %h3 Links
 - for el in @vendor.external_links
-  %p
+  %p.row
     %strong Type
     = el.external_source.source_type
     %strong Link
-    %a el.link
+    %a
+      =el.link
 
 %h3 Images
 %p
