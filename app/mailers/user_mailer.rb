@@ -1,5 +1,5 @@
 class UserMailer < ActionMailer::Base
-  default from: "test@syncidlabs.com"
+  default from: "no-reply@nathansexchange.com"
 
   def new_post_email(post, email)
     @post = post
