@@ -81,17 +81,19 @@ Rails.application.configure do
   # Do not dump schema after migrations.
   config.active_record.dump_schema_after_migration = false
 
-  Paperclip.options[:command_path] = "/usr/local/bin/"
+  Paperclip.options[:command_path] = "/usr/local/bin/convert"
 
   config.action_mailer.perform_deliveries = true
   config.action_mailer.raise_delivery_errors = true
+  config.action_mailer.default_url_options = { host: '54.165.237.216' }
   config.action_mailer.delivery_method = :smtp
-  config.action_mailer.sendmail_settings = {
+  config.action_mailer.smtp_settings = {
     address:              'smtp.zoho.com',
-    port:                 465,
+    port:                 587,
     domain:               'smtp.zoho.com',
     user_name:            'no-reply@nathansexchange.com',
     password:             'Nexperience!',
+    authentication:  'login',
     openssl_verify_mode: 'none',
     enable_starttls_auto: true  }
 end
