@@ -28,4 +28,6 @@ class Vendor < ActiveRecord::Base
     allow_destroy: true
   accepts_nested_attributes_for :personal_infos,
     allow_destroy: true
+  accepts_nested_attributes_for :accepted_payment_methods,
+    allow_destroy: true
 end

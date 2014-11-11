@@ -83,6 +83,11 @@ Rails.application.configure do
 
   Paperclip.options[:command_path] = "/usr/local/bin/convert"
 
+  # Very important that this is setup correctly
+  # current config for zoho is using smtp with security type tls
+  # more info: https://www.zoho.com/mail/help/zoho-smtp.html
+  # Might want to take out the user_name and password and put it
+  # as environment variables
   config.action_mailer.perform_deliveries = true
   config.action_mailer.raise_delivery_errors = true
   config.action_mailer.default_url_options = { host: '54.165.237.216' }

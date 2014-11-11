@@ -25,8 +25,16 @@
     = f.check_box :shipping
   .field
     = f.label :accepted_payment
-  .field
-    = collection_check_boxes(:vendor, :payment_method_ids, PaymentMethod.all, :id, :name)
+  / .field
+  /   = collection_check_boxes(:vendor, :payment_method_ids, PaymentMethod.all, :id, :name)
+
+  =f.fields_for :accepted_payment_methods do |apm|
+    = apm.link_to_remove "Remove Payment Method"
+    .field
+      = apm.select(:payment_method_id, PaymentMethod.all.collect { |s| [s.name, s.id] }, prompt: "Payment Method")
+      = apm.label :preferred
+      = apm.check_box :preferred
+  = f.link_to_add "Add Payment Method", :accepted_payment_methods
 
   -# personal info part starts --------------------------------------------
   =f.fields_for :personal_infos do |pi|

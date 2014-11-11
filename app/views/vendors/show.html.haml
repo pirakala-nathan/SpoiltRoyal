@@ -35,7 +35,11 @@
 %h3 Payment Infos
 %strong Accepted Payments
 - for ap in @vendor.payment_methods
-  = ap.name
+  %p
+    = ap.name
+    - if (@vendor.accepted_payment_methods.where(payment_method_id: ap.id).first.preferred)
+      preferred
+
 
 -# Physical Location Part Starts-----------------------------------------
 %h3 Locations

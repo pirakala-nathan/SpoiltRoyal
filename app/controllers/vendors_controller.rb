@@ -48,6 +48,7 @@ class VendorsController < ApplicationController
   # PATCH/PUT /vendors/1.json
   def update
     respond_to do |format|
+
       if @vendor.update(vendor_params)
         format.html { redirect_to @vendor, notice: 'Vendor was successfully updated.' }
         format.json { render :show, status: :ok, location: @vendor }
@@ -82,7 +83,7 @@ class VendorsController < ApplicationController
         payment_method_ids: [], 
         # Physical Location Attributes
         physical_locations_attributes: [:_destroy, :id, :address, :postal_code, :business_phone,
-           :other_phone, :fax, :business_email, :business_website, :sale_location, :city_id],
+          :other_phone, :fax, :business_email, :business_website, :sale_location, :city_id],
         # Vendor Subscription Attributes
         vendor_subscriptions_attributes: [:_destroy, :id, :subcategory_id],
         # Delivery Location Attributes
@@ -92,7 +93,8 @@ class VendorsController < ApplicationController
         # Asset Attributes (Pictures needs to nest inside assets in order to work)
         assets_attributes: [:_destroy, :id, :image],
         personal_infos_attributes: [:_destroy, :id, :legal_first_name,
-            :legal_last_name, :preferred_name, :email, :title, :primary_phone, :secondary_phone]
+          :legal_last_name, :preferred_name, :email, :title, :primary_phone, :secondary_phone],
+        accepted_payment_methods_attributes: [:_destroy, :id, :payment_method_id, :preferred]
         )
     end
 end
