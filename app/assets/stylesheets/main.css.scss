@@ -1,3 +1,13 @@
-.splash a {
-  display: inline-block;
+.splash {
+  margin-top: -20px;
+
+  a {
+    display: inline-block;
+  }
+}
+
+#quotes {
+  .carousel {
+    height: 400px;
+  }
 }
