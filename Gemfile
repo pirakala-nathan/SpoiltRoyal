@@ -28,6 +28,7 @@ gem "paperclip", "~> 4.2"
 gem 'authlogic'
 
 gem 'haml-rails'
+gem 'less-rails'
 
 gem "nested_form"
 
