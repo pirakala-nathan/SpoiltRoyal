@@ -1,5 +1,5 @@
 = nested_form_for @vendor, html: { multipart: true } do |f|
-  -# Vendor Part Starts-------------------------------------------------
+  / Vendor Part Starts-------------------------------------------------
   - if @vendor.errors.any?
     #error_explanation
       %h2
@@ -28,7 +28,7 @@
   / .field
   /   = collection_check_boxes(:vendor, :payment_method_ids, PaymentMethod.all, :id, :name)
 
-  =f.fields_for :accepted_payment_methods do |apm|
+  = f.fields_for :accepted_payment_methods do |apm|
     = apm.link_to_remove "Remove Payment Method"
     .field
       = apm.select(:payment_method_id, PaymentMethod.all.collect { |s| [s.name, s.id] }, prompt: "Payment Method")

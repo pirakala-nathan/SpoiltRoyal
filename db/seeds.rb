@@ -2,7 +2,7 @@
 # The data can then be loaded with the rake db:seed (or created alongside the db with db:setup).
 #
 # Examples:
-# 
+#
 
 admin = User.create(
     username: "admin",
@@ -12,6 +12,9 @@ admin = User.create(
     account_type: "Vendor",
     admin: true
 )
+
+Vendor.create(business_name: "SyncI&DLabs", business_name: "Lorem ipsum",
+              establish_date: Date.today, tax_number: 1234)
 
 c = Country.create([{name: 'Canada'}])
 p = Province.create([
