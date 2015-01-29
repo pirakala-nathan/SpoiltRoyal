@@ -8,6 +8,10 @@ Bundler.require(*Rails.groups)
 
 module NEX
   class Application < Rails::Application
+    config.autoload_paths += %W(#{config.root}/lib)
+    BootstrapNavbar.configure do |config|
+        config.bootstrap_version = '3.0.0'
+    end
     # Settings in config/environments/* take precedence over those specified here.
     # Application configuration should go into files in config/initializers
     # -- all .rb files in that directory are automatically loaded.

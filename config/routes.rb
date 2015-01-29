@@ -1,5 +1,12 @@
 Rails.application.routes.draw do
 
+  get 'notification_settings' => 'email_notification_settings#index', :as => :notification_settings
+
+  resources :timed_tasks
+  
+  resources :email_notification_settings
+
+  resources :activities
   resources :personal_infos
 
   resources :posts

@@ -1,7 +1,7 @@
 class User < ActiveRecord::Base
   acts_as_authentic
   belongs_to :account, polymorphic: true
-
+  has_many :email_notification_settings
   def is_vendor?
     self.account_type == 'Vendor'
   end

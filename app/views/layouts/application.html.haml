@@ -9,8 +9,16 @@
     %link{:href => "img/favicon.ico", :rel => "icon", :type => "image/x-icon"}/
     = stylesheet_link_tag    'application', media: 'all'
     = javascript_include_tag 'application'
+    = javascript_include_tag Sync.adapter_javascript_url
     = csrf_meta_tags
   %body
+    .notifications.col-xs-4.col-xs-offset-8
+      - if request.path != "/" && current_user
+        .new  
+          = sync_new partial: 'notification', resource: PublicActivity::Activity.new
+        - @activities = PublicActivity::Activity.where(recipient_id: current_user.id).order(created_at: :desc)
+        - @activities.each do |activity| 
+          = sync partial: 'notification', resource: activity
     / #nav
     /   = link_to "View Vendors", vendors_path
     /   - if can? :index, :user

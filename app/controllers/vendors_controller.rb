@@ -11,6 +11,21 @@ class VendorsController < ApplicationController
   # GET /vendors/1
   # GET /vendors/1.json
   def show
+    if current_user
+      @activity = PublicActivity::Activity.new
+      @activity.owner = current_user
+      @activity.key = 'vendor.has_viewed'
+      @activity.recipient = @vendor.user
+      @activity.trackable = @vendor
+      @activity.read = false
+      @activity.collected = false
+      if @activity.save
+
+        sync_new @activity, scope: @vendor.user
+        sync_new @activity
+      end
+      raise
+    end
   end
 
   # GET /vendors/new
