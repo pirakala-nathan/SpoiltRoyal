@@ -22,3 +22,7 @@ set :output, "/home/spondon/nex/log/cron_log.log"
 every 1.minute do
 	runner "TimedTask.timed_jobs('minute')"
 end
+
+every 1.day do
+	runner "TimedTask.timed_jobs('day')"
+end

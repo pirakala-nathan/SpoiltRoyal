@@ -3,17 +3,14 @@ class TimedTask < ActiveRecord::Base
 	
 	def self.timed_jobs(unit)
 		@tasks = TimedTask.all.where(measure_of_time: unit)
-		p @tasks
 		@tasks.each do |task|
 			@settings = task.email_notification_settings
-			p @settings
 			@settings.each do |setting|
 				@type = setting.settings_for
 				@user = setting.user	
 				@activities = PublicActivity::Activity.where(recipient_id: @user.id)
 				@activities = @activities.where(trackable_type: @type)
 				@activities = @activities.where(collected: false)
-				p @activities
 				if !(@activities.empty?)
 						
 					Notifier.notification_update(@user,@activities).deliver!

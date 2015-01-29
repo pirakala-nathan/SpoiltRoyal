@@ -11,6 +11,7 @@
     = javascript_include_tag 'application'
     = javascript_include_tag Sync.adapter_javascript_url
     = csrf_meta_tags
+    
   %body
     .notifications.col-xs-4.col-xs-offset-8
       - if request.path != "/" && current_user

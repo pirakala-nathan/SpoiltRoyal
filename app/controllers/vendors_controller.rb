@@ -12,15 +12,9 @@ class VendorsController < ApplicationController
   # GET /vendors/1.json
   def show
     if current_user
-      @activity = PublicActivity::Activity.new
-      @activity.owner = current_user
-      @activity.key = 'vendor.has_viewed'
-      @activity.recipient = @vendor.user
-      @activity.trackable = @vendor
-      @activity.read = false
-      @activity.collected = false
-      if @activity.save
-
+      @activity = PublicActivity::Activity.create(owner: current_user,
+       key: 'Vendor.has_viewed',recipient: @vendor.user, trackable:@vendor)
+      if @activity.id != nil 
         sync_new @activity, scope: @vendor.user
         sync_new @activity
       end
