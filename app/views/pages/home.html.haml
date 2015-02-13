@@ -14,8 +14,10 @@
       %img#landing_logo.navbar-brand{:src => "img/logo.svg"}/
     #bs-example-navbar-collapse-1.collapse.navbar-collapse
       %ul.landing_nav_right.nav.navbar-nav
-        %li.tooltip_btn{"data-placement" => "bottom", "data-toggle" => "tooltip", :title => "Coming soon!"} Login
-        %li#nav_join.tooltip_btn{"data-placement" => "bottom", "data-toggle" => "tooltip", :title => "Coming soon!"} Join
+        %li.tooltip_btn{"data-placement" => "bottom", "data-toggle" => "tooltip", :title => "Coming soon!"}
+          = link_to 'Login', :login
+        %li#nav_join.tooltip_btn{"data-placement" => "bottom", "data-toggle" => "tooltip", :title => "Coming soon!"}
+          = link_to 'Join', new_user_path
         %li#button_wrapper
           %button.cta.btn.btn-default.tooltip_btn{"data-placement" => "bottom", "data-toggle" => "tooltip", :title => "Coming soon!", :type => "button"} Post Your Needs
       .clearfix

@@ -19,8 +19,11 @@
       ga('create', 'UA-59002638-1', 'auto');
       ga('send', 'pageview');
   %body
-    .notifications.col-xs-4.col-xs-offset-8
-      - if request.path != "/" && current_user
+    - if request.path != "/" && current_user
+      .col-xs-4
+        = link_to 'My Profile', current_user
+        = link_to 'Notification Settings', :notification_settings
+      .notifications.col-xs-4.col-xs-offset-4
         .new
           = sync_new partial: 'notification', resource: PublicActivity::Activity.new
         - @activities = PublicActivity::Activity.where(recipient_id: current_user.id).order(created_at: :desc)
