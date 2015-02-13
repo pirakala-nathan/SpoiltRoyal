@@ -5,6 +5,17 @@
     display: inline-block;
   }
 }
+.timed-form{
+	display:none;
+}
+.read_false{
+	border:1px solid red
+}
+.new{
+	.notification-card{
+		border:1px solid red;
+	}
+}
 
 #quotes {
   .carousel {

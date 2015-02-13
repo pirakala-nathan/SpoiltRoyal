@@ -3,7 +3,12 @@ source 'https://rubygems.org'
 
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
 gem 'rails', '4.2.0.beta2'
+
 # Use mysql2 as the database for Active Record
+gem 'faye'
+gem 'thin', require: false
+gem 'sync'
+
 gem 'mysql2'
 # Use SCSS for stylesheets
 gem 'sass-rails', '>= 5.0.0.beta1'
@@ -13,13 +18,15 @@ gem 'uglifier', '>= 1.3.0'
 gem 'coffee-rails', '~> 4.0.0'
 # See https://github.com/sstephenson/execjs#readme for more supported runtimes
 gem 'therubyracer',  platforms: :ruby
-
+gem 'rails_bootstrap_navbar'
 # Use jquery as the JavaScript library
 gem 'jquery-rails'
 # Turbolinks makes following links in your web application faster. Read more: https://github.com/rails/turbolinks
 gem 'turbolinks'
 # Build JSON APIs with ease. Read more: https://github.com/rails/jbuilder
 gem 'jbuilder', '~> 2.0'
+
+gem 'public_activity'
 # bundle exec rake doc:rails generates the API under doc/api.
 gem 'sdoc', '~> 0.4.0',          group: :doc
 
@@ -27,6 +34,7 @@ gem "paperclip", "~> 4.2"
 
 gem 'authlogic'
 
+gem 'whenever'
 gem 'haml-rails'
 gem 'less-rails'
 

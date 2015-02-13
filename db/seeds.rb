@@ -6,12 +6,41 @@
 
 admin = User.create(
     username: "admin",
-    email: "admin@nex.com",
-    password: "123123",
-    password_confirmation: "123123",
+    email: "useradmin@test.com",
+    password: "admin",
+    password_confirmation: "admin",
+    account_id: "1",
     account_type: "Vendor",
     admin: true
 )
+
+test = User.create(
+  username: "test",
+  email: "user@test.com",
+  password: "test",
+  password_confirmation: "test",
+  account_type: "Vendor",
+  admin: false
+)
+
+test1 = User.create(
+  username: "test1",
+  email: "user1@test.com",
+  password: "test",
+  password_confirmation: "test",
+  account_type: "Vendor",
+  admin: false
+)
+test2 = User.create(
+  username: "test2",
+  email: "user2@test.com",
+  password: "test",
+  password_confirmation: "test",
+  account_type: "Vendor",
+  admin: false
+)
+
+TimedTask.create(interval: 1, measure_of_time: "minute")
 
 Vendor.create(business_name: "SyncI&DLabs", business_name: "Lorem ipsum",
               establish_date: Date.today, tax_number: 1234)

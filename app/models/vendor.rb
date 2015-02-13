@@ -1,4 +1,6 @@
 class Vendor < ActiveRecord::Base
+  include PublicActivity::Common
+  
   has_one :user, as: :account
 
   has_many :accepted_payment_methods, dependent: :destroy

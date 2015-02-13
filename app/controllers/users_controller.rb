@@ -43,9 +43,15 @@ class UsersController < ApplicationController
   # POST /users.json
   def create
     @user = User.new(user_params)
-    
     respond_to do |format|
       if @user.save
+        if @user.account_type == "Vendor"
+          @vendor_notification_setting = EmailNotificationSetting.new
+          @vendor_notification_setting.settings_for = "Vendor"
+          @vendor_notification_setting.save
+          @user.email_notification_settings << @vendor_notification_setting
+          @user.save
+        end
         format.html { redirect_to @user, notice: 'User was successfully created.' }
         format.json { render :show, status: :created, location: @user }
       else
