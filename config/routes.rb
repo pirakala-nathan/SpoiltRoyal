@@ -1,7 +1,21 @@
 Rails.application.routes.draw do
 
+  resources :authentications
+  get '/auth/:provider/callback' => 'authentications#create'
+  get '/auth/:provider/' => 'authentications#create', :as => :auth
+
+  resources :bids do
+    member do
+      get :accept
+      get :decline
+    end
+  end
+
+  resources :comments
+
   get 'notification_settings' => 'email_notification_settings#index', :as => :notification_settings
 
+  get 'change_status' => 'bids#change_status', :as => :change_status
   resources :timed_tasks
   
   resources :email_notification_settings

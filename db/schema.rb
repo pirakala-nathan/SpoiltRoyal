@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150128181614) do
+ActiveRecord::Schema.define(version: 20150227062552) do
 
   create_table "accepted_payment_methods", force: true do |t|
     t.integer  "vendor_id",         limit: 4
@@ -50,6 +50,24 @@ ActiveRecord::Schema.define(version: 20150128181614) do
     t.datetime "image_updated_at"
   end
 
+  create_table "authentications", force: true do |t|
+    t.integer  "user_id",    limit: 4
+    t.string   "provider",   limit: 255
+    t.string   "uid",        limit: 255
+    t.datetime "created_at",             null: false
+    t.datetime "updated_at",             null: false
+  end
+
+  create_table "bids", force: true do |t|
+    t.integer  "value",      limit: 4
+    t.string   "status",     limit: 255,   default: "bid-pending"
+    t.text     "info",       limit: 65535
+    t.integer  "user_id",    limit: 4
+    t.integer  "post_id",    limit: 4
+    t.datetime "created_at",                                       null: false
+    t.datetime "updated_at",                                       null: false
+  end
+
   create_table "categories", force: true do |t|
     t.string   "name",        limit: 255
     t.integer  "industry_id", limit: 4
@@ -62,6 +80,14 @@ ActiveRecord::Schema.define(version: 20150128181614) do
     t.integer  "province_id", limit: 4
     t.datetime "created_at"
     t.datetime "updated_at"
+  end
+
+  create_table "comments", force: true do |t|
+    t.string   "content",    limit: 255
+    t.integer  "post_id",    limit: 4
+    t.integer  "user_id",    limit: 4
+    t.datetime "created_at",             null: false
+    t.datetime "updated_at",             null: false
   end
 
   create_table "consumers", force: true do |t|
@@ -147,16 +173,31 @@ ActiveRecord::Schema.define(version: 20150128181614) do
     t.datetime "updated_at"
   end
 
+  create_table "pictures", force: true do |t|
+    t.integer  "owner_id",           limit: 4
+    t.string   "owner_type",         limit: 255
+    t.string   "image_file_name",    limit: 255
+    t.string   "image_content_type", limit: 255
+    t.integer  "image_file_size",    limit: 4
+    t.datetime "image_updated_at"
+    t.datetime "created_at",                     null: false
+    t.datetime "updated_at",                     null: false
+  end
+
   create_table "post_subscriptions", force: true do |t|
     t.integer  "post_id",        limit: 4
     t.integer  "subcategory_id", limit: 4
+    t.integer  "category_id",    limit: 4
     t.datetime "created_at",               null: false
     t.datetime "updated_at",               null: false
   end
 
   create_table "posts", force: true do |t|
     t.string   "title",       limit: 255
-    t.string   "description", limit: 255
+    t.text     "description", limit: 65535
+    t.integer  "user_id",     limit: 4
+    t.string   "status",      limit: 255,   default: "pending"
+    t.date     "due_date"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
@@ -185,6 +226,8 @@ ActiveRecord::Schema.define(version: 20150128181614) do
 
   create_table "users", force: true do |t|
     t.string   "username",          limit: 255
+    t.string   "first_name",        limit: 255
+    t.string   "last_name",         limit: 255
     t.string   "email",             limit: 255
     t.string   "crypted_password",  limit: 255
     t.string   "password_salt",     limit: 255

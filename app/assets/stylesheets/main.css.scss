@@ -1,3 +1,5 @@
+$dark-text-color: #767676;
+$orange: #EA9B2C;
 .splash {
   margin-top: -20px;
 
@@ -21,4 +23,302 @@
   .carousel {
     height: 400px;
   }
+}
+#logged-in-nav{
+  height: 14vh;
+  background-color:white;
+  .container-fluid{
+    height: 100%;
+    .navbar-search{
+      height: 100%;
+      padding:0;
+    }
+    #bs-example-navbar-collapse-1{
+      width: 50%;
+      ul{
+        li{
+          margin-left:10px;
+          height: 100%;
+          float:right;
+          img{
+            position:relative;
+            top:50%;
+            margin-top: -30px;
+          }
+          .post-btn{
+            padding:0 ;
+          }
+          a{
+            height: 100%;
+            .new-post{
+              width: 100%;
+              margin-top: 0px;
+              height: 100%;
+              background-color:#EA9B2C;
+              border-radius:2px;
+              color: white;
+            }
+          }
+        }
+      }
+    }
+    .navbar-header{
+      height: 100%;
+      button{
+
+      }
+      .navbar-brand{
+        height: 100%;
+        padding:0;
+        img{
+          display: block;
+          margin:auto;
+          height: 7vh;
+          position: relative;
+          top:3.5vh;
+          width: auto;
+
+
+        }
+      }
+    }
+  }
+
+}
+.center-navbar{
+  height: 7vh;
+  position: relative;
+  top: 3.5vh;
+
+}
+
+.search-input{
+  border:1px solid #EAE6E1;
+  padding-left:5px;
+  border-radius:2px;
+
+}
+.submit-search{
+  margin-top: 0;
+  margin-left: 10px;
+  background-color:#EA9B2C;
+  border-radius:2px;
+  color: white;
+}
+body{
+  background-color: #F5F5F5
+}
+#posts-show{
+  margin-top: 25px;
+  .posts-list{
+    height: 86vh;
+    .post{
+      margin-top: 15px;
+      padding-left:0px;
+      background-color:white;
+      border:1px solid #D7D7D7;
+      height: 28vh;
+      .post-info{
+        height: 100%;
+        width: calc(80% - 180px);
+        margin-top: 20px;
+        margin-left: 20px;
+        .post-title{
+          font-weight: bold;
+          font-size: 20px;
+        }
+        .post-by{
+          font-size: 12px;
+          color: #777
+        }
+        .post-description{
+          display: block;
+          display: -webkit-box;
+          max-width: 100%;
+          height: 58px;
+          margin-top:20px;
+          font-size: 14px;
+          line-height: 1;
+          -webkit-line-clamp: 4;
+          -webkit-box-orient: vertical;
+          overflow: hidden;
+          text-overflow: ellipsis; 
+        }
+        .tags{
+          margin-top: 20px;
+        }
+      }
+      .post-btns{
+        margin-top: calc( (24vh - (15vh + 40px))) ; 
+
+        a{
+          button{
+            font-size: 11px;
+            margin-top: 10px;
+            height: 5vh;
+          }
+          .view-post{
+            background-color:#64C0DF;
+            border-radius: 0px;
+            color:white;
+          }
+          .bid-post{
+            background-color:#EA9B2C;
+            border-radius: 0px;
+            color:white;
+          }
+          .watch-post{
+            background-color:whtie;
+            border:1px solid #E4E4E4;
+            color:grey;
+            font-size: 9px;
+            border-radius:0px;
+          }
+
+        }
+      }
+      .post-image{
+        position: relative;
+        height: 100%;
+        max-width: 180px;
+        min-width: 179px;
+        img{
+          max-height: 28vh;
+          // max-width: 25%;
+        }
+      }
+    }
+  }
+  .sidebar-sm{
+    height: 86vh;
+    .sidebar-title{
+      color: $dark-text-color;
+      font-size: 20px;
+      font-weight: bold;
+
+    }
+    .sidebar-desc{
+      color: #777;
+      font-size: 9px;
+
+    }
+    form{
+      .search-input{
+        margin-top: 20px;
+        height: 6vh;
+        border-radius:2px;
+      }
+      .submit-btn{
+        margin-top: 5px;
+        height: 6vh;
+        background-color: $orange;
+        color:white;
+        border-radius:2px;
+        margin-bottom: 20px;
+      }
+    }
+    .sidebar-subtitle{
+      color: #777;
+      font-size: 11px;
+    }
+    .filters{
+      background-color:white;
+      border:1px solid #D7D7D7;
+      .categories{
+        margin-top: 20px;
+        span{
+          font-size: 11px;
+          font-weight: bold;
+          color:$dark-text-color;
+        }
+        .active{
+          border: 1px solid #D7D7D7;
+        }
+        .category{
+          padding-left:3px;
+          padding-right:5px;
+          height: 4vh;
+          span{
+            line-height: 4vh !important;
+            font-size: 14px;
+            font-weight: normal;
+          }
+          a{
+            span{
+              line-height: 4vh;
+              font-size: 14px;
+            }
+          }
+        }
+        a{
+          .active{
+            border: 1px solid #D7D7D7;
+          }
+          .category{
+            padding-left:3px;
+            padding-right:5px;
+            height: 4vh;
+            span{
+              line-height: 4vh !important;
+              font-size: 14px;
+
+              font-weight: normal;
+            }
+          }
+        }
+      }
+
+      .subcategories{
+        margin-top: 20px;
+        span{
+          font-size: 11px;
+          font-weight: bold;
+          color:$dark-text-color;
+        }
+        .active{
+          border: 1px solid #D7D7D7;
+        }
+        .subcategory{
+          padding-left:3px;
+          padding-right:5px;
+          height: 4vh;
+          span{
+            line-height: 4vh !important;
+            font-size: 14px;
+            font-weight: normal;
+          }
+          a{
+            span{
+              line-height: 4vh;
+              font-size: 14px;
+            }
+          }
+        }
+        a{
+          .active{
+            border: 1px solid #D7D7D7;
+          }
+          .subcategory{
+            padding-left:3px;
+            padding-right:5px;
+            height: 4vh;
+            span{
+              line-height: 4vh !important;
+              font-size: 14px;
+
+              font-weight: normal;
+            }
+          }
+        }
+      }
+    }
+  }
+}
+.no-h-padding{
+  padding-left:0px;
+  padding-right:0px;
+}
+.no-v-padding{
+  padding-top:0px;
+  padding-bottom:0px;
 }

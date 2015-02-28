@@ -8,14 +8,30 @@ class Ability
     if user.admin?
       can :manage, :all
     else
+      if user.account_type == "Consumer"
+        
+        can [:create], Post
+
+        can [:update], Post do |p|
+          p.user == user
+        end 
+        can [:change_status], Bid do |b|
+          b.post.user == user
+        end
+      elsif user.account_type == "Vendor"
+
+        can [:create], Comment 
+
+      end
       # Anyone can see a Vendor's profile and the list of vendors
       can :read, Vendor
-
+      can :read, Post
       # Since show_account redirects to the edit pages, we need
       # to have access to show_account in order to edit a user
       can [:update, :show_account], User do |u|
         u == user
       end
+
 
       # Only the user who owns the vendor profile can edit it
       can :update, Vendor do |v|

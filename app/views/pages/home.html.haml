@@ -1,24 +1,26 @@
+
 = content_for :head do
   %title Hire Wedding Vendors to make your Dream Wedding a Reality
   %meta{:content => "Nicole Jiang", :name => "author"}/
 
 %section#landing_splash
-  %nav.navbar.navbar-default
-    / Brand and toggle get grouped for better mobile display
-    .navbar-header
-      %button.navbar-toggle.collapsed{"data-target" => "#bs-example-navbar-collapse-1", "data-toggle" => "collapse", :type => "button"}
-        %span.sr-only Toggle navigation
-        %span.icon-bar
-        %span.icon-bar
-        %span.icon-bar
-      %img#landing_logo.navbar-brand{:src => "img/logo.svg"}/
-    #bs-example-navbar-collapse-1.collapse.navbar-collapse
-      %ul.landing_nav_right.nav.navbar-nav
-        %li.tooltip_btn{"data-placement" => "bottom", "data-toggle" => "tooltip", :title => "Coming soon!"} Login
-        %li#nav_join.tooltip_btn{"data-placement" => "bottom", "data-toggle" => "tooltip", :title => "Coming soon!"} Join
-        %li#button_wrapper
-          %button.cta.btn.btn-default.tooltip_btn{"data-placement" => "bottom", "data-toggle" => "tooltip", :title => "Coming soon!", :type => "button"} Post Your Needs
-      .clearfix
+  - if current_user == nil
+    %nav.navbar.navbar-default
+      / Brand and toggle get grouped for better mobile display
+      .navbar-header
+        %button.navbar-toggle.collapsed{"data-target" => "#bs-example-navbar-collapse-1", "data-toggle" => "collapse", :type => "button"}
+          %span.sr-only Toggle navigation
+          %span.icon-bar
+          %span.icon-bar
+          %span.icon-bar
+        %img#landing_logo.navbar-brand{:src => "img/logo.svg"}/
+      #bs-example-navbar-collapse-1.collapse.navbar-collapse
+        %ul.landing_nav_right.nav.navbar-nav
+          %li.login Login
+          %li#nav_join.join Join
+          %li#button_wrapper
+            %button.cta.btn.btn-default.tooltip_btn{"data-placement" => "bottom", "data-toggle" => "tooltip", :title => "Coming soon!", :type => "button"} Post Your Needs
+        .clearfix
   .splash.text-center
     %h1 Make your Wedding Planning Convenient and Hassle Free
     %h3 Stop Shopping Around. Get Competing offers from Hundreds of Quality Vendors!
@@ -128,6 +130,8 @@
     %a.right.carousel-control{"data-slide" => "next", :href => "#carousel-example-generic", :role => "button"}
       %span.glyphicon.glyphicon-chevron-right{"aria-hidden" => "true"}
       %span.sr-only Next
+= render 'login'
+= render 'join'
 %footer
   © 2014 Nathan’s Exchange Inc. All Rights Reserved.
 :javascript

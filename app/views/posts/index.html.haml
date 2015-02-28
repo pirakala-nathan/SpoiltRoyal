@@ -1,21 +1,131 @@
-%h1 Listing posts
+#posts-show.col-sm-10.col-xs-12.col-sm-offset-1.no-h-padding
+  .col-sm-3.hidden-xs.sidebar-sm
+    %span.col-xs-12.no-h-padding.sidebar-title
+      POSTS
+    %span.col-xs-12.no-h-padding.sidebar-desc
+      Explore our needs
+    %form.search-form.col-xs-12.no-h-padding
+      %input.search-input.col-xs-12{placeholder: "Search"}
+      %button.btn.submit-btn.col-xs-12
+        Search
+    %span.sidebar-subtitle
+      FILTERS
+    .filters.col-xs-12
+      .categories.col-xs-12.no-h-padding
+        %span
+          Categories 
+        - if @category == nil
+          .category.active.col-xs-12.no-h-padding
+            %span
+              All
+          -@categories.each do |cat|
+            = link_to posts_path(category_id: cat.id) do 
+              .category.col-xs-12.no-h-padding
+                %span
+                  = cat.name
+        - else 
+          = link_to posts_path do 
+            .category.col-xs-12.no-h-padding
+              %span
+                All
+          - @categories.each do |cat|
+            - if cat == @category
+              .category.active.col-xs-12.no-h-padding
+                %span{style:"float:left"}
+                  = cat.name
+                =link_to posts_path do 
+                  %span{style:"float:right"}
+                    x
+            -else
+              = link_to posts_path(category_id: cat.id) do 
+                .category.col-xs-12.no-h-padding
+                  %span
+                    = cat.name
+      .subcategories.col-xs-12.no-h-padding
+        %span
+          Sub Categories 
+        - if @subcategory == nil
+          .subcategory.active.col-xs-12.no-h-padding
+            %span
+              All
+          -@subcategories.each do |cat|
+            = link_to posts_path(subcategory_id: cat.id, category_id: (@category.id if @category != nil)) do 
+              .subcategory.col-xs-12.no-h-padding
+                %spanf
+                  = cat.name
+        - else 
+          = link_to posts_path do 
+            .subcategory.col-xs-12.no-h-padding
+              %span
+                All
+          - @subcategories.each do |cat|
+            - if cat == @subcategory
+              .subcategory.active.col-xs-12.no-h-padding
+                %span{style:"float:left"}
+                  = cat.name
+                =link_to posts_path do 
+                  %span{style:"float:right"}
+                    x
+            -else
+              = link_to posts_path(subcategory_id: cat.id) do 
+                .subcategory.col-xs-12.no-h-padding
+                  %span
+                    = cat.name
 
-%table
-  %tr
-    %th Title
-    %th Description
-    %th
-    %th
-    %th
 
-  - @posts.each do |post|
-    %tr
-      %td= post.title
-      %td= post.description
-      %td= link_to 'Show', post
-      %td= link_to 'Edit', edit_post_path(post)
-      %td= link_to 'Destroy', post, :method => :delete, :data => { :confirm => 'Are you sure?' }
+  .col-sm-9.col-xs-12.posts-list.no-h-padding
+    - @posts.each do |post|
+      .post.col-xs-12.no-h-padding
+        .post-image.col-xs-2.no-h-padding
+          - if post.pictures.empty?
+            = image_tag ("//placehold.it/180x191"), class: "img-ci"
 
-%br
+        .post-info.col-xs-8
+          %span.post-title.col-xs-12.no-h-padding
+            =post.title
+          %span.post-by.col-xs-12.no-h-padding
+            = "By: " 
+            = link_to current_user.username, current_user
+            &middot
+            = "Toronto,Ontario"
+            &middot
+            = post.created_at.to_date
+          %span.post-description.col-xs-12.no-h-padding
+            = post.description
+          .tags.col-xs-12.no-h-padding
+            Tags:
+        .post-btns.col-xs-2.no-h-padding
+          = link_to post, class: "col-xs-12" do
+            %button.btn.view-post.col-xs-12
+              View Post
+          %a.col-xs-12{href: "#"}
+            %button.btn.bid-post.col-xs-12
+              Bid Post
+          %a.col-xs-12{href:"#"}
+            %button.btn.watch-post.col-xs-12
+              Watch Post
 
-= link_to 'New Post', new_post_path
+
+
+
+/ %h1 Listing posts
+
+/ %table
+/   %tr
+/     %th Title
+/     %th Description
+/     %th
+/     %th
+/     %th
+
+/   - @posts.each do |post|
+/     %tr
+/       %td= post.title
+/       %td= post.description
+/       %td= link_to 'Show', post
+/       %td= link_to 'Edit', edit_post_path(post)
+/       %td= link_to 'Destroy', post, :method => :delete, :data => { :confirm => 'Are you sure?' }
+
+/ %br
+
+/ = link_to 'New Post', new_post_path

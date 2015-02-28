@@ -10,41 +10,47 @@ admin = User.create(
     password: "admin",
     password_confirmation: "admin",
     account_type: "Vendor",
+    first_name: "John",
+    last_name: "Smith",
     admin: true
 )
 
-test = User.create(
+@test = User.create(
   username: "test",
-  email: "spon121@gmail.com",
+  email: "infosyncidlabs@gmail.com",
   password: "test",
   password_confirmation: "test",
-  account_type: "Vendor",
+  account_type: "Consumer", 
+  first_name: "Alex",
+  last_name: "Smith",
   admin: false
 )
 
-test1 = User.create(
-  username: "test1",
-  email: "spon121@gmail.com",
-  password: "test",
-  password_confirmation: "test",
-  account_type: "Vendor",
-  admin: false
-)
-test2 = User.create(
-  username: "test2",
-  email: "spon121@gmail.com",
-  password: "test",
-  password_confirmation: "test",
-  account_type: "Vendor",
-  admin: false
-)
+
+# test1 = User.create(
+#   username: "test1",
+#   email: "spon121@gmail.com",
+#   password: "test",
+#   password_confirmation: "test",
+#   account_type: "Vendor",
+#   admin: false
+# )
+# test2 = User.create(
+#   username: "test2",
+#   email: "spon121@gmail.com",
+#   password: "test",
+#   password_confirmation: "test",
+#   account_type: "Vendor",
+#   admin: false
+# )
 
 
 
 TimedTask.create(interval: 1, measure_of_time: "minute")
-Vendor.create(business_name: "SyncI&DLabs", business_name: "Lorem ipsum",
+@v=Vendor.create(business_name: "SyncI&DLabs", business_name: "Lorem ipsum",
               establish_date: Date.today, tax_number: 1234)
-
+@v.user = admin
+@v.save
 c = Country.create([{name: 'Canada'}])
 p = Province.create([
   {name: 'Ontario', country_id: c.first.id},
@@ -71,3 +77,39 @@ for i in 1..5 do
   ExternalSource.create(source_type: "Source_Type_" + i.to_s)
   PaymentMethod.create(name: "PaymentMethod_" + i.to_s)
 end
+
+@first_post = Post.create(
+  title: "Need a Waitress",
+  description: "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to ",
+  user_id: @test.id,
+  due_date: "2015-02-27",
+)
+
+@second_post = Post.create(
+  title: "Need a Cook",
+  description: "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to ",
+  user_id: @test.id,
+  due_date: "2015-02-27",
+)
+@third_post = Post.create(
+  title: "Need a Gaurd",
+  description: "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to ",
+  user_id: @test.id,
+  due_date: "2015-02-27",
+)
+first_sub = PostSubscription.create(
+  post_id: @first_post.id,
+  category_id: 1,
+  subcategory_id: 1,
+  )
+
+second_sub = PostSubscription.create(
+  post_id: @second_post.id,
+  category_id: 2,
+  subcategory_id: 4,
+  )
+third_sub = PostSubscription.create(
+  post_id: @third_post.id,
+  category_id: 3,
+  subcategory_id: 7,
+  )

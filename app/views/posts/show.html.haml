@@ -1,3 +1,4 @@
+
 %p#notice= notice
 
 %p
@@ -7,6 +8,37 @@
   %b Description:
   = @post.description
 
-= link_to 'Edit', edit_post_path(@post)
-\|
-= link_to 'Back', posts_path
+.row  
+  .col-xs-6
+    - @post.comments.each do |comment|
+      .well.col-xs-12
+        .row
+          = comment.user.username
+        .row
+          = comment.content
+  .col-xs-6
+    - @post.bids.each do |bid|
+      
+
+      .well.col-xs-12
+        .row 
+          = bid.user.username
+        .col-xs-10
+          = bid.info
+        .col-xs-2
+          = bid.value
+        - if (can? :change_status, bid)
+          = link_to accept_bid_path(bid) do
+            .col-xs-6
+              .btn.btn-info.col-xs-10.col-xs-offset-1
+                Accept
+          = link_to decline_bid_path(bid) do
+            .col-xs-6  
+              .btn.btn-info.col-xs-10.col-xs-offset-1
+                Decline
+
+.col-xs-6
+  =render 'comments/form', resource: @post
+- @bid = Bid.new
+.col-xs-6.well
+  = render 'bids/form' 
