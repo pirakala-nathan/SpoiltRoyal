@@ -11,18 +11,18 @@ class VendorsController < ApplicationController
   # GET /vendors/1
   # GET /vendors/1.json
   def show
-    if current_user
+    if generate_activity(@vendor.user)
       @activity = PublicActivity::Activity.create(owner: current_user,
-       key: 'Vendor.has_viewed',recipient: @vendor.user, trackable:@vendor)
-      if @activity.id != nil 
-        sync_new @activity, scope: @vendor.user
-        sync_new @activity
-      end
-      raise
+       key: 'Vendor.has_viewed', recipient: @vendor.user, trackable: @vendor)
+      # if @activity.id != nil
+      #   sync_new @activity, scope: @vendor.user
+      #   sync_new @activity
+      # end
+      # raise
     end
   end
 
-  # GET /vendors/new
+  # GET /vendors/newi
   def new
     @vendor = Vendor.new
     @vendor.physical_locations.build

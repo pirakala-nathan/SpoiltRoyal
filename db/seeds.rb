@@ -6,9 +6,10 @@
 
 admin = User.create(
     username: "admin",
-    email: "spon121@gmail.com",
+    email: "test@syncidlabs.com",
     password: "admin",
     password_confirmation: "admin",
+    account_id: "1",
     account_type: "Vendor",
     first_name: "John",
     last_name: "Smith",
@@ -26,6 +27,7 @@ admin = User.create(
   admin: false
 )
 
+<<<<<<< HEAD
 
 # test1 = User.create(
 #   username: "test1",
@@ -43,11 +45,33 @@ admin = User.create(
 #   account_type: "Vendor",
 #   admin: false
 # )
-
-
+=======
+test1 = User.create(
+  username: "test1",
+  email: "user1@test.com",
+  password: "test",
+  password_confirmation: "test",
+  account_type: "Vendor",
+  admin: false
+)
+test2 = User.create(
+  username: "test2",
+  email: "user2@test.com",
+  password: "test",
+  password_confirmation: "test",
+  account_type: "Vendor",
+  admin: false
+)
+>>>>>>> 8aee63839370ffb94bf24cc31bc377b01bd1a5cc
 
 TimedTask.create(interval: 1, measure_of_time: "minute")
-@v=Vendor.create(business_name: "SyncI&DLabs", business_name: "Lorem ipsum",
+
+EmailNotificationSetting.create(settings_for: 'Vendor', timed_task: TimedTask.first, user: admin)
+EmailNotificationSetting.create(settings_for: 'Vendor', timed_task: TimedTask.first, user: test)
+EmailNotificationSetting.create(settings_for: 'Vendor', timed_task: TimedTask.first, user: test1)
+EmailNotificationSetting.create(settings_for: 'Vendor', timed_task: TimedTask.first, user: test2)
+
+Vendor.create(business_name: "SyncI&DLabs", business_name: "Lorem ipsum",
               establish_date: Date.today, tax_number: 1234)
 @v.user = admin
 @v.save

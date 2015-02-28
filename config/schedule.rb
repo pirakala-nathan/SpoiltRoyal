@@ -5,7 +5,7 @@
 
 # Example:
 set :environment, "development"
-set :output, "/home/spondon/nex/log/cron_log.log"
+# set :output, "/home/spondon/nex/log/cron_log.log"
 # set :output, "/path/to/my/cron_log.log"
 #
 # every 2.hours do

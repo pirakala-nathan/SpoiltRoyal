@@ -3,11 +3,10 @@
 	= form_for setting do |f|
 		.row
 			.col-xs-3
-				= setting.settings_for
-				=":"
+				#{setting.settings_for}:
 				- if setting.timed_task_id != nil
 					= TimedTask.find(setting.timed_task_id).measure_of_time
-			
+
 			.btn.btn-info.col-xs-3.change-btn
 				Change
 			.col-xs-3.timed-form

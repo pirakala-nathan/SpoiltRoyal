@@ -46,11 +46,7 @@ class UsersController < ApplicationController
     respond_to do |format|
       if @user.save
         if @user.account_type == "Vendor"
-          @vendor_notification_setting = EmailNotificationSetting.new
-          @vendor_notification_setting.settings_for = "Vendor"
-          @vendor_notification_setting.save
-          @user.email_notification_settings << @vendor_notification_setting
-          @user.save
+          EmailNotificationSetting.create(settings_for: 'Vendor', timed_task: TimedTask.first, user: @user)
         end
         format.html { redirect_to @user, notice: 'User was successfully created.' }
         format.json { render :show, status: :created, location: @user }
