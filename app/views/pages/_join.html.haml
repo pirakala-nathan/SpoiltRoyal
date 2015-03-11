@@ -62,3 +62,25 @@
               .slider-circle.circleBase.active
               .slider-circle.circleBase
         .slide-3.col-xs-12.no-h-padding{style: "display:none"}
+          .col-xs-10.col-xs-offset-1.no-h-padding.form-container
+            = form_for User.new, id: "new-user" do |f|
+              = f.text_field :first_name, class: "first-name", placeholder: "First Name"
+              = f.text_field :last_name, class: "last-name", placeholder: "Last Name"
+              = f.text_field :email, class: "col-xs-12 no-h-padding", placeholder: "Email Address"
+              = f.password_field :password, class: "col-xs-12 no-h-padding", placeholder:"Password"
+              = f.password_field :password_confirmation, class: "col-xs-12 no-h-padding", placeholder:"Re-enter Password"
+              = f.hidden_field :account_type, class: "account-type"
+              .terms-conditions
+                By signing up, I agree to Nathan's Exchange's terms and services
+              = f.submit "SIGN UP", class: "col-xs-12 no-h-padding submit"
+            .col-xs-12.circle-sliders
+              .circ-container.col-xs-12
+                .slider-circle.circleBase
+                .slider-circle.circleBase
+                .slider-circle.circleBase.active
+
+
+
+
+
+

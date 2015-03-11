@@ -35,11 +35,17 @@ Rails.application.routes.draw do
   match 'fetch_provinces' => 'api#fetch_provinces', as: :fetch_provinces, via: [:get, :post] 
   match 'fetch_subcategory' => 'api#fetch_subcategory', as: :fetch_subcategory, via: [:get, :post] 
 
-  resources :vendors
+  resources :vendors 
 
   resources :users do
     member do
       get :show_account
+      get :overview
+      get :inbox
+      get :bids
+      get :statistics
+      get :profile
+      get :account 
     end
   end
   resources :user_sessions, only: [:new, :create]

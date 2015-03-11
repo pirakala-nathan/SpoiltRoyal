@@ -4,12 +4,16 @@ class VendorsController < ApplicationController
 
   # GET /vendors
   # GET /vendors.json
+
+  
   def index
     @vendors = Vendor.all
   end
 
   # GET /vendors/1
   # GET /vendors/1.json
+
+  def 
   def show
     if generate_activity(@vendor.user)
       @activity = PublicActivity::Activity.create(owner: current_user,
