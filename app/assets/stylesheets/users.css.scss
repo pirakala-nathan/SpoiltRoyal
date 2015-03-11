@@ -1,3 +1,76 @@
 // Place all the styles related to the users controller here.
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
+.custom.container{
+	width:1000px;
+	.overview-side-bar{
+		width: 20%;
+		form{
+			.file-upload-hidden{
+				display: none;
+			}
+		}
+		#vendor-picture{
+			background:#F0F0F0;
+			width: 200px;
+			height: 200px;
+			border-radius:2px;
+			background: black;
+			border: 1px solid #E2E2E2;
+			text-align: center;
+			display:table;
+			position: relative;
+			img{
+				display:inline-block;
+				max-height: 100%;
+				max-width: 99%;
+				vertical-align: middle;
+			}
+		}
+		#vendor-picture:before {    /* create a full-height inline block pseudo=element */
+    	height: 100%;
+    	content: ' ';
+    	display: inline-block;
+    	vertical-align: middle;  /* vertical alignment of the inline element */
+    }
+		#vendor-picture:hover{
+			cursor: pointer;
+		}
+	}
+}
+
+#dash-nav{
+	background:#9B9B9B;
+	min-height:40px;
+	height:40px;
+	.container{
+		height: 100%;
+		.nav-links{
+			height: 100%;
+			ul{
+				height: 100%;
+				.active{
+					a{
+						background:#747474;
+						color:white;
+					}
+				}
+				li{
+					height: 80%;
+					position: relative;
+					top:10%;
+					width: 10%;
+					border-radius: 4px;
+					a{
+						height: 100%;
+						line-height: 32px;
+						text-align: center;
+						border-radius:4px;
+						color: white;
+					}
+					
+				}
+			}
+		}
+	}
+}

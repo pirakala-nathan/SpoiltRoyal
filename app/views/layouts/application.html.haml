@@ -43,7 +43,7 @@
                   %button.btn.new-post
                     Post
               %li
-                =link_to "#{current_user.first_name} #{current_user.last_name}", current_user
+                =link_to "#{current_user.first_name} #{current_user.last_name}", overview_user_path(current_user), class: "nav-user"
               %li.hidden-xs
                 - if current_user.pictures.empty?
                   = image_tag ("//placehold.it/60x60"), class: "img-circle"

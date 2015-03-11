@@ -2,6 +2,30 @@ class UsersController < ApplicationController
   load_and_authorize_resource param_method: :user_params
   before_action :set_user, only: [:show, :edit, :update, :destroy, :show_account]
 
+
+  #dashboard//
+  def overview
+    @vendor = @user.account
+    @vendor.assets.build
+  end
+
+  def inbox
+  end
+
+  def bids
+  end
+
+  def statistics
+  end
+
+  def profile
+  end
+
+  def account
+  end
+
+  #dashbboard-end//
+  
   # GET /users
   # GET /users.json
   def index
@@ -43,6 +67,20 @@ class UsersController < ApplicationController
   # POST /users.json
   def create
     @user = User.new(user_params)
+    @username = nil
+    @user.first_name = @user.first_name.delete(" ")
+    @user.last_name = @user.last_name.delete(" ")
+    @name = @user.first_name + "_" + @user.last_name
+    @number = ""
+    while @username == nil
+      @check = @name + @number
+      if User.where(:username => @check).empty?
+        @username = @check
+      else
+        @number = (@number.to_i + 1).to_s
+      end
+    end
+    @user.username = @username
     respond_to do |format|
       if @user.save
         if @user.account_type == "Vendor"
@@ -89,6 +127,6 @@ class UsersController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def user_params
-      params.require(:user).permit(:username, :email, :password, :password_confirmation, :account_type)
+      params.require(:user).permit(:username, :email, :password, :password_confirmation, :account_type, :first_name,:last_name)
     end
 end

@@ -1,0 +1,13 @@
+= render 'dashboard_nav'
+.custom.container.no-h-padding
+	.overview-side-bar.no-h-padding
+		= nested_form_for @user.account, html: { multipart: true } do |f|
+			= f.fields_for :assets do |a|
+				= a.file_field :image, class: "file-upload-hidden", onchange: "this.form.submit();"
+		#vendor-picture
+			- if !(@user.account.assets.empty?)
+				= image_tag @user.account.assets.first.image.url(:profile)
+
+
+			
+				

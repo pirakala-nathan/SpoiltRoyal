@@ -1,4 +1,7 @@
 class PagesController < ApplicationController
   def home
-  end
+  	if current_user
+  	
+  	end
+  end 
 end

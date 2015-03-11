@@ -2,6 +2,8 @@
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
 
+$dark-text-color: #767676;
+$orange: #EA9B2C;
 
 h3 {
   color: blue;
@@ -9,4 +11,54 @@ h3 {
 
 .row {
   padding: 1em;
+}
+
+#vendor-form{
+	background:white;
+	border:1px solid #e7e7e7;
+	.logo{
+		height: 15vh;
+		display: block;
+		margin:auto;
+		position: relative;
+		margin-top:30px;
+	}
+	.description{
+		text-align: center;
+		margin-bottom: 10px;
+	}
+
+	.instruction{
+		text-align: left;
+		margin-bottom: 20px;
+		margin-top: 20px;
+	}
+	.row-custom{
+		margin-bottom: 10px;
+	}
+	form{
+		.hidden-slide{
+			display: none;
+		}
+		.checkbox{
+			text-align:center
+		}
+		.cbox{
+			height: auto;
+		}
+		input{
+			height: 35px;
+			border: 1px solid $orange;
+			border-radius:0px;
+		}
+		textarea{
+			border: 1px solid $orange;
+			border-radius:0px;
+			height: 60px;
+			overflow-y:auto;
+		}
+	}
+}
+.text-center{
+	text-align: center;
 }

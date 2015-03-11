@@ -24,9 +24,13 @@ $orange: #EA9B2C;
     height: 400px;
   }
 }
+a.nav-user{
+  line-height: 7vh;
+}
 #logged-in-nav{
   height: 14vh;
   background-color:white;
+  margin-bottom: 0px;
   .container-fluid{
     height: 100%;
     .navbar-search{
@@ -40,6 +44,9 @@ $orange: #EA9B2C;
           margin-left:10px;
           height: 100%;
           float:right;
+          a{
+            line-height: 7vh;
+          }
           img{
             position:relative;
             top:50%;
