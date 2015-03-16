@@ -29,7 +29,6 @@ class PostsController < ApplicationController
   # GET /posts/1
   # GET /posts/1.json
   def show
-    raise
     @comment = Comment.new
   end
 

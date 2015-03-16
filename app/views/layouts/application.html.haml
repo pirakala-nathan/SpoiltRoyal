@@ -42,6 +42,18 @@
                 %a.post-btn{:href => "#"}
                   %button.btn.new-post
                     Post
+              %li.notification-li
+                %a.dtoggle#menu1
+                  %span.glyphicon.glyphicon-tasks{"aria-hidden" => "true"}
+                  %span.caret
+                .menu1.hidden.dmenu{:role => "menu"}
+                  .notifications
+                    .new
+                      = sync_new partial: 'notification', resource: PublicActivity::Activity.new
+                    - @activities = PublicActivity::Activity.where(recipient_id: current_user.id).order(created_at: :desc)
+                    - @activities.each do |activity|
+                      = sync partial: 'notification', resource: activity
+                
               %li
                 =link_to "#{current_user.first_name} #{current_user.last_name}", overview_user_path(current_user), class: "nav-user"
               %li.hidden-xs
@@ -62,12 +74,7 @@
     /   .col-xs-4
     /     = link_to 'My Profile', current_user
     /     = link_to 'Notification Settings', :notification_settings
-    /   .notifications.col-xs-4.col-xs-offset-4
-    /     .new
-    /       = sync_new partial: 'notification', resource: PublicActivity::Activity.new
-    /     - @activities = PublicActivity::Activity.where(recipient_id: current_user.id).order(created_at: :desc)
-    /     - @activities.each do |activity|
-    /       = sync partial: 'notification', resource: activity
+
     / #nav
     /   = link_to "View Vendors", vendors_path
     /   - if can? :index, :user

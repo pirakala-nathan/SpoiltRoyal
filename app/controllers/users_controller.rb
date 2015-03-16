@@ -7,6 +7,7 @@ class UsersController < ApplicationController
   def overview
     @vendor = @user.account
     @vendor.assets.build
+    @posts = Post.all.limit(2)
   end
 
   def inbox

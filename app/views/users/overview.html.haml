@@ -7,6 +7,51 @@
 		#vendor-picture
 			- if !(@user.account.assets.empty?)
 				= image_tag @user.account.assets.first.image.url(:profile)
+		#side-bar-name
+			= @user.first_name + " " + @user.last_name
+		#side-bar-location
+			Toronto, Ontario 
+			/@user.physical_location.city + "," + @user.physical_location.province .. check before uncommenting
+		#side-bar-membersince
+			= "Member since " + @user.created_at.strftime("%B %Y")
+
+		= link_to "EDIT PROFILE", edit_vendor_path(@user.account), class: "edit-profile-sidebar"
+		#posts-you-might-like
+			.title
+				Posts you might like
+			%ul
+				- @posts.each do |p|
+					= link_to p do	
+						%li.post-suggestion
+							.suggestion-name
+								= "   " + p.user.first_name + " " + p.user.last_name
+							.suggestion-title
+								= '"' + p.title + '"'
+	#main-overview
+		.welcome-message.border-gray
+			.title
+				Welcome to NEX, 
+				= @user.first_name + " " + @user.last_name + "!"
+			.message-text
+				This is your dashboard, you can find your company, bidding, reviews, and statistics here all in one piece!Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed quis nunc porta, suscipit justo non, bibendum orci. Cras interdum malesuada tincidunt. 
+				= link_to "Browse posts", posts_path
+		.inbox-overview.border-gray
+			.title
+				Unread Messages
+			.inbox-text
+				
+		.verfication-overview.border-gray
+			.title
+				Verification
+		.bidding-overview.border-gray
+			.title 
+				Recent Bidding
+		.current-projects-overview.border-gray
+			.title
+				Current projects
+		.reviews-overview.border-gray
+			.title
+				Recent Reviews
 
 
 			

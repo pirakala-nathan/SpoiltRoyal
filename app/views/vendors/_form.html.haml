@@ -146,6 +146,9 @@
           = image_tag a.object.image.url(:thumb)
           = a.link_to_remove "Remove Image"
     = f.link_to_add "Add Picture", :assets
-  .actions
-    = f.submit
+  .col-xs-12
+    .next-slide.col-xs-2.col-xs-offset-5
+      NEXT
+  .actions.col-xs-12
+    = f.submit "skip this step", class: "skip"
   

@@ -1,10 +1,15 @@
 // Place all the styles related to the users controller here.
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
+$dark-text-color: #767676;
+$orange: #EA9B2C;
+$blue: #63BFDE;
 .custom.container{
 	width:1000px;
 	.overview-side-bar{
-		width: 20%;
+		width: 200px;
+		position: relative;
+		float: left;
 		form{
 			.file-upload-hidden{
 				display: none;
@@ -36,10 +41,88 @@
 		#vendor-picture:hover{
 			cursor: pointer;
 		}
+		#side-bar-name{
+			margin-top: 20px;
+			text-align: left;
+			font-size: 20px;
+			color:black;
+			font-style: bold;
+		}
+		#side-bar-membersince{
+			margin-bottom: 20px;
+		}
+		.edit-profile-sidebar{
+			width: 200px;
+			height: 40px;
+			display: block;
+			text-align: center;
+			line-height: 40px;
+			background: $orange;
+			color: white;
+		}
+		#posts-you-might-like{
+			width: 200px;
+			background: white;
+			border: 1px solid #EAE6E1;
+			margin-top: 30px;
+			.title{
+				width: 100%;
+				text-align: center;
+				font-size: 16px;
+				color: black;
+				padding-top: 10px;
+				font-style: bold;
+				padding-bottom: 10px;
+
+			}
+			ul{
+				list-style-type: disc;
+				color: $orange;
+				width: 140px;
+				margin-left: 30px;
+				a{
+					.post-suggestion{
+						padding-bottom: 20px;
+						.suggestion-name{
+							width: 100%;
+							color: $orange;
+						}
+						.suggestion-title{
+							color:$blue;
+						}
+					}
+				}
+			}
+		}
+	}
+	#main-overview{
+		position: relative;
+		float: right;
+		width: 800px;
+		.border-gray{
+			background: white;
+			width: 760px;
+			margin-left:20px;
+			padding:20px; 
+			margin-bottom: 10px;
+			.title{
+				width: 100%;
+				text-align: left;
+				font-size: 16px;
+				color: black;
+				font-style: bold;
+				padding-bottom: 10px;
+
+			}
+		}
+
 	}
 }
-
+.border-gray{
+	border: 1px solid #EAE6E1;
+}
 #dash-nav{
+	z-index: 1;
 	background:#9B9B9B;
 	min-height:40px;
 	height:40px;

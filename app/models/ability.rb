@@ -24,13 +24,17 @@ class Ability
 
         can [:create], Comment 
 
+        can [:edit], Vendor do |v|
+          v.try(:user) == user
+        end
+
       end
       # Anyone can see a Vendor's profile and the list of vendors
       can :read, Vendor
       can :read, Post
       # Since show_account redirects to the edit pages, we need
       # to have access to show_account in order to edit a user
-      can [:update, :show_account], User do |u|
+      can [:update, :show_account,:overview], User do |u|
         u == user
       end
 

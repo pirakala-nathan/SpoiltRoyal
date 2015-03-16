@@ -46,6 +46,23 @@ h3 {
 		.cbox{
 			height: auto;
 		}
+		.skip{
+			position: relative;
+			left:50%;
+			margin-left: -50px;
+			width: 100px;
+			border:none;
+			background:transparent;
+			color:$orange;
+		}
+		.next-slide{
+			margin-top: 50px;
+			height: 40px;
+			line-height: 40px;
+			background: $orange;
+			color:white;
+			text-align: center;
+		}
 		input{
 			height: 35px;
 			border: 1px solid $orange;
