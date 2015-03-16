@@ -43,15 +43,16 @@
 		.verfication-overview.border-gray
 			.title
 				Verification
-		.bidding-overview.border-gray
-			.title 
-				Recent Bidding
-		.current-projects-overview.border-gray
-			.title
-				Current projects
-		.reviews-overview.border-gray
-			.title
-				Recent Reviews
+		- if current_user.account.kind_of? Vendor	
+			.bidding-overview.border-gray
+				.title 
+					Recent Bidding
+			.current-projects-overview.border-gray
+				.title
+					Current projects
+			.reviews-overview.border-gray
+				.title
+					Recent Reviews
 
 
 			

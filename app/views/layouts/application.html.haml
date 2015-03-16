@@ -39,9 +39,9 @@
           #bs-example-navbar-collapse-1.collapse.navbar-collapse.navbar-right
             %ul.nav.navbar-nav.center-navbar.col-sm-12
               %li.col-sm-3
-                %a.post-btn{:href => "#"}
+                = link_to posts_path, class: "post-btn" do 
                   %button.btn.new-post
-                    Post
+                    Posts
               %li.notification-li
                 %a.dtoggle#menu1
                   %span.glyphicon.glyphicon-tasks{"aria-hidden" => "true"}
@@ -53,6 +53,9 @@
                     - @activities = PublicActivity::Activity.where(recipient_id: current_user.id).order(created_at: :desc)
                     - @activities.each do |activity|
                       = sync partial: 'notification', resource: activity
+                    - if @activites == nil
+                      You Have No Notifications 
+
                 
               %li
                 =link_to "#{current_user.first_name} #{current_user.last_name}", overview_user_path(current_user), class: "nav-user"

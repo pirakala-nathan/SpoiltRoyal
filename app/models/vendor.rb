@@ -10,7 +10,7 @@ class Vendor < ActiveRecord::Base
   has_many :vendor_subscriptions, dependent: :destroy
   has_many :delivery_locations, dependent: :destroy
   has_many :external_links, dependent: :destroy
-  has_many :assets, dependent: :destroy
+  has_many :assets, as: :owner, dependent: :destroy
   has_many :subcategories, through: :vendor_subscriptions
   has_many :personal_infos, dependent: :destroy
 

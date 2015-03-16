@@ -40,7 +40,10 @@ class UsersController < ApplicationController
       if @user.is_vendor?
         redirect_to new_vendor_path
       else
-        redirect_to new_consumer_path
+        @consumer = Consumer.new
+        @consumer.save
+        @consumver.user = current_user
+        @consumer.save
       end
     else
       redirect_to @user.account, notice: 'User Logged in'

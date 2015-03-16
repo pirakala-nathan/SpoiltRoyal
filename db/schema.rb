@@ -41,7 +41,8 @@ ActiveRecord::Schema.define(version: 20150227062552) do
   add_index "activities", ["trackable_id", "trackable_type"], name: "index_activities_on_trackable_id_and_trackable_type", using: :btree
 
   create_table "assets", force: true do |t|
-    t.integer  "vendor_id",          limit: 4
+    t.integer  "owner_id",           limit: 4
+    t.string   "owner_type",         limit: 255
     t.datetime "created_at"
     t.datetime "updated_at"
     t.string   "image_file_name",    limit: 255

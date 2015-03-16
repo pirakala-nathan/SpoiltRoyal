@@ -4,6 +4,8 @@
       POSTS
     %span.col-xs-12.no-h-padding.sidebar-desc
       Explore our needs
+    - if current_user.account.kind_of? Consumer
+      = link_to "Make A New Post", new_post_path, class: "col-xs-12 btn btn-info"  
     %form.search-form.col-xs-12.no-h-padding
       %input.search-input.col-xs-12{placeholder: "Search"}
       %button.btn.submit-btn.col-xs-12
@@ -85,7 +87,7 @@
             =post.title
           %span.post-by.col-xs-12.no-h-padding
             = "By: " 
-            = link_to current_user.username, current_user
+            = link_to current_user.first_name + " " + current_user.last_name, current_user
             &middot
             = "Toronto,Ontario"
             &middot
