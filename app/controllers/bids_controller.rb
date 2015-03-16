@@ -20,7 +20,6 @@ class BidsController < ApplicationController
   # GET /bids/1/edit
   def edit
   end
-o
   def accept
     @bid = Bid.find(params[:id])
     @bid.status = "accepted"
