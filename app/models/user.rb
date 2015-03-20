@@ -3,12 +3,12 @@ class User < ActiveRecord::Base
     c.login_field = :email
   end
   belongs_to :account, polymorphic: true
-  has_one :consumer
   has_many :authentications
   has_many :email_notification_settings, dependent: :destroy
   has_many :comments, dependent: :destroy
   has_many :posts, dependent: :destroy
   has_many :pictures, as: :owner
+  has_many :bids
 
   def is_vendor?
     self.account_type == 'Vendor'

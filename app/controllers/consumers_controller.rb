@@ -69,6 +69,9 @@ class ConsumersController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def consumer_params
-      params[:consumer]
+      params.require(:consumer).permit(
+        # Asset Attributes (Pictures needs to nest inside assets in order to work)
+        assets_attributes: [:_destroy, :id, :image]
+        )
     end
 end

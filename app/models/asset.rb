@@ -1,6 +1,6 @@
 class Asset < ActiveRecord::Base
   belongs_to :owner, polymorphic: true
-  has_attached_file :image, :styles => { :medium => "300x300>", :thumb => "100x100>",:profile => "200x200>" }
+  has_attached_file :image, :styles => { :medium => "300x300>", :thumb => "100x100>",:profile => "200x200>",:small => "60X60>" }
   
   validates_attachment_size :image, :less_than => 2.megabytes
   validates_attachment_content_type :image, :content_type => ['image/jpeg', 'image/png']
@@ -11,7 +11,7 @@ class Asset < ActiveRecord::Base
 
   # change file name to vendor_name_#
   def update_file_name
-    new_name = self.vendor.business_name.downcase.tr(" ", "_") + "_"
+    new_name = self.owner.user.first_name.downcase.tr(" ", "_") + "_"
     number = Asset.last.nil? ? "1" : (Asset.last.id + 1).to_s
     extension = File.extname(image_file_name).downcase
 

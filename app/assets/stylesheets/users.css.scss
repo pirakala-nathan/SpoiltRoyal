@@ -4,8 +4,145 @@
 $dark-text-color: #767676;
 $orange: #EA9B2C;
 $blue: #63BFDE;
+.padding-left-30{
+	padding-left: 30px;
+}
 .custom.container{
 	width:1000px;
+	min-height: 10px;
+	.user-bids{
+		width: 100%;
+		.bid{
+			width: 100%;
+			background: white;
+			height: 120px;
+			border: 1px solid #E9E9E9;
+			border-top: 0;
+			.bid-row{
+				height: 100%;
+				.bid-img-container{
+					height: 100%;
+					width: 60px;
+					padding: 0px;
+					float: left;
+					.bid-img{
+						position: relative;
+						top: 50%;
+						margin-top: -30px;
+					}
+				}
+				.bid-info{
+					height: 100%;
+					float: right;
+					width: calc(100% - 60px); 
+					padding-left: 20px;
+					.title{
+						color: $orange
+
+					}
+				}
+				.in-green{
+					color: #5AB075;
+					font-weight: bold;
+					font-size: 15px;
+					margin-top: 43px;
+				}
+				.in-grey{
+					color: #9DA2A3;
+					font-weight: bold;
+					font-size: 15px;
+					margin-top: 43px;
+				}
+				.grey-date{
+					color:#BBBFC3;
+					font-size: 13px;
+
+				}
+				span{
+					white-space: nowrap;
+					display: inline-block;
+					vertical-align: middle;
+				}
+			}
+		}
+	}
+	.column-names{
+		margin-top: 20px;
+		width: 100%;
+		height: 50px;
+		background: #FCFCFC;
+		border: 1px solid #E9E9E9;
+		.names-row{
+			height: 100%;
+			font-size: 14px;
+			line-height: 50px;
+		}
+	}
+	.page-info{
+		width: 1000px;
+		height: 30px;
+		.bid-page-status{
+			width: 400px;
+			position: relative;
+			float: left;
+			height: 30px;
+			font-size: 14px;
+			line-height: 30px;
+
+		}
+		
+		.filter-page{
+			width: 200px;
+			position: relative;
+			float: right;
+			line-height: 30px;
+			height: 30px;
+			.filters{
+				width: 155px;
+				position: relative;
+				float: right;
+				.current-filter{
+					height: 30px;
+					background: white;
+					font-size: 14px;
+					border: 1px solid #EAE6E1;
+					line-height: 30px;
+					width: 155px;
+					text-align: center;
+				}
+
+				ul{
+					display: none;
+					opacity: 0;
+					visibility: hidden;
+					-webkit-transiton: opacity 0.2s;
+					-moz-transition: opacity 0.2s;
+					-ms-transition: opacity 0.2s;
+					-o-transition: opacity 0.2s;
+					-transition: opacity 0.2s;
+					li{
+						display: block;
+						color: black;
+						background:white;
+						border: 1px solid #EAE6E1;
+						border-top: 0px;
+						height: 30px;
+						font-size: 14px;
+						text-align: center;
+						line-height: 30px;
+
+					}
+				}
+			}
+			.filters:hover{
+				ul{
+					display: block;
+					opacity: 1;
+					visibility: visible;
+				}
+			}
+		}
+	}
 	.overview-side-bar{
 		width: 200px;
 		position: relative;

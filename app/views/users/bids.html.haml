@@ -1,0 +1,69 @@
+= render 'dashboard_nav'
+
+.custom.container.no-h-padding
+	.page-info
+		.bid-page-status
+			%span Bids &#8226
+			%span
+				=" " + @filter
+		.filter-page
+			Filter:
+			.filters
+				.current-filter
+					/ - @filter = "Won " + "\u2022" + " Complete"
+					= @filter
+					%span.caret 
+				%ul
+					%li 
+						= link_to "All", bids_user_path(:filter => "All") 
+					%li  
+						= link_to "Won \u2022 Active", bids_user_path(:filter => "won_active") 
+					%li
+						= link_to "Won \u2022 Complete", bids_user_path(:filter => "won_complete") 
+					%li 
+						= link_to "Lost", bids_user_path(:filter => "lost") 
+					%li 
+						= link_to "cancelled", bids_user_path(:filter => "cancelled") 
+			
+	.column-names
+		.col-xs-2.names-row.padding-left-30
+			Bid Due
+		.col-xs-5.names-row
+			Bid Information
+		.col-xs-3.names-row
+			Bid Status
+		.col-xs-2.names-row
+	.user-bids
+		- @bids.each do |bid|
+			.bid
+				.col-xs-2.due.bid-row.padding-left-30
+					- if Time.now.to_date > bid.post.due_date.to_date	
+						%span.in-grey
+							= ((Time.now.to_date - bid.post.due_date.to_date).to_i).to_s + " days ago"
+						%span.grey-date
+							= bid.post.due_date.to_date.strftime("%B %d, %Y")
+					- elsif Time.now.to_date == bid.post.due_date.to_date
+						%span.in-green	Today
+						%span.grey-date
+							= bid.post.due_date.to_date.strftime("%B %d, %Y")
+					- else
+	
+						%span.in-green
+							= "In " + ((bid.post.due_date.to_date - Time.now.to_date).to_i).to_s + " days"
+						%span.grey-date
+							= bid.post.due_date.to_date.strftime("%B %d, %Y")
+				.col-xs-5.bid-row
+					.bid-img-container
+						- if bid.post.user.account.assets.empty?
+							= image_tag ("//placehold.it/60x60"), class: "img-circle bid-img"
+						-else
+							- @image = bid.post.user.account.assets.last.image
+							= image_tag @image.url(:small), class: "img-circle bid-img"
+					.bid-info
+						.title
+							= bid.post.user.first_name + " " + bid.post.user.last_name + " " + "\u2022" + " " + "('" + bid.post.title + "')"
+
+
+
+
+

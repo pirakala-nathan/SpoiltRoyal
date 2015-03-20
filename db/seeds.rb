@@ -52,8 +52,12 @@ EmailNotificationSetting.create(settings_for: 'Vendor', timed_task: TimedTask.fi
 EmailNotificationSetting.create(settings_for: 'Vendor', timed_task: TimedTask.first, user: test1)
 EmailNotificationSetting.create(settings_for: 'Vendor', timed_task: TimedTask.first, user: test2)
 
-@v = Vendor.create(business_name: "SyncI&DLabs", business_name: "Lorem ipsum",
+@v = Vendor.create(business_name: "SyncI&DLabs",
               establish_date: Date.today, tax_number: 1234)
+@consumer = Consumer.new
+@consumer.save
+@consumer.user = @test
+@consumer.save
 @v.user = admin
 @v.save
 c = Country.create([{name: 'Canada'}])
@@ -87,20 +91,20 @@ end
   title: "Need a Waitress",
   description: "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to ",
   user_id: @test.id,
-  due_date: "2015-02-27",
+  due_date: "2015-05-07",
 )
 
 @second_post = Post.create(
   title: "Need a Cook",
   description: "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to ",
   user_id: @test.id,
-  due_date: "2015-02-27",
+  due_date: "2015-04-27",
 )
 @third_post = Post.create(
   title: "Need a Gaurd",
   description: "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to ",
   user_id: @test.id,
-  due_date: "2015-02-27",
+  due_date: "2015-03-15",
 )
 first_sub = PostSubscription.create(
   post_id: @first_post.id,

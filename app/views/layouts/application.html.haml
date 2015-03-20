@@ -60,11 +60,11 @@
               %li
                 =link_to "#{current_user.first_name} #{current_user.last_name}", overview_user_path(current_user), class: "nav-user"
               %li.hidden-xs
-                - if current_user.pictures.empty?
+                - if current_user.account.assets.empty?
                   = image_tag ("//placehold.it/60x60"), class: "img-circle"
                 -else
-                  - @image = curent_user.pictures.last.image
-                  - image_tag @image.url(:user_image), class: "img-circle" 
+                  - @image = current_user.account.assets.last.image
+                  = image_tag @image.url(:small), class: "img-circle" 
               / %li.non-active.secondPage
               /   %a{:href => "#secondPage"} current listings
               / %li.non-active.thirdPage

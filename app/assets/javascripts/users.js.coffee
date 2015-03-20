@@ -4,3 +4,4 @@
 $ ->	
 	$('#vendor-picture').click ->
 		$('.file-upload-hidden').trigger('click');
+	$('.dropdown-toggle').dropdown()

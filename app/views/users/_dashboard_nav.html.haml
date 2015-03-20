@@ -1,18 +1,19 @@
+- @page = request.path.split("/").last
 %nav#dash-nav.navbar.navbar-default.navbar-static-top.hidden-xs
 	.container
 		.col-xs-10.col-xs-offset-1.nav-links
 			%ul.nav.navbar-nav.col-xs-12.no-h-padding
-				%li.active
+				%li{class: ("active" if @page == "overview")}
 					= link_to "Overview", overview_user_path(current_user)
-				%li	
+				%li{class: ("active" if @page == "inbox")}	
 					= link_to "Inbox", inbox_user_path(current_user)
-				%li	
+				%li{class: ("active" if @page == "bids")}	
 					= link_to "Bids", bids_user_path(current_user)
-				%li	
-					= link_to "Statistics", bids_user_path(current_user)
-				%li	
+				%li{class: ("active" if @page == "statistics")}	
+					= link_to "Statistics", statistics_user_path(current_user)
+				%li{class: ("active" if @page == "profile")}	
 					= link_to "Profile", profile_user_path(current_user)
-				%li
+				%li{class: ("active" if @page == "account")}
 					= link_to "Account", account_user_path(current_user)
 
 

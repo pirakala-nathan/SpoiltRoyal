@@ -14,6 +14,20 @@ class UsersController < ApplicationController
   end
 
   def bids
+    @bids = @user.bids
+    if params[:filter] == "All"
+      @filter = params[:filter]
+    elsif params[:filter] == "won_active"
+      @filter = "Won \u2022 Active"
+    elsif params[:filter] == "won_complete"
+      @filter = "Won \u2022 Complete"
+    elsif params[:filter] == "lost"
+      @filter = "Lost"
+    elsif params[:filter] == "cancelled"
+      @filter = "Cancelled"
+    else
+      @filter = "All"
+    end
   end
 
   def statistics
@@ -42,7 +56,7 @@ class UsersController < ApplicationController
       else
         @consumer = Consumer.new
         @consumer.save
-        @consumver.user = current_user
+        @consumer.user = current_user
         @consumer.save
       end
     else
