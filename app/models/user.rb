@@ -4,9 +4,13 @@ class User < ActiveRecord::Base
   end
   belongs_to :account, polymorphic: true
   has_many :authentications
+  has_many :participant_lists
+  has_many :conversations, through: :participant_lists
   has_many :email_notification_settings, dependent: :destroy
+  has_many :messages
   has_many :comments, dependent: :destroy
   has_many :posts, dependent: :destroy
+  has_many :watched_posts, dependent: :destroy
   has_many :pictures, as: :owner
   has_many :bids
 

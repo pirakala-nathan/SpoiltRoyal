@@ -13,7 +13,6 @@
 //= require jquery
 //= require jquery_ujs
 //= require jquery_nested_form
-//= require bootstrap.min
 //= require bootstrap-datepicker
 //= require sync
 //= require_tree .

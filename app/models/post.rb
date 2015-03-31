@@ -3,6 +3,7 @@ class Post < ActiveRecord::Base
 
   has_many :post_subscriptions, dependent: :destroy
  	has_many :comments, dependent: :destroy
+  has_many :watched_posts, dependent: :destroy 
  	has_many :bids
  	has_many :pictures, as: :owner
  	belongs_to :user

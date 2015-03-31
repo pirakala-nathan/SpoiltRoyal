@@ -9,6 +9,8 @@
 					= link_to "Inbox", inbox_user_path(current_user)
 				%li{class: ("active" if @page == "bids")}	
 					= link_to "Bids", bids_user_path(current_user)
+				%li{class: ("active" if @page == "watched_posts")}
+					= link_to "Watched Posts", watched_posts_user_path(current_user)
 				%li{class: ("active" if @page == "statistics")}	
 					= link_to "Statistics", statistics_user_path(current_user)
 				%li{class: ("active" if @page == "profile")}	

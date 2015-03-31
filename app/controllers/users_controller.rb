@@ -11,22 +11,33 @@ class UsersController < ApplicationController
   end
 
   def inbox
+    @convos = @user.conversations.where.not(last_msg: nil)
   end
-
+  def watched_posts
+    @watchedPosts = @user.watched_posts
+  end
   def bids
-    @bids = @user.bids
+    
     if params[:filter] == "All"
       @filter = params[:filter]
+      @bids = @user.bids
     elsif params[:filter] == "won_active"
       @filter = "Won \u2022 Active"
+      @bids = @user.bids.where(:status => "accepted")
+      @bids = @bids.reject{|r| r.active? == false}
     elsif params[:filter] == "won_complete"
       @filter = "Won \u2022 Complete"
+      @bids = @user.bids.where(:status => "accepted")
+      @bids = @bids.reject{|r| r.active? == false}
     elsif params[:filter] == "lost"
       @filter = "Lost"
+      @bids = @user.bids.where(:status => "Lost")
     elsif params[:filter] == "cancelled"
       @filter = "Cancelled"
+      @bids = @user.bids.where(:status => "cancelled")
     else
       @filter = "All"
+      @bids = @user.bids
     end
   end
 
@@ -104,6 +115,9 @@ class UsersController < ApplicationController
         if @user.account_type == "Vendor"
           EmailNotificationSetting.create(settings_for: 'Vendor', timed_task: TimedTask.first, user: @user)
         end
+        EmailNotificationSetting.create(settings_for: 'Post', timed_task: TimedTask.first, user: @user)
+        EmailNotificationSetting.create(settings_for: 'Comment', timed_task: TimedTask.first, user: @user)
+        EmailNotificationSetting.create(settings_for: 'Bid', timed_task: TimedTask.first, user: @user)
         format.html { redirect_to @user, notice: 'User was successfully created.' }
         format.json { render :show, status: :created, location: @user }
       else

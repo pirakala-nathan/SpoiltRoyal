@@ -19,10 +19,14 @@ set :environment, "development"
 # end
 
 # Learn more: http://github.com/javan/whenever
-every 1.minute do
-	runner "TimedTask.timed_jobs('minute')"
-end
-
 every 1.day do
 	runner "TimedTask.timed_jobs('day')"
+end
+
+every 1.week do
+	runner "TimedTask.timed_jobs('week')"
+end
+
+every 1.week do
+  runner "TimedTask.timed_jobs('month')"
 end

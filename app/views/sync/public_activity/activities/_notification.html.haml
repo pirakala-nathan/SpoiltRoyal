@@ -1,4 +1,26 @@
+
 - if activity.trackable.kind_of? Comment
+	= link_to activity.trackable.post do
+		.notification-card.col-xs-12{class: "read_#{activity.read}" }
+			.activity-pic
+				- if activity.owner.account.assets.empty?
+					= image_tag ("//placehold.it/100x100"), class: "notification-pic"
+				-else
+					=image_tag activity.owner.account.assets.first.image.url(:thumb), class: "notification-pic"
+			.activity-description
+				%span
+					= activity.owner.first_name + " " + activity.owner.last_name
+					= ((activity.key).split(".")[1]).tr('_',' ')
+					= ': "' 
+					= activity.trackable.content
+
+					='"'
+
+	- activity.read = true
+	- activity.save
+
+
+- if activity.trackable.kind_of? Bid
 	= link_to activity.trackable.post do
 		.notification-card.col-xs-12{class: "read_#{activity.read}" }
 			.activity-pic

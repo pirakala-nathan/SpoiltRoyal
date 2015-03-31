@@ -87,10 +87,9 @@
             =post.title
           %span.post-by.col-xs-12.no-h-padding
             = "By: " 
-            = link_to current_user.first_name + " " + current_user.last_name, current_user
-            &middot
+
+            = link_to post.user.first_name + " " + post.user.last_name, '#', data: {target: "#new-convo", toggle: "modal", }, class: "btn popover-trigger", id: "new-convo-toggler" 
             = "Toronto,Ontario"
-            &middot
             = post.created_at.to_date
           %span.post-description.col-xs-12.no-h-padding
             = post.description
@@ -103,12 +102,26 @@
           %a.col-xs-12{href: "#"}
             %button.btn.bid-post.col-xs-12
               Bid Post
-          %a.col-xs-12{href:"#"}
-            %button.btn.watch-post.col-xs-12
-              Watch Post
+          = form_for WatchedPost.new do |f|
+            = f.hidden_field :user_id, value: current_user.id
+            = f.hidden_field :post_id, value: post.id
+            = f.submit "Watch Post", class: "btn watch-post col-xs-12"
 
 
 
+#new-convo.modal.fade
+  .modal-dialog
+    .modal-content
+      .modal-header
+        %button.close{"aria-label" => "Close", "data-dismiss" => "modal", :type => "button"}
+          %span{"aria-hidden" => "true"} ×
+        %h4.modal-title
+          Create New Post
+      .modal-body
+        Test
+
+      .modal-footer
+        .actions
 
 / %h1 Listing posts
 

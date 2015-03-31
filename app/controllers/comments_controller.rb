@@ -28,7 +28,9 @@ class CommentsController < ApplicationController
 
     respond_to do |format|
       if @comment.save
+
         @users = []
+        @users << @comment.user_id
         @post = @comment.post
         @user_activity = PublicActivity::Activity.create(owner: current_user,
                key: 'Post.commented_on_your_post',recipient: @post.user, trackable:@comment)

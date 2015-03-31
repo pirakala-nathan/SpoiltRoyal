@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150227062552) do
+ActiveRecord::Schema.define(version: 20150324195102) do
 
   create_table "accepted_payment_methods", force: true do |t|
     t.integer  "vendor_id",         limit: 4
@@ -96,6 +96,13 @@ ActiveRecord::Schema.define(version: 20150227062552) do
     t.datetime "updated_at"
   end
 
+  create_table "conversations", force: true do |t|
+    t.string   "subject",    limit: 255
+    t.date     "last_msg"
+    t.datetime "created_at",             null: false
+    t.datetime "updated_at",             null: false
+  end
+
   create_table "countries", force: true do |t|
     t.string   "name",       limit: 255
     t.datetime "created_at"
@@ -138,6 +145,21 @@ ActiveRecord::Schema.define(version: 20150227062552) do
     t.string   "name",       limit: 255
     t.datetime "created_at"
     t.datetime "updated_at"
+  end
+
+  create_table "messages", force: true do |t|
+    t.integer  "user_id",         limit: 4
+    t.integer  "conversation_id", limit: 4
+    t.text     "info",            limit: 65535
+    t.datetime "created_at",                    null: false
+    t.datetime "updated_at",                    null: false
+  end
+
+  create_table "participant_lists", force: true do |t|
+    t.integer  "user_id",         limit: 4
+    t.integer  "conversation_id", limit: 4
+    t.datetime "created_at",                null: false
+    t.datetime "updated_at",                null: false
   end
 
   create_table "payment_methods", force: true do |t|
@@ -256,6 +278,13 @@ ActiveRecord::Schema.define(version: 20150227062552) do
     t.boolean  "verified",             limit: 1,   default: false
     t.datetime "created_at"
     t.datetime "updated_at"
+  end
+
+  create_table "watched_posts", force: true do |t|
+    t.integer  "user_id",    limit: 4
+    t.integer  "post_id",    limit: 4
+    t.datetime "created_at",           null: false
+    t.datetime "updated_at",           null: false
   end
 
 end

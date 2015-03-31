@@ -23,8 +23,16 @@ class BidsController < ApplicationController
   def accept
     @bid = Bid.find(params[:id])
     @bid.status = "accepted"
+    @bid.save
     @post = @bid.post
-    raise
+    @bids = @post.bids
+    @bids.each do |bid|
+      if @bid != bid
+        bid.status = "Lost"
+        bid.save
+      end
+    end
+    redirect_to @post
   end
 
   def decline
@@ -95,10 +103,15 @@ class BidsController < ApplicationController
   # DELETE /bids/1
   # DELETE /bids/1.json
   def destroy
-    @bid.destroy
-    respond_to do |format|
-      format.html { redirect_to bids_url, notice: 'Bid was successfully destroyed.' }
-      format.json { head :no_content }
+    if @bid.active?
+      @bid.status = "cancelled" 
+      @bid.save
+    end
+    if @bid.save
+      respond_to do |format|
+        format.html { redirect_to bids_user_path(current_user), notice: 'Bid was successfully destroyed.' }
+        format.json { head :no_content }
+      end
     end
   end
 

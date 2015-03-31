@@ -81,7 +81,10 @@ class PostsController < ApplicationController
   # PATCH/PUT /posts/1.json
   def update
     respond_to do |format|
+
       if @post.update(post_params)
+        @post.due_date = Date.strptime(post_params[:due_date], "%m/%d/%Y")
+        @post.save
         format.html { redirect_to @post, notice: 'Post was successfully updated.' }
         format.json { render :show, status: :ok, location: @post }
       else

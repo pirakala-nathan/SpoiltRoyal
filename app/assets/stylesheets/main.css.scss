@@ -217,12 +217,20 @@ body{
             border-radius: 0px;
             color:white;
           }
+        }
+        form{
+          overflow: auto;
+          padding-left: 15px;
+          padding-right: 15px;
           .watch-post{
             background-color:whtie;
             border:1px solid #E4E4E4;
             color:grey;
             font-size: 9px;
             border-radius:0px;
+            font-size: 11px;
+            margin-top: 10px;
+            height: 34.1px;
           }
 
         }

@@ -1,5 +1,11 @@
 Rails.application.routes.draw do
 
+  resources :watched_posts
+
+  resources :messages
+
+  resources :conversations
+
   resources :authentications
   get '/auth/:provider/callback' => 'authentications#create'
   get '/auth/:provider/' => 'authentications#create', :as => :auth
@@ -46,6 +52,7 @@ Rails.application.routes.draw do
       get :statistics
       get :profile
       get :account 
+      get :watched_posts
     end
   end
   resources :user_sessions, only: [:new, :create]

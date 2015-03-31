@@ -51,6 +51,7 @@
                     .new
                       = sync_new partial: 'notification', resource: PublicActivity::Activity.new
                     - @activities = PublicActivity::Activity.where(recipient_id: current_user.id).order(created_at: :desc)
+                    
                     - @activities.each do |activity|
                       = sync partial: 'notification', resource: activity
                     - if @activites == nil
