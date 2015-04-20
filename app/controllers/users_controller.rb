@@ -17,7 +17,7 @@ class UsersController < ApplicationController
     @watchedPosts = @user.watched_posts
   end
   def bids
-    
+
     if params[:filter] == "All"
       @filter = params[:filter]
       @bids = @user.bids
@@ -51,7 +51,7 @@ class UsersController < ApplicationController
   end
 
   #dashbboard-end//
-  
+
   # GET /users
   # GET /users.json
   def index
@@ -113,6 +113,8 @@ class UsersController < ApplicationController
     respond_to do |format|
       if @user.save
         if @user.account_type == "Vendor"
+          vendor_account = Vendor.create
+          @user.update(account: vendor_account)
           EmailNotificationSetting.create(settings_for: 'Vendor', timed_task: TimedTask.first, user: @user)
         end
         EmailNotificationSetting.create(settings_for: 'Post', timed_task: TimedTask.first, user: @user)

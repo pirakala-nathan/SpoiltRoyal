@@ -29,7 +29,7 @@
               %span.icon-bar
               %span.icon-bar
               %span.icon-bar
-            %a.col-sm-12.navbar-brand{:href => "/", style: "font-family:Lobster,'cursive';"} 
+            %a.col-sm-12.navbar-brand{:href => "/", style: "font-family:Lobster,'cursive';"}
               = image_tag("/img/logo-small.png")
           / Collect the nav links, forms, and other content for toggling
           .navbar-search.col-sm-5.hidden-xs
@@ -39,7 +39,7 @@
           #bs-example-navbar-collapse-1.collapse.navbar-collapse.navbar-right
             %ul.nav.navbar-nav.center-navbar.col-sm-12
               %li.col-sm-3
-                = link_to posts_path, class: "post-btn" do 
+                = link_to posts_path, class: "post-btn" do
                   %button.btn.new-post
                     Posts
               %li.notification-li
@@ -51,28 +51,28 @@
                     .new
                       = sync_new partial: 'notification', resource: PublicActivity::Activity.new
                     - @activities = PublicActivity::Activity.where(recipient_id: current_user.id).order(created_at: :desc)
-                    
+
                     - @activities.each do |activity|
                       = sync partial: 'notification', resource: activity
                     - if @activites == nil
-                      You Have No Notifications 
+                      You Have No Notifications
 
-                
+
               %li
                 =link_to "#{current_user.first_name} #{current_user.last_name}", overview_user_path(current_user), class: "nav-user"
               %li.hidden-xs
                 - if current_user.account.assets.empty?
                   = image_tag ("//placehold.it/60x60"), class: "img-circle"
-                -else
+                - else
                   - @image = current_user.account.assets.last.image
-                  = image_tag @image.url(:small), class: "img-circle" 
+                  = image_tag @image.url(:small), class: "img-circle"
               / %li.non-active.secondPage
               /   %a{:href => "#secondPage"} current listings
               / %li.non-active.thirdPage
               /   %a{:href => "#thirdPage"} Why Pick me?
     / .notifications.col-xs-4.col-xs-offset-8
     /   - if request.path != "/" && current_user
-    /     .new  
+    /     .new
 
     / - if request.path != "/" && current_user
     /   .col-xs-4
