@@ -116,6 +116,9 @@ class UsersController < ApplicationController
           vendor_account = Vendor.create
           @user.update(account: vendor_account)
           EmailNotificationSetting.create(settings_for: 'Vendor', timed_task: TimedTask.first, user: @user)
+        else
+          consumer_account = Consumer.create
+          @user.update(account: consumer_account)
         end
         EmailNotificationSetting.create(settings_for: 'Post', timed_task: TimedTask.first, user: @user)
         EmailNotificationSetting.create(settings_for: 'Comment', timed_task: TimedTask.first, user: @user)
