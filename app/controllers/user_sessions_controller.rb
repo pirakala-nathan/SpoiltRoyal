@@ -13,7 +13,7 @@ class UserSessionsController < ApplicationController
 
     respond_to do |format|
       if @user_session.save
-        format.html { redirect_to @user_session.user, notice: 'User session was successfully created.' }
+        format.html { redirect_to overview_user_path(@user_session.user)}
         format.json { render :show, status: :created, location: @user_session }
       else
         format.html { render :new }

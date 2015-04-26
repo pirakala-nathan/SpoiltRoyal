@@ -1,0 +1,6 @@
+
+.modal.fade{:id => "post-a-q", "aria-hidden" => "true", "aria-labelledby" => "post-a-q", :role => "dialog", :tabindex => "-1"}
+  .modal-dialog
+    .modal-content
+      .modal-body.comment-form.text-center
+        = render 'comments/form' , resource: @post

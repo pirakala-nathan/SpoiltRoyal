@@ -8,6 +8,7 @@ class AuthenticationsController < ApplicationController
       # User is already registered with application
       flash[:info] = 'Signed in successfully.'
       sign_in_and_redirect(authentication.user)
+      @new_user = false
     elsif current_user
       # User is signed in but has not already authenticated with this social network
       current_user.authentications.create!(:provider => omniauth['provider'], :uid => omniauth['uid'])
@@ -15,8 +16,10 @@ class AuthenticationsController < ApplicationController
  
       flash[:info] = 'Authentication successful.'
       redirect_to home_url
+      @new_user = false
     else
       # User is new to this application
+      @new_user = true
       o = [('a'..'z'), ('A'..'Z')].map { |i| i.to_a }.flatten
       @password = (0...50).map { o[rand(o.length)] }.join
       @username = nil
@@ -37,13 +40,26 @@ class AuthenticationsController < ApplicationController
         password: @password,
         password_confirmation: @password,
         first_name: omniauth['info']['first_name'],
-        last_name: omniauth['info']['last_name']
-        )
+        last_name: omniauth['info']['last_name'],
+        account_type: params["type"]
+      )
       user.authentications.build(:provider => omniauth['provider'], :uid => omniauth['uid'])
       user.save
+
       if user.id != nil
+        if user.account_type == "Vendor"
+          vendor_account = Vendor.create
+          user.update(account: vendor_account)
+          EmailNotificationSetting.create(settings_for: 'Vendor', timed_task: TimedTask.first, user: user)
+        else
+          consumer_account = Consumer.create
+          user.update(account: consumer_account)
+        end
+        EmailNotificationSetting.create(settings_for: 'Post', timed_task: TimedTask.first, user: user)
+        EmailNotificationSetting.create(settings_for: 'Comment', timed_task: TimedTask.first, user: user)
+        EmailNotificationSetting.create(settings_for: 'Bid', timed_task: TimedTask.first, user: user)
         flash[:info] = 'User created and signed in successfully.'
-        sign_in_and_redirect(user)
+        sign_in_and_redirect(user,@new_user)
       else
         raise
         session[:omniauth] = omniauth.except('extra')
@@ -59,11 +75,15 @@ class AuthenticationsController < ApplicationController
   end
  
   private
-  def sign_in_and_redirect(user)
+  def sign_in_and_redirect(user,new_user)
     unless current_user
       user_session = UserSession.create(user, user.persistence_token)
       user_session.save
     end
-    redirect_to user
+    if new_user == true
+      redirect_to account_user_path(user,:new_user => new_user)
+    else
+      redirect_to overview_user_path(user)
+    end
   end
 end

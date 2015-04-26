@@ -1,44 +1,239 @@
+.custom.container
+  .page-directory
+    Browse Posts >
+    = @post.title
+  .post-container.border-gray
+    .profile-img
+      - if @post.user.account.assets.empty?
+        = image_tag ("//placehold.it/60x60"), class: "img-circle"
+      - else
+        - @image = @post.user.account.assets.last.image
+        = image_tag @image.url(:small), class: "img-circle"
+    .post-general-info
+      .title
+        = @post.title
+      .other-info
+        .text
+          = @post.user.first_name + " " + @post.user.last_name + "   \u2022  " +@post.created_at.strftime("%B %d, %Y")
+        - if  Date.today > @post.due_date.to_date
+          .status.finished.border-gray
+            FINISHED
+        - else
+          .status.ongoing
+            ONGOING
+    .post-button
+      .bid_now
+        Bid Now
+      .bid-history
+        Bid History
+      = form_for WatchedPost.new do |f|
+        = f.hidden_field :user_id, value: current_user.id
+        = f.hidden_field :post_id, value: @post.id
+        = f.submit "Watch Post", class: "watch-bid submit-btn"
+    .post-description
+      .title
+        POST DESCRIPTION
+      .text
+        = @post.description
 
-%p#notice= notice
+    .tags.post-info-cont
+      .title
+        TAGS:
+      / @post.tags.each do |tag|
+      .tag-cont
+        .tag
+          Lorem
+        .tag
+          Wedding
+        .tag
+          servers
+    .post-date.post-info-cont
+      .title
+        POST EXPIREY DATE:
+      .due-date
+        =@post.due_date.to_date.strftime("%B %d, %Y")
+        = " "
+        - if  Date.today > @post.due_date.to_date
+          %span
+            = (Time.now.to_date - (@post.due_date.to_date).to_i).to_s + " days ago"
+        - else
+          %span.days-left
+            = ((@post.due_date.to_date - Time.now.to_date).to_i).to_s + " days left"
 
-%p
-  %b Title:
-  = @post.title
-%p
-  %b Description:
-  = @post.description
 
-.row  
-  .col-xs-6
-    - @post.comments.each do |comment|
-      .well.col-xs-12
-        .row
-          = comment.user.username
-        .row
-          = comment.content
-  .col-xs-6
-    - @post.bids.each do |bid|
-      
+    .urgency.post-info-cont
+      .title
+        URGENCY:
+      .time
+        1 Week
+    .prefered-payments.post-info-cont
+      .title
+        PREFERRED PAYMENT: 
+      .payment
+        CASH
+    .col-xs-12.no-h-padding.contact-info
+      .contact-type.email
+        .title
+          Email:
+        .value
+          - if @post.user.email != nil
+            = @post.user.email
+          - else
+            N/A
+      .contact-type.phone
+        .title
+          PHONE:
+        .value
+          XXX XXX XXXX
+      .contact-type.delivery
+        .title
+          DELIVERY ADDRESS:
+        .value
+          123 Main Street, Toronto, Ontario, Canada, M1M 3E9
+      .contact-type.service
+        .title
+          SERVICE ADDRESS:
+        .value
+          123 Main Street, Toronto, Ontario, Canada, M1M 3E9
+    .media.col-xs-12.no-h-padding
+      .title
+        MEDIA
+      .content.col-xs-12.no-h-padding
+        / @post.media.all.each do |post|
+        = image_tag ("//placehold.it/225x150")
+        = image_tag ("//placehold.it/225x150")
+        = image_tag ("//placehold.it/225x150")
+        = image_tag ("//placehold.it/225x150")
+        = image_tag ("//placehold.it/225x150")
+        = image_tag ("//placehold.it/225x150")
+        = image_tag ("//placehold.it/225x150")
+        = image_tag ("//placehold.it/225x150")
 
-      .well.col-xs-12
-        .row 
-          = bid.user.username
-        .col-xs-10
-          = bid.info
-        .col-xs-2
-          = bid.value
-        - if (can? :change_status, bid)
-          = link_to accept_bid_path(bid) do
-            .col-xs-6
-              .btn.btn-info.col-xs-10.col-xs-offset-1
-                Accept
-          = link_to decline_bid_path(bid) do
-            .col-xs-6  
-              .btn.btn-info.col-xs-10.col-xs-offset-1
-                Decline
+.custom.container
+  .bids-cont.border-gray
+    .title
+      BID ACTIVITES
+    .bid-show
+      - @firstBids = @post.bids.order('created_at DESC').limit(3)
+      - @firstBids.each do |bid|
+        .bid
+          .col-xs-2.bid-date.no-h-padding
+            %span.green.col-xs-12.no-h-padding
+              - if (Time.now.to_date - (bid.created_at.to_date)).to_i == 0
+                Today
+              - else
+                = ((Time.now.to_date - (bid.created_at.to_date)).to_i).to_s + " days ago"
+            %span.date.col-xs-12.no-h-padding
+              = bid.created_at.strftime("%B %d, %Y")
+          .col-xs-10.no-h-padding.bid-info
+            - if bid.user.account.assets.empty?
+              = image_tag ("//placehold.it/60x60"), class: "img-circle"
+            - else
+              - @image = bid.user.account.assets.last.image
+              = image_tag @image.url(:small), class: "img-circle"
+            .info
+              .name
+                %span.orange
+                  - if bid.user.account.business_name == nil or bid.user.account.business_name == ""
+                    = bid.user.first_name + " " + bid.user.last_name
+                %span.dark-text
+                  made a bid
+              .description
+                = bid.info
 
-.col-xs-6
-  =render 'comments/form', resource: @post
+
+
+
+            
+      - @restBids = @post.bids.order('created_at DESC').offset(3)
+      - @restBids.each do |bid|
+        .bid.rest-of-bids
+          .col-xs-2.bid-date.no-h-padding
+            %span.green.col-xs-12.no-h-padding
+              - if (Time.now.to_date - (bid.created_at.to_date)).to_i == 0
+                Today
+              - else
+                = ((Time.now.to_date - (bid.created_at.to_date)).to_i).to_s + " days ago"
+            %span.date.col-xs-12.no-h-padding
+              = bid.created_at.strftime("%B %d, %Y")
+          .col-xs-10.no-h-padding.bid-info
+            - if bid.user.account.assets.empty?
+              = image_tag ("//placehold.it/60x60"), class: "img-circle"
+            - else
+              - @image = bid.user.account.assets.last.image
+              = image_tag @image.url(:small), class: "img-circle"
+            .info
+              .name
+                %span.orange
+                  - if bid.user.account.business_name == nil or bid.user.account.business_name == ""
+                    = bid.user.first_name + " " + bid.user.last_name
+                  - else
+                    = bid.user.account.business_name
+                %span.dark-text
+                  made a bid
+              .description
+                = bid.info
+    .more-or-less.view-more
+      view more
+
+.custom.container
+  .comments-cont.border-gray
+    .col-xs-12.no-h-padding
+      .title
+        Q&A
+      .post-a-q
+        Post a Question 
+    .col-xs-12.no-h-padding.comments
+      - @post.comments.order('created_at DESC').limit(3).each do |comment|
+        .comment.col-xs-12.no-h-padding
+          - if comment.user.account.assets.empty?
+            = image_tag ("//placehold.it/60x60"), class: "img-circle"
+          - else
+            - @image = comment.user.account.assets.last.image
+            = image_tag @image.url(:small), class: "img-circle"
+          .info
+            .name.col-xs-12.no-h-padding
+              %span.dark-text
+                - if comment.user.account_type == "Vendor"
+                  - if comment.user.account.business_name == nil or comment.user.account.business_name == ""
+                    = comment.user.first_name + " " + comment.user.last_name
+                  - else
+                    = comment.user.account.business_name
+                - else
+                  = comment.user.account.business_name
+              %span.date
+                = comment.created_at.strftime("%B %d, %Y")
+            .text
+              = comment.content
+      - @post.comments.order('created_at DESC').offset(3).each do |comment|
+        .comment.rest-of-comments.col-xs-12.no-h-padding
+          - if comment.user.account.assets.empty?
+            = image_tag ("//placehold.it/60x60"), class: "img-circle"
+          - else
+            - @image = comment.user.account.assets.last.image
+            = image_tag @image.url(:small), class: "img-circle"
+          .info
+            .name
+              %span.dark-text
+                - if comment.user.account_type == "Vendor"
+                  - if comment.user.account.business_name == nil or comment.user.account.business_name == ""
+                    = comment.user.first_name + " " + comment.user.last_name
+                  - else
+                    = comment.user.account.business_name
+                - else
+                  = comment.user.account.business_name
+              %span.date
+                = comment.created_at.strftime("%B %d, %Y")
+            .text
+              = comment.content
+    / - if @post.comments.length > 3
+    .more-or-less-comments.view-more
+      View More
+
+
+
+
 - @bid = Bid.new
-.col-xs-6.well
-  = render 'bids/form' 
+= render 'bid_now'
+= render 'post_a_question'
+

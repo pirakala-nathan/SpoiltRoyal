@@ -2,7 +2,7 @@
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
 $dark-text-color: #767676;
-$orange: #EA9B2C;
+$orange: #EA9B2C ;
 $green: #5AB075;
 $blue: #63BFDE;
 .padding-left-30{
@@ -633,4 +633,274 @@ $blue: #63BFDE;
 			}
 		}
 	}
+}
+//account page
+.bg-img-account{
+	position: absolute;
+	top: calc(14vh + 40px);
+	height: calc(100vh - 14vh - 40px);
+	width: 100%;
+	background: image-url('/img/onboard_bg.png') center center fixed;
+	background-repeat: no-repeat;
+	-webkit-background-size: cover;
+  -moz-background-size: cover;
+  -o-background-size: cover;
+  background-size: cover;
+  z-index: -1;
+  .opacity-cover{
+  	height: 100%;
+  	width: 100%;
+  	background-color: white;
+  	opacity: 0.7;
+  }
+}
+.custom.container{
+	margin-top: 40px;
+	.account-cont{
+		overflow: auto;
+		height: 100%;
+		width: 100%;
+		background:white;
+		display: block;
+		.logo-container{
+			img{
+				height: 100px;
+				position: relative;
+				margin-top: 50px;
+				left: 50%;
+				margin-left: - 50px;
+				margin-bottom: 45px;
+			}
+		}
+		.welcome-msg{
+			text-align: center;
+			.title{
+				font-size: 27px;
+				font-weight: bold;
+			}
+			.intro{
+				padding-top: 10px;
+				padding-bottom: 50px;
+			}
+			.tell-us-more{
+				font-weight: bold;
+				padding-bottom: 20px;
+			}
+		}
+		.vendor-form{
+			.slide-buttons{
+				text-align: center;
+				.next-vendor-slide{
+					display: inline-block;
+					background-color: $orange;
+					height: 50px;
+					margin-top: 50px;
+					width: auto;
+					padding-left: 50px;
+					padding-right: 50px;
+					color: white;
+					line-height: 50px;
+					font-size: 18px;
+					border:0
+
+				}
+				.slide-3{
+					display: none;
+				}
+			}
+			.fill-cont{
+				text-align: center;
+				margin-bottom: 30px;
+			}
+			.slide-2{
+				display: none
+			}
+			.slide-3{
+				display: none;
+			}
+			.finish-msg{
+				text-align: center;
+			}
+			.slide{
+				.payment-methods{
+					
+					text-align: center;
+					.fields{
+						display: inline-block;
+						margin-right: 20px;
+						.checkbox{
+							display: inline-block;
+						}
+					}
+				}
+				.half-way-through{
+					padding-top: 60px;
+					color: #639589;
+					padding-bottom: 15px;
+				}
+				.title{
+					font-size: 18px;
+					font-weight: bold;
+				}
+				.add-industry{
+					float: left;
+					margin-top: 10px;
+					margin-bottom: 10px;
+					color: $orange;
+					font-weight: bold;
+				}
+				.industries{
+					width: 50%;
+					.remove-industry{
+						float: left;
+						margin-top: 10px;
+						margin-bottom: 10px;
+						color: $orange;
+						font-weight: bold;
+					}
+					select{
+						height: 50px;
+						display: block;
+						background-color: white;
+						border: 1px solid #ffc285;
+						width: 100%;
+						float: left;
+						margin-bottom: 10px;
+					}
+				}
+				input[type=checkbox]{
+					height: auto;
+				}
+				.file-upload-hidden{
+					height:150px;
+					width:150px;
+					z-index: 1;
+					display: none;
+				}
+				.file-upload-trigger{
+					height: 200px;
+					width: 200px;
+					border: 1px solid #ffc285;
+					display: block;
+					margin-top: 50px;
+					line-height: 200px;
+					text-align: center;
+					font-weight: bold;
+					font-size: 16px;
+					margin-bottom: 30px;
+				}
+				.file-upload-trigger:hover{
+					cursor: pointer;
+				}
+				input{
+					height: 50px;
+					border: 1px solid #ffc285;
+					display: block;
+				}
+				textarea{
+					height: 200px;
+					border: 1px solid #ffc285;
+					margin-bottom: 30px;
+				}
+				.business_name{
+					width: calc(40% - 20px);
+					float: left;
+				}
+				.datepicker{
+					float: left;
+					width: calc(40% - 20px);
+					margin-left: 20px;
+				}
+				.number-of-p-locations{
+					float: left;
+					width: (20%);
+					margin-left: 20px;
+				}
+				.phyiscal-location{
+					.row{
+						padding-bottom: 0px;
+					}
+					.number-of-p-locations{
+						float: left;
+						width: calc(40px -10px);
+					}
+					.address-label{
+						width: calc(80% - 20px);
+						float: left;
+					}
+					.postal-label{
+						width: calc(20%);
+						margin-left: 20px;
+						float: left;
+					}
+					.business_phone{
+						width: calc(50% - 10px);
+						float: left;
+					}
+					.other_phone{
+						width: calc(50% - 10px);
+						float: left;
+						margin-left: 20px;
+					}
+					.business_email{
+						width: calc(50% - 10px);
+						float: left;
+					}
+					.business_website{
+						width: calc(50% - 10px);
+						float: left;
+						margin-left: 20px;
+					}
+					.province-select{
+						width: calc(36.7% - 40px);
+
+						height: 50px;
+						border:1px solid #ffc285;
+						background-color: white;
+						float: left;
+						display: block;
+						margin-left: 20px;
+					}
+					.country-select{
+						width: calc(36.7% - 40px);
+
+						height: 50px;
+						border: 1px solid #ffc285;
+						float: left;
+						background-color: white;
+						display: block;
+
+					}
+					.city-select{
+						width: calc(36.7% - 40px);
+						margin-left: 20px;
+						height: 50px;
+						border: 1px solid #ffc285;
+						float: left;
+						background-color: white;
+						display: block;
+
+					}
+				}
+			}
+		}
+	}
+}
+.phyiscal-location{
+	overflow: auto;
+}
+.mt-30{
+	margin-top: 30px;
+}
+.mb-13{
+	margin-bottom: 13px;
+}
+.checkbox input[type=checkbox]:checked + label:after {
+    font-family: 'Glyphicons Halflings';
+    content: "\e013";
+}
+.checkbox label:after {
+    padding-left: 4px;
+    padding-top: 2px;
+    font-size: 9px;
 }

@@ -107,7 +107,7 @@ class VendorsController < ApplicationController
         assets_attributes: [:_destroy, :id, :image],
         personal_infos_attributes: [:_destroy, :id, :legal_first_name,
           :legal_last_name, :preferred_name, :email, :title, :primary_phone, :secondary_phone],
-        accepted_payment_methods_attributes: [:_destroy, :id, :payment_method_id, :preferred]
+        accepted_payment_methods_attributes: [:_destroy, :id, :payment_method_id, :preferred, :accepted]
         )
     end
 end

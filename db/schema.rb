@@ -17,6 +17,7 @@ ActiveRecord::Schema.define(version: 20150324195102) do
     t.integer  "vendor_id",         limit: 4
     t.integer  "payment_method_id", limit: 4
     t.boolean  "preferred",         limit: 1, default: false
+    t.boolean  "accepted",          limit: 1, default: false
     t.datetime "created_at",                                  null: false
     t.datetime "updated_at",                                  null: false
   end

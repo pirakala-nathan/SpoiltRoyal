@@ -48,6 +48,16 @@ class UsersController < ApplicationController
   end
 
   def account
+    if @user.account_type = 'Vendor'
+      @vendor = @user.account
+      @vendor.physical_locations.build
+      @vendor.vendor_subscriptions.build
+      @vendor.delivery_locations.build
+      @vendor.external_links.build
+      @vendor.assets.build
+      @vendor.personal_infos.build
+      @vendor.accepted_payment_methods.build
+      end
   end
 
   #dashbboard-end//
@@ -123,7 +133,7 @@ class UsersController < ApplicationController
         EmailNotificationSetting.create(settings_for: 'Post', timed_task: TimedTask.first, user: @user)
         EmailNotificationSetting.create(settings_for: 'Comment', timed_task: TimedTask.first, user: @user)
         EmailNotificationSetting.create(settings_for: 'Bid', timed_task: TimedTask.first, user: @user)
-        format.html { redirect_to @user, notice: 'User was successfully created.' }
+        format.html { redirect_to  account_user_path(@user,:new_user => true)}
         format.json { render :show, status: :created, location: @user }
       else
         format.html { render :new }

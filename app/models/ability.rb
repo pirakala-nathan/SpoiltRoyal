@@ -34,7 +34,7 @@ class Ability
       can :read, Post
       # Since show_account redirects to the edit pages, we need
       # to have access to show_account in order to edit a user
-      can [:update, :show_account,:overview], User do |u|
+      can [:update, :show_account,:overview,:bids,:inbox,:watched_posts,:account,:profile], User do |u|
         u == user
       end
 

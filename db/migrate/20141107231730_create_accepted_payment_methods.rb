@@ -4,7 +4,7 @@ class CreateAcceptedPaymentMethods < ActiveRecord::Migration
       t.integer :vendor_id
       t.integer :payment_method_id
       t.boolean :preferred, default: false
-
+      t.boolean :accepted, default: false
       t.timestamps null: false
     end
   end

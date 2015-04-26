@@ -6,3 +6,9 @@
 - consumer signup form
 - consumer profile
 - account-page
+
+
+-needed_backend
+  post show
+    prefered payment ? 
+    urgency ?
