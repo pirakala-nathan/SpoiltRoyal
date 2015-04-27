@@ -57,7 +57,32 @@
           = vs.link_to_remove "REMOVE", class: "remove-industry col-xs-6"
           = render 'layouts/industry_selector', industry: vs
       = f.link_to_add "ADD MORE", :vendor_subscriptions, class: "col-xs-12 no-h-padding add-industry"
-      .title
+      .h5.no-h-padding.col-xs-12
+        Select all that apply 
+      .business-options.col-xs-12.no-h-padding
+        .selling
+          .checkbox.checkbox-orange
+            = f.check_box :shipping
+            = f.label "I sell products/services at my store location"
+        .delivery
+          .checkbox.checkbox-orange
+            = f.check_box :selling, class: "delivery-btn"
+            = f.label "I ship products to my customer"
+          .delivery-locations
+            = f.fields_for :delivery_locations do |dl|
+              = render 'layouts/location_selector', location: dl
+              = dl.link_to_remove "Remove This Location", class: "dl-remove"
+            = f.link_to_add "Add Another Location", :delivery_locations, class: "dl-add"
+        .service
+          .checkbox.checkbox-orange
+            = f.check_box :servicing, class: "service-btn"
+            = f.label "I travel and provide onsite service to my customers"
+          .service-locations
+            = f.fields_for :service_locations do |sl|
+              = render 'layouts/location_selector', location: sl
+              = sl.link_to_remove "Remove This Location", class: "sl-remove"
+            = f.link_to_add "Add Another Location", :service_locations, class: "sl-add"
+
       .h5.no-h-padding.col-xs-12
         Accepted Payment type(s):
       .payment-methods.col-xs-12

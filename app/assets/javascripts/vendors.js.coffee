@@ -2,6 +2,20 @@
 # All this logic will automatically be available in application.js.
 # You can use CoffeeScript in this file: http://coffeescript.org/
 $ ->
+  $('.delivery-btn').click ->
+    if $(this).hasClass('slideup')
+      $('.delivery-locations').slideUp('slow')
+      $(this).removeClass('slideup')  
+    else
+      $('.delivery-locations').slideDown('slow')
+      $(this).addClass('slideup')
+  $('.service-btn').click ->
+    if $(this).hasClass('slideup')
+      $('.service-locations').slideUp('slow')
+      $(this).removeClass('slideup')  
+    else
+      $('.service-locations').slideDown('slow')
+      $(this).addClass('slideup')
   $('.next-vendor-slide').click ->
     target = $(this).attr('target')
     prev = $(this).attr('prev')

@@ -7,7 +7,23 @@ class VendorsController < ApplicationController
 
   
   def index
-    @vendors = Vendor.all
+    @categories = Category.all
+    if params[:category_id] == nil
+      @category = nil
+      @subcategories = Subcategory.all
+      @vendors = Vendor.all
+    else
+      @category = Category.find(params[:category_id])
+      @vendors = Vendor.joins(:vendor_subscriptions).where(:vendor_subscriptions =>{:category_id => @category.id}).all
+      @subcategories = @category.subcategories
+    end
+
+    if params[:subcategory_id] == nil
+      @subcategory = nil
+    else
+      @subcategory = Subcategory.find(params[:subcategory_id])
+      @vendors = Vendor.joins(:vendor_subscriptions).where(:vendor_subscriptions =>{:subcategory_id => @subcategory.id}).all
+    end
   end
 
   # GET /vendors/1

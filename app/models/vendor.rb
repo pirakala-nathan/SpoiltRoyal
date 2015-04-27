@@ -9,6 +9,7 @@ class Vendor < ActiveRecord::Base
   has_many :physical_locations, dependent: :destroy
   has_many :vendor_subscriptions, dependent: :destroy
   has_many :delivery_locations, dependent: :destroy
+  has_many :service_locations, dependent: :destroy
   has_many :external_links, dependent: :destroy
   has_many :assets, as: :owner, dependent: :destroy
   has_many :subcategories, through: :vendor_subscriptions
@@ -21,6 +22,9 @@ class Vendor < ActiveRecord::Base
     reject_if: lambda { |a| a[:subcategory_id].blank? },
     allow_destroy: true
   accepts_nested_attributes_for :delivery_locations,
+    reject_if: lambda { |a| a[:city_id].blank? },
+    allow_destroy: true
+  accepts_nested_attributes_for :service_locations,
     reject_if: lambda { |a| a[:city_id].blank? },
     allow_destroy: true
   accepts_nested_attributes_for :external_links,

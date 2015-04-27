@@ -733,6 +733,56 @@ $blue: #63BFDE;
 						}
 					}
 				}
+				.business-options{
+					.delivery{
+						.delivery-locations{
+							display: none;
+							padding-left: 50px;
+							select{
+								width: 20%;
+								height: 50px;
+								background-color: white;
+								border: 1px solid #ffc285;
+								margin-top: 10px;
+							}
+							.dl-remove {
+								margin-left: 15px;
+								color: $orange;
+								font-weight: bold;
+							}
+							.dl-add{
+								color: $orange;
+								font-weight: bold;
+								display: block;
+								margin-top: 10px;
+							}
+						}
+					}
+					.service{
+						.service-locations{
+							display: none;
+							padding-left: 50px;
+							select{
+								width: 20%;
+								height: 50px;
+								background-color: white;
+								border: 1px solid #ffc285;
+								margin-top: 10px;
+							}
+							.sl-remove {
+								margin-left: 15px;
+								color: $orange;
+								font-weight: bold;
+							}
+							.sl-add{
+								color: $orange;
+								font-weight: bold;
+								display: block;
+								margin-top: 10px;
+							}
+						}
+					}
+				}
 				.half-way-through{
 					padding-top: 60px;
 					color: #639589;

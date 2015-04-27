@@ -1,5 +1,7 @@
 Rails.application.routes.draw do
 
+  resources :service_locations
+
   resources :watched_posts
 
   resources :messages

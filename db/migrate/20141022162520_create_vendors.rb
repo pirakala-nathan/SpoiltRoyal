@@ -6,8 +6,9 @@ class CreateVendors < ActiveRecord::Migration
       t.date :establish_date
       t.integer :tax_number
       t.boolean :shipping
+      t.boolean :selling
+      t.boolean :servicing
       t.boolean :verified, default: false
-
       t.timestamps
     end
   end

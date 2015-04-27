@@ -79,3 +79,30 @@ h3 {
 .text-center{
 	text-align: center;
 }
+.custom.container{
+	.vendor-show{
+		background-color: white;
+		.vendor-cover{
+			height: 385px;
+			overflow: hidden;
+			img{
+				width: 1000px;
+
+			}
+			.vendor-cover-uperlayer{
+				position: absolute;
+				z-index: 2;
+				height: 385px;
+				width: 970px;
+				.vendor-g-info{
+					height: 140px;
+					margin-top: 245px;
+					background-color: white;
+					opacity: 0.7;
+					padding-left: 50px;
+					padding-right: 50px;
+				}
+			}
+		}
+	}
+}
