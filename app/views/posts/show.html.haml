@@ -55,7 +55,7 @@
         = " "
         - if  Date.today > @post.due_date.to_date
           %span
-            = (Time.now.to_date - (@post.due_date.to_date).to_i).to_s + " days ago"
+            = ((Time.now.to_date - (@post.due_date.to_date)).to_i).to_s + " days ago"
         - else
           %span.days-left
             = ((@post.due_date.to_date - Time.now.to_date).to_i).to_s + " days left"
