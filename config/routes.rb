@@ -1,5 +1,11 @@
 Rails.application.routes.draw do
 
+  resources :galleries
+
+  resources :media
+
+  resources :reviews
+
   resources :service_locations
 
   resources :watched_posts

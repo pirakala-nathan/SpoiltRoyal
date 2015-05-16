@@ -108,10 +108,18 @@
         SHOW OFF YOUR BUSINESS!
       .h5.col-xs-12.no-h-padding
         Upload a picture of your business
-      = f.fields_for :assets do |a|
-        = a.file_field :image, class: "file-upload-hidden"
-      .file-upload-trigger
-        UPLOAD PHOTO
+      = file_field_tag "profile_pic[]", type: :file, class: "file-upload-hidden"
+      = file_field_tag "cover_pic[]", type: :file, class: "file-cover-hidden"
+      = file_field_tag "media_pics[]", type: :file,multiple: true, class: "file-media-hidden"
+      .file-upload-trigger.file-upload-btn
+        %span
+          UPLOAD PROFILE PHOTO
+      .file-cover-trigger.file-upload-btn
+        %span
+          UPLOAD COVER PICTURE
+      .file-media-trigger.file-upload-btn
+        %span
+          UPLOAD MULTIPLE PICS FOR SHOW
       .h5.col-xs-12.no-h-padding
         Enter A Short Description Of Your Business(Optional):
       = f.text_area :business_description, class: "col-xs-12 no-h-padding"

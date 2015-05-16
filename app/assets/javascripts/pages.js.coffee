@@ -3,9 +3,14 @@
 # You can use CoffeeScript in this file: http://coffeescript.org/
 
 $ ->
+	$('.stars').raty()
 	$('.dtoggle').click ->
 		target = "." + this.id
 		$(target).toggleClass('hidden')
+	$('.new-review').click ->
+		$('#new-review').modal("show")
+	$('.post-new').click ->
+		$('#post-new').modal("show")
 	$('.post-a-q').click ->
 		$('#post-a-q').modal("show")
 	$('.bid_now').click ->

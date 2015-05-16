@@ -14,10 +14,10 @@
       .convo
         .col-xs-1.no-h-padding.img-container
 
-          - if @user.account.assets.empty?
+          - if @user.profile_pic == nil
             = image_tag ("//placehold.it/60x60"), class: "img-circle bid-img"
           -else
-            - @image = @user.account.assets.last.image
+            - @image = @user.profile_pic.image
             = image_tag @image.url(:small), class: "img-circle bid-img"
         .col-xs-9.convo-info
 

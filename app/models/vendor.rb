@@ -5,7 +5,8 @@ class Vendor < ActiveRecord::Base
 
   has_many :accepted_payment_methods, dependent: :destroy
   has_many :payment_methods, through: :accepted_payment_methods
-
+  has_many :galleries, as: :owner  
+  has_many :reviews, dependent: :destroy
   has_many :physical_locations, dependent: :destroy
   has_many :vendor_subscriptions, dependent: :destroy
   has_many :delivery_locations, dependent: :destroy
@@ -36,4 +37,32 @@ class Vendor < ActiveRecord::Base
     allow_destroy: true
   accepts_nested_attributes_for :accepted_payment_methods,
     allow_destroy: true
+
+  def total_raiting
+
+    @total = 0
+    if self.reviews.length > 0
+      self.reviews.each do |r|
+        @total += r.raiting
+      end
+      @total = @total/self.reviews.length
+      return @total
+    else
+      return 0
+    end
+  end
+  def cover_pic
+    if self.galleries.where(name: "Cover_Pictures").empty?
+      return nil
+    else
+      return self.galleries.where(name: "Cover_Pictures").first.assets.last
+    end
+  end
+  def media
+    if self.galleries.where(name: "Media").empty?
+      return nil
+    else
+      return self.galleries.where(name: "Media").first.assets.order("id DESC")
+    end
+  end
 end

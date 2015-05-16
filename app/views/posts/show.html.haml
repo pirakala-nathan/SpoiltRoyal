@@ -4,10 +4,10 @@
     = @post.title
   .post-container.border-gray
     .profile-img
-      - if @post.user.account.assets.empty?
+      - if @post.user.profile_pic == nil
         = image_tag ("//placehold.it/60x60"), class: "img-circle"
       - else
-        - @image = @post.user.account.assets.last.image
+        - @image = @post.user.profile_pic.image
         = image_tag @image.url(:small), class: "img-circle"
     .post-general-info
       .title
@@ -30,7 +30,7 @@
         = f.hidden_field :user_id, value: current_user.id
         = f.hidden_field :post_id, value: @post.id
         = f.submit "Watch Post", class: "watch-bid submit-btn"
-    .post-description
+    .post-description.col-xs-12.no-h-padding
       .title
         POST DESCRIPTION
       .text
@@ -95,19 +95,13 @@
           SERVICE ADDRESS:
         .value
           123 Main Street, Toronto, Ontario, Canada, M1M 3E9
-    .media.col-xs-12.no-h-padding
-      .title
-        MEDIA
-      .content.col-xs-12.no-h-padding
-        / @post.media.all.each do |post|
-        = image_tag ("//placehold.it/225x150")
-        = image_tag ("//placehold.it/225x150")
-        = image_tag ("//placehold.it/225x150")
-        = image_tag ("//placehold.it/225x150")
-        = image_tag ("//placehold.it/225x150")
-        = image_tag ("//placehold.it/225x150")
-        = image_tag ("//placehold.it/225x150")
-        = image_tag ("//placehold.it/225x150")
+    - if !(@post.assets.empty?)
+      .media.col-xs-12.no-h-padding
+        .title
+          MEDIA
+        .content.col-xs-12.no-h-padding
+          - @post.assets.each do |asset|
+            = image_tag asset.image.url(:post_media)
 
 .custom.container
   .bids-cont.border-gray
@@ -126,10 +120,10 @@
             %span.date.col-xs-12.no-h-padding
               = bid.created_at.strftime("%B %d, %Y")
           .col-xs-10.no-h-padding.bid-info
-            - if bid.user.account.assets.empty?
+            - if bid.user.profile_pic == nil
               = image_tag ("//placehold.it/60x60"), class: "img-circle"
             - else
-              - @image = bid.user.account.assets.last.image
+              - @image = bid.user.profile_pic.image
               = image_tag @image.url(:small), class: "img-circle"
             .info
               .name
@@ -157,10 +151,10 @@
             %span.date.col-xs-12.no-h-padding
               = bid.created_at.strftime("%B %d, %Y")
           .col-xs-10.no-h-padding.bid-info
-            - if bid.user.account.assets.empty?
+            - if bid.user.profile_pic == nil
               = image_tag ("//placehold.it/60x60"), class: "img-circle"
             - else
-              - @image = bid.user.account.assets.last.image
+              - @image = bid.user.profile_pic.image
               = image_tag @image.url(:small), class: "img-circle"
             .info
               .name
@@ -186,10 +180,10 @@
     .col-xs-12.no-h-padding.comments
       - @post.comments.order('created_at DESC').limit(3).each do |comment|
         .comment.col-xs-12.no-h-padding
-          - if comment.user.account.assets.empty?
+          - if comment.user.profile_pic == nil
             = image_tag ("//placehold.it/60x60"), class: "img-circle"
           - else
-            - @image = comment.user.account.assets.last.image
+            - @image = comment.user.profile_pic.image
             = image_tag @image.url(:small), class: "img-circle"
           .info
             .name.col-xs-12.no-h-padding
@@ -207,10 +201,10 @@
               = comment.content
       - @post.comments.order('created_at DESC').offset(3).each do |comment|
         .comment.rest-of-comments.col-xs-12.no-h-padding
-          - if comment.user.account.assets.empty?
+          - if comment.user.profile_pic == nil
             = image_tag ("//placehold.it/60x60"), class: "img-circle"
           - else
-            - @image = comment.user.account.assets.last.image
+            - @image = comment.user.profile_pic.image
             = image_tag @image.url(:small), class: "img-circle"
           .info
             .name

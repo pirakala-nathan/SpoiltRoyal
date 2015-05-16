@@ -1,4 +1,5 @@
 - @page = request.path.split("/").last
+- 
 %nav#dash-nav.navbar.navbar-default.navbar-static-top.hidden-xs
 	.container
 		.col-xs-10.col-xs-offset-1.nav-links
@@ -13,8 +14,11 @@
 					= link_to "Watched Posts", watched_posts_user_path(current_user)
 				%li{class: ("active" if @page == "statistics")}	
 					= link_to "Statistics", statistics_user_path(current_user)
-				%li{class: ("active" if @page == "profile")}	
-					= link_to "Profile", profile_user_path(current_user)
+				%li{class: ("active"  if request.path == vendor_path(current_user.account))}
+					- if @current_user.account_type == "Vendor"	
+						= link_to "Profile", vendor_path(current_user.account)
+					- else
+						= link_to "Profile", consumer_path(current_user.account)
 				%li{class: ("active" if @page == "account")}
 					= link_to "Account", account_user_path(current_user)
 

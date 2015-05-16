@@ -39,9 +39,14 @@
           #bs-example-navbar-collapse-1.collapse.navbar-collapse.navbar-right
             %ul.nav.navbar-nav.center-navbar.col-sm-12
               %li.col-sm-3
-                = link_to posts_path, class: "post-btn" do
-                  %button.btn.new-post
-                    Posts
+                - if current_user.account_type == "Vendor"
+                  = link_to posts_path, class: "post-btn" do
+                    %button.btn.new-post
+                      Posts 
+                - else
+                  %a.post-btn{href: "#"}
+                    %button.btn.new-post.post-new
+                      Post Your Needs
               %li.notification-li
                 %a.dtoggle#menu1
                   %span.glyphicon.glyphicon-tasks{"aria-hidden" => "true"}
@@ -61,10 +66,10 @@
               %li
                 =link_to "#{current_user.first_name} #{current_user.last_name}", overview_user_path(current_user), class: "nav-user"
               %li.hidden-xs
-                - if current_user.account.assets.empty?
+                - if current_user.profile_pic == nil
                   = image_tag ("//placehold.it/60x60"), class: "img-circle"
                 - else
-                  - @image = current_user.account.assets.last.image
+                  - @image = current_user.profile_pic.image
                   = image_tag @image.url(:small), class: "img-circle"
               / %li.non-active.secondPage
               /   %a{:href => "#secondPage"} current listings
@@ -98,3 +103,6 @@
     /     |
     /     = link_to "Login", :login
     = yield
+    - if current_user
+      - if current_user.account_type != "Vendor"
+        = render 'layouts/new_post'

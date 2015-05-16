@@ -137,8 +137,8 @@ EmailNotificationSetting.create(settings_for: 'Bid', timed_task: TimedTask.first
 
 c = Country.create([{name: 'Canada'}])
 p = Province.create([
-  {name: 'Ontario', country_id: c.first.id},
-  {name: 'Quebec', country_id: c.first.id}])
+  {name: 'Ontario', country_id: c.first.id, short_name: "ON"},
+  {name: 'Quebec', country_id: c.first.id, short_name: "QC"}])
 City.create([
   {name: 'Toronto', province_id: p.first.id},
   {name: 'Waterloo', province_id: p.first.id},

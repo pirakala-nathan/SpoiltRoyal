@@ -2,6 +2,18 @@
 # All this logic will automatically be available in application.js.
 # You can use CoffeeScript in this file: http://coffeescript.org/
 $ ->
+  $('.stars-raiting.form > img').click ->
+    val = $('.stars-raiting > input ').val()
+    $('.raiting').val(val)
+    $('.raiting-form').submit();
+  $('.read-more-des').click ->
+    $('.description').removeClass('less')
+    $(this).hide();
+    $('.read-less-des').show();
+  $('.read-less-des').click ->
+    $('.description').addClass('less')
+    $(this).hide();
+    $('.read-more-des').show();
   $('.delivery-btn').click ->
     if $(this).hasClass('slideup')
       $('.delivery-locations').slideUp('slow')
@@ -32,5 +44,9 @@ $ ->
       $(".next-vendor-slide.slide-3").css('display','inline-block')
   $('.file-upload-trigger').click ->
     $('.file-upload-hidden').trigger('click');
+  $('.file-cover-trigger').click ->
+    $('.file-cover-hidden').trigger('click');
+  $('.file-media-trigger').click ->
+    $('.file-media-hidden').trigger('click');
   document.getElementById('vendor_assets_attributes_1_image').onchange = ->
     file = this.value

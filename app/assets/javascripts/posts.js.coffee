@@ -3,6 +3,19 @@
 # You can use CoffeeScript in this file: http://coffeescript.org/
 $ ->
 # for the post form datepicker
+  $('.datepicker').datepicker();
+  $('.post-your-own.next').click ->
+    $('.slide-1').hide();
+    $('.submit.slide-2').removeClass('slide-2')
+    $('.slide-2').css('display','block')
+  $('.add-img').click -> 
+    $('.img-btn.non-hidden').click();
+  $('.img-btn.non-hidden').change ->
+    pictureName = $(this).val()
+    $(this).removeClass('non-hidden')
+    $('.next-imgs').append('<input class="img-btn non-hidden" id="images_" multiple="multiple" name="images[]" type="file">')
+    pictureName = pictureName.replace('C:\\fakepath\\','')
+    alert pictureName
   $('.more-or-less').click ->
     if $(this).hasClass('view-less')
       $('.rest-of-bids').slideUp('slow');

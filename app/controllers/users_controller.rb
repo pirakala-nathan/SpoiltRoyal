@@ -5,9 +5,11 @@ class UsersController < ApplicationController
 
   #dashboard//
   def overview
+
     @vendor = @user.account
     @vendor.assets.build
     @posts = Post.all.limit(2)
+    @messages = current_user.conversations.includes(:messages).where.not(:messages => {:user_id => current_user.id}).where(:messages => {:read => nil})
   end
 
   def inbox

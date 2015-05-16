@@ -54,10 +54,10 @@
 							= bid.post.due_date.to_date.strftime("%B %d, %Y")
 				.col-xs-5.bid-row
 					.bid-img-container
-						- if bid.post.user.account.assets.empty?
+						- if bid.post.user.profile_pic == nil
 							= image_tag ("//placehold.it/60x60"), class: "img-circle bid-img"
 						-else
-							- @image = bid.post.user.account.assets.last.image
+							- @image = bid.post.user.profile_pic.image
 							= image_tag @image.url(:small), class: "img-circle bid-img"
 					.bid-info
 						.title

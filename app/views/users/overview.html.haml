@@ -6,8 +6,8 @@
 			= f.fields_for :assets do |a|
 				= a.file_field :image, class: "file-upload-hidden", onchange: "this.form.submit();"
 		#vendor-picture
-			- if !(@user.account.assets.empty?)
-				= image_tag @user.account.assets.first.image.url(:profile)
+			- if !(@user.profile_pic == nil)
+				= image_tag @user.profile_pic.image.url(:profile)
 		#side-bar-name
 			= @user.first_name + " " + @user.last_name
 		#side-bar-location
@@ -39,7 +39,10 @@
 		.inbox-overview.border-gray
 			.title
 				Unread Messages
-			.inbox-text
+			%ul.unread-msgs
+				- @messages.each do |c|
+					%li
+						
 				
 		.verfication-overview.border-gray
 			.title

@@ -1,6 +1,6 @@
 class Asset < ActiveRecord::Base
   belongs_to :owner, polymorphic: true
-  has_attached_file :image, :styles => { :medium => "300x300>", :thumb => "100x100>",:profile => "200x200>",:small => "60X60>" }
+  has_attached_file :image, :styles => {:post_media => "225x150#",:vendor_cover => "970x245#",:vendor_media =>"120x120#", :medium => "300x300>", :thumb => "100x100>",:profile => "200x200>",:small => "60X60#" }
   
   validates_attachment_size :image, :less_than => 2.megabytes
   validates_attachment_content_type :image, :content_type => ['image/jpeg', 'image/png']

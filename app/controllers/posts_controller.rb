@@ -51,6 +51,12 @@ class PostsController < ApplicationController
     respond_to do |format|
       if @post.save
         @users=[]
+        if params[:images]
+          #===== The magic is here ;)
+          params[:images].each { |image|
+            @post.assets.create(image: image)
+          }
+        end
         @post.post_subscriptions.each do |sub|
           @subcategory = sub.subcategory
           @category = sub.category
@@ -112,7 +118,7 @@ class PostsController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def post_params
-      params.require(:post).permit(:title, :description, :email,:user_id,:due_date,
+      params.require(:post).permit(:title,:delivery_needed,:service_needed,:pick_up_needed,:other_needed ,:other_needed_string,:phone_contact,:email_contact, :description, :email,:user_id,:due_date,
         post_subscriptions_attributes: [:_destroy, :id, :subcategory_id])
     end
 end

@@ -29,8 +29,11 @@ class VendorsController < ApplicationController
   # GET /vendors/1
   # GET /vendors/1.json
 
-  def 
   def show
+    
+    @current_raiting = Review.where.not(:raiting => nil)
+    @current_raiting = @current_raiting.where(:user_id => current_user.id, :vendor_id => @vendor.id).first
+    @reviews = Review.where(:user_id => current_user.id, :vendor_id => @vendor.id, :raiting => nil)
     if generate_activity(@vendor.user)
       @activity = PublicActivity::Activity.create(owner: current_user,
        key: 'Vendor.has_viewed', recipient: @vendor.user, trackable: @vendor)
@@ -77,8 +80,44 @@ class VendorsController < ApplicationController
   # PATCH/PUT /vendors/1.json
   def update
     respond_to do |format|
-
       if @vendor.update(vendor_params)
+        if params[:profile_pic]
+          if !(params[:profile_pic].empty?)
+            @gallery =  @vendor.galleries.where(name: "Profile_Pictures", owner_id: @vendor.id, owner_type: "Vendor")
+            if@gallery.empty?
+              @vendor.galleries.create(name: "Profile_Pictures", owner_id: @vendor.id, owner_type: "Vendor", user_id: current_user.id)
+              @gallery =  @vendor.galleries.where(name: "Profile_Pictures", owner_id: @vendor.id, owner_type: "Vendor")
+            end
+            @gallery = @gallery.first
+            @gallery.assets.create(image: params[:profile_pic].first)
+          end
+
+        end
+        if params[:cover_pic]
+          if !(params[:cover_pic].empty?)
+            @gallery =  @vendor.galleries.where(name: "Cover_Pictures", owner_id: @vendor.id, owner_type: "Vendor")
+            if@gallery.empty?
+              @vendor.galleries.create(name: "Cover_Pictures", owner_id: @vendor.id, owner_type: "Vendor", user_id: current_user.id)
+              @gallery =  @vendor.galleries.where(name: "Cover_Pictures", owner_id: @vendor.id, owner_type: "Vendor")
+            end
+            @gallery = @gallery.first
+            @gallery.assets.create(image: params[:cover_pic].first)
+          end
+        end
+        if params[:media_pics]
+          if !(params[:media_pics].empty?)
+            @gallery =  @vendor.galleries.where(name: "Media", owner_id: @vendor.id, owner_type: "Vendor")
+            if@gallery.empty?
+              @vendor.galleries.create(name: "Media", owner_id: @vendor.id, owner_type: "Vendor", user_id: current_user.id)
+              @gallery =  @vendor.galleries.where(name: "Media", owner_id: @vendor.id, owner_type: "Vendor")
+            end
+            @gallery = @gallery.first
+            params[:media_pics].each { |image|
+              @gallery.assets.create(image: image)
+            }
+            
+          end
+        end
         format.html { redirect_to @vendor, notice: 'Vendor was successfully updated.' }
         format.json { render :show, status: :ok, location: @vendor }
       else

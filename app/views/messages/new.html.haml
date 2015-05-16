@@ -11,10 +11,10 @@
       - @convo.messages.each do |m|
         .other.message
           .img-container
-            - if m.user.account.assets.empty?
+            - if m.user.profile_pic == nil
               = image_tag ("//placehold.it/60x60"), class: "img-circle"
             -else
-              - @image = m.user.account.assets.last.image
+              - @image = m.user.profile_pic.image
               = image_tag @image.url(:small), class: "img-circle" 
             .username
               = m.user.first_name

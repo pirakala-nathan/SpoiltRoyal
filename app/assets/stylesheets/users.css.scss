@@ -489,6 +489,7 @@ $blue: #63BFDE;
 			.file-upload-hidden{
 				display: none;
 			}
+
 		}
 		#vendor-picture{
 			background:#F0F0F0;
@@ -574,6 +575,15 @@ $blue: #63BFDE;
 		position: relative;
 		float: right;
 		width: 800px;
+		.inbox-overview{
+			.unread-msgs{
+				li{
+					list-style-image: none;
+				  list-style-position: inside;
+				  list-style-type: disc;
+				}
+			}
+		}
 		.border-gray{
 			background: white;
 			width: 760px;
@@ -827,19 +837,33 @@ $blue: #63BFDE;
 					z-index: 1;
 					display: none;
 				}
-				.file-upload-trigger{
+				.file-cover-hidden{
+					display: none;
+				}
+				.file-media-hidden{
+					display: none;
+				}
+				.file-upload-btn{
+					float: left;
 					height: 200px;
 					width: 200px;
 					border: 1px solid #ffc285;
 					display: block;
 					margin-top: 50px;
-					line-height: 200px;
-					text-align: center;
-					font-weight: bold;
-					font-size: 16px;
 					margin-bottom: 30px;
+					margin-right: 20px;
+					text-align: center;
+					span{
+						margin-top:80px;
+						line-height: 20px;
+						text-align: center;
+						font-weight: bold;
+						font-size: 16px;
+						display: inline-block;
+						vertical-align: middle;
+					}
 				}
-				.file-upload-trigger:hover{
+				.file-upload-btn:hover{
 					cursor: pointer;
 				}
 				input{

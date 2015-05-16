@@ -24,10 +24,10 @@
             = wp.created_at.to_date.strftime("%B %d, %Y")
         .col-xs-6.no-h-padding.post-info
           .img-container
-            - if @post.user.account.assets.empty?
+            - if @post.user.profile_pic == nil
               = image_tag ("//placehold.it/60x60"), class: "img-circle bid-img"
             -else
-              - @image = @post.user.account.assets.last.image
+              - @image = @post.user.profile_pic.image
               = image_tag @image.url(:small), class: "img-circle bid-img"
           .post-text
             .title

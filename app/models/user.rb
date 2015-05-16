@@ -2,6 +2,7 @@ class User < ActiveRecord::Base
   acts_as_authentic do |c|
     c.login_field = :email
   end
+  has_many :galleries
   belongs_to :account, polymorphic: true
   has_many :authentications
   has_many :participant_lists
@@ -13,7 +14,7 @@ class User < ActiveRecord::Base
   has_many :watched_posts, dependent: :destroy
   has_many :pictures, as: :owner
   has_many :bids
-
+  has_many :reviews
   def is_vendor?
     self.account_type == 'Vendor'
   end
@@ -36,5 +37,12 @@ class User < ActiveRecord::Base
   # profiles yet
   def new?
     self.account.nil?
+  end
+  def profile_pic
+    if self.galleries.where(name: "Profile_Pictures").empty?
+      return nil
+    else
+      return self.galleries.where(name: "Profile_Pictures").first.assets.last
+    end
   end
 end

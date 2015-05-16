@@ -22,6 +22,13 @@ class MessagesController < ApplicationController
       @convo.users << current_user
     end
     @message = Message.new
+    if !(@convo.messages.empty?)
+      if @convo.messages.last.user != current_user
+        @last = @convo.messages.last
+        @last.read = true
+        @last.save
+      end
+    end
   end
   # GET /messages/1/edit
   def edit
