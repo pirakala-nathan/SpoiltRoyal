@@ -98,8 +98,7 @@ ActiveRecord::Schema.define(version: 20150503161325) do
     t.datetime "updated_at"
   end
 
-
-  create_table "conversations", force: true do |t|
+  create_table "conversations", force: :cascade do |t|
     t.string   "subject",       limit: 255
     t.date     "last_msg"
     t.boolean  "read_all_msgs", limit: 1,   default: false
@@ -145,7 +144,7 @@ ActiveRecord::Schema.define(version: 20150503161325) do
     t.datetime "updated_at"
   end
 
-  create_table "galleries", force: true do |t|
+  create_table "galleries", force: :cascade do |t|
     t.string   "name",       limit: 255
     t.integer  "owner_id",   limit: 4
     t.string   "owner_type", limit: 255
@@ -154,30 +153,26 @@ ActiveRecord::Schema.define(version: 20150503161325) do
     t.datetime "updated_at",             null: false
   end
 
-
   create_table "industries", force: :cascade do |t|
-
     t.string   "name",       limit: 255
     t.datetime "created_at"
     t.datetime "updated_at"
   end
 
-
-  create_table "media", force: true do |t|
+  create_table "media", force: :cascade do |t|
     t.integer  "owner_id",   limit: 4
     t.string   "owner_type", limit: 255
     t.datetime "created_at",             null: false
     t.datetime "updated_at",             null: false
   end
 
-
   create_table "messages", force: :cascade do |t|
     t.integer  "user_id",         limit: 4
     t.integer  "conversation_id", limit: 4
     t.text     "info",            limit: 65535
-    t.boolean  "read",            limit: 1
-    t.datetime "created_at",                    null: false
-    t.datetime "updated_at",                    null: false
+    t.boolean  "read",            limit: 1,     default: false
+    t.datetime "created_at",                                    null: false
+    t.datetime "updated_at",                                    null: false
   end
 
   create_table "participant_lists", force: :cascade do |t|
@@ -241,10 +236,10 @@ ActiveRecord::Schema.define(version: 20150503161325) do
   end
 
   create_table "posts", force: :cascade do |t|
-    t.string   "title",       limit: 255
-    t.text     "description", limit: 65535
-    t.integer  "user_id",     limit: 4
-    t.string   "status",      limit: 255,   default: "pending"
+    t.string   "title",               limit: 255
+    t.text     "description",         limit: 65535
+    t.integer  "user_id",             limit: 4
+    t.string   "status",              limit: 255,   default: "pending"
     t.date     "due_date"
     t.boolean  "phone_contact",       limit: 1
     t.boolean  "email_contact",       limit: 1
@@ -265,8 +260,7 @@ ActiveRecord::Schema.define(version: 20150503161325) do
     t.datetime "updated_at"
   end
 
-
-  create_table "reviews", force: true do |t|
+  create_table "reviews", force: :cascade do |t|
     t.integer  "raiting",    limit: 4
     t.text     "feedback",   limit: 65535
     t.integer  "user_id",    limit: 4
@@ -274,7 +268,6 @@ ActiveRecord::Schema.define(version: 20150503161325) do
     t.datetime "created_at",               null: false
     t.datetime "updated_at",               null: false
   end
-
 
   create_table "service_locations", force: :cascade do |t|
     t.integer  "vendor_id",  limit: 4
