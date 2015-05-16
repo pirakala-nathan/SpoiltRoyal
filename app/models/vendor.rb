@@ -1,11 +1,11 @@
 class Vendor < ActiveRecord::Base
   include PublicActivity::Common
-  
+
   has_one :user, as: :account
 
   has_many :accepted_payment_methods, dependent: :destroy
   has_many :payment_methods, through: :accepted_payment_methods
-  has_many :galleries, as: :owner  
+  has_many :galleries, as: :owner
   has_many :reviews, dependent: :destroy
   has_many :physical_locations, dependent: :destroy
   has_many :vendor_subscriptions, dependent: :destroy
@@ -60,7 +60,7 @@ class Vendor < ActiveRecord::Base
   end
   def media
     if self.galleries.where(name: "Media").empty?
-      return nil
+      return self.galleries.where(name: "Media")
     else
       return self.galleries.where(name: "Media").first.assets.order("id DESC")
     end
