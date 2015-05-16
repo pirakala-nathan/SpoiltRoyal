@@ -14,15 +14,16 @@
         = f.label :business_name
       .col-xs-3.col-xs-offset-1.no-h-padding
         = f.label :establish_date
-      .col-xs-3.col-xs-offset-1.no-h-padding
-        = f.label "#s of Physical Locations"
     .col-xs-10.col-xs-offset-1
       = f.text_field :business_name, class: "business_name"
       = f.text_field :establish_date, class: "datepicker", placeholder: "mm/dd/yyyy"
-      %input.number-of-p-locations{:placeholder => "1"}
     .col-xs-10.col-xs-offset-1.phyiscal-location
+
       =f.fields_for :physical_locations do |pl|
-        =pl.link_to_remove "Remove Physical Location", class: "hidden remove-p-location"
+
+        .h5.col-xs-6.no-h-padding
+          Physical Location
+        =pl.link_to_remove "REMOVE", class: "remove-p-location col-xs-6"
         = pl.label :address, class: "no-h-padding address-label mt-30"
         = pl.label :postal_code, class: " no-h-padding postal-label mt-30"
         = pl.text_field :address, class: "address-label mb-13"
@@ -42,7 +43,7 @@
         / = pl.label :sale_location
         / = pl.check_box :sale_location 
 
-      = f.link_to_add "Add Physical Location", :physical_locations, class: "hidden add-p-location"
+      = f.link_to_add "ADD MORE", :physical_locations, class: " add-p-location col-xs-12 no-h-padding"
   .slide-2.slide
     .col-xs-10.col-xs-offset-1
       .half-way-through

@@ -866,10 +866,14 @@ $blue: #63BFDE;
 				.file-upload-btn:hover{
 					cursor: pointer;
 				}
+				select{
+					padding-left: 5px;
+				}
 				input{
 					height: 50px;
 					border: 1px solid #ffc285;
 					display: block;
+					padding-left: 5px;
 				}
 				textarea{
 					height: 200px;
@@ -877,13 +881,14 @@ $blue: #63BFDE;
 					margin-bottom: 30px;
 				}
 				.business_name{
-					width: calc(40% - 20px);
+					width: calc(50% - 10px);
 					float: left;
 				}
 				.datepicker{
 					float: left;
-					width: calc(40% - 20px);
+					width: calc(50% - 10px);
 					margin-left: 20px;
+					border-radius: 0;
 				}
 				.number-of-p-locations{
 					float: left;
@@ -891,6 +896,23 @@ $blue: #63BFDE;
 					margin-left: 20px;
 				}
 				.phyiscal-location{
+					margin-top: 10px;
+					.add-p-location{
+						display: block;
+
+						float: left;
+						margin-top: 10px;
+						margin-bottom: 10px;
+						color: $orange;
+						font-weight: bold;
+					}
+					.remove-p-location{
+						float: left;
+						margin-top: 10px;
+						margin-bottom: 10px;
+						color: $orange;
+						font-weight: bold;
+					}
 					.row{
 						padding-bottom: 0px;
 					}
