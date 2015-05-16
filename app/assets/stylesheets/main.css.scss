@@ -158,11 +158,13 @@ a.nav-user{
 body{
   background-color: #F5F5F5
 }
-#posts-show{
-  float: left;
+#posts-show.vendor{
   width: 70%;
   margin-left: 15%;
   margin-top: 25px;
+}
+#posts-show{
+  float: left;
   .posts-list{
     height: 86vh;
     .vendor{
@@ -204,9 +206,6 @@ body{
           -webkit-box-orient: vertical;
           overflow: hidden;
           text-overflow: ellipsis; 
-        }
-        .tags{
-          margin-top: 20px;
         }
       }
       .post-btns{
