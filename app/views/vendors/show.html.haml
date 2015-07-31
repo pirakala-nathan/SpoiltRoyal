@@ -115,8 +115,9 @@
                     = r.feedback
                   .date
                     = r.created_at.strftime("%B %d, %Y")
-        .col-xs-12.no-h-padding
-          .write-review.new-review
-            Writee a Review
+        - if can? :create, Review
+          .col-xs-12.no-h-padding
+            .write-review.new-review
+              Write a Review
 
 = render 'new_review'

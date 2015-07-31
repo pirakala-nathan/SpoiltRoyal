@@ -19,6 +19,11 @@
       ga('create', 'UA-59002638-1', 'auto');
       ga('send', 'pageview');
   %body
+    - if notice
+      .notice
+        = notice
+        %a.close_notice
+          [Dismiss]
     - if current_user
       %nav#logged-in-nav.navbar.navbar-default
         .container-fluid

@@ -11,18 +11,22 @@ class Ability
       can :manage, :all
     else
       if user.account_type == "Consumer"
-        
+        can :create, Review
+        can [:update], Review do |r|
+          r.user == user
+        end
+
         can [:create], Post
 
         can [:update], Post do |p|
           p.user == user
-        end 
+        end
         can [:change_status], Bid do |b|
           b.post.user == user
         end
       elsif user.account_type == "Vendor"
 
-        can [:create], Comment 
+        can [:create], Comment
 
         can [:edit], Vendor do |v|
           v.try(:user) == user

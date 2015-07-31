@@ -1,4 +1,5 @@
 class ReviewsController < ApplicationController
+  load_and_authorize_resource
   before_action :set_review, only: [:show, :edit, :update, :destroy]
 
   # GET /reviews
@@ -28,10 +29,10 @@ class ReviewsController < ApplicationController
 
     respond_to do |format|
       if @review.save
-        format.html { redirect_to @review, notice: 'Review was successfully created.' }
+        format.html { redirect_to :back, notice: 'Review was successfully created.' }
         format.json { render :show, status: :created, location: @review }
       else
-        format.html { render :new }
+        format.html { redirect_to :back }
         format.json { render json: @review.errors, status: :unprocessable_entity }
       end
     end
