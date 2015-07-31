@@ -41,9 +41,9 @@
         = pl.text_field :business_email, class: "business_email"
         = pl.text_field :business_website, class: "business_website"
         / = pl.label :sale_location
-        / = pl.check_box :sale_location 
+        / = pl.check_box :sale_location
 
-      = f.link_to_add "ADD MORE", :physical_locations, class: " add-p-location col-xs-12 no-h-padding"
+      = f.link_to_add "ADD ANOTHER PHYSICAL LOCATION", :physical_locations, class: " add-p-location col-xs-12 no-h-padding"
   .slide-2.slide
     .col-xs-10.col-xs-offset-1
       .half-way-through
@@ -59,7 +59,7 @@
           = render 'layouts/industry_selector', industry: vs
       = f.link_to_add "ADD MORE", :vendor_subscriptions, class: "col-xs-12 no-h-padding add-industry"
       .h5.no-h-padding.col-xs-12
-        Select all that apply 
+        Select all that apply
       .business-options.col-xs-12.no-h-padding
         .selling
           .checkbox.checkbox-orange
@@ -98,7 +98,7 @@
             = f.fields_for :accepted_payment_methods do |apm|
               .checkbox.checkbox-orange
                 = apm.hidden_field :payment_method_id, :value => pm.id
-                = apm.check_box :accepted 
+                = apm.check_box :accepted
                 = apm.label pm.name
 
   .slide-3.slide
@@ -127,15 +127,15 @@
 
       .col-xs-12.finish-msg
         You're done for now, wasn't that easy? You are ready for busniess at NEX! Don't worry if you didnt fill in everything. You can modify them later!
-  .slide-buttons.col-xs-12  
+  .slide-buttons.col-xs-12
     = f.submit "Go To Your Profile", class: "next-vendor-slide slide-3"
     .next-vendor-slide{:target => ".slide-2", :prev => ".slide-1"}
       Next
-  .col-xs-12.fill-cont    
+  .col-xs-12.fill-cont
     = link_to "Fill this later", overview_user_path(current_user), class: "fill-later"
     /   .col-xs-6.no-h-padding
     /     = f.label :tax_number
-      
+
     /   .col-xs-6
     / .col-xs-10.col-xs-offset-1
     /   = f.number_field :tax_number, class: "col-xs-6 no-h-padding"
@@ -250,7 +250,7 @@
   /     NEXT
   / .actions.col-xs-12
   /   = f.submit "skip this step", class: "skip"
-  
+
   / .hidden.extra-shit
   /   .col-xs-10.col-xs-offset-1
   /     .col-xs-12.no-h-padding

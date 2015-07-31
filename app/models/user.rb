@@ -20,8 +20,8 @@ class User < ActiveRecord::Base
   end
 
   # def apply_omniauth(omniauth)
-  
- 
+
+
   #   # Update user info fetching from social network
   #   case omniauth['provider']
   #     when 'facebook'
@@ -32,6 +32,10 @@ class User < ActiveRecord::Base
   #       # fetch extra user info from twitter
   #   end
   # end
+
+  def full_name
+    self.first_name.camelize + " " + self.last_name.camelize
+  end
 
   # new user is defined as a registered user that havent created any
   # profiles yet

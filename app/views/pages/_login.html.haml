@@ -21,7 +21,7 @@
           .col-xs-12.no-h-padding.no-v-padding.center-line
         = form_for UserSession.new do |f|
           = f.text_field :email, :placeholder => "Email Address", class: "login-email col-xs-10 col-xs-offset-1"
-          = f.password_field :password, class: "login-pass col-xs-10 col-xs-offset-1", placeholer: "Password"
+          = f.password_field :password, :placeholder => "Password", class: "login-pass col-xs-10 col-xs-offset-1", placeholer: "Password"
           = f.submit "ENTER NEX", class: "login-submit col-xs-10 col-xs-offset-1 "
 
 

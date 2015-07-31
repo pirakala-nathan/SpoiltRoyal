@@ -2,10 +2,8 @@ class UsersController < ApplicationController
   load_and_authorize_resource param_method: :user_params
   before_action :set_user, only: [:show, :edit, :update, :destroy, :show_account]
 
-
   #dashboard//
   def overview
-
     @vendor = @user.account
     @vendor.assets.build
     @posts = Post.all.limit(2)

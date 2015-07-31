@@ -39,10 +39,14 @@
           #bs-example-navbar-collapse-1.collapse.navbar-collapse.navbar-right
             %ul.nav.navbar-nav.center-navbar.col-sm-12
               %li.col-sm-3
+                = link_to logout_path, class: "post-btn" do
+                  %button.btn.new-post
+                    Logout
+              %li.col-sm-3
                 - if current_user.account_type == "Vendor"
                   = link_to posts_path, class: "post-btn" do
                     %button.btn.new-post
-                      Posts 
+                      Posts
                 - else
                   %a.post-btn{href: "#"}
                     %button.btn.new-post.post-new
@@ -64,13 +68,14 @@
 
 
               %li
-                =link_to "#{current_user.first_name} #{current_user.last_name}", overview_user_path(current_user), class: "nav-user"
-              %li.hidden-xs
-                - if current_user.profile_pic == nil
-                  = image_tag ("//placehold.it/60x60"), class: "img-circle"
-                - else
-                  - @image = current_user.profile_pic.image
-                  = image_tag @image.url(:small), class: "img-circle"
+                = link_to overview_user_path(current_user), class: "nav-user" do
+                  - if current_user.profile_pic == nil
+                    = image_tag ("//placehold.it/60x60"), class: "img-circle"
+                  - else
+                    - @image = current_user.profile_pic.image
+                    = image_tag @image.url(:small), class: "img-circle"
+                  = current_user.full_name
+
               / %li.non-active.secondPage
               /   %a{:href => "#secondPage"} current listings
               / %li.non-active.thirdPage

@@ -8,10 +8,10 @@
     .welcome-msg.col-xs-10.col-xs-offset-1.slide-1
       - if params[:new_user]
         .title
-          Welcome To Nathan's Exchange, 
-          = current_user.first_name + " " +current_user.last_name
+          Welcome To Nathan's Exchange,
+          = current_user.first_name.camelize + " " + current_user.last_name.camelize
         .intro
-          Lorem ipsum dolor sit amet, consectetur adipiscing elit. Proin in auctor arcu. Nullam at interdum lacus. Duis congue erat magna, at aliquet arcu iaculis ut. 
+          Lorem ipsum dolor sit amet, consectetur adipiscing elit. Proin in auctor arcu. Nullam at interdum lacus. Duis congue erat magna, at aliquet arcu iaculis ut.
         .tell-us-more
           First, Tell Us More About Your business:
       - else

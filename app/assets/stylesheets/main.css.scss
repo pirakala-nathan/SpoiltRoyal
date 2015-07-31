@@ -205,11 +205,11 @@ body{
           -webkit-line-clamp: 4;
           -webkit-box-orient: vertical;
           overflow: hidden;
-          text-overflow: ellipsis; 
+          text-overflow: ellipsis;
         }
       }
       .post-btns{
-        margin-top: 31.35px ; 
+        margin-top: 31.35px ;
 
         a{
           button{
@@ -400,3 +400,6 @@ body{
   }
 }
 
+.seeking, .offering, .next-vendor-slide {
+  cursor: pointer;
+}

@@ -13,12 +13,12 @@
               - else
                 = @vendor.business_name
             .location.col-xs-12.no-h-padding
-              = "Location: " 
+              = "Location: "
               - if  @vendor.physical_locations.empty?
                 = ""
               - elsif @vendor.physical_locations.length > 1
                 = Multiple Locations
-              - else 
+              - else
                 = @vendor.physical_locations.first.address.split.map(&:capitalize).join(' ') +", "+ @vendor.physical_locations.first.city.name + ", " + @vendor.physical_locations.first.city.province.short_name
             .raitings
               //BACKEND NEEDED
@@ -41,13 +41,14 @@
                 = image_tag asset.image(:vendor_media)
             .col-xs-12.no-h-padding.buttons
               .contact-us
-                Contact us
+                = mail_to @vendor.user.email, "Contact us", subject: "Hi, I saw you on NEX."
+
 
 
 
       - if @vendor.cover_pic == nil
         = image_tag ("//placehold.it/180X191")
-      - else  
+      - else
         - @image = @vendor.cover_pic.image
         = image_tag @image.url
     .col-xs-12.no-h-padding.vendor-content
@@ -62,7 +63,7 @@
               Read more
             %span.read-less-des.read
               Read less
-      .col-xs-12.no-h-padding.industries-content 
+      .col-xs-12.no-h-padding.industries-content
         .h5.title.vendor-title.col-xs-12.no-h-padding
           SERVICE OFFERED:
         .industries.col-xs-12.no-h-padding
@@ -75,14 +76,14 @@
         .tags
           .tag
             Wedding
-          .tag 
+          .tag
             Photography
           .tag
             Random
           .tag
             Lorem
       .col-xs-12.no-h-padding.reviews-container
-        .col-xs-12.no-h-padding  
+        .col-xs-12.no-h-padding
           .h5.title.vendor-title
             REVIEWS
           .col-xs-12.no-h-padding.reviews
