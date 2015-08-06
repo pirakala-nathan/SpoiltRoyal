@@ -128,7 +128,7 @@
             .info
               .name
                 %span.orange
-                  - if bid.user.account.class == Consumer || bid.user.account.business_name.empty?
+                  - if bid.user.account.class == Consumer || bid.user.account.business_name.nil?
                     = bid.user.first_name + " " + bid.user.last_name
                 %span.dark-text
                   made a bid
@@ -155,7 +155,7 @@
             .info
               .name
                 %span.orange
-                  - if bid.user.account.class == Consumer || bid.user.account.business_name.empty?
+                  - if bid.user.account.class == Consumer || bid.user.account.business_name.nil?
                     = bid.user.first_name + " " + bid.user.last_name
                   - else
                     = bid.user.account.business_name
@@ -185,7 +185,7 @@
             .name.col-xs-12.no-h-padding
               %span.dark-text
                 - if comment.user.account_type == "Vendor"
-                  - if bid.user.account.class == Consumer || bid.user.account.business_name.empty?
+                  - if bid.user.account.class == Consumer || bid.user.account.business_name.nil?
                     = comment.user.first_name + " " + comment.user.last_name
                   - else
                     = comment.user.account.business_name
@@ -206,7 +206,7 @@
             .name
               %span.dark-text
                 - if comment.user.account_type == "Vendor"
-                  - if bid.user.account.class == Consumer || bid.user.account.business_name.empty?
+                  - if bid.user.account.class == Consumer || bid.user.account.business_name.nil?
                     = comment.user.first_name + " " + comment.user.last_name
                   - else
                     = comment.user.account.business_name
