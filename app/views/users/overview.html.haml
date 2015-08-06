@@ -16,7 +16,7 @@
 		#side-bar-membersince
 			= "Member since " + @user.created_at.strftime("%B %Y")
 
-		= link_to "EDIT PROFILE", account_user_path(@user), class: "edit-profile-sidebar"
+		= link_to "EDIT PROFILE", edit_user_path(@user), class: "edit-profile-sidebar"
 		#posts-you-might-like
 			.title
 				Posts you might like

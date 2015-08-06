@@ -135,6 +135,7 @@ class UsersController < ApplicationController
         EmailNotificationSetting.create(settings_for: 'Post', timed_task: TimedTask.first, user: @user)
         EmailNotificationSetting.create(settings_for: 'Comment', timed_task: TimedTask.first, user: @user)
         EmailNotificationSetting.create(settings_for: 'Bid', timed_task: TimedTask.first, user: @user)
+        UserMailer.new_user_welcome(@user).deliver
         format.html { redirect_to  account_user_path(@user,:new_user => true)}
         format.json { render :show, status: :created, location: @user }
       else
@@ -149,7 +150,7 @@ class UsersController < ApplicationController
   def update
     respond_to do |format|
       if @user.update(user_params)
-        format.html { redirect_to @user, notice: 'User was successfully updated.' }
+        format.html { redirect_to :back, notice: 'User was successfully updated.' }
         format.json { render :show, status: :ok, location: @user }
       else
         format.html { render :edit }

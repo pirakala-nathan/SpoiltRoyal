@@ -50,16 +50,16 @@ class BidsController < ApplicationController
         @post = @bid.post
         @user_activity = PublicActivity::Activity.create(owner: current_user,
                key: 'Post.placed_a_bid_on_your_post',recipient: @post.user, trackable:@bid)
-        if @user_activity.id != nil 
+        if @user_activity.id != nil
           @users << @post.user.id
           sync_new @user_activity, scope: @post.user
           sync_new @user_activity
         end
         @post.comments.each do |comment|
-          if !(@users.include? comment.user.id) 
-            @activity =PublicActivity::Activity.create(owner: current_user,
+          if !(@users.include? comment.user.id)
+            @activity = PublicActivity::Activity.create(owner: current_user,
                key: 'Post.placed_a_bid_on_a_post',recipient: comment.user, trackable:@comment)
-            if @user_activity.id != nil 
+            if @user_activity.id != nil
               @users << comment.user.id
               sync_new @activity, scope: comment.user
               sync_new @activity
@@ -67,10 +67,10 @@ class BidsController < ApplicationController
           end
         end
         @post.bids.each do |bid|
-          if !(@users.include? bid.user.id) 
-            @activity =PublicActivity::Activity.create(owner: current_user,
+          if !(@users.include? bid.user.id)
+            @activity = PublicActivity::Activity.create(owner: current_user,
                key: 'Post.placed_a_bid_on_a_post',recipient: bid.user, trackable:@bid)
-            if @user_activity.id != nil 
+            if @user_activity.id != nil
               @users << bid.user.id
               sync_new @activity, scope: bid.user
               sync_new @activity
@@ -104,7 +104,7 @@ class BidsController < ApplicationController
   # DELETE /bids/1.json
   def destroy
     if @bid.active?
-      @bid.status = "cancelled" 
+      @bid.status = "cancelled"
       @bid.save
     end
     if @bid.save
