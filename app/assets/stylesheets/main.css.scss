@@ -65,6 +65,9 @@ a.nav-user{
   max-width: 70px;
 }
 #logged-in-nav{
+  .logo{
+    padding-left: 10px
+  }
   z-index: 10;
   height: 14vh;
   background-color:white;
@@ -74,6 +77,18 @@ a.nav-user{
     .navbar-search{
       height: 100%;
       padding:0;
+      a{
+        display: block;
+        width: 100%;
+        margin-top: 0px;
+        height: 7vh;
+        background-color: #EA9B2C;
+        border-radius: 2px;
+        margin-top: 3.5vh;
+        color: white;
+        text-align: center;
+        line-height: 7vh;
+      }
     }
     #bs-example-navbar-collapse-1{
       width: 50%;

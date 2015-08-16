@@ -23,19 +23,17 @@
       %nav#logged-in-nav.navbar.navbar-default
         .container-fluid
           / Brand and toggle get grouped for better mobile display
-          .navbar-header.col-sm-1
+          .navbar-header.col-sm-2
             %button.navbar-toggle.collapsed{"data-target" => "#bs-example-navbar-collapse-1", "data-toggle" => "collapse", :type => "button"}
               %span.sr-only Toggle navigation
               %span.icon-bar
               %span.icon-bar
               %span.icon-bar
             %a.col-sm-12.navbar-brand{:href => "/", style: "font-family:Lobster,'cursive';"}
-              = image_tag("/img/logo-small.png")
+              = image_tag("/img/logo.svg")
           / Collect the nav links, forms, and other content for toggling
-          .navbar-search.col-sm-5.hidden-xs
-            %input.search-input.center-navbar.col-sm-8{type: "text", placeholder: "What are you looking for?"}
-            %button.btn.submit-search.center-navbar.col-sm-3
-              Browse
+          .navbar-search.col-sm-2.hidden-xs
+            = link_to "BROWSE VENDORS", vendors_path
           #bs-example-navbar-collapse-1.collapse.navbar-collapse.navbar-right
             %ul.nav.navbar-nav.center-navbar.col-sm-12
               %li.col-sm-3
