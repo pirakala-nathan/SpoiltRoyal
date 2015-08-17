@@ -1,5 +1,6 @@
 class DeliveryLocation < ActiveRecord::Base
   belongs_to :vendor
   belongs_to :city
-  validates :city_id, presence: true
+  belongs_to :location_option
+  validates :location_option_id, presence: true
 end

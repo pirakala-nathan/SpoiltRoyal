@@ -73,9 +73,21 @@
             = f.label "I ship products to my customer"
           .delivery-locations
             = f.fields_for :delivery_locations do |dl|
-              = render 'layouts/location_selector', location: dl
-              = dl.link_to_remove "Remove This Location", class: "dl-remove"
-            = f.link_to_add "Add Another Location", :delivery_locations, class: "dl-add"
+              .checkbox.checkbox-orange
+                = dl.check_box :location_option_id, :value => 1
+                = dl.label "Global"
+              .checkbox.checkbox-orange
+                = dl.check_box :location_option_id, :value => 2
+                = dl.label "North America"
+              .checkbox.checkbox-orange
+                = dl.check_box :location_option_id, :value => 3
+                = dl.label "Canada"
+              .checkbox.checkbox-orange
+                = dl.check_box :location_option_id, :value => 4
+                = dl.label "Ontario"
+              .checkbox.checkbox-orange
+                = dl.check_box :location_option_id, :value => 5
+                = dl.label "GTA"
         .service
           .checkbox.checkbox-orange
             = f.check_box :servicing, class: "service-btn"

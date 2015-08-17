@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150503161325) do
+ActiveRecord::Schema.define(version: 20150817075318) do
 
   create_table "accepted_payment_methods", force: :cascade do |t|
     t.integer  "vendor_id",         limit: 4
@@ -113,8 +113,9 @@ ActiveRecord::Schema.define(version: 20150503161325) do
   end
 
   create_table "delivery_locations", force: :cascade do |t|
-    t.integer  "vendor_id",  limit: 4
-    t.integer  "city_id",    limit: 4
+    t.integer  "vendor_id",          limit: 4
+    t.integer  "city_id",            limit: 4
+    t.integer  "location_option_id", limit: 4
     t.datetime "created_at"
     t.datetime "updated_at"
   end
@@ -159,6 +160,12 @@ ActiveRecord::Schema.define(version: 20150503161325) do
     t.datetime "updated_at"
   end
 
+  create_table "location_options", force: :cascade do |t|
+    t.string   "name",       limit: 255
+    t.datetime "created_at",             null: false
+    t.datetime "updated_at",             null: false
+  end
+
   create_table "media", force: :cascade do |t|
     t.integer  "owner_id",   limit: 4
     t.string   "owner_type", limit: 255
@@ -173,6 +180,13 @@ ActiveRecord::Schema.define(version: 20150503161325) do
     t.boolean  "read",            limit: 1,     default: false
     t.datetime "created_at",                                    null: false
     t.datetime "updated_at",                                    null: false
+  end
+
+  create_table "options_city_lists", force: :cascade do |t|
+    t.integer  "location_option_id", limit: 4
+    t.integer  "city_id",            limit: 4
+    t.datetime "created_at",                   null: false
+    t.datetime "updated_at",                   null: false
   end
 
   create_table "participant_lists", force: :cascade do |t|

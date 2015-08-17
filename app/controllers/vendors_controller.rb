@@ -155,7 +155,7 @@ class VendorsController < ApplicationController
         # Vendor Subscription Attributes
         vendor_subscriptions_attributes: [:_destroy, :id, :subcategory_id],
         # Delivery Location Attributes
-        delivery_locations_attributes: [:_destroy, :id, :city_id],
+        delivery_locations_attributes: [:_destroy, :id, :location_option_id],
         # External Link Attributes
         external_links_attributes: [:_destroy, :id, :link, :external_source_id],
         # Asset Attributes (Pictures needs to nest inside assets in order to work)

@@ -1,5 +1,9 @@
 Rails.application.routes.draw do
 
+  resources :options_city_lists
+
+  resources :location_options
+
   resources :galleries
 
   resources :media

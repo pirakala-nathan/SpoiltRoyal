@@ -135,16 +135,22 @@ EmailNotificationSetting.create(settings_for: 'Bid', timed_task: TimedTask.first
 @v6.save
 
 
-c = Country.create([{name: 'Canada'}])
+c = Country.create([
+    {name: 'Canada'},
+    {name: 'United States'}])
 p = Province.create([
   {name: 'Ontario', country_id: c.first.id, short_name: "ON"},
-  {name: 'Quebec', country_id: c.first.id, short_name: "QC"}])
-City.create([
+  {name: 'Quebec', country_id: c.first.id, short_name: "QC"},
+  {name: 'New York',country_id: c.second.id, short_name: "NY"}])
+  
+ci=City.create([
   {name: 'Toronto', province_id: p.first.id},
+  {name: 'Missauga', province_id: p.first.id},
   {name: 'Waterloo', province_id: p.first.id},
   {name: 'Kitchener', province_id: p.first.id},
   {name: 'Quebec City', province_id: p[1].id},
   {name: 'Montreal', province_id: p[1].id}])
+  {name: 'New York City', province_id: p.third.id}
 
 for i in 1..3 do
   ind = Industry.create(name: "industry_" + i.to_s)
@@ -206,3 +212,65 @@ end
 for i in 1..3 do 
   Bid.create(value: 45, status: "bid-pending", info: "Lorem Ipsum is simply dummy text of the printing", user_id: 1, post_id: i)
 end
+
+location_one = LocationOption.create(
+  name: "All"
+)
+location_two = LocationOption.create(
+  name: "North America"
+)
+location_three = LocationOption.create(
+  name: "Canda"
+)
+location_four = LocationOption.create(
+  name: "Ontario"
+)
+location_five = LocationOption.create(
+  name: "GTA"
+)
+#All
+city = City.all
+city.each do |c|
+ OptionsCityList.create(location_option_id:location_one.id,
+   city_id:c.id)
+end
+#North America
+count = Country.first
+prov = count.provinces.all
+prov.each do |p|
+  city = p.cities.all
+  city.each do |c|
+    OptionsCityList.create(location_option_id:location_two.id,
+      city_id:c.id)
+  end 
+end
+count = Country.second
+prov = count.provinces.all
+prov.each do |p|
+  city = p.cities.all
+  city.each do |c|
+    OptionsCityList.create(location_option_id:location_two.id,
+      city_id:c.id)
+  end 
+end
+#Canada
+count = Country.first
+prov = count.provinces.all
+prov.each do |p|
+  city = p.cities.all
+  city.each do |c|
+    OptionsCityList.create(location_option_id:location_three.id,
+      city_id:c.id)
+  end 
+end
+#Ontario
+city = Province.first.cities.all
+city.each do |c|
+ OptionsCityList.create(location_option_id:location_four.id,
+   city_id:c.id)
+end
+#GTA have to do it manually
+OptionsCityList.create(location_option_id:location_five.id,
+   city_id:City.first.id)
+OptionsCityList.create(location_option_id:location_five.id,
+   city_id:City.second.id)
