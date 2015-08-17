@@ -68,7 +68,7 @@
         1 Week
     .prefered-payments.post-info-cont
       .title
-        PREFERRED PAYMENT: 
+        PREFERRED PAYMENT:
       .payment
         CASH
     .col-xs-12.no-h-padding.contact-info
@@ -128,17 +128,13 @@
             .info
               .name
                 %span.orange
-                  - if bid.user.account.business_name == nil or bid.user.account.business_name == ""
+                  - if bid.user.account.class == Consumer || bid.user.account.business_name.nil?
                     = bid.user.first_name + " " + bid.user.last_name
                 %span.dark-text
                   made a bid
               .description
                 = bid.info
 
-
-
-
-            
       - @restBids = @post.bids.order('created_at DESC').offset(3)
       - @restBids.each do |bid|
         .bid.rest-of-bids
@@ -159,7 +155,7 @@
             .info
               .name
                 %span.orange
-                  - if bid.user.account.business_name == nil or bid.user.account.business_name == ""
+                  - if bid.user.account.class == Consumer || bid.user.account.business_name.nil?
                     = bid.user.first_name + " " + bid.user.last_name
                   - else
                     = bid.user.account.business_name
@@ -176,7 +172,7 @@
       .title
         Q&A
       .post-a-q
-        Post a Question 
+        Post a Question
     .col-xs-12.no-h-padding.comments
       - @post.comments.order('created_at DESC').limit(3).each do |comment|
         .comment.col-xs-12.no-h-padding
@@ -189,7 +185,7 @@
             .name.col-xs-12.no-h-padding
               %span.dark-text
                 - if comment.user.account_type == "Vendor"
-                  - if comment.user.account.business_name == nil or comment.user.account.business_name == ""
+                  - if bid.user.account.class == Consumer || bid.user.account.business_name.nil?
                     = comment.user.first_name + " " + comment.user.last_name
                   - else
                     = comment.user.account.business_name
@@ -210,7 +206,7 @@
             .name
               %span.dark-text
                 - if comment.user.account_type == "Vendor"
-                  - if comment.user.account.business_name == nil or comment.user.account.business_name == ""
+                  - if bid.user.account.class == Consumer || bid.user.account.business_name.nil?
                     = comment.user.first_name + " " + comment.user.last_name
                   - else
                     = comment.user.account.business_name

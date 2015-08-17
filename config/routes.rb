@@ -31,7 +31,7 @@ Rails.application.routes.draw do
 
   get 'change_status' => 'bids#change_status', :as => :change_status
   resources :timed_tasks
-  
+
   resources :email_notification_settings
 
   resources :activities
@@ -40,16 +40,18 @@ Rails.application.routes.draw do
   resources :posts
 
   get 'pages/home'
+  get 'forgotten_password' => 'pages#forgotten_password', :as => :forgotten_password
+  post 'reset_password' => 'pages#reset_password', :as => :reset_password
 
   resources :consumers
 
-  match 'fetch_categories' => 'api#fetch_categories', as: :fetch_categories, via: [:get, :post] 
-  match 'fetch_subcategories' => 'api#fetch_subcategories', as: :fetch_subcategories, via: [:get, :post] 
-  match 'fetch_cities' => 'api#fetch_cities', as: :fetch_cities, via: [:get, :post] 
-  match 'fetch_provinces' => 'api#fetch_provinces', as: :fetch_provinces, via: [:get, :post] 
-  match 'fetch_subcategory' => 'api#fetch_subcategory', as: :fetch_subcategory, via: [:get, :post] 
+  match 'fetch_categories' => 'api#fetch_categories', as: :fetch_categories, via: [:get, :post]
+  match 'fetch_subcategories' => 'api#fetch_subcategories', as: :fetch_subcategories, via: [:get, :post]
+  match 'fetch_cities' => 'api#fetch_cities', as: :fetch_cities, via: [:get, :post]
+  match 'fetch_provinces' => 'api#fetch_provinces', as: :fetch_provinces, via: [:get, :post]
+  match 'fetch_subcategory' => 'api#fetch_subcategory', as: :fetch_subcategory, via: [:get, :post]
 
-  resources :vendors 
+  resources :vendors
 
   resources :users do
     member do
@@ -59,7 +61,7 @@ Rails.application.routes.draw do
       get :bids
       get :statistics
       get :profile
-      get :account 
+      get :account
       get :watched_posts
     end
   end

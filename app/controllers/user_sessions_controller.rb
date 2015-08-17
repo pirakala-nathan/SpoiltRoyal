@@ -16,7 +16,7 @@ class UserSessionsController < ApplicationController
         format.html { redirect_to overview_user_path(@user_session.user)}
         format.json { render :show, status: :created, location: @user_session }
       else
-        format.html { render :new }
+        format.html { redirect_to :back, notice: @user.errors.full_messages * ', ' }
         format.json { render json: @user_session.errors, status: :unprocessable_entity }
       end
     end

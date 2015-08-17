@@ -501,12 +501,7 @@ $blue: #63BFDE;
 			text-align: center;
 			display:table;
 			position: relative;
-			img{
-				display:inline-block;
-				max-height: 100%;
-				max-width: 99%;
-				vertical-align: middle;
-			}
+      background-size:cover;
 		}
 		#vendor-picture:before {    /* create a full-height inline block pseudo=element */
     	height: 100%;

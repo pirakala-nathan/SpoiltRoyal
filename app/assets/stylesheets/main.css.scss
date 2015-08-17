@@ -220,11 +220,11 @@ body{
           -webkit-line-clamp: 4;
           -webkit-box-orient: vertical;
           overflow: hidden;
-          text-overflow: ellipsis; 
+          text-overflow: ellipsis;
         }
       }
       .post-btns{
-        margin-top: 31.35px ; 
+        margin-top: 31.35px ;
 
         a{
           button{
@@ -415,3 +415,26 @@ body{
   }
 }
 
+.seeking, .offering, .next-vendor-slide {
+  cursor: pointer;
+}
+
+.notice {
+  position: absolute;
+  top: 20px;
+  left: 10%;
+  width: 80%;
+  padding: 10px;
+  text-align: center;
+  z-index: 99;
+  background-color: #eee;
+  border-radius: 15px;
+}
+
+.navbar .img-circle {
+  margin-top: -50px !important;
+}
+
+form .field {
+  margin-top: 15px;
+}

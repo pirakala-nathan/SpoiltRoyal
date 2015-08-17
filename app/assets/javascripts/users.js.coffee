@@ -1,6 +1,6 @@
 
 $ ->	
-	$('#vendor-picture').click ->
+	$('#vendor-picture.no-url').click ->
 		$('.file-upload-hidden').trigger('click');
 	$('.dropdown-toggle').dropdown()
 	$('.bid-links > .link').click ->
