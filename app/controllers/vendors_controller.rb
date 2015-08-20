@@ -50,7 +50,7 @@ class VendorsController < ApplicationController
     @vendor = Vendor.new
     @vendor.physical_locations.build
     @vendor.vendor_subscriptions.build
-    @vendor.delivery_locations.build
+    @vendor.build_delivery_location
     @vendor.external_links.build
     @vendor.assets.build
     @vendor.personal_infos.build
@@ -155,7 +155,7 @@ class VendorsController < ApplicationController
         # Vendor Subscription Attributes
         vendor_subscriptions_attributes: [:_destroy, :id, :subcategory_id],
         # Delivery Location Attributes
-        delivery_locations_attributes: [:_destroy, :id, :location_option_id],
+        delivery_location_attributes: [:_destroy, :id, :location_option_id],
         # External Link Attributes
         external_links_attributes: [:_destroy, :id, :link, :external_source_id],
         # Asset Attributes (Pictures needs to nest inside assets in order to work)

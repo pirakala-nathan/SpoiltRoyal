@@ -52,7 +52,7 @@ class UsersController < ApplicationController
       @vendor = @user.account
       @vendor.physical_locations.build
       @vendor.vendor_subscriptions.build
-      @vendor.delivery_locations.build
+      @vendor.build_delivery_location
       @vendor.service_locations.build
       @vendor.external_links.build
       @vendor.assets.build

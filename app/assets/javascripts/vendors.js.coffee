@@ -1,7 +1,28 @@
 # Place all the behaviors and hooks related to the matching controller here.
 # All this logic will automatically be available in application.js.
 # You can use CoffeeScript in this file: http://coffeescript.org/
+checkPostal = (code,letter) ->
+  length = code.length
+  length = length % 2
+
+  if length == 1
+    pCodePattern = new RegExp('[a-z]','i')
+  else
+    pCodePattern = new RegExp('[0-9]','i')
+  if pCodePattern.test(letter)
+    true
+  else
+    false
 $ ->
+  $('.postal').keyup (e)->
+    letter = String.fromCharCode(e.which)
+    code = $(this).val();
+    if !(checkPostal(code,letter))
+      code= code.slice(0,-1)
+      $(this).val(code)
+
+
+
   $('.stars-raiting.form > img').click ->
     val = $('.stars-raiting > input ').val()
     $('.raiting').val(val)
@@ -48,5 +69,16 @@ $ ->
     $('.file-cover-hidden').trigger('click');
   $('.file-media-trigger').click ->
     $('.file-media-hidden').trigger('click');
-  document.getElementById('vendor_assets_attributes_1_image').onchange = ->
-    file = this.value
+  $('.file-media-hidden').change ->
+      num = $(this)[0].files.length
+      msg = num + " IMAGES SELECTED FOR SHOW"
+      $('.file-media-trigger > span').text(msg)
+      $('.file-media-trigger').addClass('image-selected')
+  $('.file-cover-hidden').change ->
+      msg = " IMAGE SELECTED FOR COVER PHOTO"
+      $('.file-cover-trigger > span').text(msg)
+      $('.file-cover-trigger').addClass('image-selected')
+  $('.file-upload-hidden').change ->
+      msg = "IMAGE SELECTED FOR PROFILE PHOTO"
+      $('.file-upload-trigger > span').text(msg)
+      $('.file-upload-trigger').addClass('image-selected')

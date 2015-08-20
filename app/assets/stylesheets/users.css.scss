@@ -838,6 +838,13 @@ $blue: #63BFDE;
 				.file-media-hidden{
 					display: none;
 				}
+
+				.image-selected{
+					background: $orange;
+					span{
+						color: white;
+					}
+				}
 				.file-upload-btn{
 					float: left;
 					height: 200px;
