@@ -1,3 +1,4 @@
+
 = nested_form_for @vendor, class: "form-group", html: { multipart: true } do |f|
   / Vendor Part Starts-------------------------------------------------
   - if @vendor.errors.any?
@@ -145,8 +146,6 @@
         You're done for now, wasn't that easy? You are ready for busniess at NEX! Don't worry if you didnt fill in everything. You can modify them later!
   .slide-buttons.col-xs-12
     = f.submit "Go To Your Profile", class: "next-vendor-slide slide-3"
-    .next-vendor-slide{:target => ".slide-2", :prev => ".slide-1"}
-      Next
   .col-xs-12.fill-cont
     = link_to "Fill this later", overview_user_path(current_user), class: "fill-later"
     /   .col-xs-6.no-h-padding

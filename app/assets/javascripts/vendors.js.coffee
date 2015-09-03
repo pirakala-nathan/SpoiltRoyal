@@ -49,20 +49,25 @@ $ ->
     else
       $('.service-locations').slideDown('slow')
       $(this).addClass('slideup')
-  $('.next-vendor-slide').click ->
-    target = $(this).attr('target')
-    prev = $(this).attr('prev')
-    $(prev).hide();
-    $(target).css('display','block')
-    if target == '.slide-2'
+  $('.vf-slide-toggle').click ->
+    $('.vf-slide-toggle').removeClass('active')
+    $(this).addClass('active')
+    if $(this).hasClass('vf-slide-1-toggle')
+      $('.slide-1').hide()
+      $('.slide-2').hide()
+      $('.slide-3').hide()
+      $('.slide-1').css('display','inline-block')
+    if $(this).hasClass('vf-slide-2-toggle')
+      $('.slide-1').hide()
+      $('.slide-2').hide()
+      $('.slide-3').hide()
+      $('.slide-2').css('display','inline-block')
+    if $(this).hasClass('vf-slide-3-toggle')
+      $('.slide-1').hide()
+      $('.slide-2').hide()
+      $('.slide-3').hide()
+      $('.slide-3').css('display','inline-block')
 
-      $(this).html("Almost Done")
-      nexTarget = '.slide-3'
-      $(this).attr('prev', target)
-      $(this).attr('target', nexTarget)
-    else if target == '.slide-3' 
-      $(this).hide();
-      $(".next-vendor-slide.slide-3").css('display','inline-block')
   $('.file-upload-trigger').click ->
     $('.file-upload-hidden').trigger('click');
   $('.file-cover-trigger').click ->
@@ -74,11 +79,11 @@ $ ->
       msg = num + " IMAGES SELECTED FOR SHOW"
       $('.file-media-trigger > span').text(msg)
       $('.file-media-trigger').addClass('image-selected')
-  $('.file-cover-hidden').change ->
-      msg = " IMAGE SELECTED FOR COVER PHOTO"
+  $('#cover_pic_').change (e) ->
+      msg = " Cover Picture: " + $(this).val().split("\\").pop()
       $('.file-cover-trigger > span').text(msg)
       $('.file-cover-trigger').addClass('image-selected')
-  $('.file-upload-hidden').change ->
-      msg = "IMAGE SELECTED FOR PROFILE PHOTO"
-      $('.file-upload-trigger > span').text(msg)
-      $('.file-upload-trigger').addClass('image-selected')
+  $('#profile_pic_').change (e) ->
+    msg = "Profile Picture: " + $(this).val().split("\\").pop()
+    $('.file-upload-trigger > span').text(msg)
+    $('.file-upload-trigger').addClass('image-selected')
