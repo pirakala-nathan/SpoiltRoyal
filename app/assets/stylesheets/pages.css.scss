@@ -5,6 +5,26 @@ $dark-text-color: #767676;
 $orange: #EA9B2C ;
 $green: #5AB075;
 $blue: #63BFDE;
+
+//admin panel
+.admin-pannel{
+  background-color:white;
+  .row{
+    border-bottom:1px solid $orange;
+    .title{
+      font-weight: bold;
+      font-size: 14px;
+    }
+  }
+  .row-0{
+    background-color:#F2C17D !important;
+  }
+  .title-row{
+    border-top:1px solid $orange
+  }
+
+
+}
 .post-modal{
   margin-left: calc(50% - 400px);
   width: 800px;

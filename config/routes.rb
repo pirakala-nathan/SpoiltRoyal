@@ -1,5 +1,7 @@
 Rails.application.routes.draw do
 
+  resources :feedbacks
+
   resources :options_city_lists
 
   resources :location_options
@@ -44,6 +46,7 @@ Rails.application.routes.draw do
   resources :posts
 
   get 'pages/home'
+  get 'admin' => 'pages#admin', :as => "admin"
   get 'forgotten_password' => 'pages#forgotten_password', :as => :forgotten_password
   post 'reset_password' => 'pages#reset_password', :as => :reset_password
 

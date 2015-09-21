@@ -5,6 +5,11 @@ class PagesController < ApplicationController
   def forgotten_password
   end
 
+  def admin
+    @feedbacks = Feedback.all
+  end 
+
+
   def reset_password
     @user = User.where(email: params[:email]).first
 

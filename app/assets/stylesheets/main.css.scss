@@ -18,6 +18,57 @@ $orange: #EA9B2C;
 		border:1px solid red;
 	}
 }
+//feedback modal
+#feedback-modal{
+  .feedback-content{
+    overflow: auto;
+    .modal-header{
+      .modal-title{
+        color: $orange;
+        font-weight: bold;
+        font-size:17px;
+      }
+    }
+    .modal-body{
+      margin-left: 29px;
+      overflow-y: auto;
+      *{
+        margin-bottom: 10px;
+      }
+      label{
+        padding-left:0px;
+        margin-bottom: 5px;
+        color: $orange;
+        span{
+          color: grey;
+        }
+      }
+      input{
+        border:1px solid $orange;
+      }
+      textarea{
+        border:1px solid $orange;
+        margin-bottom: 4px;
+        height: 250px;
+      }
+      .submit{
+        background-color:$orange;
+        color: white;
+        font-weight: bold;
+        border-radius: 0px;
+      }
+    }
+  }
+}
+
+
+
+
+
+
+
+
+
 
 .notification-card{
     height: 120px;

@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150817075318) do
+ActiveRecord::Schema.define(version: 20150920234236) do
 
   create_table "accepted_payment_methods", force: :cascade do |t|
     t.integer  "vendor_id",         limit: 4
@@ -143,6 +143,16 @@ ActiveRecord::Schema.define(version: 20150817075318) do
     t.string   "source_type", limit: 255
     t.datetime "created_at"
     t.datetime "updated_at"
+  end
+
+  create_table "feedbacks", force: :cascade do |t|
+    t.string   "email",         limit: 255
+    t.text     "content",       limit: 65535
+    t.string   "fist_name",     limit: 255
+    t.string   "last_name",     limit: 255
+    t.string   "feedback_type", limit: 255
+    t.datetime "created_at",                  null: false
+    t.datetime "updated_at",                  null: false
   end
 
   create_table "galleries", force: :cascade do |t|
