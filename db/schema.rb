@@ -113,8 +113,9 @@ ActiveRecord::Schema.define(version: 20150920234236) do
   end
 
   create_table "delivery_locations", force: :cascade do |t|
-    t.integer  "vendor_id",  limit: 4
-    t.integer  "city_id",    limit: 4
+    t.integer  "vendor_id",          limit: 4
+    t.integer  "city_id",            limit: 4
+    t.integer  "location_option_id", limit: 4
     t.datetime "created_at"
     t.datetime "updated_at"
   end

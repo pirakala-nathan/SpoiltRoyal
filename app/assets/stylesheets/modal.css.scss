@@ -206,10 +206,16 @@
 }
 
 .circle-sliders{
+	.disabled-circ{
+		.slider-circle:hover{
+			cursor: pointer
+		}
+	}
 	.circ-container{
 		margin-top: -20px;
 		height: 10px;
 		display: inline-block;
+		margin-bottom: 27px;
 		.active{
 			background: #EA9B2C !important;
 		}
@@ -219,6 +225,12 @@
 			height: 10px;
 			background: #FED4A9;
 
+		}
+		.slider-circle:hover{
+			cursor: pointer;
+		}
+		.active:hover{
+			cursor: default !important;
 		}
 	}
 }

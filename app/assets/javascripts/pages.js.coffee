@@ -20,22 +20,54 @@ $ ->
 	$('.join').click ->
 		$('#join').modal("show")
 	$('.seeking').click ->
-		$('.slide-1').hide();
-		$('.slide-2').show();
+		$('.slide-1').addClass('hidden')
+		$('.slide-2').removeClass('hidden');
 		$('.account-type').attr("value","Consumer")
 		$('.fb-signup').attr("href","/auth/facebook?type=Consumer")
 	$('.offering').click ->
-		$('.slide-1').hide();
-		$('.slide-2').show();
+		$('.slide-1').addClass('hidden')
+		$('.slide-2').removeClass('hidden');
 		$('.account-type').attr("value","Vendor")
 		$('.fb-signup').attr("href","/auth/facebook?type=Vendor")
 	$('.email-signup').click ->
-		$('.slide-2').hide();
-		$('.slide-3').show();
+		$('.slide-2').addClass('hidden')
+		$('.slide-3').removeClass('hidden');
 	$('#join').on 'hidden.bs.modal', ->
-		$('.slide-2').hide();
-		$('.slide-3').hide();
-		$('.slide-1').show();
+		$('.slide-2').addClass('hidden')
+		$('.slide-3').addClass('hidden')
+		$('.slide-1').removeClass('hidden');
+	$('.join-slide-2').click ->
+		if $('.slide-1').hasClass('hidden')
+			$('.slide-1').addClass('hidden')
+			$('.slide-3').addClass('hidden')
+			$('.slide-2').addClass('hidden')
+			$('.slide-2').removeClass('hidden');
+
+	$('.join-slide-1').click ->	
+		if $('.slide-1').hasClass('hidden')
+			$('.slide-1').addClass('hidden')
+			$('.slide-3').addClass('hidden')
+			$('.slide-2').addClass('hidden')
+			$('.slide-1').removeClass('hidden');
+			$('.account-type').attr("value","")
+
+	$('.join-slide-3').click ->
+		if $('.slide-1').hasClass('hidden')
+			$('.slide-1').addClass('hidden')
+			$('.slide-3').addClass('hidden')
+			$('.slide-2').addClass('hidden')
+			$('.slide-3').removeClass('hidden');
+	$('.add-p-location').click ->
+		setTimeout (->
+			country = parseInt $('.country-select:eq(0) option:selected').val();
+			province = parseInt $('.province-select:eq(0) option:selected').val() ;
+			city = parseInt $('.city-select:eq(0) option:selected').val();
+			num = $('.country-select').length;
+			num = num - 2
+			$('.country-select:eq('+num+') option:eq('+country+')').prop('selected', true);
+			$('.province-select:eq('+num+') option:eq('+province+')').prop('selected', true);
+			$('.citry-select:eq('+num+') option:eq('+citry+')').prop('selected', true);
+		), 500
 	$('.number-of-p-locations').change ->
 		NumberLocation = $('.address-label').length;
 		value = $(this).val()

@@ -28,13 +28,14 @@
                     OFFERING
                   %span.col-xs-12
                     services
-          .col-xs-12.circle-sliders
-            .circ-container.col-xs-12
-              .slider-circle.circleBase.active
-              .slider-circle.circleBase
-              .slider-circle.circleBase
+          / .col-xs-12.circle-sliders
+          /   .circ-container.col-xs-12.disable-circ
+          /     .slider-circle.circleBase.active.join-slide-1{onclick: "return false;"}
+          /     .slider-circle.circleBase.join-slide-2{onclick: "return false;"}
+          /     .slider-circle.circleBase.join-slide-3{onclick: "return false;"}
+          /   .click-blocker
 
-        .slide-2.col-xs-12.no-h-padding{style: "display:none"}
+        .slide-2.col-xs-12.no-h-padding.hidden
           = link_to auth_path(provider: "facebook", type:""), class: "fb-signup" do
             %button.col-xs-10.col-xs-offset-1.login-facebook
               SIGN UP WITH FACEBOOK
@@ -58,10 +59,10 @@
 
           .col-xs-12.circle-sliders
             .circ-container.col-xs-12
-              .slider-circle.circleBase
-              .slider-circle.circleBase.active
-              .slider-circle.circleBase
-        .slide-3.col-xs-12.no-h-padding{style: "display:none"}
+              .slider-circle.circleBase.join-slide-1
+              .slider-circle.circleBase.active.join-slide-2
+              .slider-circle.circleBase.join-slide-3
+        .slide-3.col-xs-12.no-h-padding.hidden
           .col-xs-10.col-xs-offset-1.no-h-padding.form-container
             = form_for User.new, id: "new-user" do |f|
               = f.text_field :first_name, class: "first-name", placeholder: "First Name"
@@ -75,9 +76,9 @@
               = f.submit "SIGN UP", class: "col-xs-12 no-h-padding submit"
             .col-xs-12.circle-sliders
               .circ-container.col-xs-12
-                .slider-circle.circleBase
-                .slider-circle.circleBase
-                .slider-circle.circleBase.active
+                .slider-circle.circleBase.join-slide-1
+                .slider-circle.circleBase.join-slide-2
+                .slider-circle.circleBase.active.join-slide-3
 
 
 
