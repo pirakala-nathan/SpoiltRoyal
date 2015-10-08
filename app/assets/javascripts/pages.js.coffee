@@ -1,7 +1,7 @@
 # Place all the behaviors and hooks related to the matching controller here.
 # All this logic will automatically be available in application.js.
 # You can use CoffeeScript in this file: http://coffeescript.org/
-
+pNum =0;
 $ ->
 	$('.stars').raty()
 	$('.dtoggle').click ->
@@ -62,11 +62,19 @@ $ ->
 			country = parseInt $('.country-select:eq(0) option:selected').val();
 			province = parseInt $('.province-select:eq(0) option:selected').val() ;
 			city = parseInt $('.city-select:eq(0) option:selected').val();
-			num = $('.country-select').length;
-			num = num - 2
-			$('.country-select:eq('+num+') option:eq('+country+')').prop('selected', true);
-			$('.province-select:eq('+num+') option:eq('+province+')').prop('selected', true);
-			$('.citry-select:eq('+num+') option:eq('+citry+')').prop('selected', true);
+			bphone = $('.business_phone:eq(1)').val();
+			ophone = $('.other_phone:eq(1)').val();
+			bemail = $('.business_email:eq(1)').val();
+			oemail = $('.business_website:eq(1)').val();
+			pNum = pNum + 1;
+			labelnum = pNum + 1;
+			$('.country-select:eq('+pNum+') option:eq('+country+')').prop('selected', true);
+			$('.province-select:eq('+pNum+') option:eq('+province+')').prop('selected', true);
+			$('.citry-select:eq('+pNum+') option:eq('+city+')').prop('selected', true);
+			$('.business_phone:eq('+labelnum+')').val(bphone);
+			$('.other_phone:eq('+labelnum+')').val(ophone);
+			$('.business_email:eq('+labelnum+')').val(bemail);
+			$('.business_website:eq('+labelnum+')').val(oemail);
 		), 500
 	$('.number-of-p-locations').change ->
 		NumberLocation = $('.address-label').length;
