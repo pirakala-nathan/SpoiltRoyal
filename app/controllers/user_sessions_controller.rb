@@ -16,7 +16,16 @@ class UserSessionsController < ApplicationController
         format.html { redirect_to overview_user_path(@user_session.user)}
         format.json { render :show, status: :created, location: @user_session }
       else
-        format.html { redirect_to :back, notice: @user.errors.full_messages * ', ' }
+        flash[:passError] = false
+        flash[:emailError] = false
+        @user_session.errors.messages.each do |m|
+          if(m.first == :password)
+            flash[:passError] =true
+          else
+            flash[:emailError] =true
+          end
+        end
+        format.html { redirect_to root_path(:error => "login"), notice: @user_session.errors.full_messages * ', ' }
         format.json { render json: @user_session.errors, status: :unprocessable_entity }
       end
     end
@@ -29,7 +38,7 @@ class UserSessionsController < ApplicationController
     @user_session.destroy
 
     respond_to do |format|
-      format.html { redirect_to :root, notice: 'User session was successfully destroyed.' }
+      format.html { redirect_to root_path( passError: 'test'), notice: 'User session was successfully destroyed.' }
       format.json { head :no_content }
     end
   end

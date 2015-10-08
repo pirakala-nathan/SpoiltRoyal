@@ -22,8 +22,8 @@
         .row
           .col-xs-12
             = form_for UserSession.new do |f|
-              = f.text_field :email, :placeholder => "Email Address", class: "login-email col-xs-10 col-xs-offset-1"
-              = f.password_field :password, :placeholder => "Password", class: "login-pass col-xs-10 col-xs-offset-1", placeholer: "Password"
+              = f.text_field :email, :placeholder => "Email Address", class: "login-email col-xs-10 col-xs-offset-1 #{ 'has-error' if flash[:emailError]}"
+              = f.password_field :password, :placeholder => "Password", class: "login-pass col-xs-10 col-xs-offset-1 #{ 'has-error' if flash[:passError]}", placeholer: "Password"
               = f.submit "ENTER NEX", class: "login-submit col-xs-10 col-xs-offset-1 "
             = link_to "Forgot Password", :forgotten_password
 
