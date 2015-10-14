@@ -57,25 +57,59 @@ $ ->
 			$('.slide-3').addClass('hidden')
 			$('.slide-2').addClass('hidden')
 			$('.slide-3').removeClass('hidden');
-	$('.add-p-location').click ->
-		setTimeout (->
-			country = parseInt $('.country-select:eq(0) option:selected').val();
-			province = parseInt $('.province-select:eq(0) option:selected').val() ;
-			city = parseInt $('.city-select:eq(0) option:selected').val();
-			bphone = $('.business_phone:eq(1)').val();
-			ophone = $('.other_phone:eq(1)').val();
-			bemail = $('.business_email:eq(1)').val();
-			oemail = $('.business_website:eq(1)').val();
-			pNum = pNum + 1;
-			labelnum = pNum + 1;
-			$('.country-select:eq('+pNum+') option:eq('+country+')').prop('selected', true);
-			$('.province-select:eq('+pNum+') option:eq('+province+')').prop('selected', true);
-			$('.citry-select:eq('+pNum+') option:eq('+city+')').prop('selected', true);
-			$('.business_phone:eq('+labelnum+')').val(bphone);
-			$('.other_phone:eq('+labelnum+')').val(ophone);
-			$('.business_email:eq('+labelnum+')').val(bemail);
-			$('.business_website:eq('+labelnum+')').val(oemail);
-		), 500
+	$('td.new.day').click ->
+		$('.datepicker-days').css('display','none')
+	$(document).on 'nested:fieldAdded', (event) ->
+		# this field was just inserted into your form
+		country = parseInt $('.country-select:eq(0) option:selected').val();
+		province = parseInt $('.province-select:eq(0) option:selected').val() ;
+		city = parseInt $('.city-select:eq(0) option:selected').val();
+		bphone = $('.business_phone:eq(1)').val();
+		ophone = $('.other_phone:eq(1)').val();
+		bemail = $('.business_email:eq(1)').val();
+		bweb = $('.business_website:eq(1)').val();
+		field = event.field
+		countryNew = field.find('.country-select')
+		countryId = '#'+$(countryNew).attr("id") + ' option:eq('+country+')'
+		provinceNew = field.find('.province-select')
+		$(provinceNew).addClass('provinceNow')
+		provinceId = '#'+$(provinceNew).attr("id") + ' option:eq('+province+')'
+		cityNew = field.find('.city-select')
+		cityId = '#'+$(cityNew).attr("id") + ' option:eq('+city+')'
+		bphoneNew = field.find('.business_phone')
+		ophoneNew = field.find('.other_phone')
+		bemailNew = field.find('.business_email')
+		bwebNew = field.find('.business_website')
+		$(countryId).prop('selected', true);
+		$('.provinceNow' + ' option:eq('+province+')').prop('selected', true);
+		$('.provinceNow').removeClass('provinceNow')
+		$(cityId).prop('selected', true);
+		$(bphoneNew).val(bphone)
+		$(ophoneNew).val(ophone)
+		$(bemailNew).val(bemail)
+		$(bwebNew).val(bweb)
+		# field = event.field
+		# country = field.find('.country-select')
+		# console.log(country);
+	# $('.add-p-location').click ->
+	# 	setTimeout (->
+	# 		country = parseInt $('.country-select:eq(0) option:selected').val();
+	# 		province = parseInt $('.province-select:eq(0) option:selected').val() ;
+	# 		city = parseInt $('.city-select:eq(0) option:selected').val();
+	# 		bphone = $('.business_phone:eq(1)').val();
+	# 		ophone = $('.other_phone:eq(1)').val();
+	# 		bemail = $('.business_email:eq(1)').val();
+	# 		oemail = $('.business_website:eq(1)').val();
+	# 		pNum = pNum + 1;
+	# 		labelnum = pNum + 1;
+	# 		$('.country-select:eq('+pNum+') option:eq('+country+')').prop('selected', true);
+	# 		$('.province-select:eq('+pNum+') option:eq('+province+')').prop('selected', true);
+	# 		$('.citry-select:eq('+pNum+') option:eq('+city+')').prop('selected', true);
+	# 		$('.business_phone:eq('+labelnum+')').val(bphone);
+	# 		$('.other_phone:eq('+labelnum+')').val(ophone);
+	# 		$('.business_email:eq('+labelnum+')').val(bemail);
+	# 		$('.business_website:eq('+labelnum+')').val(oemail);
+	# 	), 500
 	$('.number-of-p-locations').change ->
 		NumberLocation = $('.address-label').length;
 		value = $(this).val()

@@ -3,7 +3,8 @@
 # You can use CoffeeScript in this file: http://coffeescript.org/
 $ ->
 # for the post form datepicker
-  $('.datepicker').datepicker();
+  $('.datepicker').datepicker
+    autoclose: true
   $('.post-your-own.next').click ->
     $('.slide-1').hide();
     $('.submit.slide-2').removeClass('slide-2')

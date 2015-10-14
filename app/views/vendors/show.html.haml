@@ -40,8 +40,8 @@
               - @vendor.media.each do |asset|
                 = image_tag asset.image(:vendor_media)
             .col-xs-12.no-h-padding.buttons
-              .contact-us
-                = mail_to @vendor.user.email, "Contact us", subject: "Hi, I saw you on NEX."
+              / .contact-us
+              /   = mail_to @vendor.user.email, "Contact us", subject: "Hi, I saw you on NEX."
 
 
 
