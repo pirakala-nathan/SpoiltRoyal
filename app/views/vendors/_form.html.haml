@@ -71,25 +71,25 @@
         .delivery
           .checkbox.checkbox-orange
             = f.check_box :selling, class: "delivery-btn"
-            = f.label "I ship products to my customer"
+            = f.label "I deliver to"
           .delivery-locations
             = f.fields_for :delivery_location do |dl|
               .checkbox.checkbox-orange
 
-                = dl.check_box :location_option_id, { checked: false }, "1", '0' 
-            
+                = dl.check_box :location_option_id, { checked: false }, "1", '0'
+
                 = dl.label "Global"
               .checkbox.checkbox-orange
-                = dl.check_box :location_option_id,{ checked: false }, "2", '0' 
+                = dl.check_box :location_option_id,{ checked: false }, "2", '0'
                 = dl.label "North America"
               .checkbox.checkbox-orange
-                = dl.check_box :location_option_id,{ checked: false }, "3", '0' 
+                = dl.check_box :location_option_id,{ checked: false }, "3", '0'
                 = dl.label "Canada"
               .checkbox.checkbox-orange
-                = dl.check_box :location_option_id,{ checked: false }, "4", '0' 
+                = dl.check_box :location_option_id,{ checked: false }, "4", '0'
                 = dl.label "Ontario"
               .checkbox.checkbox-orange
-                = dl.check_box :location_option_id,{ checked: false }, "5", '0' 
+                = dl.check_box :location_option_id,{ checked: false }, "5", '0'
                 = dl.label "GTA"
         .service
           .checkbox.checkbox-orange
