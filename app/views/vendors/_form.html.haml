@@ -1,5 +1,5 @@
 
-= nested_form_for @vendor, class: "form-group", html: { multipart: true } do |f|
+= nested_form_for @vendor, class: "form-group vendor-form", html: { multipart: true } do |f|
   / Vendor Part Starts-------------------------------------------------
   - if @vendor.errors.any?
     #error_explanation
@@ -14,9 +14,9 @@
       .col-xs-6.no-h-padding
         = f.label :business_name
       .col-xs-6.no-h-padding.established-label
-        = f.label :establish_date
+        = f.label :establish_date, :style => "margin-left: 11px;"
     .col-xs-10.col-xs-offset-1
-      = f.text_field :business_name, class: "business_name"
+      = f.text_field :business_name, class: "business_name required"
       = f.text_field :establish_date, class: "datepicker", placeholder: "mm/dd/yyyy"
     .col-xs-10.col-xs-offset-1.phyiscal-location
 
@@ -26,10 +26,10 @@
           Physical Location
         .col-xs-6
           =pl.link_to_remove "REMOVE", class: "remove-p-location"
-        = pl.label :address, class: "no-h-padding address-label mt-30"
-        = pl.label :postal_code, class: " no-h-padding postal-label mt-30 no-error"
-        = pl.text_field :address, class: "address-label mb-13"
-        = pl.text_field :postal_code, class: "postal-label mb-13 postal"
+        = pl.label :address, class: "no-h-padding address-label mt-30 "
+        = pl.label :postal_code, class: " no-h-padding postal-label  mt-30 no-error"
+        = pl.text_field :address, class: "address-label address-input  mb-13 required"
+        = pl.text_field :postal_code, class: "postal-label postal-input mb-13 postal required"
         .row.no-h-padding
           = render 'layouts/location_selector', location: pl
         = pl.label :business_phone, class: "business_phone"
@@ -74,23 +74,7 @@
             = f.label "I deliver to"
           .delivery-locations
             = f.fields_for :delivery_location do |dl|
-              .checkbox.checkbox-orange
-
-                = dl.check_box :location_option_id, { checked: false }, "1", '0'
-
-                = dl.label "Global"
-              .checkbox.checkbox-orange
-                = dl.check_box :location_option_id,{ checked: false }, "2", '0'
-                = dl.label "North America"
-              .checkbox.checkbox-orange
-                = dl.check_box :location_option_id,{ checked: false }, "3", '0'
-                = dl.label "Canada"
-              .checkbox.checkbox-orange
-                = dl.check_box :location_option_id,{ checked: false }, "4", '0'
-                = dl.label "Ontario"
-              .checkbox.checkbox-orange
-                = dl.check_box :location_option_id,{ checked: false }, "5", '0'
-                = dl.label "GTA"
+              = render 'layouts/location_selector', location: dl
         .service
           .checkbox.checkbox-orange
             = f.check_box :servicing, class: "service-btn"
@@ -145,7 +129,7 @@
       .col-xs-12.finish-msg
         You're done for now, wasn't that easy? You are ready for busniess at NEX! Don't worry if you didnt fill in everything. You can modify them later!
   .slide-buttons.col-xs-12
-    = f.submit "Go To Your Profile", class: "next-vendor-slide slide-3"
+    = f.submit "Go To Your Profile", class: "next-vendor-slide slide-3 final-submit"
   .col-xs-12.fill-cont
     = link_to "Fill this later", overview_user_path(current_user), class: "fill-later"
     /   .col-xs-6.no-h-padding

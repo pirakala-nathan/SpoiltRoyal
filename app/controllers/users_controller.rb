@@ -139,7 +139,7 @@ class UsersController < ApplicationController
         format.html { redirect_to  account_user_path(@user,:new_user => true)}
         format.json { render :show, status: :created, location: @user }
       else
-        format.html { redirect_to :back, notice: @user.errors.full_messages * ', ' }
+        format.html { redirect_to root_path(:error => "join"), notice: @user.errors.full_messages * ', ' }
         format.json { render json: @user.errors, status: :unprocessable_entity }
       end
     end

@@ -1,6 +1,8 @@
 # Place all the behaviors and hooks related to the matching controller here.
 # All this logic will automatically be available in application.js.
 # You can use CoffeeScript in this file: http://coffeescript.org/
+
+
 checkPostal = (code,letter) ->
   length = code.length
   length = length % 2
@@ -21,8 +23,25 @@ $ ->
       code= code.slice(0,-1)
       $(this).val(code)
 
-
-
+  $('.final-submit').click (e)->
+    error = false;
+    $('.required').each ->
+      if $(this).val() == ""
+        $('.vf-slide-toggle').removeClass('active')
+        $('.vf-slide-1-toggle').addClass('active')
+        $('.slide-1').hide()
+        $('.slide-2').hide()
+        $('.slide-3').hide()
+        $('.slide-1').css('display','inline-block')
+        $(this).css('border','1px solid red')
+        error = true
+      else
+        $(this).css('border','1px solid #ffc285')
+        # ...
+    if error
+      e.preventDefault()
+      
+   
   $('.stars-raiting.form > img').click ->
     val = $('.stars-raiting > input ').val()
     $('.raiting').val(val)

@@ -231,8 +231,10 @@ location_five = LocationOption.create(
 #All
 city = City.all
 city.each do |c|
- OptionsCityList.create(location_option_id:location_one.id,
-   city_id:c.id)
+  OptionsCityList.create(
+    location_option_id: location_one.id,
+    city_id: c.id
+  )
 end
 #North America
 count = Country.first

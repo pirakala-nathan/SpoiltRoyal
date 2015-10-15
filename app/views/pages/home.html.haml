@@ -133,6 +133,17 @@
 = render 'login'
 = render 'join'
 = render 'feedback_modal'
+- if params[:error] == "login"
+  :javascript
+    $(document).ready(function(){
+      $("#login").modal('show')
+    })
+- elsif params[:error] == "join"
+  :javascript
+    $(document).ready(function(){
+      $("#join").modal('show')
+    })
+  
 %footer
   © 2014 Nathan’s Exchange Inc. All Rights Reserved.
 :javascript
