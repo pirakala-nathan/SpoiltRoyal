@@ -129,7 +129,11 @@
       .col-xs-12.finish-msg
         You're done for now, wasn't that easy? You are ready for busniess at NEX! Don't worry if you didnt fill in everything. You can modify them later!
   .slide-buttons.col-xs-12
-    = f.submit "Go To Your Profile", class: "next-vendor-slide slide-3 final-submit"
+    .prev-vendor-slide.hidden{:target => ".slide-1", :current => ".slide-2", class: "#{'hidden' if !@newVendor}"}
+      Back
+    = f.submit "Save Profile", class: "next-vendor-slide #{'slide-3' if @newVendor} final-submit"
+    .next-vendor-slide.next{:target => ".slide-2", :prev => ".slide-1", class: "#{'hidden' if !@newVendor}"}
+      Next
   .col-xs-12.fill-cont
     = link_to "Fill this later", overview_user_path(current_user), class: "fill-later"
     /   .col-xs-6.no-h-padding

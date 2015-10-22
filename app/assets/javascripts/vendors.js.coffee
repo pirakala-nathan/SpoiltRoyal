@@ -86,7 +86,47 @@ $ ->
       $('.slide-2').hide()
       $('.slide-3').hide()
       $('.slide-3').css('display','inline-block')
+  $('.next-vendor-slide').click ->
+    target = $(this).attr('target')
+    prev = $(this).attr('prev')
+    $(prev).hide();
+    $(target).css('display','block')
+    if target == '.slide-2'
+      $('.prev-vendor-slide').removeClass('hidden')
+      $(this).html("Almost Done")
+      nexTarget = '.slide-3'
+      $(this).attr('prev', target)
+      $(this).attr('target', nexTarget)
+    else if target == '.slide-3' 
+      $(this).hide();
+      $('.prev-vendor-slide').attr('current','.slide-3')
+      $('.prev-vendor-slide').attr('target','.slide-2')
+      $(".next-vendor-slide.slide-3").css('display','inline-block') 
+  
+  $('.prev-vendor-slide').click ->
+    target = $(this).attr('target')
+    current = $(this).attr('current')
+    $(current).hide();
+    $(target).css('display','block')
+    nextDiv = $(".next-vendor-slide.next")
+    if target == '.slide-2'
+      nexTarget = '.slide-1'
+      $(this).attr('current', target)
+      $(this).attr('target', nexTarget)
+      $(nextDiv).css('display','inline-block')        
+      $(nextDiv).html("Almost Done")
+      nexTarget = '.slide-3'
+      $(nextDiv).attr('prev', target)
+      $(nextDiv).attr('target', nexTarget)
 
+    else if target == '.slide-1' 
+      $(this).addClass('hidden');
+      $(nextDiv).html('Next')
+      nexTarget = '.slide-2'
+      $(nextDiv).attr('prev', target)
+      $(nextDiv).attr('target', nexTarget)
+
+      
   $('.file-upload-trigger').click ->
     $('.file-upload-hidden').trigger('click');
   $('.file-cover-trigger').click ->

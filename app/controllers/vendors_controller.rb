@@ -54,10 +54,11 @@ class VendorsController < ApplicationController
     @vendor.external_links.build
     @vendor.assets.build
     @vendor.personal_infos.build
-  end
+end
 
   # GET /vendors/1/edit
   def edit
+    
   end
 
   # POST /vendors

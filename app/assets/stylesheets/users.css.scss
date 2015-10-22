@@ -717,19 +717,23 @@ $blue: #63BFDE;
 		.vendor-form{
 			.slide-buttons{
 				text-align: center;
-				.next-vendor-slide{
+				margin-top: 50px;
+				*{
 					display: inline-block;
 					background-color: $orange;
 					height: 50px;
-					margin-top: 50px;
 					width: auto;
-					padding-left: 50px;
-					padding-right: 50px;
+					margin-top: -1px;
+					width: 20%;
 					color: white;
 					line-height: 50px;
 					font-size: 18px;
-					border:0
+					border:0;
+					position: relative;
 
+				}
+				.final-submit{
+					top: 1px !important;
 				}
 				.slide-3{
 					display: none;

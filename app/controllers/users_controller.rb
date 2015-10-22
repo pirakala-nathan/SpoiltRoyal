@@ -48,7 +48,7 @@ class UsersController < ApplicationController
   end
 
   def account
-    if @user.account_type = 'Vendor'
+    if @user.account_type == 'Vendor'
       @vendor = @user.account
       @vendor.physical_locations.build
       @vendor.vendor_subscriptions.build
@@ -58,8 +58,12 @@ class UsersController < ApplicationController
       @vendor.assets.build
       @vendor.personal_infos.build
       @vendor.accepted_payment_methods.build
-
+      if @vendor.created_at == @vendor.updated_at
+        @newVendor = true
+      else
+        @newVendor = false
       end
+    end
   end
 
   #dashbboard-end//

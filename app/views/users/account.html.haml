@@ -3,7 +3,7 @@
   .opacity-cover
 .custom.container
   .account-cont
-    - if current_user.account_type == "Vendor"
+    - if current_user.account_type == "Vendor" && !@newVendor
       .col-xs-2.col-xs-offset-3.text-center.active.vf-slide-1-toggle.vf-slide-toggle
         1
       .col-xs-2.text-center.vf-slide-2-toggle.vf-slide-toggle
