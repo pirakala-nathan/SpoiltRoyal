@@ -71,7 +71,7 @@
         .delivery
           .checkbox.checkbox-orange
             = f.check_box :selling, class: "delivery-btn"
-            = f.label "I ship products to my customer"
+            = f.label "I deliver to"
           .delivery-locations
             = f.fields_for :delivery_location do |dl|
               = render 'layouts/location_selector', location: dl
