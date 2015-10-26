@@ -1,5 +1,5 @@
 
-= nested_form_for @vendor, class: "form-group vendor-form", html: { multipart: true } do |f|
+= nested_form_for @vendor, class: "form-group vendor-form ", html: { multipart: true } do |f|
   / Vendor Part Starts-------------------------------------------------
   - if @vendor.errors.any?
     #error_explanation
@@ -22,17 +22,17 @@
 
       =f.fields_for :physical_locations do |pl|
 
-        .h5.col-xs-6.no-h-padding
+        .h5.col-xs-6.no-h-padding.rm-on-edit
           Physical Location
-        .col-xs-6
+        .col-xs-6.rm-on-edit
           =pl.link_to_remove "REMOVE", class: "remove-p-location"
         = pl.label :address, class: "no-h-padding address-label mt-30 "
         = pl.label :postal_code, class: " no-h-padding postal-label  mt-30 no-error"
         = pl.text_field :address, class: "address-label address-input  mb-13 required"
         = pl.text_field :postal_code, class: "postal-label postal-input mb-13 postal required"
-        .row.no-h-padding
+        .row.no-h-padding.rm-on-edit
           = render 'layouts/location_selector', location: pl
-        = pl.label :business_phone, class: "business_phone"
+        = pl.label :business_phone, class: "business_phone rm-o"
         = pl.label :other_phone,class: "other_phone"
         = pl.text_field :business_phone,class: "business_phone ph", type: "tel"
         = pl.text_field :other_phone,class: "other_phone"
@@ -108,6 +108,19 @@
         FINALLY...
       .title
         SHOW OFF YOUR BUSINESS!
+      - if !@newVendor
+        .col-xs-12.no-h-padding.previous-images
+          - if @vendor.cover_pic != nil
+            .sub-heading Your Current Cover Picture
+            .images
+              - @image = @vendor.cover_pic.image
+              = image_tag @image.url(:vendor_cover), class: "cover-pic"
+          
+          -if @vendor.media.length > 0
+            .sub-heading Pictures You already Uploaded
+            .images
+              - @vendor.media.each do |asset|
+                = image_tag asset.image(:vendor_media)
       .h5.col-xs-12.no-h-padding
         Upload a picture of your business
       = file_field_tag "profile_pic[]", type: :file, class: "file-upload-hidden"

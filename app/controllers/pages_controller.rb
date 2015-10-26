@@ -18,7 +18,7 @@ class PagesController < ApplicationController
         new_pw = [*('a'..'z'),*('0'..'9')].shuffle[0, 16].join
         @user.update(password: new_pw, password_confirmation: new_pw)
         UserMailer.reset_password(@user, new_pw).deliver
-        redirect_to :root, notice: "Password reset success, please check email."
+        redirect_to logout_path, notice: "Password reset success, please check email."
       else
         redirect_to :back, notice: "Invalid credentials."
       end

@@ -26,5 +26,5 @@
           Edit Your Information:
     - if current_user.account_type == "Vendor"
       
-      .vendor-form
+      .vendor-form{class: "new-#{@newVendor}"}
         = render "vendors/form"

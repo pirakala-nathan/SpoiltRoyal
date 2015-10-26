@@ -3,6 +3,7 @@
 # You can use CoffeeScript in this file: http://coffeescript.org/
 
 
+
 checkPostal = (code,letter) ->
   length = code.length
   length = length % 2
@@ -16,6 +17,10 @@ checkPostal = (code,letter) ->
   else
     false
 $ ->
+  if $('.vendor-form').hasClass('new-false')
+    $('.remove-p-location').last().trigger('click')
+    # ...
+  
   $('.postal').keyup (e)->
     letter = String.fromCharCode(e.which)
     code = $(this).val();
@@ -25,7 +30,7 @@ $ ->
 
   $('.final-submit').click (e)->
     error = false;
-    $('.required').each ->
+    $('.required.first').each ->
       if $(this).val() == ""
         $('.vf-slide-toggle').removeClass('active')
         $('.vf-slide-1-toggle').addClass('active')

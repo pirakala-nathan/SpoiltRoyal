@@ -819,6 +819,20 @@ $blue: #63BFDE;
 					color: #639589;
 					padding-bottom: 15px;
 				}
+				.previous-images{
+					padding-top:15px;
+					padding-bottom: 15px;
+					.sub-heading{
+						padding-top: 10px;
+					}
+					.images{
+						padding-top:10px;
+						padding-bottom:10px;
+						.cover-pic{
+						  margin-left: -12.333%;
+						}
+					}
+				}
 				.title{
 					font-size: 18px;
 					font-weight: bold;
