@@ -1,0 +1,53 @@
+I"Ë(function() {
+  $(function() {
+    $('.datepicker').datepicker({
+      autoclose: true
+    });
+    $('.post-your-own.next').click(function() {
+      $('.slide-1').hide();
+      $('.submit.slide-2').removeClass('slide-2');
+      return $('.slide-2').css('display', 'block');
+    });
+    $('.add-img').click(function() {
+      return $('.img-btn.non-hidden').click();
+    });
+    $('.img-btn.non-hidden').change(function() {
+      var pictureName;
+      pictureName = $(this).val();
+      $(this).removeClass('non-hidden');
+      $('.next-imgs').append('<input class="img-btn non-hidden" id="images_" multiple="multiple" name="images[]" type="file">');
+      pictureName = pictureName.replace('C:\\fakepath\\', '');
+      return alert(pictureName);
+    });
+    $('.more-or-less').click(function() {
+      if ($(this).hasClass('view-less')) {
+        $('.rest-of-bids').slideUp('slow');
+        $(this).removeClass('view-less');
+        $(this).html('View More');
+        return $(this).addClass('view-more');
+      } else {
+        $('.rest-of-bids').slideDown('slow');
+        $(this).addClass('view-less');
+        $(this).html('View Less');
+        return $(this).removeClass('view-more');
+      }
+    });
+    return $('.more-or-less-comments').click(function() {
+      if ($(this).hasClass('view-less')) {
+        $('.rest-of-comments').slideUp('slow');
+        $(this).removeClass('view-less');
+        $(this).html('View More');
+        return $(this).addClass('view-more');
+      } else {
+        $('.rest-of-comments').slideDown('slow');
+        $(this).addClass('view-less');
+        $(this).html('View Less');
+        return $(this).removeClass('view-more');
+      }
+    });
+  });
+
+  $('.datepicker').datepicker();
+
+}).call(this);
+:ET

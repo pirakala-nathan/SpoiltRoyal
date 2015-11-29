@@ -1,0 +1,1026 @@
+// Place all the styles related to the users controller here.
+// They will automatically be included in application.css.
+// You can use Sass (SCSS) here: http://sass-lang.com/
+$dark-text-color: #767676;
+$orange: #EA9B2C ;
+$green: #5AB075;
+$blue: #63BFDE;
+.padding-left-30{
+	padding-left: 30px;
+}
+.custom.container{
+	width:1000px;
+	min-height: 10px;
+	.watched-posts{
+		.bid-slide-down{
+			// min-height: 190px;	
+			overflow: auto;
+			display: none;
+			border: 1px solid #E9E9E9;
+			.gradient{
+				height: 30px;
+				width:100%;
+				background: #f2f2f2;
+				background:-moz-linear-gradient(top, #f2f2f2, #f7f7f7);
+				background:-webkit-linear-gradient(top, #f2f2f2, #f7f7f7);
+				background:-o-linear-gradient(top, #f2f2f2, #f7f7f7);
+				background:-ms-linear-gradient(top, #f2f2f2, #f7f7f7);
+				background:linear-gradient(top, #f2f2f2, #f7f7f7);
+				filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#f2f2f2', endColorstr='#f7f7f7',GradientType=0);
+			}
+			.title{
+				padding-left: 30px;
+				font-weight: bold;
+				color: #4C423C;
+				margin-top: -8px;
+				font-size: 15px;
+				padding-bottom: 30px;
+			}
+			.all-bids-table{
+				margin-bottom: 30px;
+				.bid-vendors{
+					width: 60%;
+					padding-left: 30px;
+					float: left;
+				}
+				.bid-amounts{
+					width: 40%;
+					padding-left: 0px;
+					float: right;
+				}
+				.bid-column{
+					.column-title{
+						color: #707070;
+						font-weight: bold;
+						margin-bottom: 10px;
+					}
+					.column-value{
+						margin-bottom: 8px;
+					}
+
+				}
+			}
+		}
+		.post{
+			width: 100%;
+			height: 120px;
+			background-color: white;
+			border-right: 1px solid #E9E9E9;
+			border-left: 1px solid #E9E9E9;
+			border-bottom: 1px solid #E9E9E9;
+			.watched-date{
+				.in-grey{
+					color: #9DA2A3;
+					font-weight: bold;
+					font-size: 15px;
+					margin-top: 43px;
+				}
+				.grey-date{
+					color:#BBBFC3;
+					font-size: 13px;
+
+				}
+				span{
+					white-space: nowrap;
+					display: inline-block;
+					vertical-align: middle;
+				}
+			}
+			.post-date{
+				line-height: 120px;
+				height:100;
+			}
+			.links-container{
+				.bid-links{
+					position: relative;
+					margin-top: 20px;
+
+					a{
+						display: inline-block;
+						margin-bottom: 3px;
+					}
+					a:hover{
+						color: rgb(66, 139, 202);
+					}
+					.link{
+						color: rgb(66, 139, 202);
+						margin-bottom: 3px;
+					}
+					.link:hover{
+						cursor: pointer;
+						text-decoration: underline;
+					}
+
+				} 
+			}
+			.post-info{
+				padding-left: 15px;
+				.post-text{
+					height: 100%;
+					float: right;
+					width: calc(100% - 60px); 
+					padding-left: 20px;
+					.title{
+						color: $orange;
+						font-weight: bold;
+						margin-top: 42.5px;
+						margin-bottom:3px;
+
+					}
+					.info{
+						overflow: hidden;
+						text-overflow: ellipsis;
+						white-space: nowrap;
+					}
+				}
+				.img-container{
+					height: 120px;
+					width: 60px;
+					padding: 0px;
+					float: left;
+					.bid-img{
+						position: relative;
+						top: 50%;
+						margin-top: -30px;
+					}
+				}
+			}
+		}
+	}
+	.convo-list{
+		.convo{
+			width: 100%;
+			padding-top: 30px;
+			padding-bottom: 30px;
+			background-color: white;
+			border-right: 1px solid #E9E9E9;
+			border-left: 1px solid #E9E9E9;
+			border-bottom: 1px solid #E9E9E9;
+			overflow: auto;
+			.img-container{
+				padding-left: 30px;
+			}
+			.status{
+				.bid-status.bid-pending{
+					color: $orange;
+					font-weight: bold;
+				}
+				.bid-status.accepted{
+					color: $green;
+					font-weight: bold;
+				}
+				.bid-status{
+					font-weight: bold;
+					margin-bottom: 10px;
+				}
+
+			}
+			.convo-info{
+				padding-left: 30px;
+				.convo-subject{
+					display: block;
+					color: $orange;
+					font-weight:bold;
+					padding-bottom: 5px;
+				}
+				.convo-latest-message{
+					display: block; /* Fallback for non-webkit */
+				  display: -webkit-box;
+				  width: calc(700px - 60px);
+					max-height: 14px*2*1.3; /* Fallback for non-webkit */
+				  font-size: 14;
+				  line-height: 1.3;
+				  -webkit-line-clamp: 2;
+				  -webkit-box-orient: vertical;
+				  overflow: hidden;
+				  text-overflow: ellipsis;
+				  margin-bottom: 5px;
+				}
+				.message-date{
+					color:#BBBFC3;
+					font-size: 13px;
+				}
+			}
+		}
+	}
+	.user-bids{
+		width: 100%;
+		
+		
+		.bid-slide-down{
+			min-height: 190px;	
+			overflow: auto;
+			display: none;
+			border: 1px solid #E9E9E9;
+			.gradient{
+				height: 30px;
+				width:100%;
+				background: #f2f2f2;
+				background:-moz-linear-gradient(top, #f2f2f2, #f7f7f7);
+				background:-webkit-linear-gradient(top, #f2f2f2, #f7f7f7);
+				background:-o-linear-gradient(top, #f2f2f2, #f7f7f7);
+				background:-ms-linear-gradient(top, #f2f2f2, #f7f7f7);
+				background:linear-gradient(top, #f2f2f2, #f7f7f7);
+				filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#f2f2f2', endColorstr='#f7f7f7',GradientType=0);
+			}
+			.title{
+				padding-left: 30px;
+				font-weight: bold;
+				color: #4C423C;
+				margin-top: -8px;
+				font-size: 15px;
+				padding-bottom: 30px;
+			}
+			.all-bids-table{
+				margin-bottom: 30px;
+				.bid-vendors{
+					width: 60%;
+					padding-left: 30px;
+					float: left;
+				}
+				.bid-amounts{
+					width: 40%;
+					padding-left: 0px;
+					float: right;
+				}
+				.bid-column{
+					.column-title{
+						color: #707070;
+						font-weight: bold;
+						margin-bottom: 10px;
+					}
+					.column-value{
+						margin-bottom: 8px;
+					}
+
+				}
+			}
+			.info-container{	
+				margin-bottom: 30px;
+				.col-xs-4{
+					.attr{
+						color: #707070;
+						font-weight: bold;
+						padding-right: 30px;
+						width: 105px;
+						float: left;
+						margin-bottom: 15px;
+					}
+					.value{
+						width: calc(100% - 105px);
+						position: relative;
+						float: right;
+						text-align: left;
+					}
+					
+				}
+				
+			}
+			.buttons{
+				a{
+					display: block;
+					padding:0px;
+					margin-left:15px;
+					width: calc(100% - 30px);
+					height: 30px;
+					text-align: center;
+					color: white;
+					font-weight: bold;
+					line-height: 30px;
+				}
+				a:hover{
+					text-decoration: none;
+				}
+				.modify-btn{
+					background-color: #EBB87F;
+					margin-bottom: 5px;
+				}
+				.cancel-btn{
+					background-color: #FC9292;
+				}
+
+			}
+
+		}
+		.bid{
+			width: 100%;
+			background: white;
+			height: 120px;
+			border: 1px solid #E9E9E9;
+			border-top: 0;
+			.bid-row{
+				height: 100%;
+				.bid-img-container{
+					height: 100%;
+					width: 60px;
+					padding: 0px;
+					float: left;
+					.bid-img{
+						position: relative;
+						top: 50%;
+						margin-top: -30px;
+					}
+				}
+				.bid-info{
+					height: 100%;
+					float: right;
+					width: calc(100% - 60px); 
+					padding-left: 20px;
+					.title{
+						color: $orange;
+						margin-top: 42.5px;
+						margin-bottom:3px;
+
+					}
+					.info{
+						overflow: hidden;
+						text-overflow: ellipsis;
+						white-space: nowrap;
+					}
+
+				}
+				.bid-links{
+					a{
+						display: inline-block;
+						margin-top: 31.5px;
+						margin-bottom: 3px;
+					}
+					a:hover{
+						color: rgb(66, 139, 202);
+					}
+					.link{
+						color: rgb(66, 139, 202);
+						margin-bottom: 3px;
+					}
+					.link:hover{
+						cursor: pointer;
+						text-decoration: underline;
+					}
+
+				}
+				.bid-info-2{
+					height: 100%;
+					width:100%;
+					.bid-status{
+						margin-top: 42.5px;
+						margin-bottom: 3px;
+					}
+					.bid-status.bid-pending{
+						color: $orange;
+						font-weight: bold;
+					}
+					.bid-status.accepted{
+						color: $green;
+						font-weight: bold;
+					}
+					.bid-status{
+						font-weight: bold;
+					}
+
+				}
+				.in-green{
+					color: #5AB075;
+					font-weight: bold;
+					font-size: 15px;
+					margin-top: 43px;
+				}
+				.in-grey{
+					color: #9DA2A3;
+					font-weight: bold;
+					font-size: 15px;
+					margin-top: 43px;
+				}
+				.grey-date{
+					color:#BBBFC3;
+					font-size: 13px;
+
+				}
+				span{
+					white-space: nowrap;
+					display: inline-block;
+					vertical-align: middle;
+				}
+			}
+		}
+	}
+	.column-names{
+		margin-top: 20px;
+		width: 100%;
+		height: 50px;
+		background: #FCFCFC;
+		border: 1px solid #E9E9E9;
+		.names-row{
+			height: 100%;
+			font-size: 14px;
+			line-height: 50px;
+			font-weight: bold;
+			color: #4C423C;
+		}
+	}
+	.page-info{
+		width: 1000px;
+		height: 30px;
+		.bid-page-status{
+			width: 400px;
+			position: relative;
+			float: left;
+			height: 30px;
+			font-size: 14px;
+			line-height: 30px;
+
+		}
+		
+		.filter-page{
+			width: 200px;
+			position: relative;
+			float: right;
+			line-height: 30px;
+			height: 30px;
+			.filters{
+				width: 155px;
+				z-index: 100;
+				position: relative;
+				float: right;
+				.current-filter{
+					height: 30px;
+					background: white;
+					font-size: 14px;
+					border: 1px solid #EAE6E1;
+					line-height: 30px;
+					width: 155px;
+					text-align: center;
+				}
+
+				ul{
+					display: none;
+					-webkit-transiton: opacity 0.2s;
+					-moz-transition: opacity 0.2s;
+					-ms-transition: opacity 0.2s;
+					-o-transition: opacity 0.2s;
+					-transition: opacity 0.2s;
+					li{
+						display: block;
+						color: black;
+						background:white;
+						border: 1px solid #EAE6E1;
+						border-top: 0px;
+						height: 30px;
+						font-size: 14px;
+						text-align: center;
+						line-height: 30px;
+
+					}
+				}
+			}
+			.filters:hover{
+				ul{
+					display: block;
+					opacity: 1;
+					visibility: visible;
+				}
+			}
+		}
+	}
+	.overview-side-bar{
+		width: 200px;
+		position: relative;
+		float: left;
+		form{
+			.file-upload-hidden{
+				display: none;
+			}
+
+		}
+		#vendor-picture{
+			background:#F0F0F0;
+			width: 200px;
+			height: 200px;
+			border-radius:2px;
+			background: black;
+			border: 1px solid #E2E2E2;
+			text-align: center;
+			display:table;
+			position: relative;
+      background-size:cover;
+		}
+		#vendor-picture:before {    /* create a full-height inline block pseudo=element */
+    	height: 100%;
+    	content: ' ';
+    	display: inline-block;
+    	vertical-align: middle;  /* vertical alignment of the inline element */
+    }
+		#vendor-picture:hover{
+			cursor: pointer;
+		}
+		#side-bar-name{
+			margin-top: 20px;
+			text-align: left;
+			font-size: 20px;
+			color:black;
+			font-style: bold;
+		}
+		#side-bar-membersince{
+			margin-bottom: 20px;
+		}
+		.edit-profile-sidebar{
+			width: 200px;
+			height: 40px;
+			display: block;
+			text-align: center;
+			line-height: 40px;
+			background: $orange;
+			color: white;
+		}
+		#posts-you-might-like{
+			width: 200px;
+			background: white;
+			border: 1px solid #EAE6E1;
+			margin-top: 30px;
+			.title{
+				width: 100%;
+				text-align: center;
+				font-size: 16px;
+				color: black;
+				padding-top: 10px;
+				font-style: bold;
+				padding-bottom: 10px;
+
+			}
+			ul{
+				list-style-type: disc;
+				color: $orange;
+				width: 140px;
+				margin-left: 30px;
+				a{
+					.post-suggestion{
+						padding-bottom: 20px;
+						.suggestion-name{
+							width: 100%;
+							color: $orange;
+						}
+						.suggestion-title{
+							color:$blue;
+						}
+					}
+				}
+			}
+		}
+	}
+	#main-overview{
+		position: relative;
+		float: right;
+		width: 800px;
+		.inbox-overview{
+			.unread-msgs{
+				li{
+					list-style-image: none;
+				  list-style-position: inside;
+				  list-style-type: disc;
+				}
+			}
+		}
+		.border-gray{
+			background: white;
+			width: 760px;
+			margin-left:20px;
+			padding:20px; 
+			margin-bottom: 10px;
+			.title{
+				width: 100%;
+				text-align: left;
+				font-size: 16px;
+				color: black;
+				font-style: bold;
+				padding-bottom: 10px;
+
+			}
+		}
+
+	}
+}
+.border-gray{
+	border: 1px solid #EAE6E1;
+}
+#dash-nav{
+	z-index: 1;
+	background:#9B9B9B;
+	min-height:40px;
+	height:40px;
+	.container{
+		height: 100%;
+		.nav-links{
+			height: 100%;
+			ul{
+				height: 100%;
+				.active{
+					a{
+						background:#747474;
+						color:white;
+					}
+				}
+				li{
+					height: 80%;
+					position: relative;
+					top:10%;
+					padding-left: 30px;
+					border-radius: 4px;
+					a{
+						height: 100%;
+						line-height: 32px;
+						text-align: center;
+						border-radius:4px;
+						padding-left: 20px;
+						padding-right: 20px;
+						color: white;
+					}
+					
+				}
+			}
+		}
+	}
+}
+//account page
+.bg-img-account{
+	position: absolute;
+	top: calc(14vh + 40px);
+	height: calc(100vh - 14vh - 40px);
+	width: 100%;
+	background: image-url('/img/onboard_bg.png') center center fixed;
+	background-repeat: no-repeat;
+	-webkit-background-size: cover;
+  -moz-background-size: cover;
+  -o-background-size: cover;
+  background-size: cover;
+  z-index: -1;
+  .opacity-cover{
+  	height: 100%;
+  	width: 100%;
+  	background-color: white;
+  	opacity: 0.7;
+  }
+}
+.custom.container{
+	margin-top: 40px;
+	.account-cont{
+		.vf-slide-toggle{
+			display: inline-block;
+			border: $orange 1px solid;
+			height: 50px;
+			margin-top: 50px;
+			color: $orange;
+			text-align: center;
+			line-height: 50px;
+			font-size: 18px;
+
+		}
+		.vf-slide-toggle:hover{
+			cursor: pointer;
+		}
+		.vf-slide-toggle.active{
+			color: white;
+			background-color: $orange;
+		}
+		.vf-slide-2-toggle{
+			border-left:0px;
+			border-right:0px;
+		}
+		overflow: auto;
+		height: 100%;
+		width: 100%;
+		background:white;
+		display: block;
+		.logo-container{
+			img{
+				height: 100px;
+				position: relative;
+				margin-top: 50px;
+				left: 50%;
+				margin-left: - 50px;
+				margin-bottom: 45px;
+			}
+		}
+		.welcome-msg{
+			text-align: center;
+			.title{
+				font-size: 27px;
+				font-weight: bold;
+			}
+			.intro{
+				padding-top: 10px;
+				padding-bottom: 50px;
+			}
+			.tell-us-more{
+				font-weight: bold;
+				padding-bottom: 20px;
+			}
+		}
+		.vendor-form{
+			.slide-buttons{
+				text-align: center;
+				.next-vendor-slide{
+					display: inline-block;
+					background-color: $orange;
+					height: 50px;
+					margin-top: 50px;
+					width: auto;
+					padding-left: 50px;
+					padding-right: 50px;
+					color: white;
+					line-height: 50px;
+					font-size: 18px;
+					border:0
+
+				}
+				.slide-3{
+					display: none;
+				}
+			}
+			.fill-cont{
+				text-align: center;
+				margin-bottom: 30px;
+			}
+			.slide-2{
+				display: none
+			}
+			.slide-3{
+				display: none;
+			}
+			.finish-msg{
+				text-align: center;
+			}
+			.slide{
+				.payment-methods{
+					
+					text-align: center;
+					.fields{
+						display: inline-block;
+						margin-right: 20px;
+						.checkbox{
+							display: inline-block;
+						}
+					}
+				}
+				.business-options{
+					.delivery{
+						.delivery-locations{
+							display: none;
+							padding-left: 50px;
+							select{
+								width: 20%;
+								height: 50px;
+								background-color: white;
+								border: 1px solid #ffc285;
+								margin-top: 10px;
+							}
+							.dl-remove {
+								margin-left: 15px;
+								color: $orange;
+								font-weight: bold;
+							}
+							.dl-add{
+								color: $orange;
+								font-weight: bold;
+								display: block;
+								margin-top: 10px;
+							}
+						}
+					}
+					.service{
+						.service-locations{
+							display: none;
+							padding-left: 50px;
+							select{
+								width: 20%;
+								height: 50px;
+								background-color: white;
+								border: 1px solid #ffc285;
+								margin-top: 10px;
+							}
+							.sl-remove {
+								margin-left: 15px;
+								color: $orange;
+								font-weight: bold;
+							}
+							.sl-add{
+								color: $orange;
+								font-weight: bold;
+								display: block;
+								margin-top: 10px;
+							}
+						}
+					}
+				}
+				.half-way-through{
+					padding-top: 60px;
+					color: #639589;
+					padding-bottom: 15px;
+				}
+				.title{
+					font-size: 18px;
+					font-weight: bold;
+				}
+				.add-industry{
+					float: left;
+					margin-top: 10px;
+					margin-bottom: 10px;
+					color: $orange;
+					font-weight: bold;
+				}
+				.industries{
+					width: 50%;
+					.remove-industry{
+						float: left;
+						margin-top: 10px;
+						margin-bottom: 10px;
+						color: $orange;
+						font-weight: bold;
+					}
+					select{
+						height: 50px;
+						display: block;
+						background-color: white;
+						border: 1px solid #ffc285;
+						width: 100%;
+						float: left;
+						margin-bottom: 10px;
+					}
+				}
+				input[type=checkbox]{
+					height: auto;
+				}
+				.file-upload-hidden{
+					height:150px;
+					width:150px;
+					z-index: 1;
+					display: none;
+				}
+				.file-cover-hidden{
+					display: none;
+				}
+				.file-media-hidden{
+					display: none;
+				}
+
+				.image-selected{
+					background: $orange;
+					span{
+						color: white;
+					}
+				}
+				.file-upload-btn{
+					float: left;
+					height: 200px;
+					width: 200px;
+					border: 1px solid #ffc285;
+					display: block;
+					margin-top: 50px;
+					margin-bottom: 30px;
+					margin-right: 20px;
+					text-align: center;
+					span{
+						margin-top:80px;
+						line-height: 20px;
+						text-align: center;
+						font-weight: bold;
+						font-size: 16px;
+						display: inline-block;
+						vertical-align: middle;
+					}
+				}
+				.file-upload-btn:hover{
+					cursor: pointer;
+				}
+				select{
+					padding-left: 5px;
+				}
+				input{
+					height: 50px;
+					border: 1px solid #ffc285;
+					display: block;
+					padding-left: 5px;
+				}
+				textarea{
+					height: 200px;
+					border: 1px solid #ffc285;
+					margin-bottom: 30px;
+				}
+				.business_name{
+					width: calc(50% - 10px);
+					float: left;
+				}
+				.datepicker{
+					float: left;
+					width: calc(50% - 10px);
+					margin-left: 20px;
+					border-radius: 0;
+				}
+				.number-of-p-locations{
+					float: left;
+					width: (20%);
+					margin-left: 20px;
+				}
+				.phyiscal-location{
+					margin-top: 10px;
+					.add-p-location{
+						display: block;
+
+						float: left;
+						margin-top: 10px;
+						margin-bottom: 10px;
+						color: $orange;
+						font-weight: bold;
+					}
+					.remove-p-location{
+						float: left;
+						margin-top: 10px;
+						margin-bottom: 10px;
+						color: $orange;
+						font-weight: bold;
+					}
+					.row{
+						padding-bottom: 0px;
+					}
+					.number-of-p-locations{
+						float: left;
+						width: calc(40px -10px);
+					}
+					.address-label{
+						width: calc(80% - 20px);
+						float: left;
+					}
+					.postal-label{
+						width: calc(20%);
+						margin-left: 20px;
+						float: left;
+					}
+					.business_phone{
+						width: calc(50% - 10px);
+						float: left;
+					}
+					.other_phone{
+						width: calc(50% - 10px);
+						float: left;
+						margin-left: 20px;
+					}
+					.business_email{
+						width: calc(50% - 10px);
+						float: left;
+					}
+					.business_website{
+						width: calc(50% - 10px);
+						float: left;
+						margin-left: 20px;
+					}
+					.province-select{
+						width: calc(36.7% - 40px);
+
+						height: 50px;
+						border:1px solid #ffc285;
+						background-color: white;
+						float: left;
+						display: block;
+						margin-left: 20px;
+					}
+					.country-select{
+						width: calc(36.7% - 40px);
+
+						height: 50px;
+						border: 1px solid #ffc285;
+						float: left;
+						background-color: white;
+						display: block;
+
+					}
+					.city-select{
+						width: calc(36.7% - 40px);
+						margin-left: 20px;
+						height: 50px;
+						border: 1px solid #ffc285;
+						float: left;
+						background-color: white;
+						display: block;
+
+					}
+				}
+			}
+		}
+	}
+}
+.phyiscal-location{
+	overflow: auto;
+}
+.mt-30{
+	margin-top: 30px;
+}
+.mb-13{
+	margin-bottom: 13px;
+}
+.checkbox input[type=checkbox]:checked + label:after {
+    font-family: 'Glyphicons Halflings';
+    content: "\e013";
+}
+.checkbox label:after {
+    padding-left: 4px;
+    padding-top: 2px;
+    font-size: 9px;
+}

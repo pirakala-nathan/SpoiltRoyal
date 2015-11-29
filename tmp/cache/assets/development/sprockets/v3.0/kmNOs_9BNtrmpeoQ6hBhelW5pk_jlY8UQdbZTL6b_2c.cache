@@ -1,0 +1,18 @@
+I"Í(function() {
+  $(function() {
+    $('#vendor-picture.no-url').click(function() {
+      return $('.file-upload-hidden').trigger('click');
+    });
+    $('.dropdown-toggle').dropdown();
+    $('.bid-links > .link').click(function() {
+      var target;
+      target = $(this).attr("target");
+      return $(target).slideDown('slow');
+    });
+    return $('.current-filter').click(function() {
+      return $('.filter-options').show();
+    });
+  });
+
+}).call(this);
+:ET

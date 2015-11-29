@@ -1,0 +1,115 @@
+#posts-show.vendor
+  .col-sm-3.hidden-xs.sidebar-sm
+    %span.col-xs-12.no-h-padding.sidebar-title
+      VENDORS
+    %span.col-xs-12.no-h-padding.sidebar-desc
+      Explore our needs  
+    %form.search-form.col-xs-12.no-h-padding
+      %input.search-input.col-xs-12{placeholder: "Search"}
+      %button.btn.submit-btn.col-xs-12
+        Search
+    %span.sidebar-subtitle
+      FILTERS
+    .filters.col-xs-12
+      .categories.col-xs-12.no-h-padding
+        %span
+          Categories 
+        - if @category == nil
+          .category.active.col-xs-12.no-h-padding
+            %span
+              All
+          -@categories.each do |cat|
+            = link_to vendors_path(category_id: cat.id) do 
+              .category.col-xs-12.no-h-padding
+                %span
+                  = cat.name
+        - else 
+          = link_to vendors_path do 
+            .category.col-xs-12.no-h-padding
+              %span
+                All
+          - @categories.each do |cat|
+            - if cat == @category
+              .category.active.col-xs-12.no-h-padding
+                %span{style:"float:left"}
+                  = cat.name
+                =link_to vendors_path do 
+                  %span{style:"float:right"}
+                    x
+            -else
+              = link_to vendors_path(category_id: cat.id) do 
+                .category.col-xs-12.no-h-padding
+                  %span
+                    = cat.name
+      .subcategories.col-xs-12.no-h-padding
+        %span
+          Sub Categories 
+        - if @subcategory == nil
+          .subcategory.active.col-xs-12.no-h-padding
+            %span
+              All
+          -@subcategories.each do |cat|
+            = link_to vendors_path(subcategory_id: cat.id, category_id: (@category.id if @category != nil)) do 
+              .subcategory.col-xs-12.no-h-padding
+                %spanf
+                  = cat.name
+        - else 
+          = link_to vendors_path do 
+            .subcategory.col-xs-12.no-h-padding
+              %span
+                All
+          - @subcategories.each do |cat|
+            - if cat == @subcategory
+              .subcategory.active.col-xs-12.no-h-padding
+                %span{style:"float:left"}
+                  = cat.name
+                =link_to vendors_path do 
+                  %span{style:"float:right"}
+                    x
+            -else
+              = link_to vendors_path(subcategory_id: cat.id) do 
+                .subcategory.col-xs-12.no-h-padding
+                  %span
+                    = cat.name
+
+
+  .col-sm-9.col-xs-12.posts-list.no-h-padding
+    - @vendors.each do |ven|
+      .post.col-xs-12.no-h-padding.vendor
+        .post-image.col-xs-2.no-h-padding
+          - if ven.assets.empty?
+            = image_tag ("//placehold.it/180X191")
+          - else  
+            - @image = ven.assets.last.image
+            = image_tag @image.url
+        .post-info.col-xs-8
+          %span.post-title.col-xs-12.no-h-padding
+            =ven.business_name
+          %span.post-by.col-xs-12.no-h-padding.address
+            //backend needed 
+            123 Main Street, Toronto , Ontario
+          %span.post-description.col-xs-12.no-h-padding
+            = ven.business_description
+          .tags.col-xs-12.no-h-padding
+            Tags:
+        .post-btns.col-xs-2.no-h-padding
+          = link_to ven, class: "col-xs-12" do
+            %button.btn.view-post.col-xs-12
+              View
+          
+
+
+
+/ #new-convo.modal.fade
+/   .modal-dialog
+/     .modal-content
+/       .modal-header
+/         %button.close{"aria-label" => "Close", "data-dismiss" => "modal", :type => "button"}
+/           %span{"aria-hidden" => "true"} ×
+/         %h4.modal-title
+/           Create New Post
+/       .modal-body
+/         Test
+
+/       .modal-footer
+/         .actions

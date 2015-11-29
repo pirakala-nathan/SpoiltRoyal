@@ -1,0 +1,135 @@
+// Place all the styles related to the pages controller here.
+// They will automatically be included in application.css.
+// You can use Sass (SCSS) here: honttp://sass-lang.com/
+$dark-text-color: #767676;
+$orange: #EA9B2C ;
+$green: #5AB075;
+$blue: #63BFDE;
+
+//admin panel
+.admin-pannel{
+  background-color:white;
+  .row{
+    border-bottom:1px solid $orange;
+    .title{
+      font-weight: bold;
+      font-size: 14px;
+    }
+  }
+  .row-0{
+    background-color:#F2C17D !important;
+  }
+  .title-row{
+    border-top:1px solid $orange
+  }
+
+
+}
+.post-modal{
+  margin-left: calc(50% - 400px);
+  width: 800px;
+  .modal-body{
+    text-align: left;
+    padding: 30px;
+    overflow: auto;
+    .slide-2{
+      display: none;
+    }
+    .title{
+      color: $orange;
+      margin-top: 0;
+    }
+    .buttons{
+      margin-top: 20px;
+      text-align: center;
+      *{
+        height: 50px;
+        background-color: $orange;
+        color: white;
+        font-weight: bold;
+        text-align: center;
+        display: inline-block;
+        width: 200px;
+        font-size: 18px;
+        line-height: 50px;
+      }
+      *:hover{
+        cursor: pointer;
+        
+      }
+      .slide-2{
+        display: none
+      }
+    }
+    .add-img{
+      height: 50px;
+      text-align: center;
+      line-height: 50px;
+      border: 1px solid #ffc285;
+      display: block
+    }
+    .payment-methods{
+      text-align: center;
+      .fields{
+        display: block;
+        float: left;
+        margin-right: 20px;
+      }
+    }
+    .ri{
+      font-weight: bold;
+      color: $orange;
+      font-size: 15px;
+      margin-left: 10px;
+    }
+    .ai{
+      font-weight: bold;
+      color: $orange;
+      font-size: 15px;
+      margin-bottom: 20px;
+    }
+    select{
+      height: 50px;
+      background-color: white;
+      border:1px solid #ffc285;
+      width: 20%;
+      margin-bottom: 10px;
+    }
+    .needed{
+      margin-top: 10px;
+    }
+    .other-label{
+      float: left;
+    }
+    .other-input{
+      float: left;
+      height: 30px;
+      margin-top: -5px;
+      margin-left: 10px;
+    }
+    .next-imgs{
+     
+    }
+    .vendor-title{
+      margin-bottom: 10px;
+      margin-top: 10px;
+    }
+    input{
+      height: 50px;
+      border: 1px solid #ffc285;
+      display: block;
+    }
+    textarea{
+      height: 200px;
+      border: 1px solid #ffc285;
+    }
+    .img-btn{
+      display: none
+    }
+  }
+}
+.stars{
+  img{
+    height: 21px;
+  }
+}

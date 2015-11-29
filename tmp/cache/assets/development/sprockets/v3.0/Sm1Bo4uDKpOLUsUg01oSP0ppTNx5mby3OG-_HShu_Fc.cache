@@ -1,0 +1,75 @@
+I"¾(function() {
+  $(function() {
+    $('.stars').raty();
+    $('.dtoggle').click(function() {
+      var target;
+      target = "." + this.id;
+      return $(target).toggleClass('hidden');
+    });
+    $('.new-review').click(function() {
+      return $('#new-review').modal("show");
+    });
+    $('.post-new').click(function() {
+      return $('#post-new').modal("show");
+    });
+    $('.post-a-q').click(function() {
+      return $('#post-a-q').modal("show");
+    });
+    $('.bid_now').click(function() {
+      return $('#bid_now').modal("show");
+    });
+    $('.login').click(function() {
+      return $('#login').modal("show");
+    });
+    $('.join').click(function() {
+      return $('#join').modal("show");
+    });
+    $('.feedback').click(function() {
+      return $('#feedback').modal("show");
+    });
+    $('.seeking').click(function() {
+      $('.slide-1').hide();
+      $('.slide-2').show();
+      $('.account-type').attr("value", "Consumer");
+      return $('.fb-signup').attr("href", "/auth/facebook?type=Consumer");
+    });
+    $('.offering').click(function() {
+      $('.slide-1').hide();
+      $('.slide-2').show();
+      $('.account-type').attr("value", "Vendor");
+      return $('.fb-signup').attr("href", "/auth/facebook?type=Vendor");
+    });
+    $('.email-signup').click(function() {
+      $('.slide-2').hide();
+      return $('.slide-3').show();
+    });
+    $('#join').on('hidden.bs.modal', function() {
+      $('.slide-2').hide();
+      $('.slide-3').hide();
+      return $('.slide-1').show();
+    });
+    return $('.number-of-p-locations').change(function() {
+      var NumberLocation, results, results1, value;
+      NumberLocation = $('.address-label').length;
+      value = $(this).val();
+      alert(NumberLocation);
+      if (NumberLocation > value) {
+        results = [];
+        while (NummberLocation > value) {
+          $('.remove-p-location').last().click();
+          results.push(NumberLocation);
+        }
+        return results;
+      } else if (value > NumberLocation) {
+        results1 = [];
+        while (value >= NumberLocation) {
+          $('.add-p-location').last().click();
+          results1.push(NumberLocation += 1);
+        }
+        return results1;
+      }
+    });
+  });
+
+}).call(this);
+:ET

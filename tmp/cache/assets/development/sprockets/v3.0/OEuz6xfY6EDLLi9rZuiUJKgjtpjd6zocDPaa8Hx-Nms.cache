@@ -1,0 +1,15 @@
+I"<(function() {
+  $(function() {
+    return $('.close_notice').on('click', function() {
+      return $('.notice').hide();
+    });
+  });
+
+  $(window).scroll(function() {
+    if ($(window).scrollTop() + $(window).height() === $(document).height()) {
+      $('#feedback-modal').modal('show');
+    }
+  });
+
+}).call(this);
+:ET

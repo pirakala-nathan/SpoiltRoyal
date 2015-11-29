@@ -1,0 +1,7 @@
+I"q(function() {
+  $(function() {
+    return $(".ph").mask("(999) 999-9999 ext 999999");
+  });
+
+}).call(this);
+:ET

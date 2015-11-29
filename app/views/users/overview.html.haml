@@ -1,0 +1,68 @@
+
+= render 'dashboard_nav'
+.custom.container.no-h-padding
+	.overview-side-bar.no-h-padding
+		= nested_form_for @user.account, html: { multipart: true } do |f|
+			= f.fields_for :assets do |a|
+				= a.file_field :image, class: "file-upload-hidden", onchange: "this.form.submit();"
+		- if !(@user.profile_pic == nil)
+			- @url = @user.profile_pic.image.url(:profile)
+			- @url_class = "pic-uploaded"
+		- else
+			- @url =""
+			- @url_class = "no-url"
+
+		#vendor-picture{:class=> "#{@url_class}",:style => "background-image:url(#{@url})"}
+		#side-bar-name
+			= @user.first_name + " " + @user.last_name
+		#side-bar-location
+			Toronto, Ontario
+			/@user.physical_location.city + "," + @user.physical_location.province .. check before uncommenting
+		#side-bar-membersince
+			= "Member since " + @user.created_at.strftime("%B %Y")
+
+		= link_to "EDIT PROFILE", edit_user_path(@user), class: "edit-profile-sidebar"
+		#posts-you-might-like
+			.title
+				Posts you might like
+			%ul
+				- @posts.each do |p|
+					= link_to p do
+						%li.post-suggestion
+							.suggestion-name
+								= "   " + p.user.first_name + " " + p.user.last_name
+							.suggestion-title
+								= '"' + p.title + '"'
+	#main-overview
+		.welcome-message.border-gray
+			.title
+				Welcome to NEX,
+				= @user.first_name + " " + @user.last_name + "!"
+			.message-text
+				This is your dashboard, you can find your company, bidding, reviews, and statistics here all in one piece!Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed quis nunc porta, suscipit justo non, bibendum orci. Cras interdum malesuada tincidunt.
+				= link_to "Browse posts", posts_path
+		.inbox-overview.border-gray
+			.title
+				Unread Messages
+			%ul.unread-msgs
+				- @messages.each do |c|
+					%li
+
+
+		.verfication-overview.border-gray
+			.title
+				Verification
+		- if current_user.account.kind_of? Vendor
+			.bidding-overview.border-gray
+				.title
+					Recent Bidding
+			.current-projects-overview.border-gray
+				.title
+					Current projects
+			.reviews-overview.border-gray
+				.title
+					Recent Reviews
+
+
+
+

@@ -1,0 +1,9 @@
+I"–(function() {
+  $(function() {
+    return $('.close_notice').on('click', function() {
+      return $('.notice').hide();
+    });
+  });
+
+}).call(this);
+:ET

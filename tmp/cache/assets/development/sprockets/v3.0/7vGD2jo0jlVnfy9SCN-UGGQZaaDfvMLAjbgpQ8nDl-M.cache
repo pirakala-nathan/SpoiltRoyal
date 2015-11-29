@@ -1,0 +1,10 @@
+I"¹(function() {
+  $(function() {
+    return $('.change-btn').click(function() {
+      $(this).hide();
+      return $('.timed-form').css('display', 'block');
+    });
+  });
+
+}).call(this);
+:ET

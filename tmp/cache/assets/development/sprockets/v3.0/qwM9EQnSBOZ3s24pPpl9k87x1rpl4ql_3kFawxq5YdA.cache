@@ -1,0 +1,117 @@
+I"d(function() {
+  var checkPostal;
+
+  checkPostal = function(code, letter) {
+    var length, pCodePattern;
+    length = code.length;
+    length = length % 2;
+    if (length === 1) {
+      pCodePattern = new RegExp('[a-z]', 'i');
+    } else {
+      pCodePattern = new RegExp('[0-9]', 'i');
+    }
+    if (pCodePattern.test(letter)) {
+      return true;
+    } else {
+      return false;
+    }
+  };
+
+  $(function() {
+    $('.postal').keyup(function(e) {
+      var code, letter;
+      letter = String.fromCharCode(e.which);
+      code = $(this).val();
+      if (!(checkPostal(code, letter))) {
+        code = code.slice(0, -1);
+        return $(this).val(code);
+      }
+    });
+    $('.stars-raiting.form > img').click(function() {
+      var val;
+      val = $('.stars-raiting > input ').val();
+      $('.raiting').val(val);
+      return $('.raiting-form').submit();
+    });
+    $('.read-more-des').click(function() {
+      $('.description').removeClass('less');
+      $(this).hide();
+      return $('.read-less-des').show();
+    });
+    $('.read-less-des').click(function() {
+      $('.description').addClass('less');
+      $(this).hide();
+      return $('.read-more-des').show();
+    });
+    $('.delivery-btn').click(function() {
+      if ($(this).hasClass('slideup')) {
+        $('.delivery-locations').slideUp('slow');
+        return $(this).removeClass('slideup');
+      } else {
+        $('.delivery-locations').slideDown('slow');
+        return $(this).addClass('slideup');
+      }
+    });
+    $('.service-btn').click(function() {
+      if ($(this).hasClass('slideup')) {
+        $('.service-locations').slideUp('slow');
+        return $(this).removeClass('slideup');
+      } else {
+        $('.service-locations').slideDown('slow');
+        return $(this).addClass('slideup');
+      }
+    });
+    $('.vf-slide-toggle').click(function() {
+      $('.vf-slide-toggle').removeClass('active');
+      $(this).addClass('active');
+      if ($(this).hasClass('vf-slide-1-toggle')) {
+        $('.slide-1').hide();
+        $('.slide-2').hide();
+        $('.slide-3').hide();
+        $('.slide-1').css('display', 'inline-block');
+      }
+      if ($(this).hasClass('vf-slide-2-toggle')) {
+        $('.slide-1').hide();
+        $('.slide-2').hide();
+        $('.slide-3').hide();
+        $('.slide-2').css('display', 'inline-block');
+      }
+      if ($(this).hasClass('vf-slide-3-toggle')) {
+        $('.slide-1').hide();
+        $('.slide-2').hide();
+        $('.slide-3').hide();
+        return $('.slide-3').css('display', 'inline-block');
+      }
+    });
+    $('.file-upload-trigger').click(function() {
+      return $('.file-upload-hidden').trigger('click');
+    });
+    $('.file-cover-trigger').click(function() {
+      return $('.file-cover-hidden').trigger('click');
+    });
+    $('.file-media-trigger').click(function() {
+      return $('.file-media-hidden').trigger('click');
+    });
+    $('.file-media-hidden').change(function() {
+      var msg, num;
+      num = $(this)[0].files.length;
+      msg = num + " IMAGES SELECTED FOR SHOW";
+      $('.file-media-trigger > span').text(msg);
+      return $('.file-media-trigger').addClass('image-selected');
+    });
+    $('#cover_pic_').change(function(e) {
+      var msg;
+      msg = " Cover Picture: " + $(this).val().split("\\").pop();
+      $('.file-cover-trigger > span').text(msg);
+      return $('.file-cover-trigger').addClass('image-selected');
+    });
+    return $('#profile_pic_').change(function(e) {
+      var msg;
+      msg = "Profile Picture: " + $(this).val().split("\\").pop();
+      $('.file-upload-trigger > span').text(msg);
+      return $('.file-upload-trigger').addClass('image-selected');
+    });
+  });
+
+}).call(this);
+:ET

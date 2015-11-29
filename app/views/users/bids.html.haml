@@ -1,0 +1,167 @@
+= render 'dashboard_nav'
+
+.custom.container.no-h-padding
+	.page-info
+		.bid-page-status
+			%span Bids &#8226
+			%span
+				=" " + @filter
+		.filter-page
+			Filter:
+			.filters
+				.current-filter
+					/ - @filter = "Won " + "\u2022" + " Complete"
+					= @filter
+					%span.caret 
+				%ul.filter-options
+					%li 
+						= link_to "All", bids_user_path(:filter => "All") 
+					%li  
+						= link_to "Won \u2022 Active", bids_user_path(:filter => "won_active") 
+					%li
+						= link_to "Won \u2022 Complete", bids_user_path(:filter => "won_complete") 
+					%li 
+						= link_to "Lost", bids_user_path(:filter => "lost") 
+					%li 
+						= link_to "cancelled", bids_user_path(:filter => "cancelled") 
+			
+	.column-names
+		.col-xs-2.names-row.padding-left-30
+			Bid Due
+		.col-xs-5.names-row
+			Bid Information
+		.col-xs-3.names-row
+			Bid Status
+		.col-xs-2.names-row
+	.user-bids
+		- @bids.each do |bid|
+			.bid
+				.col-xs-2.due.bid-row.padding-left-30
+					- if Time.now.to_date > bid.post.due_date.to_date	
+						%span.in-grey
+							= ((Time.now.to_date - bid.post.due_date.to_date).to_i).to_s + " days ago"
+						%span.grey-date
+							= bid.post.due_date.to_date.strftime("%B %d, %Y")
+					- elsif Time.now.to_date == bid.post.due_date.to_date
+						%span.in-green	Today
+						%span.grey-date
+							= bid.post.due_date.to_date.strftime("%B %d, %Y")
+					- else
+	
+						%span.in-green
+							= "In " + ((bid.post.due_date.to_date - Time.now.to_date).to_i).to_s + " days"
+						%span.grey-date
+							= bid.post.due_date.to_date.strftime("%B %d, %Y")
+				.col-xs-5.bid-row
+					.bid-img-container
+						- if bid.post.user.profile_pic == nil
+							= image_tag ("//placehold.it/60x60"), class: "img-circle bid-img"
+						-else
+							- @image = bid.post.user.profile_pic.image
+							= image_tag @image.url(:small), class: "img-circle bid-img"
+					.bid-info
+						.title
+							= bid.post.user.first_name + " " + bid.post.user.last_name + " " + "\u2022" + " " + "('" + bid.post.title + "')"
+						.info
+							= bid.info
+				.col-xs-3.bid-row
+					.bid-info-2
+						.bid-status{class: "#{bid.status}"}
+							- if bid.status == "bid-pending"
+								= "Bidded \u2022 " + bid.status
+							- elsif bid.status == "accepted"
+								= "Bid Won"
+							- elsif bid.status == "Lost"
+								Bid Lost
+							- else
+								Bid Cancelled
+
+						.bid-amount
+							= number_to_currency(bid.value)
+				.col-xs-2.bid-row
+					.bid-links
+						= link_to "Contact client", new_message_path(subject: bid.post.title, :user_id => bid.post.user_id)
+						.bid-info-button.link{"target" => ".bid-info-#{bid.id}" }
+							Your bid
+						.all-bids-button.link{"target" => ".all-bids-#{bid.id}"}
+							All bid
+						
+			.extra-bid-info.bid-slide-down{class: "bid-info-#{bid.id}"}
+				.gradient
+				.col-xs-12.title
+					Your Bid Information
+				.info-container.col-xs-10.no-h-padding
+					.col-xs-4.padding-left-30.bid-amount
+						.attr
+							Bid Value
+						.value
+							= number_to_currency(bid.value)
+					.col-xs-4.no-h-padding.bid-date
+						.attr
+							Bid Date
+						.value
+							= bid.created_at.strftime("%B %d, %Y")
+					.col-xs-4.no-h-padding.industries
+						.attr
+							Industry
+						.value
+							- @last = bid.post.post_subscriptions.last
+							-bid.post.post_subscriptions.each do |ps|
+								= ps.subcategory.category.industry.name
+								- if @last != ps
+									= ", "
+					.col-xs-4.padding-left-30.status
+						.attr
+							Bid status
+						.value
+							- if bid.status == "bid-pending"
+								bidded, pending for response
+							- elsif bid.status == "accepted"
+								= "Bid Won"
+							- elsif bid.status == "Lost"
+								Lost
+							-else
+								= "Bid cancelled"
+					.col-xs-4.no-h-padding.bid-due
+						.attr
+							Bid Due
+						.value
+							= bid.post.due_date.to_date.strftime("%B %d, %Y")
+				.buttons.col-xs-2.no-h-padding
+					= link_to "Modify Bid", edit_bid_path, class: "modify-btn "
+					= link_to "Cancel Bid", bid_path(bid.id), method: :delete, data: {confirm: " Are you sure you want to cancel your bid"}, class: "cancel-btn"
+
+
+
+
+			.all-bids.bid-slide-down{class: "all-bids-#{bid.id}"}
+				.gradient
+				.col-xs-12.title
+					All Bids
+				.all-bids-table.col-xs-10.no-h-padding
+					.bid-vendors.bid-column
+						.vendor-title.column-title
+							Bidding Vendors
+						- @bids = bid.post.bids
+						- @bids.each do |b|
+							- if b == bid
+								.vendor-name.column-value
+									You
+							- else
+								.vendor-name.column-value
+									= b.user.account.business_name
+					.bid-amounts.bid-column
+						.amount-title.column-title
+							Bid
+						- @bids = bid.post.bids
+						- @bids.each do |b|
+							.vendor-amount.column-value
+								= number_to_currency(b.value)
+
+
+				.buttons.col-xs-2.no-h-padding
+					= link_to "Modify Bid", edit_bid_path, class: "modify-btn "
+					= link_to "Cancel Bid", bid_path(bid.id), method: :delete, data: {confirm: " Are you sure you want to cancel your bid"}, class: "cancel-btn"	
+					
+
+
