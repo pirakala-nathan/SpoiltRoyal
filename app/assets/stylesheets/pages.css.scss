@@ -5,12 +5,14 @@ $dark-text-color: #767676;
 $orange: #EA9B2C ;
 $green: #5AB075;
 $blue: #63BFDE;
+$rose: #DB716A;
+$gray: #5E5E5E;
 
 //admin panel
 .admin-pannel{
   background-color:white;
   .row{
-    border-bottom:1px solid $orange;
+    border-bottom:1px solid $rose;
     .title{
       font-weight: bold;
       font-size: 14px;
@@ -20,7 +22,7 @@ $blue: #63BFDE;
     background-color:#F2C17D !important;
   }
   .title-row{
-    border-top:1px solid $orange
+    border-top:1px solid $rose
   }
 
 

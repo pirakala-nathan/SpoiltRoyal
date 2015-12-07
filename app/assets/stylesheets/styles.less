@@ -3,6 +3,11 @@
 @orange: #EA9B2C;
 @grey: #636363;
 @blue: #2CA4C8;
+
+::selection {
+  background: #DB716A !important; /* WebKit/Blink Browsers */
+}
+
 .clearfix{
 	clear: both;
 }
@@ -37,21 +42,21 @@
 .popover-title{
 	font-weight: 600;
 	color: white;
-	background-color: #EA9B2C;
-	border-bottom: 1px solid #EA9B2C;
+	background-color: #DB716A;
+	border-bottom: 1px solid #DB716A;
 }
 .popover.bottom{
-	border: 1px solid @orange;
+	border: 1px solid #DB716A;
 }
 .popover.bottom>.arrow{
-	border-bottom-color: @orange;
+	border-bottom-color: #DB716A;
 }
 button{
 	.block;
 	background: white;
 	padding: 15px 29px;
 	border-radius: 54px;
-	color: #ea9b2c;
+	color: #DB716A;
 	font-weight: bold;
 	font-size: 11px;
 	text-align: center;
@@ -60,7 +65,7 @@ button{
 	letter-spacing: 2.5px;
 }//button
 .cta{
-	background-color: @orange;
+	background-color: #DB716A;
 	color: white;
 	padding: 10px 30px;
 	border-radius: 3px;
@@ -79,7 +84,7 @@ button{
 .secondary{
 	.inlineblock;
 	background: white;
-	border: 2px solid @orange;
+	border: 2px solid #DB716A;
 	border-radius: 2px;
 	color: @grey;
 	padding: 10px 41px;
@@ -94,7 +99,7 @@ button{
 }
 h2{
 	.block;
-	color: @orange;
+	color: #DB716A;
 	font-size: 18px;
 	font-weight: 900;
 	margin: 15px auto;
@@ -109,11 +114,12 @@ section#landing_splash{
 		margin-bottom: 0px;
 		#landing_logo{
 			display: inline-block;
-			width: 135px;
+			width: 190px;
 			float: left;
-			padding: 0px;
-			height: 90px;
+			padding: 5px;
+			height: auto;
 			margin-left: 27px;
+            margin-top: 10px;
 		}//landing_logo
 		ul.landing_nav_right{
 			.inlineblock;
@@ -131,14 +137,14 @@ section#landing_splash{
 				border: 2px solid transparent;
 			}
 			#nav_join{
-				border: 2px solid #EA9B2C;
+				border: 2px solid #DB716A;
 				border-radius: 2px;
 			}//nav_join
 			#button_wrapper{
 				padding: 0px 10px;
 				border: none;
 				button:hover, button:visited, button:active{
-					background-color: rgba(234, 155, 44, 0.5);
+					background-color: rgba(219, 113, 106, 0.5);
 					color: white;
 					border: none;
 				}
@@ -155,7 +161,7 @@ section#landing_splash{
 			text-align: center;
 		}
 		h1{
-			color: #FF8800;
+			color: #DB716A;
 			font-weight: bold;
 			font-size: 31px;
 			padding-top: 190px;
@@ -168,10 +174,10 @@ section#landing_splash{
 		}
 		a{
 			text-decoration: none;
-			color: @orange;
+			color: #DB716A;
 		}
 		a:hover{
-			color: @orange - #111111;
+			color: #DB716A - #111111;
 		}
 	}//div.splash
 }//section#landing_splash
@@ -188,7 +194,7 @@ section#explore_nex{
 		margin-top: 15px;
 		font-size: 16px;
 		font-weight: bold;
-		color: @orange;
+		color: #DB716A;
 	}
 	.cta{
 		margin: 35px auto 60px;
@@ -225,7 +231,7 @@ section#htw{
 			}
 		}
 		.prop_numbering{
-			background-color: @orange;
+			background-color: #DB716A;
 			padding: 9px;
 			border-radius: 50%;
 			width: 4.2rem;
@@ -321,7 +327,7 @@ section#popular_service{
 }//section#popular_service
 section#contact_us{
 	color: white;
-	background: orange;
+	background: #DB716A;
 	padding: 80px;
 	text-align: center;
 	display: block;
@@ -333,7 +339,7 @@ section#contact_us{
 		margin: 0 auto;
 		line-height: 30px;
 		a{
-			color: @blue;
+			color: white;
 		}
 	}
 }
@@ -344,7 +350,7 @@ section#quotes{
 	//background: transparent url('../img/7.png') center center no-repeat;
 	.block;
 	.quote_content{
-		background: rgba(234, 155, 44, 0.78);
+		background: rgba(219, 113, 106, 0.78);
 		color: white;
 		padding: 43px 45px;
 		height: 170px;
@@ -372,7 +378,7 @@ section#quotes{
 	.carousel-caption{
 		padding-bottom: 30px;
 		padding-bottom: 30px;
-		background: rgba(255, 165, 0, 0.76);
+		background: rgba(219, 113, 106, 0.72);
 		padding: 50px;
 		color: white;
 		text-shadow: none;
@@ -401,11 +407,12 @@ footer{
 
 	section#landing_splash nav #landing_logo{
 		display: inline-block;
-		width: 90px;
+		width: 120px;
 		float: left;
-		padding: 0px;
-		height: 60px;
+		padding: 2px;
+		height: auto;
 		margin-left: 17px;
+        margin-top:10px;
 	}
 	section#landing_splash nav ul.landing_nav_right{
 		display: block;

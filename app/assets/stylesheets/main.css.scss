@@ -1,5 +1,7 @@
 $dark-text-color: #767676;
 $orange: #EA9B2C;
+$rose: #DB716A;
+$gray: #5E5E5E;
 .splash {
   margin-top: -20px;
 
@@ -24,7 +26,7 @@ $orange: #EA9B2C;
     overflow: auto;
     .modal-header{
       .modal-title{
-        color: $orange;
+        color: #DB716A;
         font-weight: bold;
         font-size:17px;
       }
@@ -38,21 +40,21 @@ $orange: #EA9B2C;
       label{
         padding-left:0px;
         margin-bottom: 5px;
-        color: $orange;
+        color: #DB716A;
         span{
           color: grey;
         }
       }
       input{
-        border:1px solid $orange;
+        border:1px solid #DB716A;
       }
       textarea{
-        border:1px solid $orange;
+        border:1px solid #DB716A;
         margin-bottom: 4px;
         height: 250px;
       }
       .submit{
-        background-color:$orange;
+        background-color:#DB716A;
         color: white;
         font-weight: bold;
         border-radius: 0px;
@@ -133,7 +135,7 @@ a.nav-user{
         width: 100%;
         margin-top: 0px;
         height: 7vh;
-        background-color: #EA9B2C;
+        background-color:#DB716A;
         border-radius: 2px;
         margin-top: 3.5vh;
         color: white;
@@ -170,7 +172,7 @@ a.nav-user{
               width: 100%;
               margin-top: 0px;
               height: 100%;
-              background-color:#EA9B2C;
+              background-color:#DB716A;
               border-radius:2px;
               color: white;
             }
@@ -209,7 +211,7 @@ a.nav-user{
 }
 
 .search-input{
-  border:1px solid #EAE6E1;
+  border:1px solid #DB716A;
   padding-left:5px;
   border-radius:2px;
 
@@ -217,12 +219,12 @@ a.nav-user{
 .submit-search{
   margin-top: 0;
   margin-left: 10px;
-  background-color:#EA9B2C;
+  background-color:#DB716A;
   border-radius:2px;
   color: white;
 }
 body{
-  background-color: #F5F5F5
+  background-color: #F5F5F5;
 }
 #posts-show.vendor{
   width: 70%;
@@ -289,7 +291,7 @@ body{
             color:white;
           }
           .bid-post{
-            background-color:#EA9B2C;
+            background-color:#DB716A;
             border-radius: 0px;
             color:white;
           }
@@ -299,8 +301,8 @@ body{
           padding-left: 15px;
           padding-right: 15px;
           .watch-post{
-            background-color:whtie;
-            border:1px solid #E4E4E4;
+            background-color:white;
+            border:1px solid #DB716A;
             color:grey;
             font-size: 9px;
             border-radius:0px;
@@ -345,7 +347,7 @@ body{
       .submit-btn{
         margin-top: 5px;
         height: 6vh;
-        background-color: $orange;
+        background-color: #DB716A;
         color:white;
         border-radius:2px;
         margin-bottom: 20px;

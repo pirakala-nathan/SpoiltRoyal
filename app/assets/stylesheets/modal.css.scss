@@ -1,3 +1,6 @@
+::selection {
+  background: #DB716A !important; /* WebKit/Blink Browsers */
+}
 .notice{
 	z-index: 99;
 }
@@ -22,7 +25,7 @@
 			.modal-body{
 				.motto{
 					font-size: 10px;
-					color: #777;
+					color: #DB716A;
 					margin-bottom: 20px;
 				}
 			}
@@ -66,22 +69,22 @@
 			form{
 				.login-email{
 					height: 45px;
-					border:1px solid #EA9B2C;
+					border:1px solid #DB716A;
 					margin-top: 10px;
 					margin-bottom: 5px;
 				}
 				.login-pass{
 					height: 45px;
-					border:1px solid #EA9B2C;
+					border:1px solid #DB716A;
 					margin-top: 0px;
 					margin-bottom: 20px;
 				}
 				.login-submit{
 					height: 45px;
-					border:1px solid #EA9B2C;
+					border:1px solid #DB716A;
 					margin-top: 0px;
 					margin-bottom: 20px;
-					background: #EA9B2C;
+					background: #DB716A;
 					color: white;
 				}
 			}
@@ -96,7 +99,7 @@
 			.modal-body{
 				.motto{
 					font-size: 10px;
-					color: #777;
+					color: #DB716A;
 					margin-bottom:0px;
 				}
 				.slide-1{
@@ -115,7 +118,7 @@
 	  						vertical-align: middle;
 								height: 150px;
 								width: 150px;
-								background: #EA9B2C;
+								background: #DB716A;
 							}
 						}	
 					}
@@ -125,7 +128,7 @@
 						form{
 							input{
 								height: 45px;
-								border:1px solid #EA9B2C;
+								border:1px solid #DB716A;
 								margin-bottom: 10px;
 								padding-left: 5px;
 							}
@@ -136,7 +139,7 @@
 								margin-bottom: 10px;
 							}
 							.submit{
-								background: #EA9B2C;
+								background: #DB716A;
 								color: white;
 								margin-bottom: 30px;
 							}
@@ -187,7 +190,7 @@
 					}
 					.email-signup{
 						border:0px;
-						background:#EA9B2C;
+						background:#DB716A;
 						border-radius:0px;
 						margin-top: 20px;
 						margin-bottom: 0px;
@@ -225,7 +228,7 @@
 		display: inline-block;
 		margin-bottom: 27px;
 		.active{
-			background: #EA9B2C !important;
+			background: #DB716A !important;
 		}
 		.slider-circle{
 			display: inline-block;
