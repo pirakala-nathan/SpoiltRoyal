@@ -19,11 +19,10 @@
       ga('create', 'UA-59002638-1', 'auto');
       ga('send', 'pageview');
   %body
-    - if notice
-      .notice
-        = notice
-        %a.close_notice
-          [Dismiss]
+    #loadmodal.load-modal{:style => "display:none"}
+      .loading
+    .notice-cont
+      = render 'layouts/notice'
     - if current_user
       %nav#logged-in-nav.navbar.navbar-default
         .container-fluid
@@ -37,37 +36,59 @@
             %a.col-sm-12.navbar-brand{:href => "/", style: "font-family:Lobster,'cursive';"}
               = image_tag("/img/logo.svg")
           / Collect the nav links, forms, and other content for toggling
-          .navbar-search.col-sm-2.hidden-xs
-            = link_to "BROWSE VENDORS", vendors_path
-          #bs-example-navbar-collapse-1.collapse.navbar-collapse.navbar-right
+          .navbar-left.col-sm-5
+            %ul.nav.navbar-nav.center-navbar.col-sm-12
+              - if current_user.account_type != "Vendor"
+                %li.col-sm-4.hidden-xs
+                  = link_to vendors_path do
+                    %button.btn.new-post
+                      Browse Vendors
+                
+              %li.col-sm-4
+                - if current_user.account_type == "Vendor"
+                  = link_to posts_path, class: "post-btn" do
+                    %button.btn.new-post
+                      Browse Posts
+                - else
+                  %a.post-btn{href: "#"}
+                    %button.btn.new-post.post-new
+                      Post Your Needs
+          .navbar-right.col-sm-5
             %ul.nav.navbar-nav.center-navbar.col-sm-12
               %li.col-sm-3
                 = link_to logout_path, class: "post-btn" do
                   %button.btn.new-post
                     Logout
-              %li.col-sm-3
-                - if current_user.account_type == "Vendor"
-                  = link_to posts_path, class: "post-btn" do
-                    %button.btn.new-post
-                      Posts
-                - else
-                  %a.post-btn{href: "#"}
-                    %button.btn.new-post.post-new
-                      Post Your Needs
-              %li.notification-li
-                %a.dtoggle#menu1
-                  %span.glyphicon.glyphicon-tasks{"aria-hidden" => "true"}
-                  %span.caret
+                - @activities = PublicActivity::Activity.where(recipient_id: current_user.id).order(created_at: :desc)
+                - @read = true;
+    
+                -@activities.each do |activity|
+                  - if activity.read == false
+                    -@read = false;
+                - if !@read
+                  = link_to 'read', read_user_path(current_user), remote:true, class: "hidden read-notifications"
+              %li.notification-li{class: "read-#{@read}"}
+                %a.dtoggle#menu1.non-active-not{class: "read-#{@read}"}
+                  %i.fa.fa-bell-o{class: "#{'new' if !@read}"}
+                  %i.fa.fa-bell{class: "#{'new' if !@read}"}
+
+
                 .menu1.hidden.dmenu{:role => "menu"}
+                  %i.fa.fa-caret-up
+                  
                   .notifications
                     .new
                       = sync_new partial: 'notification', resource: PublicActivity::Activity.new
-                    - @activities = PublicActivity::Activity.where(recipient_id: current_user.id).order(created_at: :desc)
 
-                    - @activities.each do |activity|
-                      = sync partial: 'notification', resource: activity
-                    - if @activites == nil
+                    - @activities.each_with_index do |activity,index|
+                      - @index = index
+    
+                      = sync partial: 'notification', resource: activity, total: @activities.length, index: index
+                    - if @activities.length < 1
                       You Have No Notifications
+                  .col-xs-12.title.no-h-padding
+                    Notification
+            
 
 
               %li
@@ -79,37 +100,6 @@
                     = image_tag @image.url(:small), class: "img-circle"
                   = current_user.full_name
 
-              / %li.non-active.secondPage
-              /   %a{:href => "#secondPage"} current listings
-              / %li.non-active.thirdPage
-              /   %a{:href => "#thirdPage"} Why Pick me?
-    / .notifications.col-xs-4.col-xs-offset-8
-    /   - if request.path != "/" && current_user
-    /     .new
-
-    / - if request.path != "/" && current_user
-    /   .col-xs-4
-    /     = link_to 'My Profile', current_user
-    /     = link_to 'Notification Settings', :notification_settings
-
-    / #nav
-    /   = link_to "View Vendors", vendors_path
-    /   - if can? :index, :user
-    /     = link_to "Users", users_path
-    /   - if can? :create, :post
-    /     = link_to "Posts", posts_path
-    /   - if current_user
-    /     = link_to "Edit Account", edit_user_path(current_user)
-    /     - profile = "Profile"
-    /     - if current_user.account.nil?
-    /       = link_to profile, user_path(current_user)
-    /     - else
-    /       = link_to profile, show_account_user_path(current_user)
-    /     = link_to "Logout", :logout
-    /   - else
-    /     = link_to "Register", new_user_path
-    /     |
-    /     = link_to "Login", :login
     = yield
     - if current_user
       - if current_user.account_type != "Vendor"

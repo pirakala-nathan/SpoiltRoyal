@@ -4,8 +4,8 @@
 # http://en.wikipedia.org/wiki/Cron
 
 # Example:
-set :environment, "production"
-# set :output, "/home/spondon/nex/log/cron_log.log"
+set :environment, "development"
+set :output, " /home/spondon/work/syncidlabs/nex/log/cron_log.log"
 # set :output, "/path/to/my/cron_log.log"
 #
 # every 2.hours do
@@ -19,6 +19,10 @@ set :environment, "production"
 # end
 
 # Learn more: http://github.com/javan/whenever
+every 1.minutes do
+  runner "TimedTask.timed_jobs('instant')"
+end 
+
 every 1.day do
 	runner "TimedTask.timed_jobs('day')"
 end
@@ -27,6 +31,6 @@ every 1.week do
 	runner "TimedTask.timed_jobs('week')"
 end
 
-every 1.week do
+every 1.month do
   runner "TimedTask.timed_jobs('month')"
 end

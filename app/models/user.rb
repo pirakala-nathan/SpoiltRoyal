@@ -46,7 +46,11 @@ class User < ActiveRecord::Base
     if self.galleries.where(name: "Profile_Pictures").empty?
       return nil
     else
-      return self.galleries.where(name: "Profile_Pictures").first.assets.last
+      if self.galleries.where(name: "Profile_Pictures").first.attachments.empty?
+        return nil
+      else
+        return self.galleries.where(name: "Profile_Pictures").first.attachments.last
+      end
     end
   end
 end

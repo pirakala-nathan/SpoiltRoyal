@@ -1,5 +1,8 @@
 
-= nested_form_for @vendor, class: "form-group vendor-form ", html: { multipart: true } do |f|
+
+-# = nested_form_for @vendor, class: "form-group vendor-form ", html: { multipart: true }, remote: true,:authenticity_token => true do |f|
+.slide-info.hidden{'current-slide' => 1}
+= nested_form_for @vendor, class: "form-group vendor-form ", html: { multipart: true }, remote: true,:authenticity_token => true do |f|
   / Vendor Part Starts-------------------------------------------------
   - if @vendor.errors.any?
     #error_explanation
@@ -16,41 +19,44 @@
       .col-xs-6.no-h-padding.established-label
         = f.label :establish_date, :style => "margin-left: 11px;"
     .col-xs-10.col-xs-offset-1
-      = f.text_field :business_name, class: "business_name required"
-      = f.text_field :establish_date, class: "datepicker", placeholder: "mm/dd/yyyy"
+      = f.text_field :business_name, class: "business_name required", "data-slide": "slide-1"
+      = f.text_field :establish_date, class: "datepicker", placeholder: "mm/dd/yyyy", "data-slide": "slide-1"
     .col-xs-10.col-xs-offset-1.phyiscal-location
-
+      = f.hidden_field :final_submit, value: "pic upload ", "data-slide": "slide-1"
       =f.fields_for :physical_locations do |pl|
 
-        .h5.col-xs-6.no-h-padding.rm-on-edit
+        .h5.col-xs-6.no-h-padding.rm-on-edit{style: "margin-top: 40px;"}
           Physical Location
-        .col-xs-6.rm-on-edit
-          =pl.link_to_remove "REMOVE", class: "remove-p-location"
-        = pl.label :address, class: "no-h-padding address-label mt-30 "
-        = pl.label :postal_code, class: " no-h-padding postal-label  mt-30 no-error"
-        = pl.text_field :address, class: "address-label address-input  mb-13 required"
-        = pl.text_field :postal_code, class: "postal-label postal-input mb-13 postal required"
+        .col-xs-6.rm-on-edit{style: "margin-top: 40px;"}
+          =pl.link_to_remove "REMOVE X", class: "remove-p-location", "data-slide": "slide-1"
+        = pl.label :address, class: "no-h-padding address-label mt-30 ", "data-slide": "slide-1"
+        = pl.label :postal_code, class: " no-h-padding postal-label  mt-30 no-error", "data-slide": "slide-1"
+        = pl.text_field :address, class: "address-label address-input  mb-13 required", "data-slide": "slide-1"
+        = pl.text_field :postal_code, class: "postal-label postal-input mb-13 postal required", "data-slide": "slide-1"
         .row.no-h-padding.rm-on-edit
-          = render 'layouts/location_selector', location: pl
-        = pl.label :business_phone, class: "business_phone rm-o"
-        = pl.label :other_phone,class: "other_phone"
-        = pl.text_field :business_phone,class: "business_phone ph", type: "tel"
-        = pl.text_field :other_phone,class: "other_phone"
+          = render 'layouts/location_selector', location: pl, slide: "slide-1"
+        = pl.label :business_phone, class: "business_phone rm-o", "data-slide": "slide-1"
+        = pl.label :other_phone,class: "other_phone", "data-slide": "slide-1"
+        = pl.text_field :business_phone,class: "business_phone ph", type: "tel", "data-slide": "slide-1"
+        = pl.text_field :other_phone,class: "other_phone", "data-slide": "slide-1"
         / = pl.label :fax
         / = pl.text_field :fax
-        = pl.label :business_email, class: "business_email"
-        = pl.label :business_website, class: "business_website"
-        = pl.text_field :business_email, class: "business_email"
-        = pl.text_field :business_website, class: "business_website"
+        = pl.label :business_email, class: "business_email", "data-slide": "slide-1"
+        = pl.label :business_website, class: "business_website", "data-slide": "slide-1"
+        = pl.text_field :business_email, class: "business_email", "data-slide": "slide-1"
+        = pl.text_field :business_website, class: "business_website", "data-slide": "slide-1"
         / = pl.label :sale_location
 
         / = pl.check_box :sale_location
 
       = f.link_to_add "ADD ANOTHER PHYSICAL LOCATION", :physical_locations, class: " add-p-location col-xs-12 no-h-padding"
+    .h5.col-xs-10.col-xs-offset-1{style: "margin-top: 40px;"}
+      Enter A Short Description Of Your Business:
+      = f.text_area :business_description, class: "col-xs-12 no-h-padding", "data-slide": "slide-3"
   .slide-2.slide
     .col-xs-10.col-xs-offset-1
       .half-way-through
-        HALF WAY THROUGH...
+        DESCRIBE YOUR BUISNESS ...
       .title
         Whats Your Buisness Like?
       = f.fields_for :vendor_subscriptions do |vs|
@@ -59,29 +65,31 @@
           .h5.col-xs-6.no-h-padding
             Business Industry
           = vs.link_to_remove "REMOVE", class: "remove-industry col-xs-6"
-          = render 'layouts/industry_selector', industry: vs
+          = render 'layouts/industry_selector', industry: vs, slide: "slide-2"
       = f.link_to_add "ADD MORE", :vendor_subscriptions, class: "col-xs-12 no-h-padding add-industry"
       .h5.no-h-padding.col-xs-12
         Select all that apply
       .business-options.col-xs-12.no-h-padding
         .selling
           .checkbox.checkbox-orange
-            = f.check_box :shipping
+            = f.check_box :shipping, "data-slide": "slide-2"
             = f.label "I sell products/services at my store location"
         .delivery
           .checkbox.checkbox-orange
-            = f.check_box :selling, class: "delivery-btn"
+            = f.check_box :selling, class: "delivery-btn", "data-slide": "slide-2"
             = f.label "I deliver to"
           .delivery-locations
-            = f.fields_for :delivery_location do |dl|
-              = render 'layouts/location_selector', location: dl
+            = f.fields_for :delivery_locations do |dl|
+              = render 'layouts/location_selector', location: dl, slide: "slide-2"
+              = dl.link_to_remove "Remove This Location", class: "dl-remove"
+            = f.link_to_add "Add Another Location", :delivery_locations, class: "dl-add"
         .service
           .checkbox.checkbox-orange
-            = f.check_box :servicing, class: "service-btn"
+            = f.check_box :servicing, class: "service-btn", "data-slide": "slide-2"
             = f.label "I travel and provide onsite service to my customers"
           .service-locations
             = f.fields_for :service_locations do |sl|
-              = render 'layouts/location_selector', location: sl
+              = render 'layouts/location_selector', location: sl, slide: "slide-2"
               = sl.link_to_remove "Remove This Location", class: "sl-remove"
             = f.link_to_add "Add Another Location", :service_locations, class: "sl-add"
 
@@ -92,63 +100,111 @@
           = f.fields_for :accepted_payment_methods do |apm|
             - if apm.object.payment_method_id != nil
               .checkbox.checkbox-orange
-                = apm.check_box :accepted, :id => apm.object.payment_method.name
+                = apm.check_box :accepted, :id => apm.object.payment_method.name, "data-slide": "slide-2"
                 = apm.label apm.object.payment_method.name, :for => apm.object.payment_method.name
         - else
           - PaymentMethod.all.each do |pm|
             = f.fields_for :accepted_payment_methods do |apm|
               .checkbox.checkbox-orange
                 = apm.hidden_field :payment_method_id, :value => pm.id
-                = apm.check_box :accepted
+                = apm.check_box :accepted, "data-slide": "slide-2"
                 = apm.label pm.name
+        = f.submit "Submit", class: "hidden vendor-form-submit"
 
-  .slide-3.slide
-    .col-xs-10.col-xs-offset-1
-      .half-way-through
-        FINALLY...
-      .title
-        SHOW OFF YOUR BUSINESS!
-      - if !@newVendor
-        .col-xs-12.no-h-padding.previous-images
-          - if @vendor.cover_pic != nil
-            .sub-heading Your Current Cover Picture
-            .images
-              - @image = @vendor.cover_pic.image
-              = image_tag @image.url(:vendor_cover), class: "cover-pic"
-          
-          -if @vendor.media.length > 0
-            .sub-heading Pictures You already Uploaded
-            .images
-              - @vendor.media.each do |asset|
-                = image_tag asset.image(:vendor_media)
-      .h5.col-xs-12.no-h-padding
+.slide-3.slide
+  .col-xs-10.col-xs-offset-1
+    .half-way-through
+      ADD IMAGES TO YOUR ACCOUNT...
+    .title
+      SHOW OFF YOUR BUSINESS!
+    .h5.col-xs-12.no-h-padding
+      %span.col-xs-12.no-h-padding
         Upload a picture of your business
-      = file_field_tag "profile_pic[]", type: :file, class: "file-upload-hidden"
-      = file_field_tag "cover_pic[]", type: :file, class: "file-cover-hidden"
-      = file_field_tag "media_pics[]", type: :file,multiple: true, class: "file-media-hidden"
-      .file-upload-trigger.file-upload-btn
-        %span
-          UPLOAD PROFILE PHOTO
-      .file-cover-trigger.file-upload-btn
-        %span
-          UPLOAD COVER PICTURE
-      .file-media-trigger.file-upload-btn
-        %span
-          UPLOAD MULTIPLE PICS FOR SHOW
-      .h5.col-xs-12.no-h-padding
-        Enter A Short Description Of Your Business(Optional):
-      = f.text_area :business_description, class: "col-xs-12 no-h-padding"
+    .col-xs-6.no-h-padding{class: "gallery-container-#{@profileGallery.id}"}
+      = render 'attachments/form', attachment: Attachment.new, gallery: @profileGallery, attachment_text: "UPLOAD PROFILE PICTURE"
 
-      .col-xs-12.finish-msg
-        You're done for now, wasn't that easy? You are ready for busniess at NEX! Don't worry if you didnt fill in everything. You can modify them later!
-  .slide-buttons.col-xs-12
-    .prev-vendor-slide.hidden{:target => ".slide-1", :current => ".slide-2", class: "#{'hidden' if !@newVendor}"}
-      Back
-    = f.submit "Save Profile", class: "next-vendor-slide #{'slide-3' if @newVendor} final-submit"
-    .next-vendor-slide.next{:target => ".slide-2", :prev => ".slide-1", class: "#{'hidden' if !@newVendor}"}
-      Next
-  .col-xs-12.fill-cont
-    = link_to "Fill this later", overview_user_path(current_user), class: "fill-later"
+    .title.col-xs-12.no-h-padding{style: "margin-top:10px"}
+      COVER PICTURES!
+    .h5.col-xs-12.no-h-padding
+      %span.col-xs-12.no-h-padding
+        Upload a cover picture, it will be visible in your profile.
+    .col-xs-12.no-h-padding{class: "gallery-container-#{@coverGallery.id}"}
+      = render 'attachments/form', attachment: Attachment.new, gallery: @coverGallery, attachment_text: "UPLOAD PROFILE PICTURE"
+    .title.col-xs-12.no-h-padding{style: "margin-top:10px"}
+      MEDIA!
+    .h5.col-xs-12.no-h-padding
+      %span.col-xs-12.no-h-padding
+        Upload pictures to show off your work !
+    .col-xs-12.no-h-padding{class: "gallery-container-#{@meidaGallery} media-gallery"}
+      = render 'attachments/multiple_form', attachment: Attachment.new, gallery: @vendor.media
+
+      -# = f.file_field "cover_pic[]", type: :file,remote: true, class: "file-cover-hidden"
+      -# = f.file_field_tag "media_pics[]", type: :file,multiple: true, remote:true, class: "file-media-hidden"
+    -# .file-upload-trigger.file-upload-btn
+    -#   %span
+    -#     UPLOAD PROFILE PHOTO
+    -# .file-cover-trigger.file-upload-btn
+    -#   %span
+    -#     UPLOAD COVER PICTURE
+    -# .file-media-trigger.file-upload-btn
+    -#   %span
+    -#     UPLOAD MULTIPLE PICS FOR SHOW
+    
+
+    -# .col-xs-12.finish-msg
+    -#   You're done for now, wasn't that easy? You are ready for busniess at NEX! Don't worry if you didnt fill in everything. You can modify them later!
+= form_for(@user) do |u|
+  .slide-4.slide.col-xs-6.col-xs-offset-3
+    .col-xs-12.no-h-padding
+      = u.label :username, class: "col-xs-6 no-h-padding business_name"
+      = u.label :email, class: "col-xs-6 no-h-padding datepicker"
+    .col-xs-12.no-h-padding
+      = u.text_field :username, class: 'col-xs-6 business_name', "data-slide": "slide-3"
+      = u.text_field :email, class: 'col-xs-6 datepicker', "data-slide": "slide-4"
+    .field
+      %br/
+    .field
+      = u.label :old_password
+      %br/
+      = u.password_field :old_password, class: 'col-xs-12', "data-slide": "slide-4"
+    .field
+      = u.label :password
+      %br/
+      = u.password_field :password, class: 'col-xs-12', "data-slide": "slide-4"
+    .field
+      = u.label :password_confirmation
+      %br/
+      = u.password_field :password_confirmation, class: 'col-xs-12', "data-slide": "slide-4"
+    .field
+      = u.submit 'Update Account', class: 'btn btn-default hidden user-form-submit'
+.slide-5.slide.col-xs-8.col-xs-offset-2.no-h-padding
+  .half-way-through
+    Change Your Email Notification Settings
+  .h5.col-xs-12.no-h-padding
+    %span.col-xs-12.no-h-padding
+      Depending on these settings you will get email about your notifications
+  - @settings = current_user.email_notification_settings
+  - @settings.each do |setting|
+    = form_for setting, remote: true do |f|
+      .row.setting
+        .col-xs-5.title.no-h-padding
+          #{setting.settings_for}
+
+    
+        = f.select :timed_task_id, TimedTask.all.collect {|x| [x.measure_of_time, x.id]}, {}, class: "country-select col-xs-3"
+
+        = f.submit "Save", class: "btn btn-save col-xs-offset-1 col-xs-3"
+.slide-buttons.col-xs-12
+  -# .prev-vendor-slide.hidden{:target => ".slide-1", :current => ".slide-2"}
+  -#   Save & Back 
+  .next-vendor-slide.next.slide-1{"data-slide": "slide-1"}
+    Save
+  .next-vendor-slide.next.slide-2{"data-slide": "slide-2"}
+    Save
+  .next-vendor-slide.next.slide-4{"data-slide": "slide-4"}
+    Save
+  -# .col-xs-12.fill-cont
+  -#   = link_to "Fill this later", overview_user_path(current_user), class: "fill-later"
     /   .col-xs-6.no-h-padding
     /     = f.label :tax_number
 

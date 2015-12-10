@@ -49,31 +49,38 @@ class BidsController < ApplicationController
         @users = []
         @post = @bid.post
         @user_activity = PublicActivity::Activity.create(owner: current_user,
-               key: 'Post.placed_a_bid_on_your_post',recipient: @post.user, trackable:@bid)
+               key: 'Post.placed_a_bid_on_your_post',recipient: @post.user, trackable:@bid.post)
         if @user_activity.id != nil
           @users << @post.user.id
           sync_new @user_activity, scope: @post.user
-          sync_new @user_activity
+          # sync_new @user_activity
         end
         @post.comments.each do |comment|
           if !(@users.include? comment.user.id)
+            if comment.user_id ==  9
+                raise
+              end
             @activity = PublicActivity::Activity.create(owner: current_user,
-               key: 'Post.placed_a_bid_on_a_post',recipient: comment.user, trackable:@comment)
+               key: 'Post.placed_a_bid_on_a_post_you_commented_on',recipient: comment.user, trackable:comment)
             if @user_activity.id != nil
               @users << comment.user.id
               sync_new @activity, scope: comment.user
-              sync_new @activity
+              # sync_new @activity
             end
           end
         end
         @post.bids.each do |bid|
+
           if !(@users.include? bid.user.id)
-            @activity = PublicActivity::Activity.create(owner: current_user,
-               key: 'Post.placed_a_bid_on_a_post',recipient: bid.user, trackable:@bid)
-            if @user_activity.id != nil
+            if current_user != bid.user
+              
+              @activity = PublicActivity::Activity.create(owner: current_user,
+                 key: 'Post.placed_a_bid_on_a_post',recipient: bid.user, trackable:bid)
+            end
+            if (@user_activity.id != nil) && (bid.user !+ current_user)
               @users << bid.user.id
               sync_new @activity, scope: bid.user
-              sync_new @activity
+              # sync_new @activity
             end
           end
         end
@@ -91,7 +98,7 @@ class BidsController < ApplicationController
   def update
     respond_to do |format|
       if @bid.update(bid_params)
-        format.html { redirect_to @bid, notice: 'Bid was successfully updated.' }
+        format.html { redirect_to :back, notice: 'Bid was successfully updated.' }
         format.json { render :show, status: :ok, location: @bid }
       else
         format.html { render :edit }

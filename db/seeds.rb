@@ -108,7 +108,8 @@ EmailNotificationSetting.create(settings_for: 'Comment', timed_task: TimedTask.f
 EmailNotificationSetting.create(settings_for: 'Bid', timed_task: TimedTask.first, user: admin)
 EmailNotificationSetting.create(settings_for: 'Bid', timed_task: TimedTask.first, user: @test)
 
-
+EmailNotificationSetting.create(settings_for: 'Conversation', timed_task: TimedTask.first, user: admin)
+EmailNotificationSetting.create(settings_for: 'Conversation', timed_task: TimedTask.first, user: @test)
 @v = Vendor.create(business_name: "SyncI&DLabs",
               establish_date: Date.today, tax_number: 1234)
 @c = Consumer.create();

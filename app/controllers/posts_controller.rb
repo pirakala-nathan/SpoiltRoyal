@@ -23,7 +23,9 @@ class PostsController < ApplicationController
       @subcategory = Subcategory.find(params[:subcategory_id])
       @posts = Post.joins(:post_subscriptions).where(:post_subscriptions =>{:subcategory_id => @subcategory.id}).all
     end
-
+    if params[:query] != nil && params[:query] != ""
+      @posts = Post.search(params[:query]);
+    end
   end
 
   # GET /posts/1
@@ -42,43 +44,54 @@ class PostsController < ApplicationController
   def edit
   end
 
+  def activate_post
+    raise 
+    redirect_to posts_path
+  end
   # POST /posts
   # POST /posts.json
   def create
+    @error = ""
     @post = Post.new(post_params)
-    @post.due_date = Date.strptime(post_params[:due_date], "%m/%d/%Y")
-    @post.user = current_user
-    respond_to do |format|
-      if @post.save
-        @users=[]
-        if params[:images]
-          #===== The magic is here ;)
-          params[:images].each { |image|
-            @post.assets.create(image: image)
-          }
-        end
-        @post.post_subscriptions.each do |sub|
-          @subcategory = sub.subcategory
-          @category = sub.category
-          sub.save
-          @subcategory.vendors.each do |vendor|
-            if !(@users.include? vendor.user.id) 
-              @users << vendor.user.id
-              @activity = PublicActivity::Activity.create(owner: current_user,
-               key: 'Post.made_a_new_post',recipient: vendor.user, trackable:@post)
-              if @activity.id != nil 
-                sync_new @activity, scope: vendor.user
-                sync_new @activity
+    if post_params[:due_date] != ""
+      @post.due_date = Date.strptime(post_params[:due_date], "%m/%d/%Y")
+      @post.user = current_user
+      respond_to do |format|
+        if @post.save
+          @users=[]
+          if params[:images]
+            #===== The magic is here ;)
+            params[:images].each { |image|
+              @post.attachments.create(image: image)
+            }
+          end
+          @post.post_subscriptions.each do |sub|
+            @subcategory = sub.subcategory
+            @category = sub.category
+            sub.save
+            @subcategory.vendors.each do |vendor|
+              if !(@users.include? vendor.user.id) 
+                @users << vendor.user.id
+                @activity = PublicActivity::Activity.create(owner: current_user,
+                 key: 'Post.made_a_new_post',recipient: vendor.user, trackable:@post)
+                if @activity.id != nil 
+                  sync_new @activity, scope: vendor.user
+                  sync_new @activity
+                end
               end
             end
           end
+          # format.html { redirect_to @post, notice: 'Post was successfully created.' }
+          format.js{render layout: false}
+        else
+          format.html { render :new }
+          format.json { render json: @post.errors, status: :unprocessable_entity }
         end
-
-        format.html { redirect_to @post, notice: 'Post was successfully created.' }
-        format.json { render :show, status: :created, location: @post }
-      else
-        format.html { render :new }
-        format.json { render json: @post.errors, status: :unprocessable_entity }
+      end
+    else
+      @error = "Invalid Date"
+      respond_to do |format|
+        format.js
       end
     end
   end
@@ -89,8 +102,15 @@ class PostsController < ApplicationController
     respond_to do |format|
 
       if @post.update(post_params)
-        @post.due_date = Date.strptime(post_params[:due_date], "%m/%d/%Y")
+        if post_params[:due_date]
+          @post.due_date = Date.strptime(post_params[:due_date], "%m/%d/%Y")
+        end
         @post.save
+        @attachments = @post.attachments
+        @attachments.each do |a|
+          a.active = true
+          a.save
+        end
         format.html { redirect_to @post, notice: 'Post was successfully updated.' }
         format.json { render :show, status: :ok, location: @post }
       else
@@ -118,7 +138,7 @@ class PostsController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def post_params
-      params.require(:post).permit(:title,:delivery_needed,:service_needed,:pick_up_needed,:other_needed ,:other_needed_string,:phone_contact,:email_contact, :description, :email,:user_id,:due_date,
+      params.require(:post).permit(:active,:title,:delivery_needed,:service_needed,:pick_up_needed,:other_needed ,:other_needed_string,:phone_contact,:email_contact, :description, :email,:user_id,:due_date,
         post_subscriptions_attributes: [:_destroy, :id, :subcategory_id])
     end
 end

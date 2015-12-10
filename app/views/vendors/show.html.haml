@@ -1,3 +1,4 @@
+= render 'layouts/includeScroll'
 -if current_user == @vendor.user
   = render 'users/dashboard_nav'
 .custom.container
@@ -25,20 +26,21 @@
               - if @current_raiting == nil
                 - @current_raiting = Review.new
               = form_for @current_raiting, :html => {:class => "raiting-form"} do |f|
-                .stars-raiting.form.stars-show
+                .stars-raiting.stars-show
                 - if @current_raiting != nil
                   :javascript
-                    $('.stars-raiting').raty({ readOnly: false, score: "#{@current_raiting.raiting}"});
+                    $('.stars-show').raty({ readOnly: true, score: "#{@vendor.total_raiting}"});
                 - else
                   :javascript
-                    $('.stars-raiting').raty({ readOnly: false, score: "#{@vendor.total_raiting}"});
+                    $('.stars-show').raty({ readOnly: true, score: "#{@vendor.total_raiting}"});
                 = f.hidden_field :raiting, value: 0, class: "raiting"
                 = f.hidden_field :user_id, value: current_user.id
                 = f.hidden_field :vendor_id, value: @vendor.id
           .work-and-buttons
             .work-examples.col-xs-12.no-h-padding
-              - @vendor.media.each do |asset|
-                = image_tag asset.image(:vendor_media)
+              - if @vendor.media != nil
+                - @vendor.media.attachments.order('created_at DESC').limit(4).each_with_index do |asset,index|
+                  = image_tag asset.image(:vendor_media), class: "work-image-#{index}"
             .col-xs-12.no-h-padding.buttons
               / .contact-us
               /   = mail_to @vendor.user.email, "Contact us", subject: "Hi, I saw you on NEX."
@@ -50,7 +52,7 @@
         = image_tag ("//placehold.it/180X191")
       - else
         - @image = @vendor.cover_pic.image
-        = image_tag @image.url
+        = image_tag @image.url(:vendor_cover)
     .col-xs-12.no-h-padding.vendor-content
       .col-xs-12.description-container.no-h-padding
         .h5.title.vendor-title
@@ -70,54 +72,30 @@
           - @vendor.vendor_subscriptions.each do |vs|
             .service.col-xs-4.no-h-padding
               = vs.subcategory.name
-      .col-xs-12.no-h-padding.tags-container
-        .title
-          Tags:
-        .tags
-          .tag
-            Wedding
-          .tag
-            Photography
-          .tag
-            Random
-          .tag
-            Lorem
+      -# .col-xs-12.no-h-padding.tags-container
+      -#   .title
+      -#     Tags:
+      -#   .tags
+      -#     .tag
+      -#       Wedding
+      -#     .tag
+      -#       Photography
+      -#     .tag
+      -#       Random
+      -#     .tag
+      -#       Lorem
+      - if !(@vendor.media.attachments.empty?)
+        - @attachments = @vendor.media.attachments
+        = render 'media'
       .col-xs-12.no-h-padding.reviews-container
         .col-xs-12.no-h-padding
           .h5.title.vendor-title
             REVIEWS
-          .col-xs-12.no-h-padding.reviews
-            - @reviews.order('created_at DESC').limit(3).each do |r|
-              .review.col-xs-12.no-h-padding
-                - if r.user.profile_pic == nil
-                  = image_tag ("//placehold.it/60x60"), class: "img-circle"
-                - else
-                  - @image = r.user.profile_pic.image
-                  = image_tag @image.url(:small), class: "img-circle"
-                .info
-                  .name.col-xs-12.no-h-padding
-                    = r.user.first_name + " " + r.user.last_name
-                  .text.col-xs-12.no-h-padding
-                    = r.feedback
-                  .date
-                    = r.created_at.strftime("%B %d, %Y")
-            - @reviews.order('created_at DESC').offset(3).each do |r|
-              .review.less
-                - if r.user.profile_pic == nil
-                  = image_tag ("//placehold.it/60x60"), class: "img-circle"
-                - else
-                  - @image = r.user.profile_pic.image
-                  = image_tag @image.url(:small), class: "img-circle"
-                .info
-                  .name.col-xs-12.no-h-padding
-                    = r.user.first_name + " " + r.user.last_name
-                  .text.col-xs-12.no-h-padding
-                    = r.feedback
-                  .date
-                    = r.created_at.strftime("%B %d, %Y")
+          = render 'reivew_list'
         - if can? :create, Review
           .col-xs-12.no-h-padding
             .write-review.new-review
               Write a Review
 
 = render 'new_review'
+= render 'layouts/full_image', attachments:@vendor.media.attachments.order('created_at DESC')

@@ -22,4 +22,8 @@ class UserMailer < ActionMailer::Base
     @url  = 'localhost:3000'
     mail(to: @email, subject: 'Password Reset')
   end
+
+  def new_message(reciever,user,message)
+    
+  end
 end

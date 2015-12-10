@@ -13,6 +13,26 @@
 //= require jquery
 //= require jquery_ujs
 //= require jquery_nested_form
+//= require jquery-fileupload/basic
+//= require jquery-fileupload/vendor/tmpl
 //= require bootstrap-datepicker
 //= require sync
 //= require_tree .
+var vendor_slide_submited;
+$(document).ready(function(){
+  $('.custom-scroll').mCustomScrollbar({mouseWheel:{ deltaFactor: 100 }});
+});
+
+saveForm = function(slide) {
+  $('#loadmodal').show();
+  if (slide === 'slide-1') {
+    vendor_slide_submited = 'slide-1';
+    $('.edit_vendor').submit();
+  } else if (slide === 'slide-2') {
+    vendor_slide_submited = 'slide-2';
+    $('.edit_vendor').submit();
+  } else if (slide === 'slide-4') {
+    vendor_slide_submited = 'slide-4';
+    $('.edit_user').submit();
+  }
+};

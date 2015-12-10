@@ -1,3 +1,4 @@
+= render 'layouts/includeScroll'
 .custom.container
   .page-directory
     Browse Posts >
@@ -24,29 +25,35 @@
     .post-button
       .bid_now
         Bid Now
-      .bid-history
-        Bid History
-      = form_for WatchedPost.new do |f|
-        = f.hidden_field :user_id, value: current_user.id
-        = f.hidden_field :post_id, value: @post.id
-        = f.submit "Watch Post", class: "watch-bid submit-btn"
+      - if  current_user.watched_posts.where(post_id: @post.id).length > 0
+        - wp = current_user.watched_posts.where(post_id: @post.id).first
+        = link_to  watched_post_path(wp.id), method: :delete, data: {confirm: " Are you sure you want to unwatch this post"}, class: "btn watch-bid col-xs-12" do
+          %i.fa.fa-eye
+          Forget Post
+      - else
+        = form_for WatchedPost.new do |f|
+          = f.hidden_field :user_id, value: current_user.id
+          = f.hidden_field :post_id, value: @post.id
+          = button_tag(type: "submit", class: "btn watch-bid col-xs-12") do
+            %i.fa.fa-eye
+            Watch Post
     .post-description.col-xs-12.no-h-padding
       .title
         POST DESCRIPTION
       .text
         = @post.description
 
-    .tags.post-info-cont
-      .title
-        TAGS:
-      / @post.tags.each do |tag|
-      .tag-cont
-        .tag
-          Lorem
-        .tag
-          Wedding
-        .tag
-          servers
+    -# .tags.post-info-cont
+    -#   .title
+    -#     TAGS:
+    -#   / @post.tags.each do |tag|
+    -#   .tag-cont
+    -#     .tag
+    -#       Lorem
+    -#     .tag
+    -#       Wedding
+    -#     .tag
+    -#       servers
     .post-date.post-info-cont
       .title
         POST EXPIREY DATE:
@@ -95,13 +102,15 @@
           SERVICE ADDRESS:
         .value
           123 Main Street, Toronto, Ontario, Canada, M1M 3E9
-    - if !(@post.assets.empty?)
+    - if !(@post.attachments.empty?)
       .media.col-xs-12.no-h-padding
         .title
           MEDIA
         .content.col-xs-12.no-h-padding
-          - @post.assets.each do |asset|
-            = image_tag asset.image.url(:post_media)
+          - @attachments = @post.attachments
+          - @post.attachments.each do |asset|
+            %label.small-img{'data-id' => asset.id }
+              = image_tag asset.image.url(:post_media)
 
 .custom.container
   .bids-cont.border-gray
@@ -131,12 +140,16 @@
                   - if bid.user.account.class == Consumer || bid.user.account.business_name.nil?
                     = bid.user.first_name + " " + bid.user.last_name
                 %span.dark-text
-                  made a bid
+                  = "made a bid for "
+                %span.green
+                  = "$#{bid.value}"
               .description
-                = bid.info
 
+                = bid.info
+      - @viewbids = false
       - @restBids = @post.bids.order('created_at DESC').offset(3)
       - @restBids.each do |bid|
+        - @viewbids = true
         .bid.rest-of-bids
           .col-xs-2.bid-date.no-h-padding
             %span.green.col-xs-12.no-h-padding
@@ -163,8 +176,9 @@
                   made a bid
               .description
                 = bid.info
-    .more-or-less.view-more
-      view more
+    - if @viewbids
+      .more-or-less.view-more
+        view more
 
 .custom.container
   .comments-cont.border-gray
@@ -185,7 +199,7 @@
             .name.col-xs-12.no-h-padding
               %span.dark-text
                 - if comment.user.account_type == "Vendor"
-                  - if bid.user.account.class == Consumer || bid.user.account.business_name.nil?
+                  - if comment.user.account.class == Consumer || comment.user.account.business_name.nil?
                     = comment.user.first_name + " " + comment.user.last_name
                   - else
                     = comment.user.account.business_name
@@ -195,7 +209,9 @@
                 = comment.created_at.strftime("%B %d, %Y")
             .text
               = comment.content
+      - @viewcomments = false
       - @post.comments.order('created_at DESC').offset(3).each do |comment|
+        - @viewcomments = true
         .comment.rest-of-comments.col-xs-12.no-h-padding
           - if comment.user.profile_pic == nil
             = image_tag ("//placehold.it/60x60"), class: "img-circle"
@@ -203,10 +219,10 @@
             - @image = comment.user.profile_pic.image
             = image_tag @image.url(:small), class: "img-circle"
           .info
-            .name
+            .name.col-xs-12.no-h-padding
               %span.dark-text
                 - if comment.user.account_type == "Vendor"
-                  - if bid.user.account.class == Consumer || bid.user.account.business_name.nil?
+                  - if comment.user.account.class == Consumer || comment.user.account.business_name.nil?
                     = comment.user.first_name + " " + comment.user.last_name
                   - else
                     = comment.user.account.business_name
@@ -214,16 +230,19 @@
                   = comment.user.account.business_name
               %span.date
                 = comment.created_at.strftime("%B %d, %Y")
-            .text
+            .text.col-xs-12.no-h-padding
               = comment.content
     / - if @post.comments.length > 3
-    .more-or-less-comments.view-more
-      View More
-
+    - if @viewcomments
+      .more-or-less-comments.view-more
+        View More
 
 
 
 - @bid = Bid.new
+- @post.bids.each do |bid|
+  - if bid.user == current_user
+    - @bid = bid
 = render 'bid_now'
 = render 'post_a_question'
-
+= render 'layouts/full_image', attachments: @attachments

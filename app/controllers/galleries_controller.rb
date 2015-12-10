@@ -21,6 +21,9 @@ class GalleriesController < ApplicationController
   def edit
   end
 
+
+    
+  end
   # POST /galleries
   # POST /galleries.json
   def create

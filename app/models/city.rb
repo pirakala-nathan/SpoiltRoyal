@@ -5,4 +5,6 @@ class City < ActiveRecord::Base
   has_many :location_options, through: :option_city_lists
   has_many :delivery_locations, dependent: :destroy
   has_many :service_locations, dependent: :destroy
+  has_many :physical_locations, dependent: :destroy
+  has_many :vendors, through: :physical_locations
 end

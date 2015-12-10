@@ -5,8 +5,139 @@ $dark-text-color: #767676;
 $orange: #EA9B2C ;
 $green: #5AB075;
 $blue: #63BFDE;
+.convo{
+	width: 100%;
+	padding-top: 30px;
+	padding-bottom: 30px;
+	background-color: white;
+	border-right: 1px solid #E9E9E9;
+	border-left: 1px solid #E9E9E9;
+	border-bottom: 1px solid #E9E9E9;
+	overflow: auto;
+	.img-container{
+		padding-left: 30px;
+	}
+	.status{
+		.bid-status.bid-pending{
+			color: $orange;
+			font-weight: bold;
+		}
+		.bid-status.accepted{
+			color: $green;
+			font-weight: bold;
+		}
+		.bid-status{
+			font-weight: bold;
+			margin-bottom: 10px;
+		}
+
+	}
+	.convo-info{
+		padding-left: 30px;
+		.convo-subject{
+			display: block;
+			color: $orange;
+			font-weight:bold;
+			padding-bottom: 5px;
+		}
+		.convo-latest-message{
+			display: block; /* Fallback for non-webkit */
+		  display: -webkit-box;
+		  width: calc(700px - 60px);
+			max-height: 14px*2*1.3; /* Fallback for non-webkit */
+		  font-size: 14;
+		  line-height: 1.3;
+		  -webkit-line-clamp: 2;
+		  -webkit-box-orient: vertical;
+		  overflow: hidden;
+		  text-overflow: ellipsis;
+		  margin-bottom: 5px;
+		}
+		.message-date{
+			color:#BBBFC3;
+			font-size: 13px;
+		}
+	}
+}
+.file-upload-Cover_Pictures{
+	width: 100% !important;
+}
+.file-upload-container{
+	float: left;
+	height: 200px;
+	width: 200px;
+	border: 1px solid #ffc285 !important;
+	display: block;
+	margin-top: 50px;
+	margin-bottom: 30px;
+	margin-right: 20px;
+	text-align: center;
+  background-size:     cover; 
+  background-repeat:   no-repeat;
+  background-position: center center;
+  .centered-icon{
+  	width: 100%;
+  	text-align:center;
+  	margin-top: calc((100px - 19px) - 44px);
+  	i{
+  		font-size: 38px;
+  		color: red;
+  	}
+  }
+	.destroy-attachment{
+		display: block;
+    margin: 7px;
+    height: 30px;
+    width: 30px;
+    color: white;
+    font-weight: bold;
+    float: right;
+    background-color: black;
+    opacity: 0.5;
+    border-radius: 15px;
+    line-height: 30px;
+	}
+	.destroy-attachment:hover{
+		color: $orange;
+		text-decoration: none;
+	}
+	span{
+		margin-top:80px;
+		line-height: 20px;
+		text-align: center;
+		font-weight: bold;
+		font-size: 16px;
+		display: inline-block;
+		vertical-align: middle;
+	}
+	.upload-btn{
+		position: absolute;
+		height: 35px;
+		width: 200px;
+		line-height: 35px;
+		margin-top: 165px;
+		background-color: white;
+		opacity: 0.85;
+		color: $orange;
+	}
+	.progress-bar{
+		height: 5px;
+		width: 0%;
+		background-color: $orange;
+	}
+}
+.file-upload-container.in-progress{
+	background-color: $orange;
+	color: white;
+	span{
+		margin-top: 75px;
+	}
+}
 .padding-left-30{
-	padding-left: 30px;
+	padding-left: 30px !important;
+}
+.custom.container.overview{
+	width:1230px;
 }
 .custom.container{
 	width:1000px;
@@ -148,60 +279,7 @@ $blue: #63BFDE;
 		}
 	}
 	.convo-list{
-		.convo{
-			width: 100%;
-			padding-top: 30px;
-			padding-bottom: 30px;
-			background-color: white;
-			border-right: 1px solid #E9E9E9;
-			border-left: 1px solid #E9E9E9;
-			border-bottom: 1px solid #E9E9E9;
-			overflow: auto;
-			.img-container{
-				padding-left: 30px;
-			}
-			.status{
-				.bid-status.bid-pending{
-					color: $orange;
-					font-weight: bold;
-				}
-				.bid-status.accepted{
-					color: $green;
-					font-weight: bold;
-				}
-				.bid-status{
-					font-weight: bold;
-					margin-bottom: 10px;
-				}
-
-			}
-			.convo-info{
-				padding-left: 30px;
-				.convo-subject{
-					display: block;
-					color: $orange;
-					font-weight:bold;
-					padding-bottom: 5px;
-				}
-				.convo-latest-message{
-					display: block; /* Fallback for non-webkit */
-				  display: -webkit-box;
-				  width: calc(700px - 60px);
-					max-height: 14px*2*1.3; /* Fallback for non-webkit */
-				  font-size: 14;
-				  line-height: 1.3;
-				  -webkit-line-clamp: 2;
-				  -webkit-box-orient: vertical;
-				  overflow: hidden;
-				  text-overflow: ellipsis;
-				  margin-bottom: 5px;
-				}
-				.message-date{
-					color:#BBBFC3;
-					font-size: 13px;
-				}
-			}
-		}
+		
 	}
 	.user-bids{
 		width: 100%;
@@ -327,7 +405,7 @@ $blue: #63BFDE;
 					width: calc(100% - 60px); 
 					padding-left: 20px;
 					.title{
-						color: $orange;
+						color: $orange !important;
 						margin-top: 42.5px;
 						margin-bottom:3px;
 
@@ -569,8 +647,13 @@ $blue: #63BFDE;
 	#main-overview{
 		position: relative;
 		float: right;
-		width: 800px;
+		width: 1000px;
+		.container-overview{
+			padding: 0px !important;
+		}
 		.inbox-overview{
+			
+
 			.unread-msgs{
 				li{
 					list-style-image: none;
@@ -581,8 +664,7 @@ $blue: #63BFDE;
 		}
 		.border-gray{
 			background: white;
-			width: 760px;
-			margin-left:20px;
+			width: 1000px;
 			padding:20px; 
 			margin-bottom: 10px;
 			.title{
@@ -590,8 +672,13 @@ $blue: #63BFDE;
 				text-align: left;
 				font-size: 16px;
 				color: black;
+			}
+			.container-title{
 				font-style: bold;
-				padding-bottom: 10px;
+				height: 50px;
+		    background: #FCFCFC;
+		    border: 1px solid #E9E9E9;
+		    line-height: 50px;
 
 			}
 		}
@@ -659,9 +746,16 @@ $blue: #63BFDE;
   	opacity: 0.7;
   }
 }
+.custom-scroll{
+	height: calc(100vh - 14vh - 120px);
+}
 .custom.container{
 	margin-top: 40px;
+	overflow-x: hidden;
+	overflow-y: hidden;
 	.account-cont{
+		overflow-x: hidden;
+		// overflow-y: hidden;
 		.vf-slide-toggle{
 			display: inline-block;
 			border: $orange 1px solid;
@@ -670,8 +764,12 @@ $blue: #63BFDE;
 			color: $orange;
 			text-align: center;
 			line-height: 50px;
-			font-size: 18px;
+			font-size: 15px;
 
+		}
+		.vf-slide-toggle.notsaved{
+			background-color:#F47A53 ;
+			color: white;
 		}
 		.vf-slide-toggle:hover{
 			cursor: pointer;
@@ -684,9 +782,15 @@ $blue: #63BFDE;
 			border-left:0px;
 			border-right:0px;
 		}
-		overflow: auto;
+		.vf-slide-3-toggle{
+			border-right:0px;
+		}
+		.vf-slide-4-toggle{
+			border-right:0px;
+		}
 		height: 100%;
 		width: 100%;
+		padding-bottom:20px;
 		background:white;
 		display: block;
 		.logo-container{
@@ -730,7 +834,18 @@ $blue: #63BFDE;
 					font-size: 18px;
 					border:0;
 					position: relative;
+					opacity: 0.65;
 
+				}
+				*:hover{
+					cursor: not-allowed;
+				}
+				.active{
+					opacity: 1;
+
+				}
+				.active:hover{
+					cursor: pointer;
 				}
 				.final-submit{
 					top: 1px !important;
@@ -747,6 +862,9 @@ $blue: #63BFDE;
 				display: none
 			}
 			.slide-3{
+				display: none;
+			}
+			.slide-4{
 				display: none;
 			}
 			.finish-msg{
@@ -885,26 +1003,7 @@ $blue: #63BFDE;
 						color: white;
 					}
 				}
-				.file-upload-btn{
-					float: left;
-					height: 200px;
-					width: 200px;
-					border: 1px solid #ffc285;
-					display: block;
-					margin-top: 50px;
-					margin-bottom: 30px;
-					margin-right: 20px;
-					text-align: center;
-					span{
-						margin-top:80px;
-						line-height: 20px;
-						text-align: center;
-						font-weight: bold;
-						font-size: 16px;
-						display: inline-block;
-						vertical-align: middle;
-					}
-				}
+				
 				.file-upload-btn:hover{
 					cursor: pointer;
 				}

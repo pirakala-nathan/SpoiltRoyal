@@ -5,7 +5,7 @@ class UsersController < ApplicationController
   #dashboard//
   def overview
     @vendor = @user.account
-    @vendor.assets.build
+
     @posts = Post.all.limit(2)
     @messages = current_user.conversations.includes(:messages).where.not(:messages => {:user_id => current_user.id}).where(:messages => {:read => nil})
   end
@@ -52,17 +52,35 @@ class UsersController < ApplicationController
       @vendor = @user.account
       @vendor.physical_locations.build
       @vendor.vendor_subscriptions.build
-      @vendor.build_delivery_location
+      @vendor.delivery_locations.build
       @vendor.service_locations.build
       @vendor.external_links.build
-      @vendor.assets.build
       @vendor.personal_infos.build
       @vendor.accepted_payment_methods.build
       if @vendor.created_at == @vendor.updated_at
         @newVendor = true
       else
-        @newVendor = false
+        @newVendor = true
       end
+      @profileGallery =  @vendor.galleries.where(name: "Profile_Pictures", owner_id: @vendor.id, owner_type: "Vendor")
+      if@profileGallery.empty?
+        @vendor.galleries.create(name: "Profile_Pictures", owner_id: @vendor.id, owner_type: "Vendor", user_id: current_user.id)
+        @profileGallery =  @vendor.galleries.where(name: "Profile_Pictures", owner_id: @vendor.id, owner_type: "Vendor")
+      end
+      @profileGallery = @profileGallery.first
+      @coverGallery =  @vendor.galleries.where(name: "Cover_Pictures", owner_id: @vendor.id, owner_type: "Vendor")
+      if@coverGallery.empty?
+        @vendor.galleries.create(name: "Cover_Pictures", owner_id: @vendor.id, owner_type: "Vendor", user_id: current_user.id)
+        @coverGallery =  @vendor.galleries.where(name: "Cover_Pictures", owner_id: @vendor.id, owner_type: "Vendor")
+      end
+      @coverGallery = @coverGallery.first
+      @mediaGallery =  @vendor.galleries.where(name: "Media", owner_id: @vendor.id, owner_type: "Vendor")
+      if@mediaGallery.empty?
+        @vendor.galleries.create(name: "Media", owner_id: @vendor.id, owner_type: "Vendor", user_id: current_user.id)
+        @mediaGallery =  @vendor.galleries.where(name: "Media", owner_id: @vendor.id, owner_type: "Vendor")
+      end
+      @mediaGallery = @mediaGallery.first
+
     end
   end
 
@@ -70,6 +88,13 @@ class UsersController < ApplicationController
 
   # GET /users
   # GET /users.json
+  def read
+    @activities = PublicActivity::Activity.where(recipient_id: current_user.id, read: false).order(created_at: :desc)
+    @activities.each do |act|
+      act.read = true;
+      act.save
+    end
+  end
   def index
     @users = User.all
   end
@@ -130,12 +155,17 @@ class UsersController < ApplicationController
       if @user.save
         if @user.account_type == "Vendor"
           vendor_account = Vendor.create
+          @vendor = vendor_account
           @user.update(account: vendor_account)
           EmailNotificationSetting.create(settings_for: 'Vendor', timed_task: TimedTask.first, user: @user)
+          @vendor.galleries.create(name: "Cover_Pictures", owner_id: @vendor.id, owner_type: "Vendor", user_id: current_user.id)
+          @vendor.galleries.where(name: "Profile_Pictures", owner_id: @vendor.id, owner_type: "Vendor")
+          @vendor.galleries.create(name: "Media", owner_id: @vendor.id, owner_type: "Vendor", user_id: current_user.id)
         else
           consumer_account = Consumer.create
           @user.update(account: consumer_account)
         end
+        EmailNotificationSetting.create(settings_for: 'Conversation', timed_task: TimedTask.first, user: @user)
         EmailNotificationSetting.create(settings_for: 'Post', timed_task: TimedTask.first, user: @user)
         EmailNotificationSetting.create(settings_for: 'Comment', timed_task: TimedTask.first, user: @user)
         EmailNotificationSetting.create(settings_for: 'Bid', timed_task: TimedTask.first, user: @user)

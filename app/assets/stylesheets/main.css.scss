@@ -11,7 +11,8 @@ $orange: #EA9B2C;
 	display:none;
 }
 .read_false{
-	border:1px solid red
+	border:3px dotted #EA9B2C;
+  border-bottom: 3px dotted #EA9B2C !important;
 }
 .new{
 	.notification-card{
@@ -71,30 +72,39 @@ $orange: #EA9B2C;
 
 
 .notification-card{
-    height: 120px;
-    padding-top: 10px;
-    padding-bottom: 10px;
-    .activity-pic{
-      width: 100px;
-      height: 100%;
-      float: left;
-      .notification-pic{
-        position: relative;
-        top: 0px !important;
-        margin-top:0px !important;
-      }
-    }
-    .activity-description{
-      width: 350px;
-      float:right;
-      line-height: 1;
-      span{
-        color: black;
-        font-size: 20px !important;
-
-      }
+  height: 120px;
+  padding-top: 10px;
+  padding-bottom: 10px;
+  border-bottom: 1px dotted $orange;
+  .activity-pic{
+    width: 100px;
+    height: 100%;
+    float: left;
+    .notification-pic{
+      position: relative;
+      top: 0px !important;
+      margin-top:0px !important;
     }
   }
+  .activity-description{
+    width: 350px;
+    float:right;
+    line-height: 1;
+    padding-left: 20px;
+    text-align: left;
+    span{
+      color: #333;
+      font-size: 14px !important;
+      line-height: 21px;
+      display: inline-block;
+      padding-top:5px;
+    }
+    .time-stamp{
+      width: 100%;
+      text-align: left;
+    }
+  }
+}
 #quotes {
   .carousel {
     height: 400px;
@@ -112,8 +122,72 @@ a.nav-user{
   position: relative;
   right: 428px;
 }
+.notifications-li.read-false{
+  a{
+    .fa-bell-o{
+      display: none !important;
+    }
+  }
+}
 .notification-li{
-  max-width: 70px;
+  width: 70px;
+  text-align: center;
+  a{
+    color: $orange !important;
+    font-size: 30px;
+    .fa-bell{
+      display: none;
+    }
+    .fa-bell-o.new{
+      display: none;
+    }
+    .fa-bell.new{
+      display: inline-block;
+    }
+  }
+  a.active-not{
+    .fa-bell{
+      display: inline-block
+    }
+  }
+  .menu1{
+    border:1px solid $orange;
+    z-index: 10;
+    .notifications::-webkit-scrollbar { width: 0 !important }
+    .fa-caret-up{
+      float: right;
+      color: #EA9B2C;
+      font-size: 30px;
+      margin-top: -6px;
+      margin-right: calc((70px - 18px)/2);
+      text-align: right;
+      line-height: 0;
+    }
+    .notificatoin.read-false{
+
+    }
+    .notifications{
+      border:1px solid $orange;
+      -ms-overflow-style: none;
+      overflow: -moz-scrollbars-none; 
+      max-height: 450px;
+      padding-top:6px;
+      overflow-y: scroll;
+      a{
+        display: inline-block
+      }
+      
+    }
+    .title{
+      background-color: $orange;
+      border:1px solid $orange;
+      padding: 10px;
+      color: white;
+      font-size: 20px;
+      margin-left: -2px;
+      width: calc(100% + 4px);
+    }
+  }
 }
 #logged-in-nav{
   .logo{
@@ -141,8 +215,8 @@ a.nav-user{
         line-height: 7vh;
       }
     }
-    #bs-example-navbar-collapse-1{
-      width: 50%;
+    .navbar-right{
+
       ul{
         li{
           margin-left:10px;
@@ -158,8 +232,47 @@ a.nav-user{
           }
           img{
             position:relative;
-            top:50%;
-            margin-top: -30px;
+            margin-right: 5px;
+            // top:50%;
+            // margin-top: -30px;
+          }
+          .post-btn{
+            padding:0 ;
+          }
+          a{
+            height: 100%;
+            .new-post{
+              width: 100%;
+              margin-top: 0px;
+              height: 100%;
+              background-color:#EA9B2C;
+              border-radius:2px;
+              color: white;
+            }
+          }
+        }
+      }
+    }
+    .navbar-left{
+
+      ul{
+        li{
+          margin-left:10px;
+          height: 100%;
+          float:left;
+          span{
+            position: relative;
+            font-size: 35px;
+            top: calc(50% - 12.5px)
+          }
+          a{
+            line-height: 7vh;
+          }
+          img{
+            position:relative;
+            margin-right: 5px;
+            // top:50%;
+            // margin-top: -30px;
           }
           .post-btn{
             padding:0 ;
@@ -228,9 +341,18 @@ body{
   width: 70%;
   margin-left: 15%;
   margin-top: 25px;
+
+}
+.bg-img{
+  background: url("../img/bg.jpg")no-repeat center center fixed; 
+  -webkit-background-size: cover;
+  -moz-background-size: cover;
+  -o-background-size: cover;
+  background-size: cover;;
 }
 #posts-show{
   float: left;
+  margin-top: 20px;
   .posts-list{
     height: 86vh;
     .vendor{
@@ -244,12 +366,25 @@ body{
       height: 191px;
       .post-info{
         height: 100%;
-        width: calc(80% - 180px);
+        width: calc(100% - 200px);
         margin-top: 20px;
         margin-left: 20px;
+        padding-right:0px;
         .post-title{
           font-weight: bold;
           font-size: 20px;
+          padding-right:15px;
+          a:hover{
+            text-decoration: none;
+          }
+        }
+        .watch-container{
+          .watch-post{
+            margin-top: -20px;
+            background-color: $orange;
+            border-radius: 0px;
+            color: white;
+          }
         }
         .address{
           color: #989393;
@@ -267,6 +402,7 @@ body{
           height: 58px;
           margin-top:20px;
           font-size: 14px;
+          padding-right: 15px;
           line-height: 1;
           -webkit-line-clamp: 4;
           -webkit-box-orient: vertical;
@@ -316,9 +452,15 @@ body{
         height: 100%;
         max-width: 180px;
         min-width: 179px;
+        text-align: center;
+        line-height: 191px;
+        font-size: 91px;
+        background-color: $orange;
+        color: white;
         img{
           height: 191px;
           width: 180px;
+          margin-top: -27px;
         }
       }
     }
@@ -358,12 +500,91 @@ body{
     .filters{
       background-color:white;
       border:1px solid #D7D7D7;
+      .view-more-cat{
+        text-align: right;
+        span{
+          line-height: 4vh !important;
+          font-size: 14px;
+          font-weight: normal;
+          font-family: 'Lato', sans-serif;
+          color: rgb(66, 139, 202);
+        }
+        span:hover{
+          cursor: pointer;
+        }
+      }
+      .view-more-subcat{
+        text-align: right;
+        span{
+          line-height: 4vh !important;
+          font-size: 14px;
+          font-weight: normal;
+          font-family: 'Lato', sans-serif;
+          color: rgb(66, 139, 202);
+        }
+        span:hover{
+          cursor: pointer;
+        }
+      }
+      .categories.minimized{
+        max-height: calc(21vh + 18px);
+        overflow:hidden;
+      }
+      .cities{
+        margin-top: 20px;
+
+        span{
+          font-size: 12px;
+          font-weight: bold;
+          color:$dark-text-color;
+          padding-bottom:10px;
+          display: inline-block;
+        }
+        .active{
+          border: 1px solid #D7D7D7;
+        }
+        .city{
+          padding-left:3px;
+          padding-right:5px;
+          height: 4vh;
+          span{
+            line-height: 4vh !important;
+            font-size: 14px;
+            font-weight: normal;
+          }
+          a{
+            span{
+              line-height: 4vh;
+              font-size: 14px;
+            }
+          }
+        }
+        a{
+          .active{
+            border: 1px solid #D7D7D7;
+          }
+          .category{
+            padding-left:3px;
+            padding-right:5px;
+            height: 4vh;
+            span{
+              line-height: 4vh !important;
+              font-size: 14px;
+
+              font-weight: normal;
+            }
+          }
+        }
+      }
       .categories{
         margin-top: 20px;
+
         span{
           font-size: 11px;
           font-weight: bold;
           color:$dark-text-color;
+          padding-bottom:10px;
+          display: inline-block;
         }
         .active{
           border: 1px solid #D7D7D7;
@@ -402,12 +623,18 @@ body{
         }
       }
 
+      .subcategories.minimized{
+        max-height: calc(20.5vh + 18px);
+        overflow:hidden;
+      }
       .subcategories{
         margin-top: 20px;
         span{
           font-size: 11px;
           font-weight: bold;
           color:$dark-text-color;
+          padding-bottom:10px;
+          display: inline-block;
         }
         .active{
           border: 1px solid #D7D7D7;
@@ -480,10 +707,6 @@ body{
   z-index: 99;
   background-color: #eee;
   border-radius: 15px;
-}
-
-.navbar .img-circle {
-  margin-top: -50px !important;
 }
 
 form .field {

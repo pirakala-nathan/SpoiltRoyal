@@ -1,5 +1,13 @@
 Rails.application.routes.draw do
 
+  resources :attachments do
+    collection do
+      get :add_attachment_to_form
+    end
+  end
+
+  resources :assets
+
   resources :feedbacks
 
   resources :options_city_lists
@@ -43,13 +51,17 @@ Rails.application.routes.draw do
   resources :activities
   resources :personal_infos
 
-  resources :posts
+  resources :posts do
+    member do 
+      get :activate_post
+    end
+  end
 
   get 'pages/home'
   get 'admin' => 'pages#admin', :as => "admin"
   get 'forgotten_password' => 'pages#forgotten_password', :as => :forgotten_password
   post 'reset_password' => 'pages#reset_password', :as => :reset_password
-
+  # get 'activate_post' => 'post#activate_post', :as => :activate_post
   resources :consumers
 
   match 'fetch_categories' => 'api#fetch_categories', as: :fetch_categories, via: [:get, :post]
@@ -70,6 +82,7 @@ Rails.application.routes.draw do
       get :profile
       get :account
       get :watched_posts
+      get :read
     end
   end
   resources :user_sessions, only: [:new, :create]

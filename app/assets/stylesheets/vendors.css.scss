@@ -8,14 +8,68 @@ $blue: #63BFDE;
 h3 {
   color: blue;
 }
+.btn-save{
+  display: inline-block !important;
+  background-color: #EA9B2C;
+  height: 50px !important;
+  width: auto;
+  margin-top: -1px;
+  width: 20%;
+  color: white;
+  line-height: 36px !important;;
+  font-size: 18px;
+  border: 0;
+  position: relative;
+}
+.reviews-container.overview-review{
+	background-color:white;
+	float:left;
 
+	.reviews{
+		width: 100%;
+		.review{
+
+			img{
+				margin-right: 20px;
+				float: left;
+			}
+			.info{
+				font-size: 15px;
+				float: left;
+				width: calc(100% - 80px );
+				.name{
+					font-weight: bold;
+					margin-bottom: 3px;
+					span{
+						float: left;
+					}
+					.raiting-star{
+						float: left;
+						margin-left: 5px;
+						img{
+							height: 15px;
+							margin-right: 0px;
+						}
+					}
+				}
+				.text{
+					margin-bottom: 3px;
+				}
+				.date{
+					font-size: 12px;
+				}
+
+			}
+		}
+	}
+}
 .row {
   padding: 1em;
 }
 
-#vendor-form{
+.vendor-form{
 	background:white;
-	border:1px solid #e7e7e7;
+
 	.logo{
 		height: 15vh;
 		display: block;
@@ -41,7 +95,7 @@ h3 {
 			display: none;
 		}
 		.checkbox{
-			text-align:center
+			text-align:left;
 		}
 		.cbox{
 			height: auto;
@@ -66,6 +120,12 @@ h3 {
 			color:white;
 			text-align: center;
 		}
+		.embedded-link-container{
+			.next{
+				background-color:$orange;
+				color: white;
+			}
+		}
 		input{
 			height: 35px;
 			border: 1px solid $orange;
@@ -89,6 +149,7 @@ h3 {
 		.vendor-content{
 			background-color: white;
 			padding: 50px;
+			
 			.industries-content{
 				padding-top: 20px;
 				padding-bottom: 30px;
@@ -137,6 +198,17 @@ h3 {
 							.name{
 								font-weight: bold;
 								margin-bottom: 3px;
+								span{
+									float: left;
+								}
+								.raiting-star{
+									float: left;
+									margin-left: 5px;
+									img{
+										height: 15px;
+										margin-right: 0px;
+									}
+								}
 							}
 							.text{
 								margin-bottom: 3px;
@@ -303,10 +375,17 @@ h3 {
 	.introduction{
 		padding-bottom: 10px;
 	}
+	.stars-raiting{
+		margin-top: 5px;
+		img{
+			height: 30px;
+		}
+	}
 	.subtitle{
 		color: #5e5e5e;
 		font-weight: bold;
-		font-size: 12px 
+		font-size: 12px; 
+		margin-top: 10px;
 	}
 	textarea{
 		width: 100%;

@@ -3,7 +3,7 @@ source 'https://rubygems.org'
 
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
 gem 'rails', '4.2.0'
-
+gem 'searchkick'
 gem 'bootstrap-datepicker-rails'
 # Use mysql2 as the database for Active Record
 gem 'faye'
@@ -43,7 +43,7 @@ gem 'haml-rails'
 gem 'less-rails'
 
 gem "nested_form"
-
+gem "font-awesome-rails"
 gem 'cancancan', '~> 1.9'
 
 # Use ActiveModel has_secure_password
@@ -55,6 +55,7 @@ gem 'sprockets-rails', :require => 'sprockets/railtie'
 
 gem 'mail', '~> 2.5.4'
 
+gem "jquery-fileupload-rails"
 group :development do
   gem 'better_errors'
   gem 'binding_of_caller'

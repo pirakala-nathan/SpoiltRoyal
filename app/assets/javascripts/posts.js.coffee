@@ -3,6 +3,12 @@
 # You can use CoffeeScript in this file: http://coffeescript.org/
 $ ->
 # for the post form datepicker
+  catindex = $('.category.active').attr('data-index')
+  catindex = parseInt(catindex)
+  if catindex > 4
+    $('.view-more-cat .show-more').click()
+
+  
   $('.datepicker').datepicker
     autoclose: true
   $('.post-your-own.next').click ->

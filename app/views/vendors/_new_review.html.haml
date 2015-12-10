@@ -2,7 +2,9 @@
   .modal-dialog
     .modal-content
       .modal-body.support-body.review-modal
-        - @review = Review.new
+        -if @review == nil
+          - @review = Review.new
+
         = form_for @review do |f|
           - if @review.errors.any?
             #error_explanation
@@ -18,7 +20,20 @@
           /   RATE OUT OF 5
           / .stars.form
           .subtitle
+            RATE OUT OF 5 STARS
+          .stars-raiting.form
+          - if @review != nil
+            :javascript
+              $('.stars-raiting.form').raty({ readOnly: false, score: "#{@review.raiting}"});
+          - else
+            :javascript
+              $('.stars-raiting.form').raty({ readOnly: false, score: "#{@vendor.total_raiting}"});
+          = f.hidden_field :raiting, value: 0, class: "raiting"
+          = f.hidden_field :user_id, value: current_user.id
+          = f.hidden_field :vendor_id, value: @vendor.id
+          .subtitle
             WRITE YOUR FEEDBACK
+
           = f.text_area :feedback
           / = f.hidden_field :raiting, value: 0, class: "raiting"
           = f.hidden_field :user_id, value: current_user.id

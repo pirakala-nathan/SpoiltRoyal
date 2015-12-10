@@ -7,7 +7,7 @@ class AuthenticationsController < ApplicationController
     if authentication
       # User is already registered with application
       flash[:info] = 'Signed in successfully.'
-      sign_in_and_redirect(authentication.user)
+      sign_in_and_redirect(authentication.user,false)
       @new_user = false
     elsif current_user
       # User is signed in but has not already authenticated with this social network
@@ -55,6 +55,7 @@ class AuthenticationsController < ApplicationController
           consumer_account = Consumer.create
           user.update(account: consumer_account)
         end
+        EmailNotificationSetting.create(settings_for: 'Conversation', timed_task: TimedTask.first, user: user)
         EmailNotificationSetting.create(settings_for: 'Post', timed_task: TimedTask.first, user: user)
         EmailNotificationSetting.create(settings_for: 'Comment', timed_task: TimedTask.first, user: user)
         EmailNotificationSetting.create(settings_for: 'Bid', timed_task: TimedTask.first, user: user)

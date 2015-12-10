@@ -13,7 +13,6 @@
       -@post = wp.post
       .post
         .col-xs-2.padding-left-30.watched-date
-          - raise
           - if (Time.now.to_date - wp.created_at.to_date).to_i == 0
             %span.in-grey
               Today

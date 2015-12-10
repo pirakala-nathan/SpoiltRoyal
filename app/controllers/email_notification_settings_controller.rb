@@ -8,7 +8,6 @@ class EmailNotificationSettingsController < ApplicationController
   	@setting.timed_task_id =  params[:email_notification_setting][:timed_task_id][1]
   	@setting.save
   	respond_to do |format|
-      format.html { redirect_to :back}
     	format.js
     end
   end

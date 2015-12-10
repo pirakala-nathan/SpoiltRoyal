@@ -6,14 +6,17 @@
         - @bid.errors.full_messages.each do |msg|
           %li= msg
 
-  .field
-    = f.label :value
-    = f.number_field :value, class: "form-control"
-  .field
-    = f.hidden_field :post_id, value: @post.id
-    = f.hidden_field :user_id, value: current_user.id
-  .field
-    = f.label :info
-    = f.text_area :info, class: "form-control"
-  .actions
-    = f.submit 'Bid'
+  = f.hidden_field :post_id, value: @post.id
+  = f.hidden_field :user_id, value: current_user.id
+  .col-xs-12.bid-input-container
+    %label Bid Amount:
+  .col-xs-12.bid-input-container
+    %span $
+    = f.text_field :value, class: "form-control col-xs-5 amount"
+  .col-xs-12.bid-input-container
+    %label
+      Bid Detail (Try to answer why? What? Where?):
+  .col-xs-12.bid-input-container
+    = f.text_area :info, class: "form-control "
+  .actions.col-xs-12
+    = f.submit 'Bid', class: "bid-submit"

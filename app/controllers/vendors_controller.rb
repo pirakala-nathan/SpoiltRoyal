@@ -8,21 +8,58 @@ class VendorsController < ApplicationController
   
   def index
     @categories = Category.all
+    @cities = City.all
+    @category = nil
+    @cat_id = nil
+    @subcat_id = nil
+    @subcategor = nil
+    @city = nil
+    @vendors = Vendor.all
+
+    if params[:city_id] != nil
+      @city = params[:city_id]
+      if params[:category_id] != nil
+        @cat_id = params[:category_id]
+        @category = Category.find(params[:category_id])
+        @subcategories = @category.subcategories
+        @subids = [];
+        @subcategories.map{|x| @subids << x.id}
+        if params[:subcategory_id] != nil
+          @subcat_id = params[:subcategory_id]
+          @subcategory = Subcategory.find(params[:subcategory_id])
+          @vendors = Vendor.joins(:physical_locations, :vendor_subscriptions).where(:vendor_subscriptions =>{:subcategory_id => @subcategory.id}).where(:physical_locations => {city_id: @city}).all
+        else
+          @vendors = Vendor.joins(:physical_locations, :vendor_subscriptions).where(:vendor_subscriptions =>{:subcategory_id => @subcategories}).where(:physical_locations => {city_id: @city}).all
+        end
+      elsif params[:subcategory_id] != nil
+        @subcat_id = params[:subcategory_id]
+        @subcategory = Subcategory.find(params[:subcategory_id])
+        @vendors = Vendor.joins(:physical_locations, :vendor_subscriptions).where(:vendor_subscriptions =>{:subcategory_id => @subcategory.id}).where(:physical_locations => {city_id: @city}).all
+      else
+        @vendors = Vendor.joins(:physical_locations).where(:physical_locations => {city_id: @city}).all
+      end 
+    end
     if params[:category_id] == nil
       @category = nil
       @subcategories = Subcategory.all
-      @vendors = Vendor.all
     else
+      @cat_id = params[:category_id]
       @category = Category.find(params[:category_id])
-      @vendors = Vendor.joins(:vendor_subscriptions).where(:vendor_subscriptions =>{:category_id => @category.id}).all
       @subcategories = @category.subcategories
+      @subids = [];
+      @subcategories.map{|x| @subids << x.id}
+      @vendors = Vendor.joins(:vendor_subscriptions).where(:vendor_subscriptions =>{:subcategory_id => @subcategories}).all
     end
 
     if params[:subcategory_id] == nil
       @subcategory = nil
     else
+      @subcat_id = params[:subcategory_id]
       @subcategory = Subcategory.find(params[:subcategory_id])
       @vendors = Vendor.joins(:vendor_subscriptions).where(:vendor_subscriptions =>{:subcategory_id => @subcategory.id}).all
+    end
+    if params[:query] != nil && params[:query] != ""
+      @vendors = Vendor.search(params[:query]);
     end
   end
 
@@ -33,7 +70,8 @@ class VendorsController < ApplicationController
     
     @current_raiting = Review.where.not(:raiting => nil)
     @current_raiting = @current_raiting.where(:user_id => current_user.id, :vendor_id => @vendor.id).first
-    @reviews = Review.where(:user_id => current_user.id, :vendor_id => @vendor.id, :raiting => nil)
+    @reviews = Review.where(:vendor_id => @vendor.id)
+    @review = Review.where(:user_id => current_user.id, :vendor_id => @vendor.id).first
     if generate_activity(@vendor.user)
       @activity = PublicActivity::Activity.create(owner: current_user,
        key: 'Vendor.has_viewed', recipient: @vendor.user, trackable: @vendor)
@@ -63,7 +101,7 @@ end
 
   # POST /vendors
   # POST /vendors.json
-  def create
+  def user
     @vendor = Vendor.new(vendor_params)
     @vendor.user = current_user
     respond_to do |format|
@@ -81,48 +119,16 @@ end
   # PATCH/PUT /vendors/1.json
   def update
     respond_to do |format|
-      if @vendor.update(vendor_params)
-        if params[:profile_pic]
-          if !(params[:profile_pic].empty?)
-            @gallery =  @vendor.galleries.where(name: "Profile_Pictures", owner_id: @vendor.id, owner_type: "Vendor")
-            if@gallery.empty?
-              @vendor.galleries.create(name: "Profile_Pictures", owner_id: @vendor.id, owner_type: "Vendor", user_id: current_user.id)
-              @gallery =  @vendor.galleries.where(name: "Profile_Pictures", owner_id: @vendor.id, owner_type: "Vendor")
-            end
-            @gallery = @gallery.first
-            @gallery.assets.create(image: params[:profile_pic].first)
-          end
-
-        end
-        if params[:cover_pic]
-          if !(params[:cover_pic].empty?)
-            @gallery =  @vendor.galleries.where(name: "Cover_Pictures", owner_id: @vendor.id, owner_type: "Vendor")
-            if@gallery.empty?
-              @vendor.galleries.create(name: "Cover_Pictures", owner_id: @vendor.id, owner_type: "Vendor", user_id: current_user.id)
-              @gallery =  @vendor.galleries.where(name: "Cover_Pictures", owner_id: @vendor.id, owner_type: "Vendor")
-            end
-            @gallery = @gallery.first
-            @gallery.assets.create(image: params[:cover_pic].first)
-          end
-        end
-        if params[:media_pics]
-          if !(params[:media_pics].empty?)
-            @gallery =  @vendor.galleries.where(name: "Media", owner_id: @vendor.id, owner_type: "Vendor")
-            if@gallery.empty?
-              @vendor.galleries.create(name: "Media", owner_id: @vendor.id, owner_type: "Vendor", user_id: current_user.id)
-              @gallery =  @vendor.galleries.where(name: "Media", owner_id: @vendor.id, owner_type: "Vendor")
-            end
-            @gallery = @gallery.first
-            params[:media_pics].each { |image|
-              @gallery.assets.create(image: image)
-            }
-            
-          end
-        end
-        format.html { redirect_to @vendor, notice: 'Vendor was successfully updated.' }
+      if @vendor.update(vendor_params) 
+        @vendor.vendor_subscriptions.each do |ven|
+          @sub = ven.subcategory;
+          @cat = @sub.category
+        end 
+        format.js { }
+        # format.html { redirect_to @vendor, notice: 'Vendor was successfully updated.' }
         format.json { render :show, status: :ok, location: @vendor }
       else
-        format.html { render :edit }
+        format.js{}
         format.json { render json: @vendor.errors, status: :unprocessable_entity }
       end
     end
@@ -156,7 +162,7 @@ end
         # Vendor Subscription Attributes
         vendor_subscriptions_attributes: [:_destroy, :id, :subcategory_id],
         # Delivery Location Attributes
-        delivery_location_attributes: [:_destroy, :id, :location_option_id],
+        delivery_locations_attributes: [:_destroy, :id, :city_id],
         # External Link Attributes
         external_links_attributes: [:_destroy, :id, :link, :external_source_id],
         # Asset Attributes (Pictures needs to nest inside assets in order to work)

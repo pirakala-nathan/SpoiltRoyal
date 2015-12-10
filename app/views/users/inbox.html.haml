@@ -21,7 +21,7 @@
             = image_tag @image.url(:small), class: "img-circle bid-img"
         .col-xs-9.convo-info
 
-          = link_to @user.first_name + " " + @user.last_name + " \u2022 " + '("' + convo.subject + '")', new_message_path(:subject => convo.subject, :user_id => @user.id ), class: "convo-subject"
+          = link_to @user.first_name + " " + @user.last_name + " \u2022 " + '("' + convo.subject + '")', conversation_path(convo), class: "convo-subject"
           .convo-latest-message
             = convo.messages.last.info
           .message-date

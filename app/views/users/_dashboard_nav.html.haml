@@ -1,5 +1,4 @@
 - @page = request.path.split("/").last
-- 
 %nav#dash-nav.navbar.navbar-default.navbar-static-top.hidden-xs
 	.container
 		.col-xs-10.col-xs-offset-1.nav-links
@@ -20,7 +19,7 @@
 					- else
 						= link_to "Profile", consumer_path(current_user.account)
 				%li{class: ("active" if @page == "account")}
-					= link_to "Account", account_user_path(current_user)
+					= link_to "Settings", account_user_path(current_user)
 
 
 / %nav#dash-nav.navbar.navbar-default.navbar-fixed-bottom.hidden-sm.visible-xs

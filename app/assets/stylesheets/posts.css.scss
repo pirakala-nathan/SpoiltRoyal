@@ -48,6 +48,9 @@ $green: #5AB075;
               font-weight: bold;
               font-size: 15px;
             }
+            .green{
+              color: $green;
+            }
             .date{
               float: left;
               margin-left: 10px;
@@ -90,6 +93,9 @@ $green: #5AB075;
     .bid{
       padding: 30px;
       margin-top: 20px;
+      float: left;
+      width: 100%;
+      padding-bottom:0px;
       .bid-info{
         img{
           float: left;
@@ -110,6 +116,9 @@ $green: #5AB075;
             }
             .dark-text{
               color: $dark-text-color;
+            }
+            .green{
+              color: $green;
             }
           }
         }
@@ -245,9 +254,8 @@ $green: #5AB075;
         margin-bottom: 5px;
       }
       div { 
-        width: 130px;
+
         height: 40px;
-        border-radius: 5px;
         text-align: center;
         line-height: 40px;
         color: white;
@@ -262,9 +270,11 @@ $green: #5AB075;
         background-color: $blue;
       }
       .watch-bid{
-        border: 2px solid #EAE6E1;
+        border: 2px solid $orange;
         background-color: white;
-        color: #EAE6E1;
+        color: $orange;
+        margin-top: 0px;
+        border-radius:0px;
       }
     }
     .post-general-info{

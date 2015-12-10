@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150920234236) do
+ActiveRecord::Schema.define(version: 20151130010903) do
 
   create_table "accepted_payment_methods", force: :cascade do |t|
     t.integer  "vendor_id",         limit: 4
@@ -51,6 +51,19 @@ ActiveRecord::Schema.define(version: 20150920234236) do
     t.string   "image_content_type", limit: 255
     t.integer  "image_file_size",    limit: 4
     t.datetime "image_updated_at"
+  end
+
+  create_table "attachments", force: :cascade do |t|
+    t.integer  "owner_id",           limit: 4
+    t.string   "owner_type",         limit: 255
+    t.datetime "created_at",                     null: false
+    t.datetime "updated_at",                     null: false
+    t.string   "embedded_id",        limit: 255
+    t.string   "image_file_name",    limit: 255
+    t.string   "image_content_type", limit: 255
+    t.integer  "image_file_size",    limit: 4
+    t.datetime "image_updated_at"
+    t.boolean  "active",             limit: 1
   end
 
   create_table "authentications", force: :cascade do |t|
@@ -113,9 +126,8 @@ ActiveRecord::Schema.define(version: 20150920234236) do
   end
 
   create_table "delivery_locations", force: :cascade do |t|
-    t.integer  "vendor_id",          limit: 4
-    t.integer  "city_id",            limit: 4
-    t.integer  "location_option_id", limit: 4
+    t.integer  "vendor_id",  limit: 4
+    t.integer  "city_id",    limit: 4
     t.datetime "created_at"
     t.datetime "updated_at"
   end
@@ -274,6 +286,7 @@ ActiveRecord::Schema.define(version: 20150920234236) do
     t.boolean  "other_needed",        limit: 1
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.boolean  "active",              limit: 1
   end
 
   create_table "provinces", force: :cascade do |t|

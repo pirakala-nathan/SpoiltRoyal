@@ -14,21 +14,7 @@ class MessagesController < ApplicationController
 
   # GET /messages/new
   def new
-    @user = User.find(params[:user_id])
-    @convo = Conversation.where(:subject => params[:subject]).first
-    if @convo == nil
-      @convo = Conversation.create(subject: params[:subject])
-      @convo.users << @user
-      @convo.users << current_user
-    end
-    @message = Message.new
-    if !(@convo.messages.empty?)
-      if @convo.messages.last.user != current_user
-        @last = @convo.messages.last
-        @last.read = true
-        @last.save
-      end
-    end
+    
   end
   # GET /messages/1/edit
   def edit
@@ -38,13 +24,19 @@ class MessagesController < ApplicationController
   # POST /messages.json
   def create
     @message = Message.new(message_params)
-
     respond_to do |format|
       if @message.save
+
         @convo = @message.conversation
         @convo.last_msg = Time.now.to_date
         @convo.save
-        format.html { redirect_to @message, notice: 'Message was successfully created.' }
+        @convo.users.each do |usr|
+          if usr != current_user
+            @user_activity = PublicActivity::Activity.create(owner: current_user,
+                   key: 'Conversation.sent a message "'+ @message.info+'"',recipient: usr, trackable:@convo)
+          end
+        end
+        format.html { redirect_to :back, notice: 'Message was successfully created.' }
         format.json { render :show, status: :created, location: @message }
       else
         format.html { render :new }
@@ -58,7 +50,7 @@ class MessagesController < ApplicationController
   def update
     respond_to do |format|
       if @message.update(message_params)
-        format.html { redirect_to @message, notice: 'Message was successfully updated.' }
+        format.html { redirect_to back, notice: 'Message was successfully updated.' }
         format.json { render :show, status: :ok, location: @message }
       else
         format.html { render :edit }

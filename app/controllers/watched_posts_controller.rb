@@ -30,7 +30,7 @@ class WatchedPostsController < ApplicationController
 
       respond_to do |format|
         if @watched_post.save
-          format.html { redirect_to @watched_post, notice: 'Watched post was successfully created.' }
+          format.html { redirect_to :back, notice: 'Watched post was successfully created.' }
           format.json { render :show, status: :created, location: @watched_post }
         else
           format.html { render :new }
@@ -62,7 +62,7 @@ class WatchedPostsController < ApplicationController
   def destroy
     @watched_post.destroy
     respond_to do |format|
-      format.html { redirect_to watched_posts_url, notice: 'Watched post was successfully destroyed.' }
+      format.html { redirect_to :back, notice: 'Watched post was successfully destroyed.' }
       format.json { head :no_content }
     end
   end

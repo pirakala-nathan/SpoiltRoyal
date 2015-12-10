@@ -1,9 +1,45 @@
 # Place all the behaviors and hooks related to the matching controller here.
 # All this logic will automatically be available in application.js.
 # You can use CoffeeScript in this file: http://coffeescript.org/
+slide1Status = 'saved'
+slide2Status = 'saved'
+slide3Status = 'saved'
+slide4Status = 'saved'
+$('.btn-save').click ->
+  $('#loadmodal').show();
+checkSlide = () ->
+  if VendorSlide == 1
+    $('.vendor-form-submit').click()
+    $('#loadmodal').show();
+    $('.prev-vendor-slide').addClass('hidden');
+    $('.slide').hide();
+    $('.slide-1').show();
+    $('.next-vendor-slide').text('Next').removeClass('final-submit')
+    $('.slide-info').attr('current-slide',1);
+  if VendorSlide == 2
+    $('.vendor-form-submit').click()
+    $('#loadmodal').show();
+    $('.prev-vendor-slide').removeClass('hidden');
+    $('.slide').hide();
+    $('.slide-2').show();
+    $('.next-vendor-slide').text('Next').removeClass('final-submit')
+    $('.slide-info').attr('current-slide',2);
+  
+  if VendorSlide == 3
+    $('.prev-vendor-slide').removeClass('hidden');
+    $('.slide').hide();
+    $('.slide-3').show();
+    $('.next-vendor-slide').text('Save Profile').addClass('final-submit')
+    $('.slide-info').attr('current-slide',3);
+    # ...
 
 
-
+saveSlide = (slide) ->
+  alert(slide)
+notSavedSlide = (slide) ->
+  $('.next-vendor-slide.next.'+slide).addClass('active');
+  slide1Status = 'notsaved';
+  $('.vf-'+slide+'-toggle').addClass('notsaved')
 checkPostal = (code,letter) ->
   length = code.length
   length = length % 2
@@ -17,6 +53,11 @@ checkPostal = (code,letter) ->
   else
     false
 $ ->
+
+  $(document).on 'click','.next-vendor-slide.active', ->
+    slide = $(this).attr('data-slide')
+    saveForm(slide)
+
   if $('.vendor-form').hasClass('new-false')
     $('.remove-p-location').last().trigger('click')
     # ...
@@ -32,12 +73,6 @@ $ ->
     error = false;
     $('.required.first').each ->
       if $(this).val() == ""
-        $('.vf-slide-toggle').removeClass('active')
-        $('.vf-slide-1-toggle').addClass('active')
-        $('.slide-1').hide()
-        $('.slide-2').hide()
-        $('.slide-3').hide()
-        $('.slide-1').css('display','inline-block')
         $(this).css('border','1px solid red')
         error = true
       else
@@ -46,11 +81,17 @@ $ ->
     if error
       e.preventDefault()
       
-   
+  $('.vendor-form').find('input').on 'change', ->
+    slide = $(this).attr('data-slide')
+    notSavedSlide(slide)
+    console.log(slide + 'edited')
+  $('.vendor-form').find('select').on 'change', ->
+    slide = $(this).attr('data-slide')
+    notSavedSlide(slide)
+    console.log(slide + 'edited')
   $('.stars-raiting.form > img').click ->
-    val = $('.stars-raiting > input ').val()
+    val = $('.stars-raiting.form > input ').val()
     $('.raiting').val(val)
-    $('.raiting-form').submit();
   $('.read-more-des').click ->
     $('.description').removeClass('less')
     $(this).hide();
@@ -80,58 +121,58 @@ $ ->
       $('.slide-1').hide()
       $('.slide-2').hide()
       $('.slide-3').hide()
+      $('.slide-4').hide()
+      $('.slide-5').hide()
       $('.slide-1').css('display','inline-block')
     if $(this).hasClass('vf-slide-2-toggle')
       $('.slide-1').hide()
       $('.slide-2').hide()
       $('.slide-3').hide()
+      $('.slide-4').hide()
+      $('.slide-5').hide()
       $('.slide-2').css('display','inline-block')
     if $(this).hasClass('vf-slide-3-toggle')
       $('.slide-1').hide()
       $('.slide-2').hide()
       $('.slide-3').hide()
+      $('.slide-4').hide()
+      $('.slide-5').hide()
       $('.slide-3').css('display','inline-block')
+      w = $('.media-gallery').width()
+      ml = (w-660)/2
+      $('.media-gallery').css('margin-left',ml)
+      $('.media-gallery').find('.not-centered').css('margin-left',(-1*ml))
+    if $(this).hasClass('vf-slide-4-toggle')
+      $('.slide-1').hide()
+      $('.slide-2').hide()
+      $('.slide-3').hide()
+      $('.slide-4').hide()
+      $('.slide-5').hide()
+      $('.slide-4').css('display','inline-block')
+    if $(this).hasClass('vf-slide-5-toggle')
+      $('.slide-1').hide()
+      $('.slide-2').hide()
+      $('.slide-3').hide()
+      $('.slide-4').hide()
+      $('.slide-5').hide()
+      $('.slide-5').css('display','inline-block')
+
   $('.next-vendor-slide').click ->
-    target = $(this).attr('target')
-    prev = $(this).attr('prev')
-    $(prev).hide();
-    $(target).css('display','block')
-    if target == '.slide-2'
-      $('.prev-vendor-slide').removeClass('hidden')
-      $(this).html("Almost Done")
-      nexTarget = '.slide-3'
-      $(this).attr('prev', target)
-      $(this).attr('target', nexTarget)
-    else if target == '.slide-3' 
-      $(this).hide();
-      $('.prev-vendor-slide').attr('current','.slide-3')
-      $('.prev-vendor-slide').attr('target','.slide-2')
-      $(".next-vendor-slide.slide-3").css('display','inline-block') 
+    $('.required.first').each ->
+      if $(this).val() == ""
+        $(this).css('border','1px solid red')
+        error = true
+      else
+        $(this).css('border','1px solid #ffc285')
+    # VendorSlide = VendorSlide + 1;
+    # checkSlide();
   
   $('.prev-vendor-slide').click ->
-    target = $(this).attr('target')
-    current = $(this).attr('current')
-    $(current).hide();
-    $(target).css('display','block')
-    nextDiv = $(".next-vendor-slide.next")
-    if target == '.slide-2'
-      nexTarget = '.slide-1'
-      $(this).attr('current', target)
-      $(this).attr('target', nexTarget)
-      $(nextDiv).css('display','inline-block')        
-      $(nextDiv).html("Almost Done")
-      nexTarget = '.slide-3'
-      $(nextDiv).attr('prev', target)
-      $(nextDiv).attr('target', nexTarget)
+    VendorSlide = VendorSlide - 1;
+    checkSlide();
 
-    else if target == '.slide-1' 
-      $(this).addClass('hidden');
-      $(nextDiv).html('Next')
-      nexTarget = '.slide-2'
-      $(nextDiv).attr('prev', target)
-      $(nextDiv).attr('target', nexTarget)
-
-      
+  $('.slide-1.slide').find('input').each ->
+    $(this)
   $('.file-upload-trigger').click ->
     $('.file-upload-hidden').trigger('click');
   $('.file-cover-trigger').click ->
