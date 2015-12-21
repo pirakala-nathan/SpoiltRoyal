@@ -62,6 +62,14 @@
 			.reviews-overview.border-gray
 				.title
 					Recent Reviews
+		- if current_user.account.kind_of? Consumer
+			.verfication-overview.border-gray
+				.title
+					Active Posts
+				%ul
+				- @user_posts.each do |p|
+				- @bids = p.bids
+					= render 'bids_act', :bids => @bids, :filter => @filter
 
 
 

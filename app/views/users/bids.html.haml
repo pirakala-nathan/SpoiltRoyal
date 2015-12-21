@@ -40,17 +40,17 @@
 					- if Time.now.to_date > bid.post.due_date.to_date	
 						%span.in-grey
 							= ((Time.now.to_date - bid.post.due_date.to_date).to_i).to_s + " days ago"
-						%span.grey-date
+						%span.grey-date{:style => "white-space:wrap;"}
 							= bid.post.due_date.to_date.strftime("%B %d, %Y")
 					- elsif Time.now.to_date == bid.post.due_date.to_date
 						%span.in-green	Today
-						%span.grey-date
+						%span.grey-date{:style => "white-space:wrap;"}
 							= bid.post.due_date.to_date.strftime("%B %d, %Y")
 					- else
 	
 						%span.in-green
 							= "In " + ((bid.post.due_date.to_date - Time.now.to_date).to_i).to_s + " days"
-						%span.grey-date
+						%span.grey-date{:style => "white-space:wrap;"}
 							= bid.post.due_date.to_date.strftime("%B %d, %Y")
 				.col-xs-5.bid-row
 					.bid-img-container

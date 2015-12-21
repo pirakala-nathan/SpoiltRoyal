@@ -7,6 +7,8 @@ class UsersController < ApplicationController
     @vendor = @user.account
     @vendor.assets.build
     @posts = Post.all.limit(2)
+    @user_posts = @user.posts
+    @filter = "All"
     @messages = current_user.conversations.includes(:messages).where.not(:messages => {:user_id => current_user.id}).where(:messages => {:read => nil})
   end
 
