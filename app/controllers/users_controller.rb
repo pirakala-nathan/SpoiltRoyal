@@ -5,8 +5,8 @@ class UsersController < ApplicationController
   #dashboard//
   def overview
     @vendor = @user.account
-
     @posts = Post.all.limit(2)
+    raise
     @messages = current_user.conversations.includes(:messages).where.not(:messages => {:user_id => current_user.id}).where(:messages => {:read => nil})
   end
 

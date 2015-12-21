@@ -214,6 +214,7 @@ ActiveRecord::Schema.define(version: 20151130010903) do
   create_table "participant_lists", force: :cascade do |t|
     t.integer  "user_id",         limit: 4
     t.integer  "conversation_id", limit: 4
+    t.boolean  "read",            limit: 1
     t.datetime "created_at",                null: false
     t.datetime "updated_at",                null: false
   end

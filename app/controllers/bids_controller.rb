@@ -77,7 +77,7 @@ class BidsController < ApplicationController
               @activity = PublicActivity::Activity.create(owner: current_user,
                  key: 'Post.placed_a_bid_on_a_post',recipient: bid.user, trackable:bid)
             end
-            if (@user_activity.id != nil) && (bid.user !+ current_user)
+            if (@user_activity.id != nil) && (bid.user != current_user)
               @users << bid.user.id
               sync_new @activity, scope: bid.user
               # sync_new @activity

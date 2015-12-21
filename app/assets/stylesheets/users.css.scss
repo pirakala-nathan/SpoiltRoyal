@@ -5,6 +5,7 @@ $dark-text-color: #767676;
 $orange: #EA9B2C ;
 $green: #5AB075;
 $blue: #63BFDE;
+$rose:#E24329;
 .convo{
 	width: 100%;
 	padding-top: 30px;
@@ -141,7 +142,7 @@ $blue: #63BFDE;
 }
 .custom.container{
 	width:1000px;
-	min-height: 10px;
+	min-height: 500px;
 	.watched-posts{
 		.bid-slide-down{
 			// min-height: 190px;	
