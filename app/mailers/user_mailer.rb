@@ -12,7 +12,7 @@ class UserMailer < ActionMailer::Base
     @user = user
     @email = user.email
     @url  = 'localhost:3000'
-    mail(to: @email, subject: 'Welcome to NEX!')
+    mail(to: @email, subject: 'Welcome to SpoiltRoyal!')
   end
 
   def reset_password(user, new_pw)

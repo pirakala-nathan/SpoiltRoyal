@@ -10,8 +10,8 @@
 	display:none;
 }
 .read_false{
-	border:3px dotted #EA9B2C;
-  border-bottom: 3px dotted #EA9B2C !important;
+	border:3px dotted #db716a;
+  border-bottom: 3px dotted #db716a !important;
 }
 .new{
 	.notification-card{
@@ -24,7 +24,7 @@
     overflow: auto;
     .modal-header{
       .modal-title{
-        color: $orange;
+        color: #DB716A;
         font-weight: bold;
         font-size:17px;
       }
@@ -38,21 +38,21 @@
       label{
         padding-left:0px;
         margin-bottom: 5px;
-        color: $orange;
+        color: #DB716A;
         span{
           color: grey;
         }
       }
       input{
-        border:1px solid $orange;
+        border:1px solid #DB716A;
       }
       textarea{
-        border:1px solid $orange;
+        border:1px solid #DB716A;
         margin-bottom: 4px;
         height: 250px;
       }
       .submit{
-        background-color:$orange;
+        background-color:#DB716A;
         color: white;
         font-weight: bold;
         border-radius: 0px;
@@ -74,7 +74,7 @@
   height: 120px;
   padding-top: 10px;
   padding-bottom: 10px;
-  border-bottom: 1px dotted $orange;
+  border-bottom: 1px dotted #DB716A;
   .activity-pic{
     width: 100px;
     height: 100%;
@@ -132,7 +132,7 @@ a.nav-user{
   width: 70px;
   text-align: center;
   a{
-    color: $orange !important;
+    color: #DB716A !important;
     font-size: 30px;
     .fa-bell{
       display: none;
@@ -150,12 +150,12 @@ a.nav-user{
     }
   }
   .menu1{
-    border:1px solid $orange;
+    border:1px solid #DB716A;
     z-index: 10;
     .notifications::-webkit-scrollbar { width: 0 !important }
     .fa-caret-up{
       float: right;
-      color: #EA9B2C;
+      color: #db716a;
       font-size: 30px;
       margin-top: -6px;
       margin-right: calc((70px - 18px)/2);
@@ -166,7 +166,7 @@ a.nav-user{
 
     }
     .notifications{
-      border:1px solid $orange;
+      border:1px solid #DB716A;
       -ms-overflow-style: none;
       overflow: -moz-scrollbars-none; 
       max-height: 450px;
@@ -178,8 +178,8 @@ a.nav-user{
       
     }
     .title{
-      background-color: $orange;
-      border:1px solid $orange;
+      background-color: #DB716A;
+      border:1px solid #DB716A;
       padding: 10px;
       color: white;
       font-size: 20px;
@@ -206,7 +206,7 @@ a.nav-user{
         width: 100%;
         margin-top: 0px;
         height: 7vh;
-        background-color: #EA9B2C;
+        background-color: #db716a;
         border-radius: 2px;
         margin-top: 3.5vh;
         color: white;
@@ -244,7 +244,7 @@ a.nav-user{
               width: 100%;
               margin-top: 0px;
               height: 100%;
-              background-color:#EA9B2C;
+              background-color:#db716a;
               border-radius:2px;
               color: white;
             }
@@ -282,7 +282,7 @@ a.nav-user{
               width: 100%;
               margin-top: 0px;
               height: 100%;
-              background-color:#EA9B2C;
+              background-color:#db716a;
               border-radius:2px;
               color: white;
             }
@@ -329,7 +329,7 @@ a.nav-user{
 .submit-search{
   margin-top: 0;
   margin-left: 10px;
-  background-color:#EA9B2C;
+  background-color:#db716a;
   border-radius:2px;
   color: white;
 }
@@ -380,7 +380,7 @@ body{
         .watch-container{
           .watch-post{
             margin-top: -20px;
-            background-color: $orange;
+            background-color: #DB716A;
             border-radius: 0px;
             color: white;
           }
@@ -424,7 +424,7 @@ body{
             color:white;
           }
           .bid-post{
-            background-color:#EA9B2C;
+            background-color:#db716a;
             border-radius: 0px;
             color:white;
           }
@@ -454,7 +454,7 @@ body{
         text-align: center;
         line-height: 191px;
         font-size: 91px;
-        background-color: $orange;
+        background-color: #DB716A;
         color: white;
         img{
           height: 191px;
@@ -486,7 +486,7 @@ body{
       .submit-btn{
         margin-top: 5px;
         height: 6vh;
-        background-color: $orange;
+        background-color: #DB716A;
         color:white;
         border-radius:2px;
         margin-bottom: 20px;

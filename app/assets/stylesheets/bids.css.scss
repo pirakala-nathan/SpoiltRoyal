@@ -1,12 +1,12 @@
 // Place all the styles related to the bids controller here.
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
-@@import 'variables';
+@import 'variables';
 #bid_now{
   .modal-dialog{
     .modal-content{
       float: left;
-      border: 1px  solid $orange;
+      border: 1px  solid #DB716A;
       .modal-body{
         float: left;
         .title{
@@ -37,11 +37,11 @@
             }
             input{
 
-              border:1px solid $orange;
+              border:1px solid #DB716A;
               border-radius:0px;
             }
             textarea{
-              border:1px solid $orange;
+              border:1px solid #DB716A;
               border-radius:0px;
               margin-bottom: 20px;
             }
@@ -54,7 +54,7 @@
           }
           .actions{
             input{
-              background-color: $orange;
+              background-color: #DB716A;
               color: white;
               border-radius:0px;
               padding:5px;

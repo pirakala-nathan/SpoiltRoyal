@@ -33,7 +33,7 @@
     visibility: hidden;
   }
   span.active{
-    color: $orange;
+    color: #DB716A;
   }
   span.active:hover{
     cursor: pointer;
@@ -49,7 +49,7 @@
 .admin-pannel{
   background-color:white;
   .row{
-    border-bottom:1px solid $orange;
+    border-bottom:1px solid #DB716A;
     .title{
       font-weight: bold;
       font-size: 14px;
@@ -59,7 +59,7 @@
     background-color:#F2C17D !important;
   }
   .title-row{
-    border-top:1px solid $orange
+    border-top:1px solid #DB716A
   }
 
 
@@ -75,7 +75,7 @@
       display: none;
     }
     .title{
-      color: $orange;
+      color: #DB716A;
       margin-top: 0;
     }
     .buttons{
@@ -83,7 +83,7 @@
       text-align: center;
       *{
         height: 50px;
-        background-color: $orange;
+        background-color: #DB716A;
         color: white;
         font-weight: bold;
         text-align: center;
@@ -104,7 +104,7 @@
         text-align: center;
         *{
           height: 50px;
-          background-color: $orange;
+          background-color: #DB716A;
           color: white;
           font-weight: bold;
           text-align: center;
@@ -136,13 +136,13 @@
     }
     .ri{
       font-weight: bold;
-      color: $orange;
+      color: #DB716A;
       font-size: 15px;
       margin-left: 10px;
     }
     .ai{
       font-weight: bold;
-      color: $orange;
+      color: #DB716A;
       font-size: 15px;
       margin-bottom: 20px;
     }
@@ -182,7 +182,7 @@
     }
     .next{
       height: 50px;
-      background-color: $orange;
+      background-color: #DB716A;
       color: white;
       font-weight: bold;
       text-align: center;

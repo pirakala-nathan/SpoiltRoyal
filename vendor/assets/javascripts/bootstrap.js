@@ -334,7 +334,7 @@ if (typeof jQuery === 'undefined') {
     if (/input|textarea/i.test(e.target.tagName)) return
     switch (e.which) {
       case 37: this.prev(); break
-      case 39: this.next(); break
+      case 39: this.SpoiltRoyalt(); break
       default: return
     }
 
@@ -348,7 +348,7 @@ if (typeof jQuery === 'undefined') {
 
     this.options.interval
       && !this.paused
-      && (this.interval = setInterval($.proxy(this.next, this), this.options.interval))
+      && (this.interval = setInterval($.proxy(this.SpoiltRoyalt, this), this.options.interval))
 
     return this
   }
@@ -374,13 +374,13 @@ if (typeof jQuery === 'undefined') {
     if (this.sliding)       return this.$element.one('slid.bs.carousel', function () { that.to(pos) }) // yes, "slid"
     if (activeIndex == pos) return this.pause().cycle()
 
-    return this.slide(pos > activeIndex ? 'next' : 'prev', this.$items.eq(pos))
+    return this.slide(pos > activeIndex ? 'SpoiltRoyalt' : 'prev', this.$items.eq(pos))
   }
 
   Carousel.prototype.pause = function (e) {
     e || (this.paused = true)
 
-    if (this.$element.find('.next, .prev').length && $.support.transition) {
+    if (this.$element.find('.SpoiltRoyalt, .prev').length && $.support.transition) {
       this.$element.trigger($.support.transition.end)
       this.cycle(true)
     }
@@ -390,9 +390,9 @@ if (typeof jQuery === 'undefined') {
     return this
   }
 
-  Carousel.prototype.next = function () {
+  Carousel.prototype.SpoiltRoyalt = function () {
     if (this.sliding) return
-    return this.slide('next')
+    return this.slide('SpoiltRoyalt')
   }
 
   Carousel.prototype.prev = function () {
@@ -400,22 +400,22 @@ if (typeof jQuery === 'undefined') {
     return this.slide('prev')
   }
 
-  Carousel.prototype.slide = function (type, next) {
+  Carousel.prototype.slide = function (type, SpoiltRoyalt) {
     var $active   = this.$element.find('.item.active')
-    var $next     = next || this.getItemForDirection(type, $active)
+    var $SpoiltRoyalt     = SpoiltRoyalt || this.getItemForDirection(type, $active)
     var isCycling = this.interval
-    var direction = type == 'next' ? 'left' : 'right'
-    var fallback  = type == 'next' ? 'first' : 'last'
+    var direction = type == 'SpoiltRoyalt' ? 'left' : 'right'
+    var fallback  = type == 'SpoiltRoyalt' ? 'first' : 'last'
     var that      = this
 
-    if (!$next.length) {
+    if (!$SpoiltRoyalt.length) {
       if (!this.options.wrap) return
-      $next = this.$element.find('.item')[fallback]()
+      $SpoiltRoyalt = this.$element.find('.item')[fallback]()
     }
 
-    if ($next.hasClass('active')) return (this.sliding = false)
+    if ($SpoiltRoyalt.hasClass('active')) return (this.sliding = false)
 
-    var relatedTarget = $next[0]
+    var relatedTarget = $SpoiltRoyalt[0]
     var slideEvent = $.Event('slide.bs.carousel', {
       relatedTarget: relatedTarget,
       direction: direction
@@ -429,19 +429,19 @@ if (typeof jQuery === 'undefined') {
 
     if (this.$indicators.length) {
       this.$indicators.find('.active').removeClass('active')
-      var $nextIndicator = $(this.$indicators.children()[this.getItemIndex($next)])
-      $nextIndicator && $nextIndicator.addClass('active')
+      var $SpoiltRoyaltIndicator = $(this.$indicators.children()[this.getItemIndex($SpoiltRoyalt)])
+      $SpoiltRoyaltIndicator && $SpoiltRoyaltIndicator.addClass('active')
     }
 
     var slidEvent = $.Event('slid.bs.carousel', { relatedTarget: relatedTarget, direction: direction }) // yes, "slid"
     if ($.support.transition && this.$element.hasClass('slide')) {
-      $next.addClass(type)
-      $next[0].offsetWidth // force reflow
+      $SpoiltRoyalt.addClass(type)
+      $SpoiltRoyalt[0].offsetWidth // force reflow
       $active.addClass(direction)
-      $next.addClass(direction)
+      $SpoiltRoyalt.addClass(direction)
       $active
         .one('bsTransitionEnd', function () {
-          $next.removeClass([type, direction].join(' ')).addClass('active')
+          $SpoiltRoyalt.removeClass([type, direction].join(' ')).addClass('active')
           $active.removeClass(['active', direction].join(' '))
           that.sliding = false
           setTimeout(function () {
@@ -451,7 +451,7 @@ if (typeof jQuery === 'undefined') {
         .emulateTransitionEnd(Carousel.TRANSITION_DURATION)
     } else {
       $active.removeClass('active')
-      $next.addClass('active')
+      $SpoiltRoyalt.addClass('active')
       this.sliding = false
       this.$element.trigger(slidEvent)
     }
@@ -2071,7 +2071,7 @@ if (typeof jQuery === 'undefined') {
       && $.support.transition
       && (($active.length && $active.hasClass('fade')) || !!container.find('> .fade').length)
 
-    function next() {
+    function SpoiltRoyalt() {
       $active
         .removeClass('active')
         .find('> .dropdown-menu > .active')
@@ -2106,9 +2106,9 @@ if (typeof jQuery === 'undefined') {
 
     $active.length && transition ?
       $active
-        .one('bsTransitionEnd', next)
+        .one('bsTransitionEnd', SpoiltRoyalt)
         .emulateTransitionEnd(Tab.TRANSITION_DURATION) :
-      next()
+      SpoiltRoyalt()
 
     $active.removeClass('in')
   }

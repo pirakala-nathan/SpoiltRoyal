@@ -3,7 +3,7 @@
     .modal-content.col-sm-8.col-sm-offset-2.col-xs-10.col-xs-offset-1
       .modal-body.support-body.text-center
         .col-xs-12.text-center
-          ENTER NEX
+          ENTER SpoiltRoyal
         .col-xs-12.text-center.motto
           Chocolate cake halva cookie oat cake jelly beans
         = link_to auth_path(provider: "facebook") do
@@ -24,7 +24,7 @@
             = form_for UserSession.new do |f|
               = f.text_field :email, :placeholder => "Email Address", class: "login-email col-xs-10 col-xs-offset-1 #{ 'has-error' if flash[:emailError]}"
               = f.password_field :password, :placeholder => "Password", class: "login-pass col-xs-10 col-xs-offset-1 #{ 'has-error' if flash[:passError]}", placeholer: "Password"
-              = f.submit "ENTER NEX", class: "login-submit col-xs-10 col-xs-offset-1 "
+              = f.submit "ENTER SpoiltRoyal", class: "login-submit col-xs-10 col-xs-offset-1 "
             = link_to "Forgot Password", :forgotten_password
 
 

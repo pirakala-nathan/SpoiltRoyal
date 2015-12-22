@@ -7,7 +7,7 @@
     .modal-content{
       float: left;
       width: 100%;
-      border: 1px  solid $orange;
+      border: 1px  solid #DB716A;
       .modal-body{
         width: 100%;
         float: left;
@@ -39,11 +39,11 @@
             }
             input{
 
-              border:1px solid $orange;
+              border:1px solid #DB716A;
               border-radius:0px;
             }
             textarea{
-              border:1px solid $orange;
+              border:1px solid #DB716A;
               border-radius:0px;
               margin-bottom: 20px;
             }
@@ -56,7 +56,7 @@
           }
           .actions{
             input{
-              background-color: $orange;
+              background-color: #DB716A;
               color: white;
               border-radius:0px;
               padding:5px;

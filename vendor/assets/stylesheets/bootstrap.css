@@ -4491,8 +4491,8 @@ fieldset[disabled] .navbar-inverse .btn-link:focus {
   text-decoration: none;
   background-color: #eee;
 }
-.pager .next > a,
-.pager .next > span {
+.pager .SpoiltRoyalt > a,
+.pager .SpoiltRoyalt > span {
   float: right;
 }
 .pager .previous > a,
@@ -5843,7 +5843,7 @@ button.close {
     -webkit-perspective: 1000;
             perspective: 1000;
   }
-  .carousel-inner > .item.next,
+  .carousel-inner > .item.SpoiltRoyalt,
   .carousel-inner > .item.active.right {
     left: 0;
     -webkit-transform: translate3d(100%, 0, 0);
@@ -5855,7 +5855,7 @@ button.close {
     -webkit-transform: translate3d(-100%, 0, 0);
             transform: translate3d(-100%, 0, 0);
   }
-  .carousel-inner > .item.next.left,
+  .carousel-inner > .item.SpoiltRoyalt.left,
   .carousel-inner > .item.prev.right,
   .carousel-inner > .item.active {
     left: 0;
@@ -5864,26 +5864,26 @@ button.close {
   }
 }
 .carousel-inner > .active,
-.carousel-inner > .next,
+.carousel-inner > .SpoiltRoyalt,
 .carousel-inner > .prev {
   display: block;
 }
 .carousel-inner > .active {
   left: 0;
 }
-.carousel-inner > .next,
+.carousel-inner > .SpoiltRoyalt,
 .carousel-inner > .prev {
   position: absolute;
   top: 0;
   width: 100%;
 }
-.carousel-inner > .next {
+.carousel-inner > .SpoiltRoyalt {
   left: 100%;
 }
 .carousel-inner > .prev {
   left: -100%;
 }
-.carousel-inner > .next.left,
+.carousel-inner > .SpoiltRoyalt.left,
 .carousel-inner > .prev.right {
   left: 0;
 }
@@ -5933,7 +5933,7 @@ button.close {
   opacity: .9;
 }
 .carousel-control .icon-prev,
-.carousel-control .icon-next,
+.carousel-control .icon-SpoiltRoyalt,
 .carousel-control .glyphicon-chevron-left,
 .carousel-control .glyphicon-chevron-right {
   position: absolute;
@@ -5946,13 +5946,13 @@ button.close {
   left: 50%;
   margin-left: -10px;
 }
-.carousel-control .icon-next,
+.carousel-control .icon-SpoiltRoyalt,
 .carousel-control .glyphicon-chevron-right {
   right: 50%;
   margin-right: -10px;
 }
 .carousel-control .icon-prev,
-.carousel-control .icon-next {
+.carousel-control .icon-SpoiltRoyalt {
   width: 20px;
   height: 20px;
   margin-top: -10px;
@@ -5961,7 +5961,7 @@ button.close {
 .carousel-control .icon-prev:before {
   content: '\2039';
 }
-.carousel-control .icon-next:before {
+.carousel-control .icon-SpoiltRoyalt:before {
   content: '\203a';
 }
 .carousel-indicators {
@@ -6012,7 +6012,7 @@ button.close {
   .carousel-control .glyphicon-chevron-left,
   .carousel-control .glyphicon-chevron-right,
   .carousel-control .icon-prev,
-  .carousel-control .icon-next {
+  .carousel-control .icon-SpoiltRoyalt {
     width: 30px;
     height: 30px;
     margin-top: -15px;
@@ -6023,7 +6023,7 @@ button.close {
     margin-left: -15px;
   }
   .carousel-control .glyphicon-chevron-right,
-  .carousel-control .icon-next {
+  .carousel-control .icon-SpoiltRoyalt {
     margin-right: -15px;
   }
   .carousel-caption {

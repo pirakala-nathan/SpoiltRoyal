@@ -16,7 +16,7 @@
 	}
 	.status{
 		.bid-status.bid-pending{
-			color: $orange;
+			color: #DB716A;
 			font-weight: bold;
 		}
 		.bid-status.accepted{
@@ -33,7 +33,7 @@
 		padding-left: 30px;
 		.convo-subject{
 			display: block;
-			color: $orange;
+			color: #DB716A;
 			font-weight:bold;
 			padding-bottom: 5px;
 		}
@@ -95,7 +95,7 @@
     line-height: 30px;
 	}
 	.destroy-attachment:hover{
-		color: $orange;
+		color: #DB716A;
 		text-decoration: none;
 	}
 	span{
@@ -115,16 +115,16 @@
 		margin-top: 165px;
 		background-color: white;
 		opacity: 0.85;
-		color: $orange;
+		color: #DB716A;
 	}
 	.progress-bar{
 		height: 5px;
 		width: 0%;
-		background-color: $orange;
+		background-color: #DB716A;
 	}
 }
 .file-upload-container.in-progress{
-	background-color: $orange;
+	background-color: #DB716A;
 	color: white;
 	span{
 		margin-top: 75px;
@@ -249,7 +249,7 @@
 					width: calc(100% - 60px); 
 					padding-left: 20px;
 					.title{
-						color: $orange;
+						color: #DB716A;
 						font-weight: bold;
 						margin-top: 42.5px;
 						margin-bottom:3px;
@@ -402,7 +402,7 @@
 					width: calc(100% - 60px); 
 					padding-left: 20px;
 					.title{
-						color: $orange !important;
+						color: #DB716A !important;
 						margin-top: 42.5px;
 						margin-bottom:3px;
 
@@ -441,7 +441,7 @@
 						margin-bottom: 3px;
 					}
 					.bid-status.bid-pending{
-						color: $orange;
+						color: #DB716A;
 						font-weight: bold;
 					}
 					.bid-status.accepted{
@@ -603,7 +603,7 @@
 			display: block;
 			text-align: center;
 			line-height: 40px;
-			background: $orange;
+			background: #DB716A;
 			color: white;
 		}
 		#posts-you-might-like{
@@ -623,7 +623,7 @@
 			}
 			ul{
 				list-style-type: disc;
-				color: $orange;
+				color: #DB716A;
 				width: 140px;
 				margin-left: 30px;
 				a{
@@ -631,7 +631,7 @@
 						padding-bottom: 20px;
 						.suggestion-name{
 							width: 100%;
-							color: $orange;
+							color: #DB716A;
 						}
 						.suggestion-title{
 							color:$blue;
@@ -755,10 +755,10 @@
 		// overflow-y: hidden;
 		.vf-slide-toggle,.cf-slide-toggle{
 			display: inline-block;
-			border: $orange 1px solid;
+			border: #DB716A 1px solid;
 			height: 50px;
 			margin-top: 50px;
-			color: $orange;
+			color: #DB716A;
 			text-align: center;
 			line-height: 50px;
 			font-size: 15px;
@@ -773,7 +773,7 @@
 		}
 		.vf-slide-toggle.active,.cf-slide-toggle.active{
 			color: white;
-			background-color: $orange;
+			background-color: #DB716A;
 		}
 		.vf-slide-2-toggle{
 			border-left:0px;
@@ -822,7 +822,7 @@
 			.slide-1{
 				.user-form-submit{
 					border-radius:0px;
-					background-color: $orange;
+					background-color: #DB716A;
 					color: white;
 					margin-top: 30px;
 
@@ -838,7 +838,7 @@
 				margin-top: 50px;
 				*{
 					display: inline-block;
-					background-color: $orange;
+					background-color: #DB716A;
 					height: 50px;
 					width: auto;
 					margin-top: -1px;
@@ -913,11 +913,11 @@
 							}
 							.dl-remove {
 								margin-left: 15px;
-								color: $orange;
+								color: #DB716A;
 								font-weight: bold;
 							}
 							.dl-add{
-								color: $orange;
+								color: #DB716A;
 								font-weight: bold;
 								display: block;
 								margin-top: 10px;
@@ -937,11 +937,11 @@
 							}
 							.sl-remove {
 								margin-left: 15px;
-								color: $orange;
+								color: #DB716A;
 								font-weight: bold;
 							}
 							.sl-add{
-								color: $orange;
+								color: #DB716A;
 								font-weight: bold;
 								display: block;
 								margin-top: 10px;
@@ -976,7 +976,7 @@
 					float: left;
 					margin-top: 10px;
 					margin-bottom: 10px;
-					color: $orange;
+					color: #DB716A;
 					font-weight: bold;
 				}
 				.industries{
@@ -985,7 +985,7 @@
 						float: left;
 						margin-top: 10px;
 						margin-bottom: 10px;
-						color: $orange;
+						color: #DB716A;
 						font-weight: bold;
 					}
 					select{
@@ -1015,7 +1015,7 @@
 				}
 
 				.image-selected{
-					background: $orange;
+					background: #DB716A;
 					span{
 						color: white;
 					}
@@ -1061,14 +1061,14 @@
 						float: left;
 						margin-top: 10px;
 						margin-bottom: 10px;
-						color: $orange;
+						color: #DB716A;
 						font-weight: bold;
 					}
 					.remove-p-location{
 						float: left;
 						margin-top: 10px;
 						margin-bottom: 10px;
-						color: $orange;
+						color: #DB716A;
 						font-weight: bold;
 					}
 					.row{
