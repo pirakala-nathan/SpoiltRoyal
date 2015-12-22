@@ -7,4 +7,5 @@ class City < ActiveRecord::Base
   has_many :service_locations, dependent: :destroy
   has_many :physical_locations, dependent: :destroy
   has_many :vendors, through: :physical_locations
+  has_many :consumers
 end

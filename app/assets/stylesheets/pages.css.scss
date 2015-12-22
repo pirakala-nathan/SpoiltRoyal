@@ -1,11 +1,7 @@
 // Place all the styles related to the pages controller here.
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: honttp://sass-lang.com/
-$dark-text-color: #767676;
-$orange: #EA9B2C ;
-$green: #5AB075;
-$blue: #63BFDE;
-
+@import 'variables';
 .small-img:hover{
   cursor: pointer;
 }

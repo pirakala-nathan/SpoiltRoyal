@@ -6,7 +6,6 @@ class UsersController < ApplicationController
   def overview
     @vendor = @user.account
     @posts = Post.all.limit(2)
-    raise
     @messages = current_user.conversations.includes(:messages).where.not(:messages => {:user_id => current_user.id}).where(:messages => {:read => nil})
   end
 
@@ -81,6 +80,8 @@ class UsersController < ApplicationController
       end
       @mediaGallery = @mediaGallery.first
 
+    else
+      @consumer = @user.account
     end
   end
 
@@ -158,19 +159,25 @@ class UsersController < ApplicationController
           @vendor = vendor_account
           @user.update(account: vendor_account)
           EmailNotificationSetting.create(settings_for: 'Vendor', timed_task: TimedTask.first, user: @user)
-          @vendor.galleries.create(name: "Cover_Pictures", owner_id: @vendor.id, owner_type: "Vendor", user_id: current_user.id)
+          EmailNotificationSetting.create(settings_for: 'Bid', timed_task: TimedTask.first, user: @user)
+          @vendor.galleries.create(name: "Cover_Pictures", owner_id: @vendor.id, owner_type: "Vendor", user_id: @user.id)
           @vendor.galleries.where(name: "Profile_Pictures", owner_id: @vendor.id, owner_type: "Vendor")
-          @vendor.galleries.create(name: "Media", owner_id: @vendor.id, owner_type: "Vendor", user_id: current_user.id)
+          @vendor.galleries.create(name: "Media", owner_id: @vendor.id, owner_type: "Vendor", user_id: @user.id)
         else
           consumer_account = Consumer.create
+          consumer_account.city_id = params[:city_id]
+          consumer_account.save
           @user.update(account: consumer_account)
         end
         EmailNotificationSetting.create(settings_for: 'Conversation', timed_task: TimedTask.first, user: @user)
         EmailNotificationSetting.create(settings_for: 'Post', timed_task: TimedTask.first, user: @user)
         EmailNotificationSetting.create(settings_for: 'Comment', timed_task: TimedTask.first, user: @user)
-        EmailNotificationSetting.create(settings_for: 'Bid', timed_task: TimedTask.first, user: @user)
         UserMailer.new_user_welcome(@user).deliver
-        format.html { redirect_to  account_user_path(@user,:new_user => true)}
+        if @user.account_type == "Vendor"
+          format.html { redirect_to  account_user_path(@user,:new_user => true)}
+        else
+          format.html { redirect_to  overview_user_path(@user)}
+        end
         format.json { render :show, status: :created, location: @user }
       else
         format.html { redirect_to root_path(:error => "join"), notice: @user.errors.full_messages * ', ' }
@@ -216,6 +223,6 @@ class UsersController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def user_params
-      params.require(:user).permit(:username, :email, :password, :password_confirmation, :account_type, :first_name,:last_name)
+      params.permit(:username, :email, :password, :password_confirmation, :account_type, :first_name,:last_name)
     end
 end

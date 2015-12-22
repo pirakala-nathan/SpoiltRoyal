@@ -1,11 +1,7 @@
 // Place all the styles related to the users controller here.
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
-$dark-text-color: #767676;
-$orange: #EA9B2C ;
-$green: #5AB075;
-$blue: #63BFDE;
-$rose:#E24329;
+@import 'variables';
 .convo{
 	width: 100%;
 	padding-top: 30px;
@@ -757,7 +753,7 @@ $rose:#E24329;
 	.account-cont{
 		overflow-x: hidden;
 		// overflow-y: hidden;
-		.vf-slide-toggle{
+		.vf-slide-toggle,.cf-slide-toggle{
 			display: inline-block;
 			border: $orange 1px solid;
 			height: 50px;
@@ -768,14 +764,14 @@ $rose:#E24329;
 			font-size: 15px;
 
 		}
-		.vf-slide-toggle.notsaved{
+		.vf-slide-toggle.notsaved,.cf-slide-toggle.notsaved{
 			background-color:#F47A53 ;
 			color: white;
 		}
-		.vf-slide-toggle:hover{
+		.vf-slide-toggle:hover,.cf-slide-toggle:hover{
 			cursor: pointer;
 		}
-		.vf-slide-toggle.active{
+		.vf-slide-toggle.active,.cf-slide-toggle.active{
 			color: white;
 			background-color: $orange;
 		}
@@ -819,7 +815,24 @@ $rose:#E24329;
 				padding-bottom: 20px;
 			}
 		}
-		.vendor-form{
+		.consumer-form{
+			.btn-save{
+				border-radius:0px;
+			}
+			.slide-1{
+				.user-form-submit{
+					border-radius:0px;
+					background-color: $orange;
+					color: white;
+					margin-top: 30px;
+
+				}
+				.user-form-submit:hover{
+					color: white;
+				}
+			}
+		}
+		.vendor-form,.consumer-form{
 			.slide-buttons{
 				text-align: center;
 				margin-top: 50px;
@@ -866,6 +879,9 @@ $rose:#E24329;
 				display: none;
 			}
 			.slide-4{
+				display: none;
+			}
+			.slide-5{
 				display: none;
 			}
 			.finish-msg{

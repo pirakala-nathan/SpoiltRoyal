@@ -1,11 +1,7 @@
 // Place all the styles related to the Posts controller here.
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
-$dark-text-color: #767676;
-$orange: #EA9B2C ;
-$green: #5AB075;
-$blue: #63BFDE;
-$green: #5AB075;
+@import 'variables';
 .comment-form{
   overflow: auto;
 }

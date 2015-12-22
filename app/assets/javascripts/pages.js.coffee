@@ -22,11 +22,13 @@ $ ->
 	$('.seeking').click ->
 		$('.slide-1').addClass('hidden')
 		$('.slide-2').removeClass('hidden');
+		$('.city-select').show();
 		$('.account-type').attr("value","Consumer")
 		$('.fb-signup').attr("href","/auth/facebook?type=Consumer")
 	$('.offering').click ->
 		$('.slide-1').addClass('hidden')
 		$('.slide-2').removeClass('hidden');
+		$('.city-select').hide();
 		$('.account-type').attr("value","Vendor")
 		$('.fb-signup').attr("href","/auth/facebook?type=Vendor")
 	$('.email-signup').click ->

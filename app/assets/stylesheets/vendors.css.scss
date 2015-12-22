@@ -2,9 +2,7 @@
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
 
-$dark-text-color: #767676;
-$orange: #EA9B2C;
-$blue: #63BFDE;
+@import 'variables';
 h3 {
   color: blue;
 }

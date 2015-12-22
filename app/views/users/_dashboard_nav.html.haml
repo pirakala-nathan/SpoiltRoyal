@@ -7,19 +7,18 @@
 					= link_to "Overview", overview_user_path(current_user)
 				%li{class: ("active" if @page == "inbox")}	
 					= link_to "Inbox", inbox_user_path(current_user)
-				%li{class: ("active" if @page == "bids")}	
-					= link_to "Bids", bids_user_path(current_user)
-				%li{class: ("active" if @page == "watched_posts")}
-					= link_to "Watched Posts", watched_posts_user_path(current_user)
-				%li{class: ("active" if @page == "statistics")}	
-					= link_to "Statistics", statistics_user_path(current_user)
-				%li{class: ("active"  if request.path == vendor_path(current_user.account))}
-					- if @current_user.account_type == "Vendor"	
+				- if current_user.account_type == "Vendor"
+					%li{class: ("active" if @page == "bids")}	
+						= link_to "Bids", bids_user_path(current_user)
+					%li{class: ("active" if @page == "watched_posts")}
+						= link_to "Watched Posts", watched_posts_user_path(current_user)
+					%li{class: ("active"  if request.path == vendor_path(current_user.account))}
 						= link_to "Profile", vendor_path(current_user.account)
-					- else
-						= link_to "Profile", consumer_path(current_user.account)
 				%li{class: ("active" if @page == "account")}
 					= link_to "Settings", account_user_path(current_user)
+				-# %li{class: ("active" if @page == "statistics")}	
+				-# 	= link_to "Statistics", statistics_user_path(current_user)
+	
 
 
 / %nav#dash-nav.navbar.navbar-default.navbar-fixed-bottom.hidden-sm.visible-xs

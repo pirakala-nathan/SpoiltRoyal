@@ -1,8 +1,7 @@
 // Place all the styles related to the bids controller here.
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
-$dark-text-color: #767676;
-$orange: #EA9B2C;
+@import 'variables';
 #post-a-q{
   .modal-dialog{
     .modal-content{

@@ -1,5 +1,7 @@
 Rails.application.routes.draw do
 
+  resources :cities
+
   resources :attachments do
     collection do
       get :add_attachment_to_form

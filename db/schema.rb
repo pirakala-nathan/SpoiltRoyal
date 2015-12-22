@@ -109,6 +109,7 @@ ActiveRecord::Schema.define(version: 20151130010903) do
   create_table "consumers", force: :cascade do |t|
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.integer  "city_id",    limit: 4
   end
 
   create_table "conversations", force: :cascade do |t|
