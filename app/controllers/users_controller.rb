@@ -4,7 +4,24 @@ class UsersController < ApplicationController
 
   #dashboard//
   def overview
-    @vendor = @user.account
+
+    
+    if @user.account_type == "Consumer"
+      @consumer = @user.account
+      @profileGallery =  @consumer.galleries.where(name: "Profile_Pictures", owner_id: @consumer.id, owner_type: "Consumer")
+      if@profileGallery.empty?
+        @consumer.galleries.create(name: "Profile_Pictures", owner_id: @consumer.id, owner_type: "Consumer", user_id: current_user.id)
+        @profileGallery =  @consumer.galleries.where(name: "Profile_Pictures", owner_id: @consumer.id, owner_type: "Vendor")
+      end
+    else
+      @vendor = @user.account
+      @profileGallery =  @vendor.galleries.where(name: "Profile_Pictures", owner_id: @vendor.id, owner_type: "Vendor")
+      if@profileGallery.empty?
+        @vendor.galleries.create(name: "Profile_Pictures", owner_id: @vendor.id, owner_type: "Vendor", user_id: current_user.id)
+        @profileGallery =  @vendor.galleries.where(name: "Profile_Pictures", owner_id: @vendor.id, owner_type: "Vendor")
+      end
+    end
+    @profileGallery = @profileGallery.first
     @posts = Post.all.limit(2)
     @messages = current_user.conversations.includes(:messages).where.not(:messages => {:user_id => current_user.id}).where(:messages => {:read => nil})
   end
@@ -161,12 +178,13 @@ class UsersController < ApplicationController
           EmailNotificationSetting.create(settings_for: 'Vendor', timed_task: TimedTask.first, user: @user)
           EmailNotificationSetting.create(settings_for: 'Bid', timed_task: TimedTask.first, user: @user)
           @vendor.galleries.create(name: "Cover_Pictures", owner_id: @vendor.id, owner_type: "Vendor", user_id: @user.id)
-          @vendor.galleries.where(name: "Profile_Pictures", owner_id: @vendor.id, owner_type: "Vendor")
+          @vendor.galleries.create(name: "Profile_Pictures", owner_id: @vendor.id, owner_type: "Vendor")
           @vendor.galleries.create(name: "Media", owner_id: @vendor.id, owner_type: "Vendor", user_id: @user.id)
         else
           consumer_account = Consumer.create
           consumer_account.city_id = params[:city_id]
           consumer_account.save
+          @vendor.galleries.create(name: "Profile_Pictures", owner_id: consumer_account.id, owner_type: "Consumer")
           @user.update(account: consumer_account)
         end
         EmailNotificationSetting.create(settings_for: 'Conversation', timed_task: TimedTask.first, user: @user)

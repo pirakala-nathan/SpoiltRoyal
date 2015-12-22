@@ -560,6 +560,12 @@
 		width: 200px;
 		position: relative;
 		float: left;
+		.file-upload-Profile_Pictures{
+			margin-top: 0px;
+		}
+		.file-upload-Profile_Pictures:hover{
+			cursor: pointer;
+		}
 		form{
 			.file-upload-hidden{
 				display: none;
