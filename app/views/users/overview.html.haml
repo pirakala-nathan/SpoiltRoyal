@@ -2,17 +2,8 @@
 = render 'dashboard_nav'
 .custom.container.no-h-padding.overview
 	.overview-side-bar.no-h-padding
-		= nested_form_for @user.account, html: { multipart: true } do |f|
-			= f.fields_for :assets do |a|
-				= a.file_field :image, class: "file-upload-hidden", onchange: "this.form.submit();"
-		- if !(@user.profile_pic == nil)
-			- @url = @user.profile_pic.image.url(:profile)
-			- @url_class = "pic-uploaded"
-		- else
-			- @url =""
-			- @url_class = "no-url"
-
-		#vendor-picture{:class=> "#{@url_class}",:style => "background-image:url(#{@url})"}
+		.profile-pic{class: "gallery-container-#{@profileGallery.id}"}
+			= render 'attachments/form', attachment: Attachment.new, gallery: @profileGallery, attachment_text: "UPLOAD PROFILE PICTURE"
 		#side-bar-name
 			= @user.first_name + " " + @user.last_name
 		#side-bar-location
