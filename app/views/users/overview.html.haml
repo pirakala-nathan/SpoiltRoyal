@@ -67,9 +67,7 @@
 				.title
 					Active Posts
 				%ul
-				- @user_posts.each do |p|
-				- @bids = p.bids
-					= render 'bids_act', :bids => @bids, :filter => @filter
+				= render 'bids_act', :bids => @bids, :filter => @filter, :user_posts => @user_posts
 
 
 
