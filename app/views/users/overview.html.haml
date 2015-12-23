@@ -100,6 +100,13 @@
 				.reviews-container.padding-left-30.border-gray.overview-review
 					= render 'vendors/reivew_list'
 
+		- if current_user.account.kind_of? Consumer
+			.verfication-overview.border-gray
+				.title
+					Active Posts
+				%ul
+				= render 'bid_act', :bids => @bids, :filter => @filter, :user_posts => @user_posts
+
 
 
 

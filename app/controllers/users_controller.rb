@@ -9,20 +9,22 @@ class UsersController < ApplicationController
     if @user.account_type == "Consumer"
       @consumer = @user.account
       @profileGallery =  @consumer.galleries.where(name: "Profile_Pictures", owner_id: @consumer.id, owner_type: "Consumer")
-      if@profileGallery.empty?
+      if !@profileGallery
         @consumer.galleries.create(name: "Profile_Pictures", owner_id: @consumer.id, owner_type: "Consumer", user_id: current_user.id)
         @profileGallery =  @consumer.galleries.where(name: "Profile_Pictures", owner_id: @consumer.id, owner_type: "Vendor")
       end
     else
       @vendor = @user.account
       @profileGallery =  @vendor.galleries.where(name: "Profile_Pictures", owner_id: @vendor.id, owner_type: "Vendor")
-      if@profileGallery.empty?
+      if !@profileGallery
         @vendor.galleries.create(name: "Profile_Pictures", owner_id: @vendor.id, owner_type: "Vendor", user_id: current_user.id)
         @profileGallery =  @vendor.galleries.where(name: "Profile_Pictures", owner_id: @vendor.id, owner_type: "Vendor")
       end
     end
     @profileGallery = @profileGallery.first
     @posts = Post.all.limit(2)
+    @user_posts = @user.posts
+    @filter = "All"
     @messages = current_user.conversations.includes(:messages).where.not(:messages => {:user_id => current_user.id}).where(:messages => {:read => nil})
   end
 
