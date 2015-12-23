@@ -11,6 +11,7 @@ class UsersController < ApplicationController
       @profileGallery =  @consumer.galleries.where(name: "Profile_Pictures", owner_id: @consumer.id, owner_type: "Consumer")
       if !@profileGallery
         @consumer.galleries.create(name: "Profile_Pictures", owner_id: @consumer.id, owner_type: "Consumer", user_id: current_user.id)
+        @consumer.save
         @profileGallery =  @consumer.galleries.where(name: "Profile_Pictures", owner_id: @consumer.id, owner_type: "Vendor")
       end
     else
@@ -18,6 +19,7 @@ class UsersController < ApplicationController
       @profileGallery =  @vendor.galleries.where(name: "Profile_Pictures", owner_id: @vendor.id, owner_type: "Vendor")
       if !@profileGallery
         @vendor.galleries.create(name: "Profile_Pictures", owner_id: @vendor.id, owner_type: "Vendor", user_id: current_user.id)
+        @vendor.save
         @profileGallery =  @vendor.galleries.where(name: "Profile_Pictures", owner_id: @vendor.id, owner_type: "Vendor")
       end
     end
