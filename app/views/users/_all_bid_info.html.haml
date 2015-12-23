@@ -1,0 +1,15 @@
+.modal.fade{:id => "all_bid_info", "aria-hidden" => "true", "aria-labelledby" => "all_bid_info", :role => "dialog", :tabindex => "-1"}
+  .modal-dialog
+    .modal-content.col-xs-12
+      .modal-body.support-body.text-center
+        .title.col-xs-12
+          All Bid	
+        .col-xs-6.text-align-left
+          Bid Value
+        .col-xs-6.text-align-left
+          Date
+        - @allbids.each do |b|
+          .col-xs-6.text-align-left{class: "status-#{b.status}"}
+            = number_to_currency(b.value)
+          .col-xs-6.text-align-left{class: "status-#{b.status}"}
+            = b.created_at.strftime("%m/%d/%Y") 

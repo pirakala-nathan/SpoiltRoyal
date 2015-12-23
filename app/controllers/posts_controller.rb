@@ -28,6 +28,12 @@ class PostsController < ApplicationController
     end
   end
 
+  def all_bids
+    @allbids = @post.bids
+    respond_to do |format|
+      format.js{}
+    end  
+  end
   # GET /posts/1
   # GET /posts/1.json
   def show

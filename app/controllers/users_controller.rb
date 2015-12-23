@@ -33,27 +33,26 @@ class UsersController < ApplicationController
     @watchedPosts = @user.watched_posts
   end
   def bids
-
     if params[:filter] == "All"
       @filter = params[:filter]
-      @bids = @user.bids
+      @bids = @user.bids.select("DISTINCT(post_id)").select(:id).select(:value).select(:created_at).select(:status).select(:info).select(:status)
     elsif params[:filter] == "won_active"
       @filter = "Won \u2022 Active"
-      @bids = @user.bids.where(:status => "accepted")
+      @bids = @user.bids.where(:status => "accepted").select("DISTINCT(post_id)").select(:id).select(:value).select(:created_at).select(:status).select(:info)
       @bids = @bids.reject{|r| r.active? == false}
     elsif params[:filter] == "won_complete"
       @filter = "Won \u2022 Complete"
-      @bids = @user.bids.where(:status => "accepted")
+      @bids = @user.bids.where(:status => "accepted").select("DISTINCT(post_id)").select(:id).select(:value).select(:created_at).select(:status).select(:info)
       @bids = @bids.reject{|r| r.active? == false}
     elsif params[:filter] == "lost"
       @filter = "Lost"
-      @bids = @user.bids.where(:status => "Lost")
+      @bids = @user.bids.where(:status => "Lost").select("DISTINCT(post_id)").select(:id).select(:value).select(:created_at).select(:status).select(:info).select(:status)
     elsif params[:filter] == "cancelled"
       @filter = "Cancelled"
-      @bids = @user.bids.where(:status => "cancelled")
+      @bids = @user.bids.where(:status => "cancelled").select("DISTINCT(post_id)").select(:id).select(:value).select(:created_at).select(:status).select(:info).select(:status)
     else
       @filter = "All"
-      @bids = @user.bids
+      @bids = @user.bids.select("DISTINCT(post_id)").select(:id).select(:value).select(:created_at).select(:info).select(:status)
     end
   end
 
@@ -184,7 +183,7 @@ class UsersController < ApplicationController
           consumer_account = Consumer.create
           consumer_account.city_id = params[:city_id]
           consumer_account.save
-          @vendor.galleries.create(name: "Profile_Pictures", owner_id: consumer_account.id, owner_type: "Consumer")
+          consumer_account.galleries.create(name: "Profile_Pictures", owner_id: consumer_account.id, owner_type: "Consumer")
           @user.update(account: consumer_account)
         end
         EmailNotificationSetting.create(settings_for: 'Conversation', timed_task: TimedTask.first, user: @user)

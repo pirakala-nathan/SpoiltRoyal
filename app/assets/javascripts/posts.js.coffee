@@ -2,6 +2,10 @@
 # All this logic will automatically be available in application.js.
 # You can use CoffeeScript in this file: http://coffeescript.org/
 $ ->
+  $('.bid-now-index').click ->
+    id = $(this).attr('data-id')
+    $('.post-id').val(id)
+    $('#bid_now').modal('show')
 # for the post form datepicker
   catindex = $('.category.active').attr('data-index')
   catindex = parseInt(catindex)

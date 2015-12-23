@@ -298,6 +298,42 @@
 				background:linear-gradient(top, #f2f2f2, #f7f7f7);
 				filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#f2f2f2', endColorstr='#f7f7f7',GradientType=0);
 			}
+			.circle{
+				width: 75px;
+				height:75px;
+				margin-top: 12.5px;
+				border-radius:37.5px;
+				border: 2px solid $rose;
+				text-align:center;
+				line-height:75px;
+				float: left;
+			}
+			.space{
+				width: calc((100% - 300px)/3);
+				height: 1px;
+				float: left;
+			}
+			.date{
+				padding-bottom:50px;
+				text-align:center;
+				width: 75px;
+				float: left;
+			}
+			.line-container{
+				width: calc((100% - 300px)/3);
+		    height: 100px;
+		    overflow: hidden;
+		    float: left;
+				.line{
+					height: 100px;
+					width:5px;
+					float: left;
+					div{
+						height: 50%;
+						border-bottom: 2px solid $rose;
+					}
+				}
+			}
 			.title{
 				padding-left: 30px;
 				font-weight: bold;
@@ -415,9 +451,11 @@
 
 				}
 				.bid-links{
+					.contact-client{
+						margin-top: 31.5px;
+					}
 					a{
 						display: inline-block;
-						margin-top: 31.5px;
 						margin-bottom: 3px;
 					}
 					a:hover{

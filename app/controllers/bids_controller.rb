@@ -12,6 +12,7 @@ class BidsController < ApplicationController
   def show
   end
 
+
   # GET /bids/new
   def new
     @bid = Bid.new

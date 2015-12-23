@@ -56,6 +56,7 @@ Rails.application.routes.draw do
   resources :posts do
     member do 
       get :activate_post
+      get :all_bids
     end
   end
 

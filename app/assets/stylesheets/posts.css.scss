@@ -5,6 +5,22 @@
 .comment-form{
   overflow: auto;
 }
+#all_bid_info{
+  .modal-content{
+    padding:22px;
+  }
+  .text-align-left{
+    text-align: left;
+    border-bottom:1px solid #F5F5F5;
+  }
+  .status-bid-pending{
+    padding-left:15px;
+    padding-top:5px;
+    padding-bottom:5px;
+    background-color: #E7A19C;
+    color: white;
+  }
+}
 .custom.container{
   margin-bottom: 50px;
   .comments-cont{

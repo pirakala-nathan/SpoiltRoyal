@@ -56,16 +56,48 @@
 					-@last.read = true
 					-@last.save
 
-			= link_to "Contact client", conversation_path(@convo)
+			= link_to "Contact client", conversation_path(@convo), class: "contact-client"
 			.bid-info-button.link{"target" => ".bid-info-#{bid.id}" }
 				Your bid
-			.all-bids-button.link{"target" => ".all-bids-#{bid.id}"}
-				All bid
+			= link_to "All Bids", all_bids_post_path(bid.post), remote:true, class: "all-bids-button"
+			-# .all-bids-button.link{"target" => ".all-bids-#{bid.id}"}
+			-# 	All bid
 
 .extra-bid-info.bid-slide-down{class: "bid-info-#{bid.id}"}
 	.gradient
 	.col-xs-12.title
-		Your Bid Information
+		Your Bid History
+	.col-xs-12
+		- bid.post.bids.where(:user_id => current_user.id).each_with_index do |b,index|
+			- if index == 0
+				.circle
+					= number_to_currency(b.value)
+				- if bid.post.bids.where(:user_id => current_user.id).length > 1
+					.line-container
+						-for i in 0..100
+							.line
+								.col-xs-12
+			- elsif index == (bid.post.bids.where(:user_id => current_user.id).length - 1)
+				.circle
+					= number_to_currency(b.value)
+			- else
+				.circle
+					= number_to_currency(b.value)
+				.line-container
+					-for i in 0..100
+						.line
+							.col-xs-12
+
+	.col-xs-12
+		- bid.post.bids.where(:user_id => current_user.id).each_with_index do |b,index|
+			- if index == 0
+				.date
+					= b.created_at.strftime("%m/%d/%Y") 
+				.space
+			- else
+
+	.col-xs-12.title
+		Current Bid Information
 	.info-container.col-xs-10.no-h-padding
 		.col-xs-4.padding-left-30.bid-amount
 			.attr
@@ -116,25 +148,21 @@
 		All Bids
 	.all-bids-table.col-xs-10.no-h-padding
 		.bid-vendors.bid-column
-			.vendor-title.column-title
-				Bidding Vendors
-			- @bids = bid.post.bids
-			- @bids.each do |b|
-				- if b == bid
-					.vendor-name.column-value
-						You
-				- else
-					.vendor-name.column-value
-						= b.user.account.business_name
-		.bid-amounts.bid-column
 			.amount-title.column-title
 				Bid
 			- @bids = bid.post.bids
 			- @bids.each do |b|
 				.vendor-amount.column-value
 					= number_to_currency(b.value)
-
+		.bid-amounts.bid-column
+			.vendor-title.column-title
+				Date
+			- @bids = bid.post.bids
+			- @bids.each do |b|
+				.vendor-name.column-value
+					= b.created_at.strftime("%m/%d/%Y") 
 
 	.buttons.col-xs-2.no-h-padding
 		= link_to "Modify Bid", edit_bid_path, class: "modify-btn "
 		= link_to "Cancel Bid", bid_path(bid.id), method: :delete, data: {confirm: " Are you sure you want to cancel your bid"}, class: "cancel-btn"
+
