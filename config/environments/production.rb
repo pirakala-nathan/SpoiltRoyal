@@ -75,6 +75,10 @@ Rails.application.configure do
   # Disable automatic flushing of the log to improve performance.
   # config.autoflush_log = false
 
+  # Full error reports are disabled and caching is turned on
+  config.consider_all_requests_local       = false # changed from true
+  config.action_controller.perform_caching = true # changed from false
+
   # Use default logging formatter so that PID and timestamp are not suppressed.
   config.log_formatter = ::Logger::Formatter.new
 
