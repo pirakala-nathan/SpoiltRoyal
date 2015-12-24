@@ -1,7 +1,7 @@
 = render 'layouts/includeScroll'
 = content_for :head do
   %title Hire Wedding Vendors to make your Dream Wedding a Reality
-  %meta{:content => "Nicole Jiang", :name => "author"}/
+  %meta{:content => "SpoiltRoyal", :name => "author"}/
 
 %section#landing_splash
   - if current_user == nil
@@ -30,6 +30,7 @@
       %button How it works
   / splash
 %section#explore_nex
+  %img#content_image{:src => "img/crown.png"}/
   %h2 The Royal Experience
   %h4 Create a post here and you will have access to virtually every Wedding Vendor in the GTA.
   %h3 One Post = Multiple Bids!
