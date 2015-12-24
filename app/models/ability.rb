@@ -17,8 +17,12 @@ class Ability
         end
 
         can [:create], Post
-
+        can :all_bids, Post
+        can :manage_posts, User
         can [:update], Post do |p|
+          p.user == user
+        end
+        can :activate_post, Post do |p|
           p.user == user
         end
         can [:change_status], Bid do |b|

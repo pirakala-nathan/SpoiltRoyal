@@ -27,6 +27,34 @@ $ ->
     $('.next-imgs').append('<input class="img-btn non-hidden" id="images_" multiple="multiple" name="images[]" type="file">')
     pictureName = pictureName.replace('C:\\fakepath\\','')
     alert pictureName
+  $(document).on 'click','.edit-next-post', ->
+    target = $(this).attr('target');
+    if target == ".edit.slide-2"
+      $('.edit.slide-1').hide();
+      $('.edit-back-post').attr('target','.edit.slide-1')
+      $(this).attr('target','.edit.slide-3')
+    else if target == ".edit.slide-3"
+      $('.edit.slide-2').hide();
+      $('.edit-back-post').attr('target','.edit.slide-2')
+      $(this).attr('target','nil')
+    $(target).show();
+
+  $(document).on 'click','.edit-back-post', ->
+    target = $(this).attr('target');
+    if target == ".edit.slide-1"
+      $('.edit.slide-2').hide();
+      $('.edit-submit').attr('target','.edit.slide-2')
+      $(this).attr('target','nil')
+      $('.active-submit').hide();
+      $('.edit-submit').show();
+    else if target == ".edit.slide-2"
+      $('.edit.slide-3').hide();
+      $('.edit-submit').attr('target','.edit.slide-3')
+      $(this).attr('target','.edit.slide-1')
+      $('.active-submit').hide();
+      $('.edit-submit').show();
+    $(target).show();
+    
   $(document).on 'click','.more-or-less', ->
     if $(this).hasClass('view-less')
       $('.rest-of-bids').slideUp('slow');

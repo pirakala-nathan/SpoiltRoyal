@@ -23,23 +23,24 @@
           .status.ongoing
             ONGOING
     .post-button
-      .bid_now
-        - if @current_bid
-          Re-Bid
-        - else
-          Bid Now
-      - if  current_user.watched_posts.where(post_id: @post.id).length > 0
-        - wp = current_user.watched_posts.where(post_id: @post.id).first
-        = link_to  watched_post_path(wp.id), method: :delete, data: {confirm: " Are you sure you want to unwatch this post"}, class: "btn watch-bid col-xs-12" do
-          %i.fa.fa-eye
-          Forget Post
-      - else
-        = form_for WatchedPost.new do |f|
-          = f.hidden_field :user_id, value: current_user.id
-          = f.hidden_field :post_id, value: @post.id
-          = button_tag(type: "submit", class: "btn watch-bid col-xs-12") do
+      - if current_user.account_type == "Vendor"
+        .bid_now
+          - if @current_bid
+            Re-Bid
+          - else
+            Bid Now
+        - if  current_user.watched_posts.where(post_id: @post.id).length > 0
+          - wp = current_user.watched_posts.where(post_id: @post.id).first
+          = link_to  watched_post_path(wp.id), method: :delete, data: {confirm: " Are you sure you want to unwatch this post"}, class: "btn watch-bid col-xs-12" do
             %i.fa.fa-eye
-            Watch Post
+            Forget Post
+        - else
+          = form_for WatchedPost.new do |f|
+            = f.hidden_field :user_id, value: current_user.id
+            = f.hidden_field :post_id, value: @post.id
+            = button_tag(type: "submit", class: "btn watch-bid col-xs-12") do
+              %i.fa.fa-eye
+              Watch Post
     .post-description.col-xs-12.no-h-padding
       .title
         POST DESCRIPTION

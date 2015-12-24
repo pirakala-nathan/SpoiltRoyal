@@ -48,13 +48,16 @@ class PostsController < ApplicationController
 
   end
 
+
   # GET /posts/1/edit
   def edit
+    respond_to do |format|
+      format.js{}
+    end
   end
 
   def activate_post
-    raise 
-    redirect_to posts_path
+    redirect_to post_path(@post)
   end
   # POST /posts
   # POST /posts.json
@@ -62,7 +65,11 @@ class PostsController < ApplicationController
     @error = ""
     @post = Post.new(post_params)
     if post_params[:due_date] != ""
-      @post.due_date = Date.strptime(post_params[:due_date], "%m/%d/%Y")
+      if post_params[:due_date].include? "/"  
+        @post.due_date = Date.strptime(post_params[:due_date], "%m/%d/%Y")
+      else
+        @post.due_date = Date.strptime(post_params[:due_date], "%Y-%m-%d")
+      end
       @post.user = current_user
       respond_to do |format|
         if @post.save
@@ -111,7 +118,11 @@ class PostsController < ApplicationController
 
       if @post.update(post_params)
         if post_params[:due_date]
-          @post.due_date = Date.strptime(post_params[:due_date], "%m/%d/%Y")
+          if post_params[:due_date].include? "/"  
+            @post.due_date = Date.strptime(post_params[:due_date], "%m/%d/%Y")
+          else
+            @post.due_date = Date.strptime(post_params[:due_date], "%Y-%m-%d")
+          end
         end
         @post.save
         @attachments = @post.attachments
@@ -120,7 +131,7 @@ class PostsController < ApplicationController
           a.save
         end
         format.html { redirect_to @post, notice: 'Post was successfully updated.' }
-        format.json { render :show, status: :ok, location: @post }
+        format.js {}
       else
         format.html { render :edit }
         format.json { render json: @post.errors, status: :unprocessable_entity }

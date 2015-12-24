@@ -14,6 +14,9 @@
 						= link_to "Watched Posts", watched_posts_user_path(current_user)
 					%li{class: ("active"  if request.path == vendor_path(current_user.account))}
 						= link_to "Profile", vendor_path(current_user.account)
+				- else
+					%li{class: ("active" if @page == "manage_posts")}
+						= link_to "Manage Posts", manage_posts_user_path(current_user)
 				%li{class: ("active" if @page == "account")}
 					= link_to "Settings", account_user_path(current_user)
 				-# %li{class: ("active" if @page == "statistics")}	

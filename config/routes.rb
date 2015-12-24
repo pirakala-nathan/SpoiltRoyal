@@ -86,6 +86,7 @@ Rails.application.routes.draw do
       get :account
       get :watched_posts
       get :read
+      get :manage_posts
     end
   end
   resources :user_sessions, only: [:new, :create]

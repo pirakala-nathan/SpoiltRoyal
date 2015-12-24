@@ -9,10 +9,10 @@ class UsersController < ApplicationController
     if @user.account_type == "Consumer"
       @consumer = @user.account
       @profileGallery =  @consumer.galleries.where(name: "Profile_Pictures", owner_id: @consumer.id, owner_type: "Consumer")
-      if !@profileGallery
+      if @profileGallery.empty?
         @consumer.galleries.create(name: "Profile_Pictures", owner_id: @consumer.id, owner_type: "Consumer", user_id: current_user.id)
         @consumer.save
-        @profileGallery =  @consumer.galleries.where(name: "Profile_Pictures", owner_id: @consumer.id, owner_type: "Vendor")
+        @profileGallery =  @consumer.galleries.where(name: "Profile_Pictures", owner_id: @consumer.id, owner_type: "Consumer")
       end
     else
       @vendor = @user.account
@@ -64,6 +64,10 @@ class UsersController < ApplicationController
   end
 
   def profile
+  end
+
+  def manage_posts
+    @posts = current_user.posts
   end
 
   def account

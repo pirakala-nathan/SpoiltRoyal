@@ -4,7 +4,7 @@ class CreatePosts < ActiveRecord::Migration
       t.string :title
       t.text :description
       t.integer :user_id
-      t.string :status, :default => "pending"
+      t.string :status, :default => "active"
       t.date :due_date
       t.boolean :phone_contact
       t.boolean :email_contact  
