@@ -46,9 +46,20 @@ class BidsController < ApplicationController
 
     respond_to do |format|
       if @bid.save
-
         @users = []
         @post = @bid.post
+        @userBids = current_user.bids.where(post_id: @post.id)
+        if @userBids.length > 1
+          @userBids.each do |ubid|
+            if ubid != @bid
+              if ubid.status == "bid-pending"
+                ubid.status = "Re-bided"
+              end
+              ubid.legacy = true
+              ubid.save
+            end
+          end
+        end
         @user_activity = PublicActivity::Activity.create(owner: current_user,
                key: 'Post.placed_a_bid_on_your_post',recipient: @post.user, trackable:@bid.post)
         if @user_activity.id != nil
@@ -85,7 +96,7 @@ class BidsController < ApplicationController
             end
           end
         end
-        format.html { redirect_to @post, notice: 'Bid was successfully created.' }
+        format.html { redirect_to bids_user_path(current_user), notice: 'Bid was successfully created.' }
         format.json { render :show, status: :created, location: @bid }
       else
         format.html { render :new }

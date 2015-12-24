@@ -5,9 +5,11 @@ $ ->
 	$('.dropdown-toggle').dropdown()
 	$('.bid-links > .link').click ->
 		target = $(this).attr("target")
-		$(target).slideDown('slow')
+		$(target).toggleClass('hidden')
 	$('.current-filter').click ->
 		$('.filter-options').show();
 		# ...
-	
-	
+	$('.target-bid-history').click ->
+		target = $(this).attr("target")
+		$(this).parent().children('.bid-group-set').addClass('hidden')
+		$("."+target).removeClass('hidden')

@@ -32,18 +32,20 @@ class PostsController < ApplicationController
     @allbids = @post.bids
     respond_to do |format|
       format.js{}
+      format.html{}
     end  
   end
   # GET /posts/1
   # GET /posts/1.json
   def show
     @comment = Comment.new
+    @current_bid = @post.bids.where(user_id: current_user.id,:legacy => false).first
   end
 
   # GET /posts/new
   def new
     @post = Post.new
-    @post.post_subscriptions.build
+
   end
 
   # GET /posts/1/edit

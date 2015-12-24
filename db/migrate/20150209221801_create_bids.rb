@@ -6,6 +6,7 @@ class CreateBids < ActiveRecord::Migration
       t.text :info
       t.integer :user_id
       t.integer :post_id
+      t.boolean :legacy, default: false
       t.timestamps null: false
     end
   end

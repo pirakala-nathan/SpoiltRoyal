@@ -2,7 +2,7 @@
 # All this logic will automatically be available in application.js.
 # You can use CoffeeScript in this file: http://coffeescript.org/
 $ ->
-  $('.bid-now-index').click ->
+  $('.open-bid-now').click ->
     id = $(this).attr('data-id')
     $('.post-id').val(id)
     $('#bid_now').modal('show')
@@ -27,7 +27,7 @@ $ ->
     $('.next-imgs').append('<input class="img-btn non-hidden" id="images_" multiple="multiple" name="images[]" type="file">')
     pictureName = pictureName.replace('C:\\fakepath\\','')
     alert pictureName
-  $('.more-or-less').click ->
+  $(document).on 'click','.more-or-less', ->
     if $(this).hasClass('view-less')
       $('.rest-of-bids').slideUp('slow');
       $(this).removeClass('view-less')

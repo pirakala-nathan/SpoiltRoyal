@@ -80,6 +80,7 @@ ActiveRecord::Schema.define(version: 20151130010903) do
     t.text     "info",       limit: 65535
     t.integer  "user_id",    limit: 4
     t.integer  "post_id",    limit: 4
+    t.boolean  "legacy",     limit: 1,     default: false
     t.datetime "created_at",                                       null: false
     t.datetime "updated_at",                                       null: false
   end

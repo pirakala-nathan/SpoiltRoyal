@@ -7,7 +7,11 @@
 }
 #all_bid_info{
   .modal-content{
-    padding:22px;
+    background-color:transparent;
+    border:0;
+    position: relative;
+    left: 50%;
+    margin-left: -500px;
   }
   .text-align-left{
     text-align: left;
@@ -102,12 +106,40 @@
     .rest-of-bids{
       display: none;
     }
+    .bid-table{
+      text-align:center;
+      .row-post{
+        padding-left:30px;
+        padding-right:30px;
+        padding-top:5px;
+        float: left;
+        .value{
+          float: left;
+        }
+        .heading{
+          margin-top: 20px;
+        }
+      }
+    }
+    .green{
+      color: $green;
+
+    }
+    .orange{
+      color: #DB716A;
+    }
+    .dark-text{
+      color: $dark-text-color;
+      font-size: 15px;
+      font-weight: bold;
+      }
     .bid{
       padding: 30px;
       margin-top: 20px;
       float: left;
       width: 100%;
       padding-bottom:0px;
+      
       .bid-info{
         img{
           float: left;
@@ -123,15 +155,8 @@
             height: 30px;
             font-weight: bold;
             line-height: 35px;
-            .orange{
-              color: #DB716A;
-            }
-            .dark-text{
-              color: $dark-text-color;
-            }
-            .green{
-              color: $green;
-            }
+            
+            
           }
         }
       }

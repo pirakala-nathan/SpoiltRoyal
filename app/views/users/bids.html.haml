@@ -1,6 +1,6 @@
 = render 'layouts/includeScroll'
 = render 'dashboard_nav'
-
+= render 'layouts/patternbg'
 .custom.container.no-h-padding
 	.page-info
 		.bid-page-status
@@ -40,5 +40,6 @@
 					
 
 - @bid = Bid.new
+= render 'posts/bid_now'
 .all-bid-container
 	

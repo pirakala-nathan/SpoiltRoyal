@@ -63,86 +63,11 @@
 			-# .all-bids-button.link{"target" => ".all-bids-#{bid.id}"}
 			-# 	All bid
 
-.extra-bid-info.bid-slide-down{class: "bid-info-#{bid.id}"}
-	.gradient
-	.col-xs-12.title
-		Your Bid History
-	.col-xs-12
-		- bid.post.bids.where(:user_id => current_user.id).each_with_index do |b,index|
-			- if index == 0
-				.circle
-					= number_to_currency(b.value)
-				- if bid.post.bids.where(:user_id => current_user.id).length > 1
-					.line-container
-						-for i in 0..100
-							.line
-								.col-xs-12
-			- elsif index == (bid.post.bids.where(:user_id => current_user.id).length - 1)
-				.circle
-					= number_to_currency(b.value)
-			- else
-				.circle
-					= number_to_currency(b.value)
-				.line-container
-					-for i in 0..100
-						.line
-							.col-xs-12
-
-	.col-xs-12
-		- bid.post.bids.where(:user_id => current_user.id).each_with_index do |b,index|
-			- if index == 0
-				.date
-					= b.created_at.strftime("%m/%d/%Y") 
-				.space
-			- else
-
-	.col-xs-12.title
-		Current Bid Information
-	.info-container.col-xs-10.no-h-padding
-		.col-xs-4.padding-left-30.bid-amount
-			.attr
-				Bid Value
-			.value
-				= number_to_currency(bid.value)
-		.col-xs-4.no-h-padding.bid-date
-			.attr
-				Bid Date
-			.value
-				= bid.created_at.strftime("%B %d, %Y")
-		.col-xs-4.no-h-padding.industries
-			.attr
-				Industry
-			.value
-				- @last = bid.post.post_subscriptions.last
-				-bid.post.post_subscriptions.each do |ps|
-					= ps.subcategory.category.industry.name
-					- if @last != ps
-						= ", "
-		.col-xs-4.padding-left-30.status
-			.attr
-				Bid status
-			.value
-				- if bid.status == "bid-pending"
-					bidded, pending for response
-				- elsif bid.status == "accepted"
-					= "Bid Won"
-				- elsif bid.status == "Lost"
-					Lost
-				-else
-					= "Bid cancelled"
-		.col-xs-4.no-h-padding.bid-due
-			.attr
-				Bid Due
-			.value
-				= bid.post.due_date.to_date.strftime("%B %d, %Y")
-	.buttons.col-xs-2.no-h-padding
-		= link_to "Modify Bid", edit_bid_path, class: "modify-btn "
-		= link_to "Cancel Bid", bid_path(bid.id), method: :delete, data: {confirm: " Are you sure you want to cancel your bid"}, class: "cancel-btn"
+= render 'your_bid_info', bid: bid, hidden: true,gradient: true, backgroundWhite:false;
 
 
 
-
-.all-bids.bid-slide-down{class: "all-bids-#{bid.id}"}
+.all-bids.bid-slide-down.hidden{class: "all-bids-#{bid.id}"}
 	.gradient
 	.col-xs-12.title
 		All Bids
@@ -163,6 +88,6 @@
 					= b.created_at.strftime("%m/%d/%Y") 
 
 	.buttons.col-xs-2.no-h-padding
-		= link_to "Modify Bid", edit_bid_path, class: "modify-btn "
+		%a.modify-btn.open-bid-now{href:"#"} Modify
 		= link_to "Cancel Bid", bid_path(bid.id), method: :delete, data: {confirm: " Are you sure you want to cancel your bid"}, class: "cancel-btn"
 

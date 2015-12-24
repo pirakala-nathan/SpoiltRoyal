@@ -25,7 +25,7 @@ class Ability
           b.post.user == user
         end
       elsif user.account_type == "Vendor"
-
+        can :all_bids, Post
         can [:create], Comment
 
         can [:edit], Vendor do |v|

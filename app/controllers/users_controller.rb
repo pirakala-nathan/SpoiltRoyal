@@ -35,24 +35,24 @@ class UsersController < ApplicationController
   def bids
     if params[:filter] == "All"
       @filter = params[:filter]
-      @bids = @user.bids.select("DISTINCT(post_id)").select(:id).select(:value).select(:created_at).select(:status).select(:info).select(:status)
+      @bids = @user.bids.where(:legacy => false).order('id DESC')
     elsif params[:filter] == "won_active"
       @filter = "Won \u2022 Active"
-      @bids = @user.bids.where(:status => "accepted").select("DISTINCT(post_id)").select(:id).select(:value).select(:created_at).select(:status).select(:info)
+      @bids = @user.bids.where(:status => "accepted", :legacy => false).order('id DESC')
       @bids = @bids.reject{|r| r.active? == false}
     elsif params[:filter] == "won_complete"
       @filter = "Won \u2022 Complete"
-      @bids = @user.bids.where(:status => "accepted").select("DISTINCT(post_id)").select(:id).select(:value).select(:created_at).select(:status).select(:info)
+      @bids = @user.bids.where(:status => "accepted", :legacy => false).order('id DESC')
       @bids = @bids.reject{|r| r.active? == false}
     elsif params[:filter] == "lost"
       @filter = "Lost"
-      @bids = @user.bids.where(:status => "Lost").select("DISTINCT(post_id)").select(:id).select(:value).select(:created_at).select(:status).select(:info).select(:status)
+      @bids = @user.bids.where(:status => "Lost", :legacy => false).order('id DESC')
     elsif params[:filter] == "cancelled"
       @filter = "Cancelled"
-      @bids = @user.bids.where(:status => "cancelled").select("DISTINCT(post_id)").select(:id).select(:value).select(:created_at).select(:status).select(:info).select(:status)
+      @bids = @user.bids.where(:status => "cancelled", :legacy => false).order('id DESC')
     else
       @filter = "All"
-      @bids = @user.bids.select("DISTINCT(post_id)").select(:id).select(:value).select(:created_at).select(:info).select(:status)
+      @bids = @user.bids.where(:legacy => false, :legacy => false).order('id DESC')
     end
   end
 
