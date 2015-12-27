@@ -204,15 +204,6 @@ third_sub = PostSubscription.create(
   category_id: 3,
   subcategory_id: 7,
 )
-for i in 3..8 do
-  for j in 1..3 do 
-    Bid.create(value: 25, status: "bid-pending", info: "Lorem Ipsum is simply dummy text of the printing", user_id: i, post_id: j)
-  end
-end
-
-for i in 1..3 do 
-  Bid.create(value: 45, status: "bid-pending", info: "Lorem Ipsum is simply dummy text of the printing", user_id: 1, post_id: i)
-end
 
 location_one = LocationOption.create(
   name: "All"
