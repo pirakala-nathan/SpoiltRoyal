@@ -278,7 +278,7 @@ ActiveRecord::Schema.define(version: 20151130010903) do
     t.string   "title",               limit: 255
     t.text     "description",         limit: 65535
     t.integer  "user_id",             limit: 4
-    t.string   "status",              limit: 255,   default: "pending"
+    t.string   "status",              limit: 255,   default: "active"
     t.date     "due_date"
     t.boolean  "phone_contact",       limit: 1
     t.boolean  "email_contact",       limit: 1
